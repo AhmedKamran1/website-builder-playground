@@ -4,4 +4,7 @@ export const eventType = {
   CHANGEWIDTH: "changeWidth",
   CHANGEBGCOLOR: "changeBgColor",
   CHANGEFONTSIZE: "changeFontSize",
+  CHANGEHEIGHTUNIT: "changeHeightUnit",
+  CHANGEWIDTHUNIT: "changeWidthUnit",
+  CHANGEFONTSIZEUNIT: "changeFontSizeUnit",
 };
