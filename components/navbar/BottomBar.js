@@ -6,14 +6,17 @@ import {
   heightSpecificUnits,
   widthSpecificUnits,
 } from "@/util/units";
-import { useContext, useReducer } from "react";
+import { useCallback, useContext, useEffect, useReducer } from "react";
 
 const initialState = {
-  color: "blue",
-  height: "30",
-  width: "30",
-  backgroundColor: "white",
-  fontSize: "10",
+  color: "#FF0000",
+  height: "",
+  width: "",
+  backgroundColor: "#FFFFFF",
+  fontSize: "",
+  heightUnit: "px",
+  widthUnit: "px",
+  fontSizeUnit: "px",
 };
 
 const reducer = (state, action) => {
@@ -28,6 +31,12 @@ const reducer = (state, action) => {
       return { ...state, backgroundColor: action.payload };
     case eventType.CHANGEFONTSIZE:
       return { ...state, fontSize: action.payload };
+    case eventType.CHANGEHEIGHTUNIT:
+      return { ...state, heightUnit: action.payload };
+    case eventType.CHANGEWIDTHUNIT:
+      return { ...state, widthUnit: action.payload };
+    case eventType.CHANGEFONTSIZEUNIT:
+      return { ...state, fontSizeUnit: action.payload };
     default:
       return state;
   }
@@ -46,18 +55,7 @@ const BottomBar = () => {
         dispatch({ type: eventType.CHANGEHEIGHT, payload: event.target.value });
         break;
       case eventType.CHANGEWIDTH:
-        dispatch({ type: eventType.CHANGEWIDTH });
-      case eventType.CHANGEWIDTH:
-        const input = document.getElementById("width");
-        const select = input.nextElementSibling;
-
-        if (event.target.value && select.value) {
-          const width = event.target.value + select.value;
-          dispatch({
-            type: eventType.CHANGEWIDTH,
-            payload: width,
-          });
-        }
+        dispatch({ type: eventType.CHANGEWIDTH, payload: event.target.value });
         break;
       case eventType.CHANGEBGCOLOR:
         dispatch({
@@ -71,15 +69,43 @@ const BottomBar = () => {
           payload: event.target.value,
         });
         break;
+      case eventType.CHANGEHEIGHTUNIT:
+        dispatch({
+          type: eventType.CHANGEHEIGHTUNIT,
+          payload: event.target.value,
+        });
+        break;
+      case eventType.CHANGEWIDTHUNIT:
+        dispatch({
+          type: eventType.CHANGEWIDTHUNIT,
+          payload: event.target.value,
+        });
+        break;
+      case eventType.CHANGEFONTSIZEUNIT:
+        dispatch({
+          type: eventType.CHANGEFONTSIZEUNIT,
+          payload: event.target.value,
+        });
+        break;
       default:
         return null;
     }
   };
 
-  const updateStyleHandler = () => {
-    console.log(state);
-    componentCtx.updateComponent(state);
-  };
+  const updateStyleHandler = useCallback(() => {
+    const modifiedStyles = {
+      color: state.color,
+      height: state.height + state.heightUnit,
+      width: state.width + state.widthUnit,
+      backgroundColor: state.backgroundColor,
+      fontSize: state.fontSize + state.fontSizeUnit,
+    };
+    componentCtx.updateComponent(modifiedStyles);
+  }, [state]);
+
+  useEffect(() => {
+    updateStyleHandler();
+  }, [state]);
 
   return (
     <Container>
@@ -89,8 +115,7 @@ const BottomBar = () => {
           type="color"
           id="color"
           value={state.color}
-          onChange={() => styleChangeHandler(event, eventType.CHANGECOLOR)}
-          onBlur={updateStyleHandler}
+          onInput={(event) => styleChangeHandler(event, eventType.CHANGECOLOR)}
         />
       </div>
       <div>
@@ -99,18 +124,35 @@ const BottomBar = () => {
           type="text"
           id="height"
           value={state.height}
-          onChange={() => styleChangeHandler(event, eventType.CHANGEHEIGHT)}
+          onChange={(event) =>
+            styleChangeHandler(event, eventType.CHANGEHEIGHT)
+          }
         />
-        <select>
+        <select
+          value={state.heightUnit}
+          onChange={(event) =>
+            styleChangeHandler(event, eventType.CHANGEHEIGHTUNIT)
+          }
+        >
           {heightSpecificUnits.map((unit, index) => (
             <option key={index}>{unit}</option>
           ))}
         </select>
       </div>
-      <div onChange={() => styleChangeHandler(event, eventType.CHANGEWIDTH)}>
+      <div>
         <label htmlFor="width">width</label>
-        <input type="text" id="width" value={state.width} />
-        <select>
+        <input
+          type="text"
+          id="width"
+          value={state.width}
+          onChange={(event) => styleChangeHandler(event, eventType.CHANGEWIDTH)}
+        />
+        <select
+          value={state.widthUnit}
+          onChange={(event) =>
+            styleChangeHandler(event, eventType.CHANGEWIDTHUNIT)
+          }
+        >
           {widthSpecificUnits.map((unit, index) => (
             <option key={index}>{unit}</option>
           ))}
@@ -122,8 +164,9 @@ const BottomBar = () => {
           type="color"
           id="bgColor"
           value={state.backgroundColor}
-          onChange={() => styleChangeHandler(event, eventType.CHANGEBGCOLOR)}
-          onBlur={updateStyleHandler}
+          onInput={(event) =>
+            styleChangeHandler(event, eventType.CHANGEBGCOLOR)
+          }
         />
       </div>
       <div>
@@ -132,9 +175,15 @@ const BottomBar = () => {
           type="text"
           id="fontSize"
           value={state.fontSize}
-          onChange={() => styleChangeHandler(event, eventType.CHANGEFONTSIZE)}
+          onChange={(event) =>
+            styleChangeHandler(event, eventType.CHANGEFONTSIZE)
+          }
         />
-        <select>
+        <select
+          onChange={(event) =>
+            styleChangeHandler(event, eventType.CHANGEFONTSIZEUNIT)
+          }
+        >
           {commonUnits.map((unit, index) => (
             <option key={index}>{unit}</option>
           ))}
