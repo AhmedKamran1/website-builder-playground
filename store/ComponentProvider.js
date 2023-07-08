@@ -14,12 +14,14 @@ const ComponentProvider = (props) => {
   };
 
   const updateComponent = (styles) => {
-    const clonedComponentData = structuredClone(componentData);
-    const updateStyleIndex = clonedComponentData.findIndex(
-      (component) => component.id === componentId
-    );
-    clonedComponentData[updateStyleIndex].styles = styles;
-    setComponentData(clonedComponentData);
+    if (componentData.length != 0) {
+      const clonedComponentData = structuredClone(componentData);
+      const updateStyleIndex = clonedComponentData.findIndex(
+        (component) => component.id === componentId
+      );
+      clonedComponentData[updateStyleIndex].styles = styles;
+      setComponentData(clonedComponentData);
+    }
   };
 
   return (
