@@ -1,5 +1,6 @@
 import ComponentContext from "@/store/component-context";
-import { Container } from "@/styles/BottomBar.styles";
+import * as NavStyles from "../../styles/navbar/BottomBar";
+import { component } from "@/util/component-type";
 import { eventType } from "@/util/event-types";
 import {
   commonUnits,
@@ -17,6 +18,7 @@ const initialState = {
   heightUnit: "px",
   widthUnit: "px",
   fontSizeUnit: "px",
+  redirectLink: "",
 };
 
 const reducer = (state, action) => {
@@ -37,6 +39,8 @@ const reducer = (state, action) => {
       return { ...state, widthUnit: action.payload };
     case eventType.CHANGEFONTSIZEUNIT:
       return { ...state, fontSizeUnit: action.payload };
+    case eventType.CHANGEREDIRECTLINK:
+      return { ...state, redirectLink: action.payload };
     default:
       return state;
   }
@@ -45,6 +49,7 @@ const reducer = (state, action) => {
 const BottomBar = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const componentCtx = useContext(ComponentContext);
+  const showRedirectLinkOption = componentCtx.componentType;
 
   const styleChangeHandler = (event, changeType) => {
     switch (changeType) {
@@ -87,6 +92,12 @@ const BottomBar = () => {
           payload: event.target.value,
         });
         break;
+      case eventType.CHANGEREDIRECTLINK:
+        dispatch({
+          type: eventType.CHANGEREDIRECTLINK,
+          payload: event.target.value,
+        });
+        break;
       default:
         return null;
     }
@@ -94,13 +105,16 @@ const BottomBar = () => {
 
   const updateStyleHandler = useCallback(() => {
     const modifiedStyles = {
-      color: state.color,
+      colorhex: state.color,
       height: state.height + state.heightUnit,
       width: state.width + state.widthUnit,
-      backgroundColor: state.backgroundColor,
-      fontSize: state.fontSize + state.fontSizeUnit,
+      backgroundcolor: state.backgroundColor,
+      fontsize: state.fontSize + state.fontSizeUnit,
     };
-    componentCtx.updateComponent(modifiedStyles);
+    const extraFunctionalities = {
+      redirectLink: state.redirectLink,
+    };
+    componentCtx.updateComponent(modifiedStyles, extraFunctionalities);
   }, [state]);
 
   useEffect(() => {
@@ -108,7 +122,7 @@ const BottomBar = () => {
   }, [state]);
 
   return (
-    <Container>
+    <NavStyles.BottomBarGridContainer item xs={12}>
       <div>
         <label htmlFor="color">color</label>
         <input
@@ -189,7 +203,20 @@ const BottomBar = () => {
           ))}
         </select>
       </div>
-    </Container>
+      {showRedirectLinkOption === component.button && (
+        <div>
+          <label htmlFor="redirectLink">Redirect Link</label>
+          <input
+            type="text"
+            id="redirectLink"
+            value={state.redirectLink}
+            onChange={(event) =>
+              styleChangeHandler(event, eventType.CHANGEREDIRECTLINK)
+            }
+          />
+        </div>
+      )}
+    </NavStyles.BottomBarGridContainer>
   );
 };
 
