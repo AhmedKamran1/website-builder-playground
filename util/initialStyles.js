@@ -1,9 +1,9 @@
 export const initialComponentStyles = {
-  color: "#FF0000",
+  colorhex: "#FF0000",
   height: "30px",
   width: "30px",
-  backgroundColor: "#FFFFFF",
-  fontSize: "10px",
+  backgroundcolor: "#FFFFFF",
+  fontsize: "10px",
 };
 
 // const data = [
