@@ -7,4 +7,5 @@ export const eventType = {
   CHANGEHEIGHTUNIT: "changeHeightUnit",
   CHANGEWIDTHUNIT: "changeWidthUnit",
   CHANGEFONTSIZEUNIT: "changeFontSizeUnit",
+  CHANGEREDIRECTLINK: "changeRedirectLink"
 };
