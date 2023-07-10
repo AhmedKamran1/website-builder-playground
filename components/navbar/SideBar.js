@@ -1,14 +1,13 @@
-import { Container } from "@/styles/SideBar.styles";
-import React from "react";
 import TopBar from "./TopBar";
 import BottomBar from "./BottomBar";
+import * as NavStyles from "../../styles/navbar/SideBar";
 
 const SideBar = () => {
   return (
-    <Container>
+    <NavStyles.SideBarGridContainer container item xs={2}>
       <TopBar />
       <BottomBar />
-    </Container>
+    </NavStyles.SideBarGridContainer>
   );
 };
 
