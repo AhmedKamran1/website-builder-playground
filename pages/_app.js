@@ -1,5 +1,10 @@
-import '@/styles/globals.css'
+import ComponentProvider from "@/store/ComponentProvider";
+import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <ComponentProvider>
+      <Component {...pageProps} />
+    </ComponentProvider>
+  );
 }

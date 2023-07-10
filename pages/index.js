@@ -1,16 +1,13 @@
-import EditArea from "@/components/EditArea";
+import EditArea from "@/components/edit-area/EditArea";
+import Layout from "@/components/layout/Layout";
 import SideBar from "@/components/navbar/SideBar";
-import ComponentProvider from "@/store/ComponentProvider";
-import { Container } from "@/styles/Index.styles";
 
 function HomePage() {
   return (
-    <ComponentProvider>
-      <Container>
-        <EditArea />
-        <SideBar />
-      </Container>
-    </ComponentProvider>
+    <Layout>
+      <EditArea />
+      <SideBar />
+    </Layout>
   );
 }
 
