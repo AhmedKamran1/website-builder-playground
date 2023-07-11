@@ -8,6 +8,9 @@ import {
   widthSpecificUnits,
 } from "@/util/units";
 import { useCallback, useContext, useEffect, useReducer } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { componentType } from "@/store/ComponentSlice";
+import { componentActions } from "@/store/store";
 
 const initialState = {
   color: "#FF0000",
@@ -49,7 +52,8 @@ const reducer = (state, action) => {
 const BottomBar = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const componentCtx = useContext(ComponentContext);
-  const showRedirectLinkOption = componentCtx.componentType;
+  const selectedComponentType = useSelector(componentType);
+  const dispatchStore = useDispatch();
 
   const styleChangeHandler = (event, changeType) => {
     switch (changeType) {
@@ -114,7 +118,10 @@ const BottomBar = () => {
     const extraFunctionalities = {
       redirectLink: state.redirectLink,
     };
-    componentCtx.updateComponent(modifiedStyles, extraFunctionalities);
+    // componentCtx.updateComponent(modifiedStyles, extraFunctionalities);
+    dispatchStore(
+      componentActions.updateComponent({ modifiedStyles, extraFunctionalities })
+    );
   }, [state]);
 
   useEffect(() => {
@@ -203,7 +210,7 @@ const BottomBar = () => {
           ))}
         </select>
       </div>
-      {showRedirectLinkOption === component.button && (
+      {selectedComponentType === component.button && (
         <div>
           <label htmlFor="redirectLink">Redirect Link</label>
           <input
