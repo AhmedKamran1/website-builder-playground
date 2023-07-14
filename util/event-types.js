@@ -1,4 +1,5 @@
 export const eventType = {
+  SETINITIALSTATE: "setInitialState",
   CHANGECOLOR: "changeColor",
   CHANGEHEIGHT: "changeHeight",
   CHANGEWIDTH: "changeWidth",
@@ -7,5 +8,11 @@ export const eventType = {
   CHANGEHEIGHTUNIT: "changeHeightUnit",
   CHANGEWIDTHUNIT: "changeWidthUnit",
   CHANGEFONTSIZEUNIT: "changeFontSizeUnit",
-  CHANGEREDIRECTLINK: "changeRedirectLink"
+  CHANGEREDIRECTLINK: "changeRedirectLink",
+  CHANGEFONTWEIGHT: "changeFontWeight",
+  CHANGEFONTSTYLE: "changeFontStyle",
+  CHANGEHOVERCOLOR: "changeHoverColor",
+  CHANGEINNERTEXT: "changeInnerText",
+  CHANGEFONTFAMILY: "changeFontFamily",
+  CHANGEBUTTONMODE: "changeButtonMode"
 };
