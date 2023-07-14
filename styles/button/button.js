@@ -1,26 +1,36 @@
 import { Button, styled } from "@mui/material";
 
 export const StyledButton = styled(Button)(
-  ({ colorhex, height, width, backgroundcolor, fontsize, theme }) => ({
+  ({
+    colorhex,
+    height,
+    width,
+    backgroundcolor,
+    fontsize,
+    theme,
+    fontfamily,
+    fontweight,
+    fontstyle,
+    hovercolor,
+    isfocused,
+    mdwidth,
+  }) => ({
     backgroundColor: backgroundcolor,
     width: width,
     color: colorhex,
     height: height,
     fontSize: fontsize,
+    fontFamily: fontfamily,
+    fontWeight: fontweight,
+    fontStyle: fontstyle,
+    border: isfocused ? "1px solid blue" : "none",
+    margin: "0.25rem",
     [theme.breakpoints.down("md")]: {
-      width: "500px",
+      width: mdwidth,
     },
 
     "&:hover": {
-      backgroundColor: "gray",
+      backgroundColor: hovercolor,
     },
   })
 );
-
-// export const initialComponentStyles = {
-//   color: "#FF0000",
-//   height: "30px",
-//   width: "30px",
-//   backgroundColor: "#FFFFFF",
-//   fontSize: "10px",
-// };
