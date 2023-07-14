@@ -1,12 +1,19 @@
-import { wrapper } from "@/store/store";
 import "@/styles/globals.css";
+
+import { wrapper } from "@/store/store";
+
 import { Provider } from "react-redux";
+
+import { PersistGate } from "redux-persist/integration/react";
+
 
 function App({ Component, pageProps, ...rest }) {
   const { store } = wrapper.useWrappedStore(rest);
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <PersistGate loading={<h1>Loading</h1>} persistor={store.__persistor}>
+        <Component {...pageProps} />
+      </PersistGate>
     </Provider>
   );
 }
