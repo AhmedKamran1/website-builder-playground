@@ -1,25 +1,33 @@
 import React from "react";
 import Link from "next/link";
 
-
 import { component } from "@/util/component-type";
 
 import * as EditAreaStyles from "../../styles/edit-area/EditArea";
 import * as Styled from "../../styles/button/button";
 import { Div } from "@/styles/Component.styles";
+
 import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";
-import { componentData } from "@/store/ComponentSlice";
+import { componentData, componentId } from "@/store/ComponentSlice";
 
 const EditArea = () => {
-  
+  const selectedComponentId = useSelector(componentId);
   const components = useSelector(componentData);
   const dispatch = useDispatch();
 
-  const componentSelectionHandler = (componentId, componentType) => {
-    // componentCtx.selectedComponent(id);
+  const componentPostHandler = () => {
+    console.log(components);
+  };
+
+  const componentSelectionHandler = (
+    componentData,
+    componentId,
+    componentType
+  ) => {
     dispatch(
       componentActions.selectedComponent({
+        componentData,
         componentId,
         componentType,
       })
@@ -33,13 +41,12 @@ const EditArea = () => {
     extraFunctionalities,
     id
   ) => {
-    // componentData.id = id;
+    const isFocused = selectedComponentId === id;
     switch (componentType) {
       case component.div:
         return (
           <Div
             {...styles}
-            id={id}
             onClick={() => componentSelectionHandler(id, component.div)}
           >
             A div
@@ -47,16 +54,18 @@ const EditArea = () => {
         );
       case component.button:
         return (
-          <Link href={extraFunctionalities.redirectLink ?? ""}>
-            <Styled.StyledButton
-              variant="contained"
-              {...styles}
-              id={id}
-              onClick={() => componentSelectionHandler(id, component.button)}
-            >
-              MUI
-            </Styled.StyledButton>
-          </Link>
+          // <Link href={extraFunctionalities.redirectLink ?? ""}>
+          <Styled.StyledButton
+            variant="contained"
+            {...styles}
+            onClick={() =>
+              componentSelectionHandler(componentData, id, component.button)
+            }
+            isfocused={isFocused}
+          >
+            {extraFunctionalities.innerText ?? "Button"}
+          </Styled.StyledButton>
+          // </Link>
         );
       default:
         return null;
@@ -65,7 +74,9 @@ const EditArea = () => {
 
   return (
     <EditAreaStyles.EditAreaContainer item xs={10}>
-      <button style={{ marginBottom: "5rem" }}>Post</button>
+      <button style={{ marginBottom: "5rem" }} onClick={componentPostHandler}>
+        Post
+      </button>
       <br />
       {components.map((data, index) => (
         <React.Fragment key={index}>
