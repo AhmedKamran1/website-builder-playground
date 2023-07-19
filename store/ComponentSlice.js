@@ -13,7 +13,20 @@ const componentSlice = createSlice({
   initialState: componentInitialState,
   reducers: {
     addComponent(state, action) {
-      state.componentData.push({ id: state.componentId++, ...action.payload });
+      const replaceComponentIndex = state.componentData.findIndex(
+        (component) => component.componentType === action.payload.componentType
+      );
+      if (replaceComponentIndex != -1) {
+        state.componentData[replaceComponentIndex] = {
+          id: state.componentData[replaceComponentIndex].id,
+          ...action.payload,
+        };
+      } else {
+        state.componentData.push({
+          id: state.componentId++,
+          ...action.payload,
+        });
+      }
     },
 
     selectedComponent(state, action) {
