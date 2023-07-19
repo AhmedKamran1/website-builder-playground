@@ -32,7 +32,7 @@ export const initialButtonComponentStyles = [
     backgroundcolor: "#FFFF00",
     fontsize: "12px",
     font: "sans-serif",
-    fontweight: "bold",
+    fontweight: "normal",
     fontstyle: "italic",
     fontfamily: "ABeeZee",
     hovercolor: "#0000FF",
