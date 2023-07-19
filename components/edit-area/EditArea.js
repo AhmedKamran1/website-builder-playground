@@ -4,12 +4,13 @@ import Link from "next/link";
 import { component } from "@/util/component-type";
 
 import * as EditAreaStyles from "../../styles/edit-area/EditArea";
-import * as Styled from "../../styles/button/button";
+import * as Styled from "../../styles/pre-defined-components/button/button";
 import { Div } from "@/styles/Component.styles";
 
 import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";
 import { componentData, componentId } from "@/store/ComponentSlice";
+import Navbar from "../navbar/Navbar";
 
 const EditArea = () => {
   const selectedComponentId = useSelector(componentId);
@@ -43,29 +44,32 @@ const EditArea = () => {
   ) => {
     const isFocused = selectedComponentId === id;
     switch (componentType) {
-      case component.div:
-        return (
-          <Div
-            {...styles}
-            onClick={() => componentSelectionHandler(id, component.div)}
-          >
-            A div
-          </Div>
-        );
-      case component.button:
+      case component.BUTTON:
         return (
           // <Link href={extraFunctionalities.redirectLink ?? ""}>
           <Styled.StyledButton
             variant="contained"
             {...styles}
             onClick={() =>
-              componentSelectionHandler(componentData, id, component.button)
+              componentSelectionHandler(componentData, id, component.BUTTON)
             }
             isfocused={isFocused}
           >
             {extraFunctionalities.innerText ?? "Button"}
           </Styled.StyledButton>
           // </Link>
+        );
+      case component.NAVBAR:
+        return (
+          <Navbar
+            styles={styles}
+            extraFunctionalities={extraFunctionalities}
+            navbarId={componentData.navId}
+            componentSelectionHandler={() =>
+              componentSelectionHandler(componentData, id, component.NAVBAR)
+            }
+            isfocused={isFocused}
+          />
         );
       default:
         return null;

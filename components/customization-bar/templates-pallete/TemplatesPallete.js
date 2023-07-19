@@ -1,9 +1,11 @@
-import * as NavStyles from "../../../styles/navbar/TopBar";
-import * as ComponentStyles from "../../../styles/button/button";
+import * as TempStyles from "../../../styles/customization-bar/TopBar";
+import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
+import * as NavStyles from "../../../styles/pre-defined-components/navbar/navbar";
 
 import { component } from "@/util/component-type";
 
-import { initialButtonComponentStyles } from "@/styles/pre-defined-components-styles/button";
+import { initialButtonComponentStyles } from "@/styles/pre-defined-components-styles/button-styles";
+import { initialNavbarComponentStyles } from "@/styles/pre-defined-components-styles/navbar-styles";
 
 import { useDispatch } from "react-redux";
 import { componentActions } from "@/store/store";
@@ -11,23 +13,38 @@ import { componentActions } from "@/store/store";
 const TopBar = () => {
   const dispatch = useDispatch();
 
-  const addComponentHandler = (event, styles) => {
-    switch (event.target.textContent) {
-      case component.div:
+  const addComponentHandler = (event, styles, componentType) => {
+    switch (componentType) {
+      case component.DIV:
         dispatch(
           componentActions.addComponent({
-            componentType: component.div,
+            componentType: component.DIV,
             styles: { ...styles },
             extraFunctionalities: {},
           })
         );
         break;
-      case component.button:
+      case component.BUTTON:
         dispatch(
           componentActions.addComponent({
-            componentType: component.button,
+            componentType: component.BUTTON,
             styles: { ...styles },
             extraFunctionalities: {},
+          })
+        );
+        break;
+      case component.NAVBAR:
+        dispatch(
+          componentActions.addComponent({
+            componentType: component.NAVBAR,
+            navId: initialNavbarComponentStyles[event.target.value - 1].navId,
+            styles: {
+              ...initialNavbarComponentStyles[event.target.value - 1].styles,
+            },
+            extraFunctionalities: {
+              ...initialNavbarComponentStyles[event.target.value - 1]
+                .extraFunctionalities,
+            },
           })
         );
         break;
@@ -35,20 +52,35 @@ const TopBar = () => {
   };
 
   return (
-    <NavStyles.TopBarGridContainer item xs={12}>
+    <TempStyles.TopBarGridContainer item xs={12}>
       {/* <button onClick={()=>addComponentHandler}>div</button> */}
       {/* <br /> */}
       {initialButtonComponentStyles.map((styles, index) => (
-        <ComponentStyles.StyledButton
+        <ButtonStyles.StyledButton
           variant="contained"
           key={index}
           {...styles}
-          onClick={(event) => addComponentHandler(event, styles)}
+          onClick={(event) =>
+            addComponentHandler(event, styles, component.BUTTON)
+          }
         >
           button
-        </ComponentStyles.StyledButton>
+        </ButtonStyles.StyledButton>
       ))}
-    </NavStyles.TopBarGridContainer>
+      <div>
+        <span>Navbar Types:</span>
+        <select
+        defaultValue="none"
+          onChange={(event) =>
+            addComponentHandler(event, null, component.NAVBAR)
+          }
+        >
+          <option value="none" disabled hidden>Select an Option</option>
+          <option>1</option>
+          <option>2</option>
+        </select>
+      </div>
+    </TempStyles.TopBarGridContainer>
   );
 };
 

@@ -2,8 +2,6 @@ import React from "react";
 
 import { eventType } from "@/util/event-types";
 
-import GoogleFontLoader from "react-google-font-loader";
-
 const ButtonPallete = ({ fonts, state, dispatch }) => {
   return (
     <>
@@ -97,7 +95,6 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
       </div>
       <div>
         <label htmlFor="fontType">Font Type: </label>
-        {fonts.length && <GoogleFontLoader fonts={fonts} />}
         <select
           value={state.fontFamily}
           onChange={(event) =>

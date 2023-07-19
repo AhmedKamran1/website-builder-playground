@@ -1,7 +1,7 @@
 import TopBar from "./templates-pallete/TemplatesPallete";
 import BottomBar from "./customization-pallete/CustomizationPallete";
 
-import * as NavStyles from "../../styles/navbar/SideBar";
+import * as NavStyles from "../../styles/customization-bar/SideBar";
 
 const SideBar = () => {
   return (
