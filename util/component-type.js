@@ -1,4 +1,5 @@
 export const component = {
-  div: "div",
-  button: "button",
+  DIV: "div",
+  BUTTON: "button",
+  NAVBAR: "navbar"
 };
