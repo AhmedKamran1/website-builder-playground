@@ -1,6 +1,5 @@
 import {
   AppBar,
-  Container,
   ListItemText,
   Tab,
   Typography,
@@ -60,18 +59,3 @@ export const StyledLink = styled(Link)(() => ({
 export const StyledListItemText = styled(ListItemText)(({ colorhex }) => ({
   color: colorhex,
 }));
-
-// export const ResponsiveNavbar = styled(Container)(
-//   ({ show,theme }) => ({
-//     position:"absolute",
-//     top:"0",
-//     width: "100vw",
-//     height: "100vh",
-//     backgroundColor:"white",
-//     marginLeft: show ? "0" : "-100vw",
-//     transition:"0.5s all",
-//     [theme.breakpoints.down("xs")]: {
-//       display: "block"
-//     },
-//   })
-// );
