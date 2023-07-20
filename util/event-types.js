@@ -10,10 +10,8 @@ export const commonEventType = {
 
 export const buttonEventType = {
   SETINITIALSTATE: "setInitialState",
-  CHANGECOLOR: "changeColor",
   CHANGEHEIGHT: "changeHeight",
   CHANGEWIDTH: "changeWidth",
-  CHANGEBGCOLOR: "changeBgColor",
   CHANGEFONTSIZE: "changeFontSize",
   CHANGEHEIGHTUNIT: "changeHeightUnit",
   CHANGEWIDTHUNIT: "changeWidthUnit",
@@ -28,8 +26,6 @@ export const buttonEventType = {
 
 export const navEventTypes = {
   SETINITIALNAVSTATE: "setInitialState",
-  CHANGECOLOR: "changeColor",
-  CHANGEBGCOLOR: "changeBgColor",
   CHANGEREDIRECTLINK1: "changeRedirectLink1",
   CHANGEREDIRECTLINK2: "changeRedirectLink2",
   CHANGEREDIRECTLINK3: "changeRedirectLink3",
