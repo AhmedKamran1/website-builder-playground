@@ -1,6 +1,6 @@
 import React from "react";
 
-import { eventType } from "@/util/event-types";
+import { buttonEventType } from "@/util/event-types";
 
 const ButtonPallete = ({ fonts, state, dispatch }) => {
   return (
@@ -13,7 +13,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           value={state.redirectLink}
           onChange={(event) =>
             dispatch({
-              type: eventType.CHANGEREDIRECTLINK,
+              type: buttonEventType.CHANGEREDIRECTLINK,
               payload: event.target.value,
             })
           }
@@ -30,7 +30,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           name="font-type"
           onChange={(event) =>
             dispatch({
-              type: eventType.CHANGEFONTWEIGHT,
+              type: buttonEventType.CHANGEFONTWEIGHT,
               payload: event.target.value,
             })
           }
@@ -44,7 +44,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           name="font-type"
           onChange={(event) =>
             dispatch({
-              type: eventType.CHANGEFONTWEIGHT,
+              type: buttonEventType.CHANGEFONTWEIGHT,
               payload: event.target.value,
             })
           }
@@ -58,7 +58,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           name="font-type"
           onChange={(event) =>
             dispatch({
-              type: eventType.CHANGEFONTSTYLE,
+              type: buttonEventType.CHANGEFONTSTYLE,
               payload: event.target.value,
             })
           }
@@ -73,7 +73,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           value={state.hoverColor}
           onInput={(event) =>
             dispatch({
-              type: eventType.CHANGEHOVERCOLOR,
+              type: buttonEventType.CHANGEHOVERCOLOR,
               payload: event.target.value,
             })
           }
@@ -87,7 +87,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           value={state.innerText}
           onChange={(event) =>
             dispatch({
-              type: eventType.CHANGEINNERTEXT,
+              type: buttonEventType.CHANGEINNERTEXT,
               payload: event.target.value,
             })
           }
@@ -99,7 +99,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           value={state.fontFamily}
           onChange={(event) =>
             dispatch({
-              type: eventType.CHANGEFONTFAMILY,
+              type: buttonEventType.CHANGEFONTFAMILY,
               payload: event.target.value,
             })
           }

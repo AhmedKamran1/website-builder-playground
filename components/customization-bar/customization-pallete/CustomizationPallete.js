@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 
 import { component } from "@/util/component-type";
-import { eventType, navEventTypes } from "@/util/event-types";
+import {
+  buttonEventType,
+  commonEventType,
+  navEventTypes,
+} from "@/util/event-types";
 
 import * as NavStyles from "../../../styles/customization-bar/BottomBar";
 
@@ -15,11 +19,12 @@ import ButtonPallete from "./specific-pallete/ButtonPallete";
 import GoogleFontLoader from "react-google-font-loader";
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
 
-const initialState = {
+const commonInitialState = {
   color: "#FFFFFF",
-  // height: "",
   backgroundColor: "#FFFFFF",
-  // heightUnit: "px",
+};
+
+const buttonInitialState = {
   redirectLink: "",
   fontWeight: "",
   fontStyle: "",
@@ -28,9 +33,7 @@ const initialState = {
   innerText: "",
 };
 
-const initialStateNavbar = {
-  color: "#FFFFFF",
-  backgroundColor: "#000000",
+const navbarInitialState = {
   redirectLink1: "",
   redirectLink2: "",
   redirectLink3: "",
@@ -41,49 +44,53 @@ const initialStateNavbar = {
   innerText3: "",
   innerText4: "",
   innerText5: "",
-  logo: ""
 };
 
-const reducer = (state, action) => {
+const commonReducer = (state, action) => {
   switch (action.type) {
-    case eventType.CHANGECOLOR:
+    case commonEventType.CHANGECOLOR:
       return { ...state, color: action.payload };
-    // case eventType.CHANGEHEIGHT:
-    //   return { ...state, height: action.payload };
-    case eventType.CHANGEBGCOLOR:
+    case commonEventType.CHANGEBGCOLOR:
       return { ...state, backgroundColor: action.payload };
-    // case eventType.CHANGEHEIGHTUNIT:
-    //   return { ...state, heightUnit: action.payload };
-    case eventType.CHANGEREDIRECTLINK:
-      return { ...state, redirectLink: action.payload };
-    case eventType.CHANGEFONTWEIGHT:
-      return {
-        ...state,
-        fontWeight: action.payload,
-        fontStyle: initialState.fontStyle,
-      };
-    case eventType.CHANGEFONTSTYLE:
-      return {
-        ...state,
-        fontStyle: action.payload,
-        fontWeight: initialState.fontWeight,
-      };
-
-    case eventType.CHANGEFONTFAMILY:
-      return {
-        ...state,
-        fontFamily: action.payload,
-      };
-    case eventType.CHANGEHOVERCOLOR:
-      return { ...state, hoverColor: action.payload };
-    case eventType.CHANGEINNERTEXT:
-      return { ...state, innerText: action.payload };
-
-    case eventType.SETINITIALSTATE:
+    case commonEventType.SETINITIALSTATE:
       return {
         ...state,
         color: action.payload.color,
         backgroundColor: action.payload.bgColor,
+      };
+  }
+};
+
+const buttonReducer = (state, action) => {
+  switch (action.type) {
+    case buttonEventType.CHANGEREDIRECTLINK:
+      return { ...state, redirectLink: action.payload };
+    case buttonEventType.CHANGEFONTWEIGHT:
+      return {
+        ...state,
+        fontWeight: action.payload,
+        fontStyle: buttonInitialState.fontStyle,
+      };
+    case buttonEventType.CHANGEFONTSTYLE:
+      return {
+        ...state,
+        fontStyle: action.payload,
+        fontWeight: buttonInitialState.fontWeight,
+      };
+
+    case buttonEventType.CHANGEFONTFAMILY:
+      return {
+        ...state,
+        fontFamily: action.payload,
+      };
+    case buttonEventType.CHANGEHOVERCOLOR:
+      return { ...state, hoverColor: action.payload };
+    case buttonEventType.CHANGEINNERTEXT:
+      return { ...state, innerText: action.payload };
+
+    case buttonEventType.SETINITIALSTATE:
+      return {
+        ...state,
         fontWeight: action.payload.fontWeight,
         fontStyle: action.payload.fontStyle,
         fontFamily: action.payload.fontFamily,
@@ -98,10 +105,6 @@ const reducer = (state, action) => {
 
 const navReducer = (state, action) => {
   switch (action.type) {
-    case navEventTypes.CHANGECOLOR:
-      return { ...state, color: action.payload };
-    case navEventTypes.CHANGEBGCOLOR:
-      return { ...state, backgroundColor: action.payload };
     case navEventTypes.CHANGEREDIRECTLINK1:
       return { ...state, redirectLink1: action.payload };
     case navEventTypes.CHANGEREDIRECTLINK2:
@@ -125,8 +128,6 @@ const navReducer = (state, action) => {
     case navEventTypes.SETINITIALNAVSTATE:
       return {
         ...state,
-        color: action.payload.color,
-        backgroundColor: action.payload.bgColor,
         redirectLink1: action.payload.redirectLink1,
         redirectLink2: action.payload.redirectLink2,
         redirectLink3: action.payload.redirectLink3,
@@ -150,10 +151,17 @@ const BottomBar = () => {
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [fontTypes, setFontTypes] = useState([]);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [commonState, dispatchCommonActions] = useReducer(
+    commonReducer,
+    commonInitialState
+  );
   const [navState, dispatchNavActions] = useReducer(
     navReducer,
-    initialStateNavbar
+    navbarInitialState
+  );
+  const [buttonState, dispatchButtonActions] = useReducer(
+    buttonReducer,
+    buttonInitialState
   );
 
   const updateStyleHandler = useCallback(() => {
@@ -161,22 +169,22 @@ const BottomBar = () => {
     let extraFunctionalities;
     if (selectedComponentType === component.BUTTON) {
       modifiedStyles = {
-        colorhex: state.color,
-        backgroundcolor: state.backgroundColor,
-        fontweight: state.fontWeight,
-        fontstyle: state.fontStyle,
-        fontfamily: state.fontFamily,
-        hovercolor: state.hoverColor,
+        colorhex: commonState.color,
+        backgroundcolor: commonState.backgroundColor,
+        fontweight: buttonState.fontWeight,
+        fontstyle: buttonState.fontStyle,
+        fontfamily: buttonState.fontFamily,
+        hovercolor: buttonState.hoverColor,
       };
       extraFunctionalities = {
-        redirectLink: state.redirectLink,
-        innerText: state.innerText,
+        redirectLink: buttonState.redirectLink,
+        innerText: buttonState.innerText,
       };
     }
     if (selectedComponentType === component.NAVBAR) {
       modifiedStyles = {
-        colorhex: navState.color,
-        backgroundcolor: navState.backgroundColor,
+        colorhex: commonState.color,
+        backgroundcolor: commonState.backgroundColor,
       };
       extraFunctionalities = {
         redirectLink1: navState.redirectLink1,
@@ -194,7 +202,7 @@ const BottomBar = () => {
     dispatchStore(
       componentActions.updateComponent({ modifiedStyles, extraFunctionalities })
     );
-  }, [state, navState]);
+  }, [commonState, buttonState, navState]);
 
   useEffect(() => {
     const fetchFontsData = async () => {
@@ -211,12 +219,17 @@ const BottomBar = () => {
 
   useEffect(() => {
     if (selectedComponent?.id) {
+      dispatchCommonActions({
+        type: commonEventType.SETINITIALSTATE,
+        payload: {
+          color: selectedComponent.styles.colorhex,
+          bgColor: selectedComponent.styles.backgroundcolor,
+        },
+      });
       if (selectedComponentType === component.BUTTON) {
-        dispatch({
-          type: eventType.SETINITIALSTATE,
+        dispatchButtonActions({
+          type: buttonEventType.SETINITIALSTATE,
           payload: {
-            color: selectedComponent.styles.colorhex,
-            bgColor: selectedComponent.styles.backgroundcolor,
             fontWeight: selectedComponent.styles.fontweight,
             fontStyle: selectedComponent.styles.fontstyle,
             fontFamily: selectedComponent.styles.fontfamily,
@@ -229,8 +242,6 @@ const BottomBar = () => {
         dispatchNavActions({
           type: navEventTypes.SETINITIALNAVSTATE,
           payload: {
-            color: selectedComponent.styles.colorhex,
-            bgColor: selectedComponent.styles.backgroundcolor,
             redirectLink1: selectedComponent.extraFunctionalities.redirectLink1,
             redirectLink2: selectedComponent.extraFunctionalities.redirectLink2,
             redirectLink3: selectedComponent.extraFunctionalities.redirectLink3,
@@ -245,7 +256,9 @@ const BottomBar = () => {
         });
       }
     }
-  }, [selectedComponent?.id]);
+  }, [selectedComponent?.id, selectedComponent?.navId]);
+
+  console.log(selectedComponent?.navId)
 
   useEffect(() => {
     if (isUpdating) {
@@ -258,7 +271,7 @@ const BottomBar = () => {
         clearTimeout(timeout);
       };
     }
-  }, [state, navState]);
+  }, [commonState, navState, buttonState]);
 
   return (
     <NavStyles.BottomBarGridContainer
@@ -267,11 +280,15 @@ const BottomBar = () => {
       onChange={() => setIsUpdating(true)}
     >
       {fonts.length && <GoogleFontLoader fonts={fonts} />}
-      {/* {selectedComponent?.id && (
-        <CommonPallete state={state} dispatch={dispatch} />
-      )} */}
+      {selectedComponent?.id && (
+        <CommonPallete state={commonState} dispatch={dispatchCommonActions} />
+      )}
       {selectedComponentType === component.BUTTON && (
-        <ButtonPallete fonts={fonts} state={state} dispatch={dispatch} />
+        <ButtonPallete
+          fonts={fonts}
+          state={buttonState}
+          dispatch={dispatchButtonActions}
+        />
       )}
       {selectedComponentType === component.NAVBAR && (
         <NavbarPallete state={navState} dispatch={dispatchNavActions} />

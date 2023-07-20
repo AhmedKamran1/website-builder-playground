@@ -1,6 +1,6 @@
 import React from "react";
 
-import { eventType } from "@/util/event-types";
+import { commonEventType } from "@/util/event-types";
 
 const CommonPallete = ({ state, dispatch }) => {
   return (
@@ -13,7 +13,7 @@ const CommonPallete = ({ state, dispatch }) => {
           value={state.color}
           onInput={(event) =>
             dispatch({
-              type: eventType.CHANGECOLOR,
+              type: commonEventType.CHANGECOLOR,
               payload: event.target.value,
             })
           }
@@ -27,7 +27,7 @@ const CommonPallete = ({ state, dispatch }) => {
           value={state.backgroundColor}
           onInput={(event) =>
             dispatch({
-              type: eventType.CHANGEBGCOLOR,
+              type: commonEventType.CHANGEBGCOLOR,
               payload: event.target.value,
             })
           }

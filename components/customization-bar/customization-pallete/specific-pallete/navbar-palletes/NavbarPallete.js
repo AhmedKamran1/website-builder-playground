@@ -1,41 +1,10 @@
-import { selectedComponentData } from "@/store/ComponentSlice";
-import { navEventTypes } from "@/util/event-types";
 import React from "react";
-import { useSelector } from "react-redux";
+
+import { navEventTypes } from "@/util/event-types";
 
 const NavbarPallete = ({ state, dispatch }) => {
-  const selectedComponent = useSelector(selectedComponentData);
-
   return (
     <>
-      <div>
-        <label htmlFor="color">color</label>
-        <input
-          type="color"
-          id="color"
-          value={state.color}
-          onInput={(event) =>
-            dispatch({
-              type: navEventTypes.CHANGECOLOR,
-              payload: event.target.value,
-            })
-          }
-        />
-      </div>
-      <div>
-        <label htmlFor="bgColor">background color</label>
-        <input
-          type="color"
-          id="bgColor"
-          value={state.backgroundColor}
-          onInput={(event) =>
-            dispatch({
-              type: navEventTypes.CHANGEBGCOLOR,
-              payload: event.target.value,
-            })
-          }
-        />
-      </div>
       <div>
         <p>BRAND</p>
         <label>Inner Text</label>

@@ -1,6 +1,5 @@
 import * as TempStyles from "../../../styles/customization-bar/TopBar";
 import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
-import * as NavStyles from "../../../styles/pre-defined-components/navbar/navbar";
 
 import { component } from "@/util/component-type";
 
