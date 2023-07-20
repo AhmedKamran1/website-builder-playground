@@ -5,7 +5,6 @@ import { component } from "@/util/component-type";
 
 import * as EditAreaStyles from "../../styles/edit-area/EditArea";
 import * as Styled from "../../styles/pre-defined-components/button/button";
-import { Div } from "@/styles/Component.styles";
 
 import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";

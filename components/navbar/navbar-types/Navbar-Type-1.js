@@ -1,22 +1,23 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import {
   NavigationBar,
-  ToolbarContainer,
   ResponsiveText,
   StyledLink,
 } from "@/styles/pre-defined-components/navbar/navbar";
 
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
+
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
-import Link from "next/link";
 import { Toolbar } from "@mui/material";
+
+import IconButton from "@mui/material/IconButton";
 
 const NavbarType1 = ({
   styles,

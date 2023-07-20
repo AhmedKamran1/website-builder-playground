@@ -6,16 +6,12 @@ import {
   TabItem,
 } from "@/styles/pre-defined-components/navbar/navbar";
 import {
-  Avatar,
-  Box,
   Container,
-  Divider,
   Drawer,
   IconButton,
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
   Tabs,
   Toolbar,
 } from "@mui/material";
