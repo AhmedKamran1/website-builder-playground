@@ -77,10 +77,10 @@ const EditArea = () => {
 
   return (
     <EditAreaStyles.EditAreaContainer item xs={10}>
-      <button style={{ marginBottom: "5rem" }} onClick={componentPostHandler}>
+      {/* <button style={{ marginBottom: "5rem" }} onClick={componentPostHandler}>
         Post
       </button>
-      <br />
+      <br /> */}
       {components.map((data, index) => (
         <React.Fragment key={index}>
           {renderComponent(

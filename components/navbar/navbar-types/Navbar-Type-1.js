@@ -12,12 +12,15 @@ import { StyledButton } from "@/styles/pre-defined-components/button/button";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import MoreIcon from "@mui/icons-material/MoreVert";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import { Toolbar } from "@mui/material";
 
 import IconButton from "@mui/material/IconButton";
+import { IconMenuItem, NestedMenuItem } from "mui-nested-menu";
+import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
 
 const NavbarType1 = ({
   styles,
@@ -26,13 +29,16 @@ const NavbarType1 = ({
   isfocused,
 }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [firstLinkDropDown, setFirstLinkDropDown] = useState(null);
+  const [secondLinkDropDown, setSecondLinkDropDown] = useState(null);
+  const [thirdLinkDropDown, setThirdLinkDropDown] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = (event, setState) => {
+    setState(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = (event, setState) => {
+    setState(null);
   };
 
   return (
@@ -53,31 +59,31 @@ const NavbarType1 = ({
               width: "50px",
             }}
           />
-          <StyledLink href={extraFunctionalities?.redirectLink1}>
-            <ResponsiveText
-              variant="subHeader"
-              noWrap
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-              }}
-              {...styles}
-            >
-              {extraFunctionalities?.innerText1}
-            </ResponsiveText>
-          </StyledLink>
+          {/* <StyledLink href={extraFunctionalities?.redirectLink1}> */}
+          <ResponsiveText
+            variant="subHeader"
+            noWrap
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              textDecoration: "none",
+            }}
+            {...styles}
+          >
+            {extraFunctionalities?.links[0]?.innerText}
+          </ResponsiveText>
+          {/* </StyledLink> */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              onClick={handleOpenNavMenu}
+              onClick={(event) => handleOpenNavMenu(event, setAnchorElNav)}
               color="inherit"
             >
-              <MenuIcon />
+              <MoreIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -92,37 +98,38 @@ const NavbarType1 = ({
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={(event) => handleCloseNavMenu(event, setAnchorElNav)}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <StyledLink href={extraFunctionalities?.redirectLink2}>
-                  <ResponsiveText variant="body" textAlign="center" {...styles}>
-                    {extraFunctionalities?.innerText2}
-                  </ResponsiveText>
-                </StyledLink>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <StyledLink href={extraFunctionalities?.redirectLink3}>
-                  <ResponsiveText variant="body" textAlign="center" {...styles}>
-                    {extraFunctionalities?.innerText3}
-                  </ResponsiveText>
-                </StyledLink>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <StyledLink href={extraFunctionalities?.redirectLink4}>
-                  <ResponsiveText variant="body" textAlign="center" {...styles}>
-                    {extraFunctionalities?.innerText4}
-                  </ResponsiveText>
-                </StyledLink>
-              </MenuItem>
-              {/* {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
-          ))} */}
+              {extraFunctionalities.links.slice(1).map(
+                (link, index) =>
+                  link?.innerText && (
+                    // <StyledLink href={link?.redirectLink}>
+                    <NestedMenuItem
+                      key={index}
+                      label={link?.innerText}
+                      parentMenuOpen={Boolean(anchorElNav)}
+                      rightIcon={<KeyboardArrowRight />}
+                      LinkComponent={StyledLink}
+                    >
+                      {link.dropDown.map((sublink, subindex) => (
+                        <StyledLink
+                          href={sublink?.dropDownRedirectLink}
+                          key={subindex}
+                        >
+                          <IconMenuItem
+                            // leftIcon={<NewIcon />}
+                            // rightIcon={<SaveIcon />}
+                            label={sublink?.dropDownInnerText}
+                          />
+                        </StyledLink>
+                      ))}
+                    </NestedMenuItem>
+                    // </StyledLink>
+                  )
+              )}
             </Menu>
           </Box>
           <Avatar
@@ -147,24 +154,132 @@ const NavbarType1 = ({
             }}
             {...styles}
           >
-            {extraFunctionalities?.innerText1}
+            {extraFunctionalities?.links[0]?.innerText}
           </ResponsiveText>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 7 }}>
-            <StyledLink href={extraFunctionalities?.redirectLink2}>
-              <StyledButton sx={{ my: 2, display: "block" }} {...styles}>
-                {extraFunctionalities?.innerText2}
+            <StyledLink href={extraFunctionalities.links[1]?.redirectLink}>
+              <StyledButton
+                sx={{ my: 2 }}
+                endIcon={<KeyboardArrowDown />}
+                onClick={(event) =>
+                  handleOpenNavMenu(event, setFirstLinkDropDown)
+                }
+                {...styles}
+              >
+                {extraFunctionalities.links[1]?.innerText}
               </StyledButton>
             </StyledLink>
-            <StyledLink href={extraFunctionalities?.redirectLink3}>
-              <StyledButton sx={{ my: 2, display: "block" }} {...styles}>
-                {extraFunctionalities?.innerText3}
+            <Menu
+              anchorEl={firstLinkDropDown}
+              open={Boolean(firstLinkDropDown)}
+              onClose={(event) =>
+                handleCloseNavMenu(event, setFirstLinkDropDown)
+              }
+            >
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setFirstLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[1].dropDown[0].dropDownInnerText}
+              </MenuItem>
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setFirstLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[1].dropDown[1].dropDownInnerText}
+              </MenuItem>
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setFirstLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[1].dropDown[2].dropDownInnerText}
+              </MenuItem>
+            </Menu>
+            <StyledLink href={extraFunctionalities.links[2]?.redirectLink}>
+              <StyledButton
+                sx={{ my: 2 }}
+                endIcon={<KeyboardArrowDown />}
+                onClick={(event) =>
+                  handleOpenNavMenu(event, setSecondLinkDropDown)
+                }
+                {...styles}
+              >
+                {extraFunctionalities.links[2]?.innerText}
               </StyledButton>
             </StyledLink>
-            <StyledLink href={extraFunctionalities?.redirectLink4}>
-              <StyledButton sx={{ my: 2, display: "block" }} {...styles}>
-                {extraFunctionalities?.innerText4}
+            <Menu
+              anchorEl={secondLinkDropDown}
+              open={Boolean(secondLinkDropDown)}
+              onClose={(event) =>
+                handleCloseNavMenu(event, setSecondLinkDropDown)
+              }
+            >
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setSecondLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[2].dropDown[0].dropDownInnerText}
+              </MenuItem>
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setSecondLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[2].dropDown[1].dropDownInnerText}
+              </MenuItem>
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setSecondLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[2].dropDown[2].dropDownInnerText}
+              </MenuItem>
+            </Menu>
+            <StyledLink href={extraFunctionalities.links[3]?.redirectLink}>
+              <StyledButton
+                sx={{ my: 2 }}
+                endIcon={<KeyboardArrowDown />}
+                onClick={(event) =>
+                  handleOpenNavMenu(event, setThirdLinkDropDown)
+                }
+                {...styles}
+              >
+                {extraFunctionalities.links[3]?.innerText}
               </StyledButton>
             </StyledLink>
+            <Menu
+              anchorEl={thirdLinkDropDown}
+              open={Boolean(thirdLinkDropDown)}
+              onClose={(event) =>
+                handleCloseNavMenu(event, setThirdLinkDropDown)
+              }
+            >
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setThirdLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[3].dropDown[0].dropDownInnerText}
+              </MenuItem>
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setThirdLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[3].dropDown[1].dropDownInnerText}
+              </MenuItem>
+              <MenuItem
+                onClick={(event) =>
+                  handleCloseNavMenu(event, setThirdLinkDropDown)
+                }
+              >
+                {extraFunctionalities.links[3].dropDown[2].dropDownInnerText}
+              </MenuItem>
+            </Menu>
           </Box>
         </Toolbar>
       </Container>

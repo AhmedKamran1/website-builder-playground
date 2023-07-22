@@ -34,16 +34,44 @@ const buttonInitialState = {
 };
 
 const navbarInitialState = {
-  redirectLink1: "",
-  redirectLink2: "",
-  redirectLink3: "",
-  redirectLink4: "",
-  redirectLink5: "",
-  innerText1: "",
-  innerText2: "",
-  innerText3: "",
-  innerText4: "",
-  innerText5: "",
+  links: [
+    {
+      redirectLink: "",
+      innerText: "",
+      dropDown: [
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+      ],
+    },
+    {
+      redirectLink: "",
+      innerText: "",
+      dropDown: [
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+      ],
+    },
+    {
+      redirectLink: "",
+      innerText: "",
+      dropDown: [
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+      ],
+    },
+    {
+      redirectLink: "",
+      innerText: "",
+      dropDown: [
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        { dropDownRedirectLink: "", dropDownInnerText: "" },
+      ],
+    },
+  ],
 };
 
 const commonReducer = (state, action) => {
@@ -104,40 +132,47 @@ const buttonReducer = (state, action) => {
 };
 
 const navReducer = (state, action) => {
+  let linkIndex,
+    dropDownIndex,
+    dropDownInnerText,
+    dropDownRedirectLink,
+    innerText,
+    redirectLink,
+    updatedLinks;
+
   switch (action.type) {
-    case navEventTypes.CHANGEREDIRECTLINK1:
-      return { ...state, redirectLink1: action.payload };
-    case navEventTypes.CHANGEREDIRECTLINK2:
-      return { ...state, redirectLink2: action.payload };
-    case navEventTypes.CHANGEREDIRECTLINK3:
-      return { ...state, redirectLink3: action.payload };
-    case navEventTypes.CHANGEREDIRECTLINK4:
-      return { ...state, redirectLink4: action.payload };
-    case navEventTypes.CHANGEREDIRECTLINK5:
-      return { ...state, redirectLink5: action.payload };
-    case navEventTypes.CHANGEINNERTEXT1:
-      return { ...state, innerText1: action.payload };
-    case navEventTypes.CHANGEINNERTEXT2:
-      return { ...state, innerText2: action.payload };
-    case navEventTypes.CHANGEINNERTEXT3:
-      return { ...state, innerText3: action.payload };
-    case navEventTypes.CHANGEINNERTEXT4:
-      return { ...state, innerText4: action.payload };
-    case navEventTypes.CHANGEINNERTEXT5:
-      return { ...state, innerText5: action.payload };
+    case navEventTypes.CHANGENAVINNERTEXT:
+      ({ linkIndex, innerText } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].innerText = innerText;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVLINK:
+      ({ linkIndex, redirectLink } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].redirectLink = redirectLink;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVDROPDOWNINNERTEXT:
+      ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
+        dropDownInnerText;
+      console.log(updatedLinks);
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVDROPDOWNLINK:
+      ({ linkIndex, dropDownIndex, dropDownRedirectLink } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
+        dropDownRedirectLink;
+      console.log(updatedLinks);
+      return { ...state, links: updatedLinks };
+
     case navEventTypes.SETINITIALNAVSTATE:
       return {
         ...state,
-        redirectLink1: action.payload.redirectLink1,
-        redirectLink2: action.payload.redirectLink2,
-        redirectLink3: action.payload.redirectLink3,
-        redirectLink4: action.payload.redirectLink4,
-        redirectLink5: action.payload.redirectLink5,
-        innerText1: action.payload.innerText1,
-        innerText2: action.payload.innerText2,
-        innerText3: action.payload.innerText3,
-        innerText4: action.payload.innerText4,
-        innerText5: action.payload.innerText5,
+        links: action.payload,
       };
     default:
       return state;
@@ -187,16 +222,7 @@ const BottomBar = () => {
         backgroundcolor: commonState.backgroundColor,
       };
       extraFunctionalities = {
-        redirectLink1: navState.redirectLink1,
-        redirectLink2: navState.redirectLink2,
-        redirectLink3: navState.redirectLink3,
-        redirectLink4: navState.redirectLink4,
-        redirectLink5: navState.redirectLink5,
-        innerText1: navState.innerText1,
-        innerText2: navState.innerText2,
-        innerText3: navState.innerText3,
-        innerText4: navState.innerText4,
-        innerText5: navState.innerText5,
+        links: navState.links,
       };
     }
     dispatchStore(
@@ -241,24 +267,11 @@ const BottomBar = () => {
       } else if (selectedComponentType === component.NAVBAR) {
         dispatchNavActions({
           type: navEventTypes.SETINITIALNAVSTATE,
-          payload: {
-            redirectLink1: selectedComponent.extraFunctionalities.redirectLink1,
-            redirectLink2: selectedComponent.extraFunctionalities.redirectLink2,
-            redirectLink3: selectedComponent.extraFunctionalities.redirectLink3,
-            redirectLink4: selectedComponent.extraFunctionalities.redirectLink4,
-            redirectLink5: selectedComponent.extraFunctionalities.redirectLink5,
-            innerText1: selectedComponent.extraFunctionalities.innerText1,
-            innerText2: selectedComponent.extraFunctionalities.innerText2,
-            innerText3: selectedComponent.extraFunctionalities.innerText3,
-            innerText4: selectedComponent.extraFunctionalities.innerText4,
-            innerText5: selectedComponent.extraFunctionalities.innerText5,
-          },
+          payload: selectedComponent.extraFunctionalities.links,
         });
       }
     }
   }, [selectedComponent?.id, selectedComponent?.navId]);
-
-  console.log(selectedComponent?.navId)
 
   useEffect(() => {
     if (isUpdating) {
@@ -275,6 +288,7 @@ const BottomBar = () => {
 
   return (
     <NavStyles.BottomBarGridContainer
+      sx={{ overflowY: "scroll" }}
       item
       xs={12}
       onChange={() => setIsUpdating(true)}
