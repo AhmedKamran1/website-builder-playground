@@ -1,8 +1,6 @@
 export const initialButtonComponentStyles = [
   {
     colorhex: "#FF0000",
-    height: "50px",
-    width: "100px",
     backgroundcolor: "#FFFFFF",
     fontsize: "12px",
     font: "sans-serif",
@@ -14,8 +12,6 @@ export const initialButtonComponentStyles = [
   },
   {
     colorhex: "#FFFFFF",
-    height: "50px",
-    width: "100px",
     backgroundcolor: "#FF0000",
     fontsize: "12px",
     font: "sans-serif",
@@ -27,8 +23,6 @@ export const initialButtonComponentStyles = [
   },
   {
     colorhex: "#FFFFFF",
-    height: "50px",
-    width: "100px",
     backgroundcolor: "#FFFF00",
     fontsize: "12px",
     font: "sans-serif",

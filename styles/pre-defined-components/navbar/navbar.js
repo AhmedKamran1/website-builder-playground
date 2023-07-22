@@ -1,5 +1,6 @@
 import {
   AppBar,
+  ListItemButton,
   ListItemText,
   Tab,
   Typography,
@@ -58,4 +59,11 @@ export const StyledLink = styled(Link)(() => ({
 
 export const StyledListItemText = styled(ListItemText)(({ colorhex }) => ({
   color: colorhex,
+}));
+
+export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: {
+    padding: "0.2em",
+  },
 }));
