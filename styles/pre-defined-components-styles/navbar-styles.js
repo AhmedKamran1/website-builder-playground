@@ -10,6 +10,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "BRAND",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -19,6 +20,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "Home",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -28,6 +30,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "Contact Us",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -37,6 +40,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "About Us",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -57,6 +61,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "Home",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -66,6 +71,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "Services",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -75,6 +81,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "Contact Us",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -84,6 +91,7 @@ export const initialNavbarComponentStyles = [
         {
           redirectLink: "",
           innerText: "About Us",
+          showDropDown: false,
           dropDown: [
             { dropDownRedirectLink: "", dropDownInnerText: "" },
             { dropDownRedirectLink: "", dropDownInnerText: "" },
