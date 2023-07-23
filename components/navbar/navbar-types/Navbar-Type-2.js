@@ -8,7 +8,6 @@ import {
   TabItem,
 } from "@/styles/pre-defined-components/navbar/navbar";
 import {
-  Box,
   Collapse,
   Container,
   Drawer,
@@ -91,7 +90,7 @@ const NavbarType2 = ({
             onChange={handleTabChange}
             sx={{ width: "100%" }}
           >
-            {/* {extraFunctionalities.links.map(
+            {extraFunctionalities.links.map(
               (link, index) =>
                 link?.innerText && (
                   <TabItem
@@ -100,176 +99,84 @@ const NavbarType2 = ({
                     href={link?.redirectLink}
                     label={link?.innerText}
                     sx={{ fontWeight: "600" }}
+                    onClick={(event) =>
+                      index === 0
+                        ? handleOpenTabDropDown(event, setTabFirstLinkDropDown)
+                        : index === 1
+                        ? handleOpenTabDropDown(event, setTabSecondLinkDropDown)
+                        : index === 2
+                        ? handleOpenTabDropDown(event, setTabThirdLinkDropDown)
+                        : handleOpenTabDropDown(event, setTabFourthLinkDropDown)
+                    }
                     {...styles}
                   />
                 )
-            )} */}
-            <TabItem
-              LinkComponent={StyledLink}
-              href={extraFunctionalities.links[0]?.redirectLink}
-              label={extraFunctionalities.links[0]?.innerText}
-              sx={{ fontWeight: "600" }}
-              onClick={(event) =>
-                handleOpenTabDropDown(event, setTabFirstLinkDropDown)
-              }
-              {...styles}
-            />
-            <TabItem
-              LinkComponent={StyledLink}
-              href={extraFunctionalities.links[1]?.redirectLink}
-              label={extraFunctionalities.links[1]?.innerText}
-              sx={{ fontWeight: "600" }}
-              onClick={(event) =>
-                handleOpenTabDropDown(event, setTabSecondLinkDropDown)
-              }
-              {...styles}
-            />
-            <TabItem
-              LinkComponent={StyledLink}
-              href={extraFunctionalities.links[2]?.redirectLink}
-              label={extraFunctionalities.links[2]?.innerText}
-              sx={{ fontWeight: "600" }}
-              onClick={(event) =>
-                handleOpenTabDropDown(event, setTabThirdLinkDropDown)
-              }
-              {...styles}
-            />
-            <TabItem
-              LinkComponent={StyledLink}
-              href={extraFunctionalities.links[3]?.redirectLink}
-              label={extraFunctionalities.links[3]?.innerText}
-              sx={{ fontWeight: "600" }}
-              onClick={(event) =>
-                handleOpenTabDropDown(event, setTabFourthLinkDropDown)
-              }
-              {...styles}
-            />
+            )}
           </Tabs>
         </Toolbar>
-        <CustomTabPanel value={tabValue} index={0}>
-          <Menu
-            anchorEl={tabFirstLinkDropDown}
-            open={Boolean(tabFirstLinkDropDown)}
-            onClose={(event) =>
-              handleCloseTabDropDown(event, setTabFirstLinkDropDown)
-            }
-          >
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabFirstLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[0].dropDown[0].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabFirstLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[0].dropDown[1].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabFirstLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[0].dropDown[2].dropDownInnerText}
-            </MenuItem>
-          </Menu>
-        </CustomTabPanel>
-        <CustomTabPanel value={tabValue} index={1}>
-          <Menu
-            anchorEl={tabSecondLinkDropDown}
-            open={Boolean(tabSecondLinkDropDown)}
-            onClose={(event) =>
-              handleCloseTabDropDown(event, setTabSecondLinkDropDown)
-            }
-          >
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabSecondLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[1].dropDown[0].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabSecondLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[1].dropDown[1].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabSecondLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[1].dropDown[2].dropDownInnerText}
-            </MenuItem>
-          </Menu>
-        </CustomTabPanel>
-        <CustomTabPanel value={tabValue} index={2}>
-          <Menu
-            anchorEl={tabThirdLinkDropDown}
-            open={Boolean(tabThirdLinkDropDown)}
-            onClose={(event) =>
-              handleCloseTabDropDown(event, setTabThirdLinkDropDown)
-            }
-          >
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabThirdLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[2].dropDown[0].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabThirdLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[2].dropDown[1].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabThirdLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[2].dropDown[2].dropDownInnerText}
-            </MenuItem>
-          </Menu>
-        </CustomTabPanel>
-        <CustomTabPanel value={tabValue} index={3}>
-          <Menu
-            anchorEl={tabFourthLinkDropDown}
-            open={Boolean(tabFourthLinkDropDown)}
-            onClose={(event) =>
-              handleCloseTabDropDown(event, setTabFourthLinkDropDown)
-            }
-          >
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabFourthLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[3].dropDown[0].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabFourthLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[3].dropDown[1].dropDownInnerText}
-            </MenuItem>
-            <MenuItem
-              onClick={(event) =>
-                handleCloseTabDropDown(event, setTabFourthLinkDropDown)
-              }
-            >
-              {extraFunctionalities.links[3].dropDown[2].dropDownInnerText}
-            </MenuItem>
-          </Menu>
-        </CustomTabPanel>
+        {extraFunctionalities.links.map(
+          (link, index) =>
+            link?.innerText && (
+              <CustomTabPanel value={tabValue} index={index} key={index}>
+                <Menu
+                  anchorEl={
+                    index === 0
+                      ? tabFirstLinkDropDown
+                      : index === 1
+                      ? tabSecondLinkDropDown
+                      : index === 2
+                      ? tabThirdLinkDropDown
+                      : tabFourthLinkDropDown
+                  }
+                  open={Boolean(
+                    index === 0
+                      ? tabFirstLinkDropDown
+                      : index === 1
+                      ? tabSecondLinkDropDown
+                      : index === 2
+                      ? tabThirdLinkDropDown
+                      : tabFourthLinkDropDown
+                  )}
+                  onClose={(event) =>
+                    index === 0
+                      ? handleCloseTabDropDown(event, setTabFirstLinkDropDown)
+                      : index === 1
+                      ? handleCloseTabDropDown(event, setTabSecondLinkDropDown)
+                      : index === 2
+                      ? handleCloseTabDropDown(event, setTabThirdLinkDropDown)
+                      : handleCloseTabDropDown(event, setTabFourthLinkDropDown)
+                  }
+                >
+                  {link.dropDown.map(
+                    (sublink, subindex) =>
+                      sublink?.dropDownInnerText && (
+                        <MenuItem
+                          key={subindex}
+                          onClick={(event) =>
+                            subindex === 0
+                              ? handleCloseTabDropDown(
+                                  event,
+                                  setTabFirstLinkDropDown
+                                )
+                              : subindex === 1
+                              ? handleCloseTabDropDown(
+                                  event,
+                                  setTabSecondLinkDropDown
+                                )
+                              : handleCloseTabDropDown(
+                                  event,
+                                  setTabThirdLinkDropDown
+                                )
+                          }
+                        >
+                          {sublink?.dropDownInnerText}
+                        </MenuItem>
+                      )
+                  )}
+                </Menu>
+              </CustomTabPanel>
+            )
+        )}
       </Container>
       <Container sx={{ display: { xs: "block", md: "none" } }}>
         <IconButton size="large" onClick={handleNavMenu} color="inherit">
@@ -297,218 +204,67 @@ const NavbarType2 = ({
           }}
         >
           <List sx={{ width: "85%" }}>
-            {/* {extraFunctionalities.links.map(
+            {extraFunctionalities.links.map(
               (link, index) =>
                 link?.innerText && (
-                  <StyledLink href={link?.redirectLink}>
-                  <ListItem disablePadding divider key={index}>
-                    <StyledListItemButton sx={{ textAlign: "center" }}>
-                      <StyledListItemText
-                        primary={link?.innerText}
-                        {...styles}
-                      />
-                    </StyledListItemButton>
-                  </ListItem>
-                  </StyledLink>
+                  <React.Fragment key={index}>
+                    <StyledLink href={link?.redirectLink}>
+                      <ListItem disablePadding divider>
+                        <StyledListItemButton
+                          onClick={() =>
+                            index === 0
+                              ? setResponsiveFirstLinkDropDown(
+                                  (prevState) => !prevState
+                                )
+                              : index === 1
+                              ? setResponsiveSecondLinkDropDown(
+                                  (prevState) => !prevState
+                                )
+                              : index === 2
+                              ? setResponsiveThirdLinkDropDown(
+                                  (prevState) => !prevState
+                                )
+                              : setResponsiveFourthLinkDropDown(
+                                  (prevState) => !prevState
+                                )
+                          }
+                        >
+                          <StyledListItemText
+                            primary={link?.innerText}
+                            {...styles}
+                          />
+                        </StyledListItemButton>
+                      </ListItem>
+                    </StyledLink>
+                    <Collapse
+                      in={
+                        index === 0
+                          ? responsiveFirstLinkDropDown
+                          : index === 1
+                          ? responsiveSecondLinkDropDown
+                          : index === 2
+                          ? responsiveThirdLinkDropDown
+                          : responsiveFourthLinkDropDown
+                      }
+                      timeout="auto"
+                      unmountOnExit
+                    >
+                      <List component="div" disablePadding>
+                        {link.dropDown.map(
+                          (sublink, subindex) =>
+                            sublink?.dropDownInnerText && (
+                              <StyledListItemButton key={subindex}>
+                                <StyledListItemText
+                                  primary={sublink?.dropDownInnerText}
+                                />
+                              </StyledListItemButton>
+                            )
+                        )}
+                      </List>
+                    </Collapse>
+                  </React.Fragment>
                 )
-            )} */}
-            <StyledLink href={extraFunctionalities.links[0]?.redirectLink}>
-              <ListItem disablePadding divider>
-                <StyledListItemButton
-                  onClick={() =>
-                    setResponsiveFirstLinkDropDown((prevState) => !prevState)
-                  }
-                >
-                  {/* <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon> */}
-                  <StyledListItemText
-                    primary={extraFunctionalities.links[0]?.innerText}
-                    {...styles}
-                  />
-                </StyledListItemButton>
-              </ListItem>
-            </StyledLink>
-            <Collapse
-              in={responsiveFirstLinkDropDown}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[0].dropDown[0]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[0].dropDown[1]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[0].dropDown[2]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-              </List>
-            </Collapse>
-
-            <StyledLink href={extraFunctionalities.links[1]?.redirectLink}>
-              <ListItem disablePadding divider>
-                <StyledListItemButton
-                  onClick={() =>
-                    setResponsiveSecondLinkDropDown((prevState) => !prevState)
-                  }
-                >
-                  {/* <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon> */}
-                  <StyledListItemText
-                    primary={extraFunctionalities.links[1]?.innerText}
-                    {...styles}
-                  />
-                </StyledListItemButton>
-              </ListItem>
-            </StyledLink>
-            <Collapse
-              in={responsiveSecondLinkDropDown}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[1].dropDown[0]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[1].dropDown[1]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[1].dropDown[2]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-              </List>
-            </Collapse>
-            <StyledLink href={extraFunctionalities.links[2]?.redirectLink}>
-              <ListItem disablePadding divider>
-                <StyledListItemButton
-                  onClick={() =>
-                    setResponsiveThirdLinkDropDown((prevState) => !prevState)
-                  }
-                >
-                  {/* <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon> */}
-                  <StyledListItemText
-                    primary={extraFunctionalities.links[2]?.innerText}
-                    {...styles}
-                  />
-                </StyledListItemButton>
-              </ListItem>
-            </StyledLink>
-            <Collapse
-              in={responsiveThirdLinkDropDown}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[2].dropDown[0]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[2].dropDown[1]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[2].dropDown[2]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-              </List>
-            </Collapse>
-            <StyledLink href={extraFunctionalities.links[3]?.redirectLink}>
-              <ListItem disablePadding divider>
-                <StyledListItemButton
-                  onClick={() =>
-                    setResponsiveFourthLinkDropDown((prevState) => !prevState)
-                  }
-                >
-                  {/* <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon> */}
-                  <StyledListItemText
-                    primary={extraFunctionalities.links[3]?.innerText}
-                    {...styles}
-                  />
-                </StyledListItemButton>
-              </ListItem>
-            </StyledLink>
-            <Collapse
-              in={responsiveFourthLinkDropDown}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[3].dropDown[0]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[3].dropDown[1]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-                <StyledListItemButton>
-                  <StyledListItemText
-                    primary={
-                      extraFunctionalities.links[3].dropDown[2]
-                        .dropDownInnerText
-                    }
-                  />
-                </StyledListItemButton>
-              </List>
-            </Collapse>
+            )}
           </List>
         </Container>
       </Drawer>
