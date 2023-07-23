@@ -38,6 +38,7 @@ const navbarInitialState = {
     {
       redirectLink: "",
       innerText: "",
+      showDropDown: false,
       dropDown: [
         { dropDownRedirectLink: "", dropDownInnerText: "" },
         { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -47,6 +48,7 @@ const navbarInitialState = {
     {
       redirectLink: "",
       innerText: "",
+      showDropDown: false,
       dropDown: [
         { dropDownRedirectLink: "", dropDownInnerText: "" },
         { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -56,6 +58,7 @@ const navbarInitialState = {
     {
       redirectLink: "",
       innerText: "",
+      showDropDown: false,
       dropDown: [
         { dropDownRedirectLink: "", dropDownInnerText: "" },
         { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -65,6 +68,7 @@ const navbarInitialState = {
     {
       redirectLink: "",
       innerText: "",
+      showDropDown: false,
       dropDown: [
         { dropDownRedirectLink: "", dropDownInnerText: "" },
         { dropDownRedirectLink: "", dropDownInnerText: "" },
@@ -169,6 +173,13 @@ const navReducer = (state, action) => {
       console.log(updatedLinks);
       return { ...state, links: updatedLinks };
 
+    case navEventTypes.CHANGEDROPDOWNVISIBILITY:
+      ({ linkIndex } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].showDropDown =
+        !updatedLinks[linkIndex].showDropDown;
+      return { ...state, links: updatedLinks };
+
     case navEventTypes.SETINITIALNAVSTATE:
       return {
         ...state,
@@ -184,7 +195,7 @@ const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
   const dispatchStore = useDispatch();
 
-  const [isUpdating, setIsUpdating] = useState(false);
+  // const [isUpdating, setIsUpdating] = useState(false);
   const [fontTypes, setFontTypes] = useState([]);
   const [commonState, dispatchCommonActions] = useReducer(
     commonReducer,
@@ -274,16 +285,16 @@ const BottomBar = () => {
   }, [selectedComponent?.id, selectedComponent?.navId]);
 
   useEffect(() => {
-    if (isUpdating) {
-      const timeout = setTimeout(() => {
-        updateStyleHandler();
-      }, 200);
+    // if (isUpdating) {
+    const timeout = setTimeout(() => {
+      updateStyleHandler();
+    }, 200);
 
-      setIsUpdating(false);
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
+    // setIsUpdating(false);
+    return () => {
+      clearTimeout(timeout);
+    };
+    // }
   }, [commonState, navState, buttonState]);
 
   return (
@@ -291,7 +302,7 @@ const BottomBar = () => {
       sx={{ overflowY: "scroll" }}
       item
       xs={12}
-      onChange={() => setIsUpdating(true)}
+      // onChange={() => setIsUpdating(true)}
     >
       {fonts.length && <GoogleFontLoader fonts={fonts} />}
       {selectedComponent?.id && (

@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { navEventTypes } from "@/util/event-types";
-import { Divider } from "@mui/material";
+import { Checkbox, Divider } from "@mui/material";
 
 import { selectedComponentData } from "@/store/ComponentSlice";
 
@@ -56,43 +56,58 @@ const NavbarPallete = ({ state, dispatch }) => {
                 })
               }
             />
-            <p style={{ fontWeight: "bold" }}>Drop Down Menu</p>
-            {link.dropDown.map((sublink, sublinkIndex) => (
-              <React.Fragment key={sublinkIndex}>
-                <label>Inner Text {sublinkIndex + 1}</label>
-                <input
-                  type="text"
-                  value={sublink.dropDownInnerText}
-                  onChange={(event) =>
-                    dispatch({
-                      type: navEventTypes.CHANGENAVDROPDOWNINNERTEXT,
-                      payload: {
-                        linkIndex: linkIndex,
-                        dropDownIndex: sublinkIndex,
-                        dropDownInnerText: event.target.value,
-                      },
-                    })
-                  }
-                />
-                <br />
-                <label>Redirect Link {sublinkIndex + 1}</label>
-                <input
-                  type="text"
-                  value={sublink.dropDownRedirectLink}
-                  onChange={(event) =>
-                    dispatch({
-                      type: navEventTypes.CHANGENAVDROPDOWNLINK,
-                      payload: {
-                        linkIndex: linkIndex,
-                        dropDownIndex: sublinkIndex,
-                        dropDownRedirectLink: event.target.value,
-                      },
-                    })
-                  }
-                />
-                <br />
-              </React.Fragment>
-            ))}
+            <p style={{ fontWeight: "bold" }}>
+              Drop Down Menu
+              <Checkbox
+                checked={link.showDropDown}
+                onChange={() =>
+                  dispatch({
+                    type: navEventTypes.CHANGEDROPDOWNVISIBILITY,
+                    payload: {
+                      linkIndex: linkIndex,
+                    },
+                  })
+                }
+              />
+            </p>
+
+            {link.showDropDown &&
+              link.dropDown.map((sublink, sublinkIndex) => (
+                <React.Fragment key={sublinkIndex}>
+                  <label>Inner Text {sublinkIndex + 1}</label>
+                  <input
+                    type="text"
+                    value={sublink.dropDownInnerText}
+                    onChange={(event) =>
+                      dispatch({
+                        type: navEventTypes.CHANGENAVDROPDOWNINNERTEXT,
+                        payload: {
+                          linkIndex: linkIndex,
+                          dropDownIndex: sublinkIndex,
+                          dropDownInnerText: event.target.value,
+                        },
+                      })
+                    }
+                  />
+                  <br />
+                  <label>Redirect Link {sublinkIndex + 1}</label>
+                  <input
+                    type="text"
+                    value={sublink.dropDownRedirectLink}
+                    onChange={(event) =>
+                      dispatch({
+                        type: navEventTypes.CHANGENAVDROPDOWNLINK,
+                        payload: {
+                          linkIndex: linkIndex,
+                          dropDownIndex: sublinkIndex,
+                          dropDownRedirectLink: event.target.value,
+                        },
+                      })
+                    }
+                  />
+                  <br />
+                </React.Fragment>
+              ))}
           </div>
           <Divider />
         </React.Fragment>

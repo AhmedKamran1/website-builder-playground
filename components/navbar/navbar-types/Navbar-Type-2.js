@@ -14,12 +14,14 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemIcon,
   Menu,
   MenuItem,
   Tabs,
   Toolbar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 function CustomTabPanel(props) {
   const { children, value, index } = props;
@@ -79,7 +81,7 @@ const NavbarType2 = ({
           alignItems: "center",
         }}
       >
-        <Toolbar sx={{ width: "80%" }}>
+        <Toolbar sx={{ width: "100%" }}>
           <Tabs
             value={tabValue}
             textColor="inherit"
@@ -96,17 +98,23 @@ const NavbarType2 = ({
                   <TabItem
                     key={index}
                     LinkComponent={StyledLink}
+                    icon={link.showDropDown && <KeyboardArrowDown />}
+                    iconPosition="end"
                     href={link?.redirectLink}
                     label={link?.innerText}
-                    sx={{ fontWeight: "600" }}
+                    sx={{ fontWeight: "600", padding: 0 }}
                     onClick={(event) =>
-                      index === 0
+                      link.showDropDown &&
+                      (index === 0
                         ? handleOpenTabDropDown(event, setTabFirstLinkDropDown)
                         : index === 1
                         ? handleOpenTabDropDown(event, setTabSecondLinkDropDown)
                         : index === 2
                         ? handleOpenTabDropDown(event, setTabThirdLinkDropDown)
-                        : handleOpenTabDropDown(event, setTabFourthLinkDropDown)
+                        : handleOpenTabDropDown(
+                            event,
+                            setTabFourthLinkDropDown
+                          ))
                     }
                     {...styles}
                   />
@@ -116,7 +124,7 @@ const NavbarType2 = ({
         </Toolbar>
         {extraFunctionalities.links.map(
           (link, index) =>
-            link?.innerText && (
+            link.showDropDown && (
               <CustomTabPanel value={tabValue} index={index} key={index}>
                 <Menu
                   anchorEl={
@@ -233,35 +241,42 @@ const NavbarType2 = ({
                             primary={link?.innerText}
                             {...styles}
                           />
+
+                          <ListItemIcon sx={{ minWidth: "20px" }}>
+                            {link.showDropDown && <KeyboardArrowDown />}
+                          </ListItemIcon>
                         </StyledListItemButton>
                       </ListItem>
                     </StyledLink>
-                    <Collapse
-                      in={
-                        index === 0
-                          ? responsiveFirstLinkDropDown
-                          : index === 1
-                          ? responsiveSecondLinkDropDown
-                          : index === 2
-                          ? responsiveThirdLinkDropDown
-                          : responsiveFourthLinkDropDown
-                      }
-                      timeout="auto"
-                      unmountOnExit
-                    >
-                      <List component="div" disablePadding>
-                        {link.dropDown.map(
-                          (sublink, subindex) =>
-                            sublink?.dropDownInnerText && (
-                              <StyledListItemButton key={subindex}>
-                                <StyledListItemText
-                                  primary={sublink?.dropDownInnerText}
-                                />
-                              </StyledListItemButton>
-                            )
-                        )}
-                      </List>
-                    </Collapse>
+                    {link.showDropDown && (
+                      <Collapse
+                        in={
+                          index === 0
+                            ? responsiveFirstLinkDropDown
+                            : index === 1
+                            ? responsiveSecondLinkDropDown
+                            : index === 2
+                            ? responsiveThirdLinkDropDown
+                            : responsiveFourthLinkDropDown
+                        }
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <List component="div" disablePadding>
+                          {link.dropDown.map(
+                            (sublink, subindex) =>
+                              sublink?.dropDownInnerText && (
+                                <StyledListItemButton key={subindex}>
+                                  <StyledListItemText
+                                    sx={{ ml: -3 }}
+                                    primary={sublink?.dropDownInnerText}
+                                  />
+                                </StyledListItemButton>
+                              )
+                          )}
+                        </List>
+                      </Collapse>
+                    )}
                   </React.Fragment>
                 )
             )}
