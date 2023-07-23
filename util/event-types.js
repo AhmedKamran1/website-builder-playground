@@ -26,8 +26,9 @@ export const buttonEventType = {
 
 export const navEventTypes = {
   SETINITIALNAVSTATE: "setInitialState",
-  CHANGENAVLINK:"changeNavLink",
-  CHANGENAVINNERTEXT:"changeNavInnerText",
+  CHANGENAVLINK: "changeNavLink",
+  CHANGENAVINNERTEXT: "changeNavInnerText",
   CHANGENAVDROPDOWNLINK: "changeNavDropDownLink",
-  CHANGENAVDROPDOWNINNERTEXT: "changeNavDropDownInnertext"
+  CHANGENAVDROPDOWNINNERTEXT: "changeNavDropDownInnertext",
+  CHANGEDROPDOWNVISIBILITY: "changeDropDownVisibility",
 };
