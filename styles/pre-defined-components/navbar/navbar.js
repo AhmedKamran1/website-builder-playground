@@ -54,7 +54,8 @@ export const TabItem = styled(Tab)(({ colorhex }) => ({
 }));
 
 export const StyledLink = styled(Link)(() => ({
-  textDecoration: "none",
+  // textDecoration: "none",
+  all:"unset"
 }));
 
 export const StyledListItemText = styled(ListItemText)(({ colorhex }) => ({
