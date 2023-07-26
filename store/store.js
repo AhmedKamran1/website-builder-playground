@@ -14,7 +14,9 @@ import {
   persistReducer,
   persistStore,
 } from "redux-persist";
+
 import storage from "redux-persist/lib/storage";
+import authSlice from "./authSlice";
 
 const persistConfig = {
   key: "component",
@@ -25,7 +27,7 @@ const persistedReducer = persistReducer(persistConfig, componentSlice.reducer);
 
 const makeStore = () => {
   const store = configureStore({
-    reducer: { component: persistedReducer },
+    reducer: { component: persistedReducer, auth: authSlice.reducer },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {
@@ -40,3 +42,4 @@ const makeStore = () => {
 
 export const wrapper = createWrapper(makeStore);
 export const componentActions = componentSlice.actions;
+export const authActions = authSlice.actions;
