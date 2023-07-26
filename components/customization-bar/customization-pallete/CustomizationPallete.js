@@ -10,7 +10,10 @@ import {
 import * as NavStyles from "../../../styles/customization-bar/BottomBar";
 
 import { useDispatch, useSelector } from "react-redux";
-import { componentType, selectedComponentData } from "@/store/ComponentSlice";
+import {
+  componentType,
+  selectedComponentData,
+} from "@/store/ComponentSlice";
 import { componentActions } from "@/store/store";
 
 import CommonPallete from "./common-pallete/CommonPallete";
@@ -34,45 +37,103 @@ const buttonInitialState = {
 };
 
 const navbarInitialState = {
+  title: "",
+  logo: "",
   links: [
     {
       redirectLink: "",
       innerText: "",
+      icon: "",
+      showLink: true,
       showDropDown: false,
       dropDown: [
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: true,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
       ],
     },
     {
       redirectLink: "",
       innerText: "",
+      icon: "",
+      showLink: false,
       showDropDown: false,
       dropDown: [
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: true,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
       ],
     },
     {
       redirectLink: "",
       innerText: "",
+      icon: "",
+      showLink: false,
       showDropDown: false,
       dropDown: [
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: true,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
       ],
     },
     {
       redirectLink: "",
       innerText: "",
+      icon: "",
+      showLink: false,
       showDropDown: false,
       dropDown: [
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
-        { dropDownRedirectLink: "", dropDownInnerText: "" },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: true,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
+        {
+          dropDownRedirectLink: "",
+          dropDownInnerText: "",
+          showDropDownLink: false,
+        },
       ],
     },
   ],
@@ -142,6 +203,7 @@ const navReducer = (state, action) => {
     dropDownRedirectLink,
     innerText,
     redirectLink,
+    icon,
     updatedLinks;
 
   switch (action.type) {
@@ -157,12 +219,23 @@ const navReducer = (state, action) => {
       updatedLinks[linkIndex].redirectLink = redirectLink;
       return { ...state, links: updatedLinks };
 
+    case navEventTypes.CHANGENAVLINKICON:
+      ({ linkIndex, icon } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].icon = icon;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVLINKVISIBILITY:
+      ({ linkIndex } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].showLink = !updatedLinks[linkIndex].showLink;
+      return { ...state, links: updatedLinks };
+
     case navEventTypes.CHANGENAVDROPDOWNINNERTEXT:
       ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
       updatedLinks = structuredClone(state.links);
       updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
         dropDownInnerText;
-      console.log(updatedLinks);
       return { ...state, links: updatedLinks };
 
     case navEventTypes.CHANGENAVDROPDOWNLINK:
@@ -170,7 +243,6 @@ const navReducer = (state, action) => {
       updatedLinks = structuredClone(state.links);
       updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
         dropDownRedirectLink;
-      console.log(updatedLinks);
       return { ...state, links: updatedLinks };
 
     case navEventTypes.CHANGEDROPDOWNVISIBILITY:
@@ -180,10 +252,25 @@ const navReducer = (state, action) => {
         !updatedLinks[linkIndex].showDropDown;
       return { ...state, links: updatedLinks };
 
+    case navEventTypes.CHANGEDROPDOWNLINKVISIBILITY:
+      ({ linkIndex, dropDownIndex } = action.payload);
+      updatedLinks = structuredClone(state.links);
+      updatedLinks[linkIndex].dropDown[dropDownIndex].showDropDownLink =
+        !updatedLinks[linkIndex].dropDown[dropDownIndex].showDropDownLink;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVTITLE:
+      return { ...state, title: action.payload };
+
+    case navEventTypes.CHANGENAVLOGO:
+      return { ...state, logo: action.payload };
+
     case navEventTypes.SETINITIALNAVSTATE:
       return {
         ...state,
-        links: action.payload,
+        title: action.payload.title,
+        logo: action.payload.logo,
+        links: action.payload.links,
       };
     default:
       return state;
@@ -233,6 +320,8 @@ const BottomBar = () => {
         backgroundcolor: commonState.backgroundColor,
       };
       extraFunctionalities = {
+        title: navState.title,
+        logo: navState.logo,
         links: navState.links,
       };
     }
@@ -241,16 +330,16 @@ const BottomBar = () => {
     );
   }, [commonState, buttonState, navState]);
 
-  useEffect(() => {
-    const fetchFontsData = async () => {
-      const response = await fetch(
-        "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes"
-      );
-      const data = await response.json();
-      setFontTypes(data.items.slice(0, 30));
-    };
-    fetchFontsData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchFontsData = async () => {
+  //     const response = await fetch(
+  //       "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes"
+  //     );
+  //     const data = await response.json();
+  //     setFontTypes(data.items.slice(0, 30));
+  //   };
+  //   fetchFontsData();
+  // }, []);
 
   const fonts = fontTypes.map((font) => ({ font: font.family }));
 
@@ -278,7 +367,11 @@ const BottomBar = () => {
       } else if (selectedComponentType === component.NAVBAR) {
         dispatchNavActions({
           type: navEventTypes.SETINITIALNAVSTATE,
-          payload: selectedComponent.extraFunctionalities.links,
+          payload: {
+            title: selectedComponent.extraFunctionalities.title,
+            logo: selectedComponent.extraFunctionalities.logo,
+            links: selectedComponent.extraFunctionalities.links,
+          },
         });
       }
     }
@@ -304,7 +397,7 @@ const BottomBar = () => {
       xs={12}
       // onChange={() => setIsUpdating(true)}
     >
-      {fonts.length && <GoogleFontLoader fonts={fonts} />}
+      {/* {fonts.length && <GoogleFontLoader fonts={fonts} />} */}
       {selectedComponent?.id && (
         <CommonPallete state={commonState} dispatch={dispatchCommonActions} />
       )}

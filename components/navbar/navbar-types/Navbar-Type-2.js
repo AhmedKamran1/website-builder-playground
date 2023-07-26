@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import { IconPickerItem } from "react-icons-picker";
 
 function CustomTabPanel(props) {
   const { children, value, index } = props;
@@ -98,8 +99,18 @@ const NavbarType2 = ({
                   <TabItem
                     key={index}
                     LinkComponent={StyledLink}
-                    icon={link.showDropDown && <KeyboardArrowDown />}
-                    iconPosition="end"
+                    icon={
+                      link.showDropDown ? (
+                        <KeyboardArrowDown />
+                      ) : (
+                        <IconPickerItem
+                          value={link.icon}
+                          size={18}
+                          color={styles.color}
+                        />
+                      )
+                    }
+                    iconPosition={link.showDropDown ? "end" : "start"}
                     href={link?.redirectLink}
                     label={link?.innerText}
                     sx={{ fontWeight: "600", padding: 0 }}
@@ -211,7 +222,7 @@ const NavbarType2 = ({
             justifyContent: "center",
           }}
         >
-          <List sx={{ width: "85%" }}>
+          <List sx={{ width: "90%" }}>
             {extraFunctionalities.links.map(
               (link, index) =>
                 link?.innerText && (
@@ -237,12 +248,20 @@ const NavbarType2 = ({
                                 )
                           }
                         >
+                          <ListItemIcon sx={{ minWidth: "15px" }}>
+                            {!link.showDropDown && (
+                              <IconPickerItem
+                                value={link.icon}
+                                size={18}
+                                color={styles.color}
+                              />
+                            )}
+                          </ListItemIcon>
                           <StyledListItemText
                             primary={link?.innerText}
                             {...styles}
                           />
-
-                          <ListItemIcon sx={{ minWidth: "20px" }}>
+                          <ListItemIcon sx={{ minWidth: "15px" }}>
                             {link.showDropDown && <KeyboardArrowDown />}
                           </ListItemIcon>
                         </StyledListItemButton>
@@ -268,7 +287,7 @@ const NavbarType2 = ({
                               sublink?.dropDownInnerText && (
                                 <StyledListItemButton key={subindex}>
                                   <StyledListItemText
-                                    sx={{ ml: -3 }}
+                                    sx={{ ml: -1.5 }}
                                     primary={sublink?.dropDownInnerText}
                                   />
                                 </StyledListItemButton>

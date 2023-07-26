@@ -11,7 +11,6 @@ import { StyledButton } from "@/styles/pre-defined-components/button/button";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
@@ -51,7 +50,7 @@ const NavbarType1 = ({
         <Toolbar disableGutters>
           <Avatar
             alt="Remy Sharp"
-            src="/static/images/avatar/2.jpg"
+            src={extraFunctionalities?.logo}
             sx={{
               display: { xs: "none", md: "flex" },
               mr: 1,
@@ -74,7 +73,7 @@ const NavbarType1 = ({
             }}
             {...styles}
           >
-            {extraFunctionalities?.links[0]?.innerText}
+            {extraFunctionalities?.title}
           </ResponsiveText>
           {/* </StyledLink> */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -103,7 +102,7 @@ const NavbarType1 = ({
                 display: { xs: "block", md: "none" },
               }}
             >
-              {extraFunctionalities.links.slice(1).map(
+              {extraFunctionalities.links.map(
                 (link, index) =>
                   link?.innerText && (
                     // <StyledLink href={link?.redirectLink}>
@@ -137,7 +136,7 @@ const NavbarType1 = ({
           </Box>
           <Avatar
             alt="Remy Sharp"
-            src="/static/images/avatar/2.jpg"
+            src={extraFunctionalities?.logo}
             sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
           />
 
@@ -157,7 +156,7 @@ const NavbarType1 = ({
             }}
             {...styles}
           >
-            {extraFunctionalities?.links[0]?.innerText}
+            {extraFunctionalities?.title}
           </ResponsiveText>
           <Box
             sx={{
@@ -167,79 +166,82 @@ const NavbarType1 = ({
               gap: "20px",
             }}
           >
-            {extraFunctionalities.links.slice(1).map((link, index) => (
-              <React.Fragment key={index}>
-                <StyledLink href={link?.redirectLink}>
-                  <StyledButton
-                    sx={{ my: 2 }}
-                    endIcon={link.showDropDown && <KeyboardArrowDown />}
-                    onClick={(event) =>
-                      link.showDropDown &&
-                      (index === 1
-                        ? handleOpenNavMenu(event, setFirstLinkDropDown)
-                        : index === 2
-                        ? handleOpenNavMenu(event, setSecondLinkDropDown)
-                        : handleOpenNavMenu(event, setThirdLinkDropDown))
-                    }
-                    {...styles}
-                  >
-                    {link.innerText}
-                  </StyledButton>
-                </StyledLink>
-                {link.showDropDown && (
-                  <Menu
-                    anchorEl={
-                      index === 1
-                        ? firstLinkDropDown
-                        : index === 2
-                        ? secondLinkDropDown
-                        : thirdLinkDropDown
-                    }
-                    open={Boolean(
-                      index === 1
-                        ? firstLinkDropDown
-                        : index === 2
-                        ? secondLinkDropDown
-                        : thirdLinkDropDown
+            {extraFunctionalities.links.map(
+              (link, index) =>
+                link?.showLink && (
+                  <React.Fragment key={index}>
+                    <StyledLink href={link?.redirectLink}>
+                      <StyledButton
+                        sx={{ my: 2 }}
+                        endIcon={link.showDropDown && <KeyboardArrowDown />}
+                        onClick={(event) =>
+                          link.showDropDown &&
+                          (index === 1
+                            ? handleOpenNavMenu(event, setFirstLinkDropDown)
+                            : index === 2
+                            ? handleOpenNavMenu(event, setSecondLinkDropDown)
+                            : handleOpenNavMenu(event, setThirdLinkDropDown))
+                        }
+                        {...styles}
+                      >
+                        {link.innerText}
+                      </StyledButton>
+                    </StyledLink>
+                    {link.showDropDown && (
+                      <Menu
+                        anchorEl={
+                          index === 1
+                            ? firstLinkDropDown
+                            : index === 2
+                            ? secondLinkDropDown
+                            : thirdLinkDropDown
+                        }
+                        open={Boolean(
+                          index === 1
+                            ? firstLinkDropDown
+                            : index === 2
+                            ? secondLinkDropDown
+                            : thirdLinkDropDown
+                        )}
+                        onClose={(event) =>
+                          index === 1
+                            ? handleCloseNavMenu(event, setFirstLinkDropDown)
+                            : index === 2
+                            ? handleCloseNavMenu(event, setSecondLinkDropDown)
+                            : handleCloseNavMenu(event, setThirdLinkDropDown)
+                        }
+                      >
+                        {link.dropDown.map(
+                          (sublink, subindex) =>
+                            sublink?.dropDownInnerText && (
+                              <MenuItem
+                                key={subindex}
+                                onClick={(event) =>
+                                  index === 1
+                                    ? handleCloseNavMenu(
+                                        event,
+                                        setFirstLinkDropDown
+                                      )
+                                    : index === 2
+                                    ? handleCloseNavMenu(
+                                        event,
+                                        setSecondLinkDropDown
+                                      )
+                                    : handleCloseNavMenu(
+                                        event,
+                                        setThirdLinkDropDown
+                                      )
+                                }
+                              >
+                                {sublink?.dropDownInnerText}
+                              </MenuItem>
+                            )
+                        )}
+                      </Menu>
                     )}
-                    onClose={(event) =>
-                      index === 1
-                        ? handleCloseNavMenu(event, setFirstLinkDropDown)
-                        : index === 2
-                        ? handleCloseNavMenu(event, setSecondLinkDropDown)
-                        : handleCloseNavMenu(event, setThirdLinkDropDown)
-                    }
-                  >
-                    {link.dropDown.map(
-                      (sublink, subindex) =>
-                        sublink?.dropDownInnerText && (
-                          <MenuItem
-                            key={subindex}
-                            onClick={(event) =>
-                              index === 1
-                                ? handleCloseNavMenu(
-                                    event,
-                                    setFirstLinkDropDown
-                                  )
-                                : index === 2
-                                ? handleCloseNavMenu(
-                                    event,
-                                    setSecondLinkDropDown
-                                  )
-                                : handleCloseNavMenu(
-                                    event,
-                                    setThirdLinkDropDown
-                                  )
-                            }
-                          >
-                            {sublink?.dropDownInnerText}
-                          </MenuItem>
-                        )
-                    )}
-                  </Menu>
-                )}
-              </React.Fragment>
-            ))}
+                  </React.Fragment>
+                )
+            )}
           </Box>
         </Toolbar>
       </Container>
