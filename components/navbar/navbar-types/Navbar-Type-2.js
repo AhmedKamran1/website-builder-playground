@@ -95,7 +95,7 @@ const NavbarType2 = ({
           >
             {extraFunctionalities.links.map(
               (link, index) =>
-                link?.innerText && (
+                link?.showLink && (
                   <TabItem
                     key={index}
                     LinkComponent={StyledLink}
@@ -168,28 +168,31 @@ const NavbarType2 = ({
                 >
                   {link.dropDown.map(
                     (sublink, subindex) =>
+                      sublink?.showDropDownLink &&
                       sublink?.dropDownInnerText && (
-                        <MenuItem
-                          key={subindex}
-                          onClick={(event) =>
-                            subindex === 0
-                              ? handleCloseTabDropDown(
-                                  event,
-                                  setTabFirstLinkDropDown
-                                )
-                              : subindex === 1
-                              ? handleCloseTabDropDown(
-                                  event,
-                                  setTabSecondLinkDropDown
-                                )
-                              : handleCloseTabDropDown(
-                                  event,
-                                  setTabThirdLinkDropDown
-                                )
-                          }
-                        >
-                          {sublink?.dropDownInnerText}
-                        </MenuItem>
+                        <StyledLink href={sublink?.dropDownRedirectLink}>
+                          <MenuItem
+                            key={subindex}
+                            onClick={(event) =>
+                              subindex === 0
+                                ? handleCloseTabDropDown(
+                                    event,
+                                    setTabFirstLinkDropDown
+                                  )
+                                : subindex === 1
+                                ? handleCloseTabDropDown(
+                                    event,
+                                    setTabSecondLinkDropDown
+                                  )
+                                : handleCloseTabDropDown(
+                                    event,
+                                    setTabThirdLinkDropDown
+                                  )
+                            }
+                          >
+                            {sublink?.dropDownInnerText}
+                          </MenuItem>
+                        </StyledLink>
                       )
                   )}
                 </Menu>
@@ -225,7 +228,7 @@ const NavbarType2 = ({
           <List sx={{ width: "90%" }}>
             {extraFunctionalities.links.map(
               (link, index) =>
-                link?.innerText && (
+                link?.showLink && (
                   <React.Fragment key={index}>
                     <StyledLink href={link?.redirectLink}>
                       <ListItem disablePadding divider>
@@ -284,13 +287,18 @@ const NavbarType2 = ({
                         <List component="div" disablePadding>
                           {link.dropDown.map(
                             (sublink, subindex) =>
+                              sublink?.showDropDownLink &&
                               sublink?.dropDownInnerText && (
-                                <StyledListItemButton key={subindex}>
-                                  <StyledListItemText
-                                    sx={{ ml: -1.5 }}
-                                    primary={sublink?.dropDownInnerText}
-                                  />
-                                </StyledListItemButton>
+                                <StyledLink
+                                  href={sublink?.dropDownRedirectLink}
+                                >
+                                  <StyledListItemButton key={subindex}>
+                                    <StyledListItemText
+                                      sx={{ ml: -1.5 }}
+                                      primary={sublink?.dropDownInnerText}
+                                    />
+                                  </StyledListItemButton>
+                                </StyledLink>
                               )
                           )}
                         </List>

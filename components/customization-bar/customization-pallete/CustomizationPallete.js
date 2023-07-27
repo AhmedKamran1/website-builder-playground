@@ -68,7 +68,7 @@ const navbarInitialState = {
       redirectLink: "",
       innerText: "",
       icon: "",
-      showLink: false,
+      showLink: true,
       showDropDown: false,
       dropDown: [
         {

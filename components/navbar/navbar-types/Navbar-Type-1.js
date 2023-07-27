@@ -104,32 +104,33 @@ const NavbarType1 = ({
             >
               {extraFunctionalities.links.map(
                 (link, index) =>
-                  link?.innerText && (
-                    // <StyledLink href={link?.redirectLink}>
-                    <NestedMenuItem
-                      key={index}
-                      label={link?.innerText}
-                      parentMenuOpen={link.showDropDown && Boolean(anchorElNav)}
-                      rightIcon={link.showDropDown && <KeyboardArrowRight />}
-                      LinkComponent={StyledLink}
-                    >
-                      {link.dropDown.map(
-                        (sublink, subindex) =>
-                          sublink?.dropDownInnerText && (
-                            <StyledLink
-                              href={sublink?.dropDownRedirectLink}
-                              key={subindex}
-                            >
-                              <IconMenuItem
-                                // leftIcon={<NewIcon />}
-                                // rightIcon={<SaveIcon />}
-                                label={sublink?.dropDownInnerText}
-                              />
-                            </StyledLink>
-                          )
-                      )}
-                    </NestedMenuItem>
-                    // </StyledLink>
+                  link?.showLink && (
+                    <StyledLink href={link?.redirectLink} key={index}>
+                      <NestedMenuItem
+                        key={index}
+                        label={link?.innerText}
+                        parentMenuOpen={
+                          link.showDropDown && Boolean(anchorElNav)
+                        }
+                        rightIcon={link.showDropDown && <KeyboardArrowRight />}
+                        LinkComponent={StyledLink}
+                      >
+                        {link.dropDown.map(
+                          (sublink, subindex) =>
+                            sublink?.showDropDownLink &&
+                            sublink?.dropDownInnerText && (
+                              <StyledLink
+                                href={sublink?.dropDownRedirectLink}
+                                key={subindex}
+                              >
+                                <IconMenuItem
+                                  label={sublink?.dropDownInnerText}
+                                />
+                              </StyledLink>
+                            )
+                        )}
+                      </NestedMenuItem>
+                    </StyledLink>
                   )
               )}
             </Menu>
@@ -213,28 +214,33 @@ const NavbarType1 = ({
                       >
                         {link.dropDown.map(
                           (sublink, subindex) =>
+                            sublink?.showDropDownLink &&
                             sublink?.dropDownInnerText && (
-                              <MenuItem
+                              <StyledLink
+                                href={sublink?.dropDownRedirectLink}
                                 key={subindex}
-                                onClick={(event) =>
-                                  index === 1
-                                    ? handleCloseNavMenu(
-                                        event,
-                                        setFirstLinkDropDown
-                                      )
-                                    : index === 2
-                                    ? handleCloseNavMenu(
-                                        event,
-                                        setSecondLinkDropDown
-                                      )
-                                    : handleCloseNavMenu(
-                                        event,
-                                        setThirdLinkDropDown
-                                      )
-                                }
                               >
-                                {sublink?.dropDownInnerText}
-                              </MenuItem>
+                                <MenuItem
+                                  onClick={(event) =>
+                                    index === 1
+                                      ? handleCloseNavMenu(
+                                          event,
+                                          setFirstLinkDropDown
+                                        )
+                                      : index === 2
+                                      ? handleCloseNavMenu(
+                                          event,
+                                          setSecondLinkDropDown
+                                        )
+                                      : handleCloseNavMenu(
+                                          event,
+                                          setThirdLinkDropDown
+                                        )
+                                  }
+                                >
+                                  {sublink?.dropDownInnerText}
+                                </MenuItem>
+                              </StyledLink>
                             )
                         )}
                       </Menu>
