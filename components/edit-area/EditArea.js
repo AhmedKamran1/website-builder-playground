@@ -52,7 +52,7 @@ const EditArea = () => {
             onClick={() =>
               componentSelectionHandler(componentData, id, component.BUTTON)
             }
-            isfocused={isFocused}
+            isfocused={+isFocused}
           >
             {extraFunctionalities.innerText ?? "Button"}
           </Styled.StyledButton>
@@ -67,7 +67,7 @@ const EditArea = () => {
             componentSelectionHandler={() =>
               componentSelectionHandler(componentData, id, component.NAVBAR)
             }
-            isfocused={isFocused}
+            isfocused={+isFocused}
           />
         );
       default:
