@@ -35,7 +35,7 @@ export const ResponsiveText = styled(Typography)(
   ({ variant, colorhex, theme }) => ({
     fontSize: baseFontSizes[variant].default,
     [theme.breakpoints.down("sm")]: {
-      fontSize: baseFontSizes[variant].small || baseFontSizes[variant].default,
+      fontSize: baseFontSizes[variant].small,
     },
     color: colorhex,
   })
