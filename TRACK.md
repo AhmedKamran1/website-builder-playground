@@ -12,6 +12,7 @@
 - Fix icon pack issue
 - Move the customization pallet to a base object and onclick to add more of that object and limit using the function and display toast that cant add more
 - Cutomization Pallete helper functions
+- Parent Id child relation
 
 # To resolve
 
