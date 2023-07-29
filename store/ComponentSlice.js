@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const componentInitialState = {
   componentData: [],
-  selectedComponentId: null,
-  selectedComponentType: null,
   selectedComponentDetails: null,
   componentId: 1,
 };
@@ -31,28 +29,29 @@ const componentSlice = createSlice({
 
     selectedComponent(state, action) {
       state.selectedComponentDetails = action.payload.componentData;
-      state.selectedComponentId = action.payload.componentId;
-      state.selectedComponentType = action.payload.componentType;
     },
     updateComponent(state, action) {
       if (
         state.componentData.length != 0 &&
-        state.selectedComponentId != null
+        state.selectedComponentDetails.id != null
       ) {
         const updateStyleIndex = state.componentData.findIndex(
-          (component) => component.id === state.selectedComponentId
+          (component) => component.id === state.selectedComponentDetails.id
         );
         state.componentData[updateStyleIndex].styles = {
           ...state.componentData[updateStyleIndex].styles,
           ...action.payload.modifiedStyles,
         };
-        state.componentData[updateStyleIndex].extraFunctionalities =
-          action.payload.extraFunctionalities;
-        state.selectedComponentDetails.styles =
-          state.componentData[updateStyleIndex].styles;
+        state.componentData[updateStyleIndex].extraFunctionalities = {
+          ...action.payload.extraFunctionalities,
+        };
+        state.selectedComponentDetails.styles = {
+          ...state.componentData[updateStyleIndex].styles,
+        };
 
-        state.selectedComponentDetails.extraFunctionalities =
-          state.componentData[updateStyleIndex].extraFunctionalities;
+        state.selectedComponentDetails.extraFunctionalities = {
+          ...state.componentData[updateStyleIndex].extraFunctionalities,
+        };
       }
     },
   },
@@ -61,7 +60,9 @@ const componentSlice = createSlice({
 export const componentData = (state) => state.component.componentData;
 export const selectedComponentData = (state) =>
   state.component.selectedComponentDetails;
-export const componentId = (state) => state.component.selectedComponentId;
-export const componentType = (state) => state.component.selectedComponentType;
+export const componentId = (state) =>
+  state.component.selectedComponentDetails?.id;
+export const componentType = (state) =>
+  state.component.selectedComponentDetails?.componentType;
 
 export default componentSlice;
