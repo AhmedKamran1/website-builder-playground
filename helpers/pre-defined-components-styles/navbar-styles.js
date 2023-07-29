@@ -1,3 +1,16 @@
+export const dropDownLink = {
+  dropDownRedirectLink: "",
+  dropDownInnerText: "",
+};
+
+export const navLink = {
+  innerText: "Home",
+  redirectLink: "",
+  icon: "",
+  showDropDown: false,
+  dropDown: [dropDownLink],
+};
+
 export const initialNavbarComponentStyles = [
   {
     navId: "1",
@@ -8,104 +21,7 @@ export const initialNavbarComponentStyles = [
     extraFunctionalities: {
       title: "Add Title",
       logo: "",
-      links: [
-        {
-          redirectLink: "",
-          innerText: "Home",
-          icon: "",
-          showLink: true,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-        {
-          redirectLink: "",
-          innerText: "Contact Us",
-          icon: "",
-          showLink: true,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-        {
-          redirectLink: "",
-          innerText: "About Us",
-          icon: "",
-          showLink: false,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-        {
-          redirectLink: "",
-          innerText: "",
-          icon: "",
-          showLink: false,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-      ],
+      links: [navLink],
     },
   },
   {
@@ -117,104 +33,7 @@ export const initialNavbarComponentStyles = [
     extraFunctionalities: {
       title: "",
       logo: "",
-      links: [
-        {
-          redirectLink: "",
-          innerText: "Home",
-          icon: "",
-          showLink: true,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-        {
-          redirectLink: "",
-          innerText: "Services",
-          icon: "",
-          showLink: true,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-        {
-          redirectLink: "",
-          innerText: "Contact Us",
-          icon: "",
-          showLink: false,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-        {
-          redirectLink: "",
-          innerText: "About Us",
-          icon: "",
-          showLink: false,
-          showDropDown: false,
-          dropDown: [
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: true,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-            {
-              dropDownRedirectLink: "",
-              dropDownInnerText: "",
-              showDropDownLink: false,
-            },
-          ],
-        },
-      ],
+      links: [navLink],
     },
   },
 ];

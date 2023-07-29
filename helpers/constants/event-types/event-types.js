@@ -24,13 +24,15 @@ export const buttonEventType = {
 };
 
 export const navEventTypes = {
-  CHANGENAVLINK: "changeNavLink",
-  CHANGENAVLINKVISIBILITY: "changeNavLinkVisibility",
+  CHANGENAVREDIRECTLINK: "changeNavRedirectLink",
+  ADDNAVLINK: "addNavLink",
+  DELETENAVLINK: "deleteNavLink",
   CHANGENAVINNERTEXT: "changeNavInnerText",
   CHANGENAVDROPDOWNLINK: "changeNavDropDownLink",
   CHANGENAVDROPDOWNINNERTEXT: "changeNavDropDownInnertext",
   CHANGEDROPDOWNVISIBILITY: "changeDropDownVisibility",
-  CHANGEDROPDOWNLINKVISIBILITY: "changeDropDownLinkVisibility",
+  ADDROPDOWNLINK: "AddDropDownLink",
+  DELETEDROPDOWNLINK: "RemoveDropDownLink",
   CHANGENAVLOGO: "changeNavLogo",
   CHANGENAVTITLE: "changeNavTitle",
   CHANGENAVLINKICON: "changeNavLinkIcon",
