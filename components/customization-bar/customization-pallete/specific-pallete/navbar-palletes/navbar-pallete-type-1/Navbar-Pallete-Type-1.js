@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { navEventTypes } from "@/util/event-types";
+import { navEventTypes } from "@/helpers/constants/event-types/event-types";
 
 import axios from "axios";
 
 const NavbarPallete1 = ({ state, dispatch }) => {
   //TITLE AND IMAGE
+  const [imageFile, setImageFile] = useState(null);
 
-  const changeNavLogoHandler = async (event) => {
+  const temporaryNavLogoHandler = (event) => {
+    setImageFile(event.target.files[0]);
+  };
+
+  useEffect(() => {
+    if (imageFile) {
+      dispatch({
+        type: navEventTypes.CHANGENAVLOGO,
+        payload: URL.createObjectURL(imageFile),
+      });
+    }
+  }, [imageFile]);
+
+  const uploadNavLogoHandler = async (event) => {
     const formData = new FormData();
-    formData.append("file", event.target.files[0]);
+    formData.append("file", imageFile);
     formData.append("upload_preset", "zpzzsofa");
 
     const response = await axios.post(
@@ -38,7 +52,8 @@ const NavbarPallete1 = ({ state, dispatch }) => {
       />
       <br />
       <span>Logo</span>
-      <input type="file" onChange={changeNavLogoHandler} />
+      <input type="file" accept="image/*" onChange={temporaryNavLogoHandler} />
+
       {/* <input
         type="text"
         value={state.logo}

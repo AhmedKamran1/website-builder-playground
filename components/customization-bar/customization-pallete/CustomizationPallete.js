@@ -1,143 +1,28 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 
-import { component } from "@/util/component-type";
+import { component } from "@/helpers/constants/component-types/component-types";
 import {
   buttonEventType,
   commonEventType,
   navEventTypes,
-} from "@/util/event-types";
+} from "@/helpers/constants/event-types/event-types";
 
 import * as NavStyles from "../../../styles/customization-bar/BottomBar";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  componentType,
-  selectedComponentData,
-} from "@/store/ComponentSlice";
+import { componentType, selectedComponentData } from "@/store/ComponentSlice";
 import { componentActions } from "@/store/store";
 
 import CommonPallete from "./common-pallete/CommonPallete";
 import ButtonPallete from "./specific-pallete/ButtonPallete";
 
-// import GoogleFontLoader from "react-google-font-loader";
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
 
-const commonInitialState = {
-  color: "#FFFFFF",
-  backgroundColor: "#FFFFFF",
-};
-
-const buttonInitialState = {
-  redirectLink: "",
-  fontWeight: "",
-  fontStyle: "",
-  fontFamily: "",
-  hoverColor: "#FFFFFF",
-  innerText: "",
-};
-
-const navbarInitialState = {
-  title: "",
-  logo: "",
-  links: [
-    {
-      redirectLink: "",
-      innerText: "",
-      icon: "",
-      showLink: true,
-      showDropDown: false,
-      dropDown: [
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: true,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-      ],
-    },
-    {
-      redirectLink: "",
-      innerText: "",
-      icon: "",
-      showLink: true,
-      showDropDown: false,
-      dropDown: [
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: true,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-      ],
-    },
-    {
-      redirectLink: "",
-      innerText: "",
-      icon: "",
-      showLink: false,
-      showDropDown: false,
-      dropDown: [
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: true,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-      ],
-    },
-    {
-      redirectLink: "",
-      innerText: "",
-      icon: "",
-      showLink: false,
-      showDropDown: false,
-      dropDown: [
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: true,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-        {
-          dropDownRedirectLink: "",
-          dropDownInnerText: "",
-          showDropDownLink: false,
-        },
-      ],
-    },
-  ],
-};
+import {
+  buttonInitialState,
+  commonInitialState,
+  navbarInitialState,
+} from "@/helpers/customization-pallete/initial-reducer-states";
 
 const commonReducer = (state, action) => {
   switch (action.type) {
@@ -181,7 +66,7 @@ const buttonReducer = (state, action) => {
     case buttonEventType.CHANGEINNERTEXT:
       return { ...state, innerText: action.payload };
 
-    case buttonEventType.SETINITIALSTATE:
+    case commonEventType.SETINITIALSTATE:
       return {
         ...state,
         fontWeight: action.payload.fontWeight,
@@ -265,7 +150,7 @@ const navReducer = (state, action) => {
     case navEventTypes.CHANGENAVLOGO:
       return { ...state, logo: action.payload };
 
-    case navEventTypes.SETINITIALNAVSTATE:
+    case commonEventType.SETINITIALSTATE:
       return {
         ...state,
         title: action.payload.title,
@@ -282,8 +167,6 @@ const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
   const dispatchStore = useDispatch();
 
-  // const [isUpdating, setIsUpdating] = useState(false);
-  const [fontTypes, setFontTypes] = useState([]);
   const [commonState, dispatchCommonActions] = useReducer(
     commonReducer,
     commonInitialState
@@ -326,22 +209,9 @@ const BottomBar = () => {
       };
     }
     dispatchStore(
-      componentActions.updateComponent({ modifiedStyles, extraFunctionalities })
+      componentActions.updateComponent({ modifiedStyles, extraFunctionalities: structuredClone(extraFunctionalities) })
     );
   }, [commonState, buttonState, navState]);
-
-  // useEffect(() => {
-  //   const fetchFontsData = async () => {
-  //     const response = await fetch(
-  //       "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes"
-  //     );
-  //     const data = await response.json();
-  //     setFontTypes(data.items.slice(0, 30));
-  //   };
-  //   fetchFontsData();
-  // }, []);
-
-  const fonts = fontTypes.map((font) => ({ font: font.family }));
 
   useEffect(() => {
     if (selectedComponent?.id) {
@@ -354,7 +224,7 @@ const BottomBar = () => {
       });
       if (selectedComponentType === component.BUTTON) {
         dispatchButtonActions({
-          type: buttonEventType.SETINITIALSTATE,
+          type: commonEventType.SETINITIALSTATE,
           payload: {
             fontWeight: selectedComponent.styles.fontweight,
             fontStyle: selectedComponent.styles.fontstyle,
@@ -366,7 +236,7 @@ const BottomBar = () => {
         });
       } else if (selectedComponentType === component.NAVBAR) {
         dispatchNavActions({
-          type: navEventTypes.SETINITIALNAVSTATE,
+          type: commonEventType.SETINITIALSTATE,
           payload: {
             title: selectedComponent.extraFunctionalities.title,
             logo: selectedComponent.extraFunctionalities.logo,
@@ -391,19 +261,12 @@ const BottomBar = () => {
   }, [commonState, navState, buttonState]);
 
   return (
-    <NavStyles.BottomBarGridContainer
-      sx={{ overflowY: "scroll" }}
-      item
-      xs={12}
-      // onChange={() => setIsUpdating(true)}
-    >
-      {/* {fonts.length && <GoogleFontLoader fonts={fonts} />} */}
+    <NavStyles.BottomBarGridContainer sx={{ overflowY: "scroll" }} item xs={12}>
       {selectedComponent?.id && (
         <CommonPallete state={commonState} dispatch={dispatchCommonActions} />
       )}
       {selectedComponentType === component.BUTTON && (
         <ButtonPallete
-          fonts={fonts}
           state={buttonState}
           dispatch={dispatchButtonActions}
         />

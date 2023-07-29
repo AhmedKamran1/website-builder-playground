@@ -1,6 +1,6 @@
 import React from "react";
 
-import { commonEventType } from "@/util/event-types";
+import { commonEventType } from "@/helpers/constants/event-types/event-types";
 
 const CommonPallete = ({ state, dispatch }) => {
   return (

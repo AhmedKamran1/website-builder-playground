@@ -2,7 +2,7 @@ import React from "react";
 
 import NavbarType1 from "./navbar-types/Navbar-Type-1";
 import NavbarType2 from "./navbar-types/Navbar-Type-2";
-import { initialNavbarComponentStyles } from "@/styles/pre-defined-components-styles/navbar-styles";
+import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
 
 const Navbar = ({
   navbarId,

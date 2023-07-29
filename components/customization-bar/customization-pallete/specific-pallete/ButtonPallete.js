@@ -1,8 +1,8 @@
 import React from "react";
 
-import { buttonEventType } from "@/util/event-types";
+import { buttonEventType } from "@/helpers/constants/event-types/event-types";
 
-const ButtonPallete = ({ fonts, state, dispatch }) => {
+const ButtonPallete = ({ state, dispatch }) => {
   return (
     <>
       <div>
@@ -93,7 +93,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
           }
         />
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="fontType">Font Type: </label>
         <select
           value={state.fontFamily}
@@ -110,7 +110,7 @@ const ButtonPallete = ({ fonts, state, dispatch }) => {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
       {/* <div>
             <input
               type="radio"

@@ -2,18 +2,17 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-import { navEventTypes } from "@/util/event-types";
+import { navEventTypes } from "@/helpers/constants/event-types/event-types";
 import { Checkbox, Divider } from "@mui/material";
 
 import { selectedComponentData } from "@/store/ComponentSlice";
-import { initialNavbarComponentStyles } from "@/styles/pre-defined-components-styles/navbar-styles";
+import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
 import NavbarPallete1 from "./navbar-pallete-type-1/Navbar-Pallete-Type-1";
 import NavbarPallete2 from "./navbar-pallete-type-2/Navbar-Pallete-Type-2";
 
 const NavbarPallete = ({ state, dispatch }) => {
   const selectedComponent = useSelector(selectedComponentData);
   const { styles } = selectedComponent;
-
   let addPageButtonRendered = false;
 
   return (
@@ -79,7 +78,7 @@ const NavbarPallete = ({ state, dispatch }) => {
                     })
                   }
                 />
-                {selectedComponent.navId ===
+                {/* {selectedComponent.navId ===
                   initialNavbarComponentStyles[1].navId &&
                   !link.showDropDown && (
                     <NavbarPallete2
@@ -87,7 +86,7 @@ const NavbarPallete = ({ state, dispatch }) => {
                       linkIndex={linkIndex}
                       dispatch={dispatch}
                     />
-                  )}
+                  )} */}
                 <p style={{ fontWeight: "bold" }}>
                   Drop Down Menu
                   <Checkbox

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { component } from "@/util/component-type";
+import { component } from "@/helpers/constants/component-types/component-types";
 
 import * as EditAreaStyles from "../../styles/edit-area/EditArea";
 import * as Styled from "../../styles/pre-defined-components/button/button";
@@ -20,38 +20,24 @@ const EditArea = () => {
     console.log(components);
   };
 
-  const componentSelectionHandler = (
-    componentData,
-    componentId,
-    componentType
-  ) => {
+  const componentSelectionHandler = (componentData) => {
     dispatch(
       componentActions.selectedComponent({
         componentData,
-        componentId,
-        componentType,
       })
     );
   };
 
-  const renderComponent = (
-    componentData,
-    componentType,
-    styles,
-    extraFunctionalities,
-    id
-  ) => {
-    const isFocused = selectedComponentId === id;
-    switch (componentType) {
+  const renderComponent = (componentData, styles, extraFunctionalities) => {
+    const isFocused = selectedComponentId === componentData.id;
+    switch (componentData.componentType) {
       case component.BUTTON:
         return (
           // <Link href={extraFunctionalities.redirectLink ?? ""}>
           <Styled.StyledButton
             variant="contained"
             {...styles}
-            onClick={() =>
-              componentSelectionHandler(componentData, id, component.BUTTON)
-            }
+            onClick={() => componentSelectionHandler(componentData)}
             isfocused={+isFocused}
           >
             {extraFunctionalities.innerText ?? "Button"}
@@ -65,7 +51,7 @@ const EditArea = () => {
             extraFunctionalities={extraFunctionalities}
             navbarId={componentData.navId}
             componentSelectionHandler={() =>
-              componentSelectionHandler(componentData, id, component.NAVBAR)
+              componentSelectionHandler(componentData)
             }
             isfocused={+isFocused}
           />
@@ -85,7 +71,6 @@ const EditArea = () => {
         <React.Fragment key={index}>
           {renderComponent(
             data,
-            data.componentType,
             data.styles,
             data.extraFunctionalities,
             index + 1

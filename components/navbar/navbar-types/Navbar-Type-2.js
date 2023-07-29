@@ -22,7 +22,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import { IconPickerItem } from "react-icons-picker";
 
 function CustomTabPanel(props) {
   const { children, value, index } = props;
@@ -99,17 +98,7 @@ const NavbarType2 = ({
                   <TabItem
                     key={index}
                     LinkComponent={StyledLink}
-                    icon={
-                      link.showDropDown ? (
-                        <KeyboardArrowDown />
-                      ) : (
-                        <IconPickerItem
-                          value={link.icon}
-                          size={18}
-                          color={styles.color}
-                        />
-                      )
-                    }
+                    icon={link.showDropDown && <KeyboardArrowDown />}
                     iconPosition={link.showDropDown ? "end" : "start"}
                     href={link?.redirectLink}
                     label={link?.innerText}
@@ -138,6 +127,14 @@ const NavbarType2 = ({
             link.showDropDown && (
               <CustomTabPanel value={tabValue} index={index} key={index}>
                 <Menu
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
                   anchorEl={
                     index === 0
                       ? tabFirstLinkDropDown
@@ -170,9 +167,11 @@ const NavbarType2 = ({
                     (sublink, subindex) =>
                       sublink?.showDropDownLink &&
                       sublink?.dropDownInnerText && (
-                        <StyledLink href={sublink?.dropDownRedirectLink}>
+                        <StyledLink
+                          href={sublink?.dropDownRedirectLink}
+                          key={subindex}
+                        >
                           <MenuItem
-                            key={subindex}
                             onClick={(event) =>
                               subindex === 0
                                 ? handleCloseTabDropDown(
@@ -214,6 +213,7 @@ const NavbarType2 = ({
             boxSizing: "border-box",
             width: "45vw",
             height: "100vh",
+            position:"static"
           },
         }}
       >
@@ -251,15 +251,6 @@ const NavbarType2 = ({
                                 )
                           }
                         >
-                          <ListItemIcon sx={{ minWidth: "15px" }}>
-                            {!link.showDropDown && (
-                              <IconPickerItem
-                                value={link.icon}
-                                size={18}
-                                color={styles.color}
-                              />
-                            )}
-                          </ListItemIcon>
                           <StyledListItemText
                             primary={link?.innerText}
                             {...styles}
@@ -291,8 +282,9 @@ const NavbarType2 = ({
                               sublink?.dropDownInnerText && (
                                 <StyledLink
                                   href={sublink?.dropDownRedirectLink}
+                                  key={subindex}
                                 >
-                                  <StyledListItemButton key={subindex}>
+                                  <StyledListItemButton >
                                     <StyledListItemText
                                       sx={{ ml: -1.5 }}
                                       primary={sublink?.dropDownInnerText}

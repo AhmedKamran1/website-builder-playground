@@ -1,10 +1,10 @@
 import * as TempStyles from "../../../styles/customization-bar/TopBar";
 import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
 
-import { component } from "@/util/component-type";
+import { component } from "@/helpers/constants/component-types/component-types";
 
-import { initialButtonComponentStyles } from "@/styles/pre-defined-components-styles/button-styles";
-import { initialNavbarComponentStyles } from "@/styles/pre-defined-components-styles/navbar-styles";
+import { initialButtonComponentStyles } from "@/helpers/pre-defined-components-styles/button-styles";
+import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
 
 import { useDispatch } from "react-redux";
 import { componentActions } from "@/store/store";
@@ -14,15 +14,6 @@ const TopBar = () => {
 
   const addComponentHandler = (event, styles, componentType) => {
     switch (componentType) {
-      case component.DIV:
-        dispatch(
-          componentActions.addComponent({
-            componentType: component.DIV,
-            styles: { ...styles },
-            extraFunctionalities: {},
-          })
-        );
-        break;
       case component.BUTTON:
         dispatch(
           componentActions.addComponent({
@@ -69,12 +60,14 @@ const TopBar = () => {
       <div>
         <span>Navbar Types:</span>
         <select
-        defaultValue="none"
+          defaultValue="none"
           onChange={(event) =>
             addComponentHandler(event, null, component.NAVBAR)
           }
         >
-          <option value="none" disabled hidden>Select an Option</option>
+          <option value="none" disabled hidden>
+            Select an Option
+          </option>
           <option>1</option>
           <option>2</option>
         </select>
