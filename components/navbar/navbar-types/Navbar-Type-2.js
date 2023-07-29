@@ -92,34 +92,28 @@ const NavbarType2 = ({
             onChange={handleTabChange}
             sx={{ width: "100%" }}
           >
-            {extraFunctionalities.links.map(
-              (link, index) =>
-                link?.showLink && (
-                  <TabItem
-                    key={index}
-                    LinkComponent={StyledLink}
-                    icon={link.showDropDown && <KeyboardArrowDown />}
-                    iconPosition={link.showDropDown ? "end" : "start"}
-                    href={link?.redirectLink}
-                    label={link?.innerText}
-                    sx={{ fontWeight: "600", padding: 0 }}
-                    onClick={(event) =>
-                      link.showDropDown &&
-                      (index === 0
-                        ? handleOpenTabDropDown(event, setTabFirstLinkDropDown)
-                        : index === 1
-                        ? handleOpenTabDropDown(event, setTabSecondLinkDropDown)
-                        : index === 2
-                        ? handleOpenTabDropDown(event, setTabThirdLinkDropDown)
-                        : handleOpenTabDropDown(
-                            event,
-                            setTabFourthLinkDropDown
-                          ))
-                    }
-                    {...styles}
-                  />
-                )
-            )}
+            {extraFunctionalities.links.map((link, index) => (
+              <TabItem
+                key={index}
+                LinkComponent={StyledLink}
+                icon={link.showDropDown && <KeyboardArrowDown />}
+                iconPosition={link.showDropDown ? "end" : "start"}
+                href={link?.redirectLink}
+                label={link?.innerText}
+                sx={{ fontWeight: "600", padding: 0 }}
+                onClick={(event) =>
+                  link.showDropDown &&
+                  (index === 0
+                    ? handleOpenTabDropDown(event, setTabFirstLinkDropDown)
+                    : index === 1
+                    ? handleOpenTabDropDown(event, setTabSecondLinkDropDown)
+                    : index === 2
+                    ? handleOpenTabDropDown(event, setTabThirdLinkDropDown)
+                    : handleOpenTabDropDown(event, setTabFourthLinkDropDown))
+                }
+                {...styles}
+              />
+            ))}
           </Tabs>
         </Toolbar>
         {extraFunctionalities.links.map(
@@ -165,7 +159,6 @@ const NavbarType2 = ({
                 >
                   {link.dropDown.map(
                     (sublink, subindex) =>
-                      sublink?.showDropDownLink &&
                       sublink?.dropDownInnerText && (
                         <StyledLink
                           href={sublink?.dropDownRedirectLink}
@@ -213,7 +206,7 @@ const NavbarType2 = ({
             boxSizing: "border-box",
             width: "45vw",
             height: "100vh",
-            position:"static"
+            position: "static",
           },
         }}
       >
@@ -226,79 +219,75 @@ const NavbarType2 = ({
           }}
         >
           <List sx={{ width: "90%" }}>
-            {extraFunctionalities.links.map(
-              (link, index) =>
-                link?.showLink && (
-                  <React.Fragment key={index}>
-                    <StyledLink href={link?.redirectLink}>
-                      <ListItem disablePadding divider>
-                        <StyledListItemButton
-                          onClick={() =>
-                            index === 0
-                              ? setResponsiveFirstLinkDropDown(
-                                  (prevState) => !prevState
-                                )
-                              : index === 1
-                              ? setResponsiveSecondLinkDropDown(
-                                  (prevState) => !prevState
-                                )
-                              : index === 2
-                              ? setResponsiveThirdLinkDropDown(
-                                  (prevState) => !prevState
-                                )
-                              : setResponsiveFourthLinkDropDown(
-                                  (prevState) => !prevState
-                                )
-                          }
-                        >
-                          <StyledListItemText
-                            primary={link?.innerText}
-                            {...styles}
-                          />
-                          <ListItemIcon sx={{ minWidth: "15px" }}>
-                            {link.showDropDown && <KeyboardArrowDown />}
-                          </ListItemIcon>
-                        </StyledListItemButton>
-                      </ListItem>
-                    </StyledLink>
-                    {link.showDropDown && (
-                      <Collapse
-                        in={
-                          index === 0
-                            ? responsiveFirstLinkDropDown
-                            : index === 1
-                            ? responsiveSecondLinkDropDown
-                            : index === 2
-                            ? responsiveThirdLinkDropDown
-                            : responsiveFourthLinkDropDown
-                        }
-                        timeout="auto"
-                        unmountOnExit
-                      >
-                        <List component="div" disablePadding>
-                          {link.dropDown.map(
-                            (sublink, subindex) =>
-                              sublink?.showDropDownLink &&
-                              sublink?.dropDownInnerText && (
-                                <StyledLink
-                                  href={sublink?.dropDownRedirectLink}
-                                  key={subindex}
-                                >
-                                  <StyledListItemButton >
-                                    <StyledListItemText
-                                      sx={{ ml: -1.5 }}
-                                      primary={sublink?.dropDownInnerText}
-                                    />
-                                  </StyledListItemButton>
-                                </StyledLink>
-                              )
-                          )}
-                        </List>
-                      </Collapse>
-                    )}
-                  </React.Fragment>
-                )
-            )}
+            {extraFunctionalities.links.map((link, index) => (
+              <React.Fragment key={index}>
+                <StyledLink href={link?.redirectLink}>
+                  <ListItem disablePadding divider>
+                    <StyledListItemButton
+                      onClick={() =>
+                        index === 0
+                          ? setResponsiveFirstLinkDropDown(
+                              (prevState) => !prevState
+                            )
+                          : index === 1
+                          ? setResponsiveSecondLinkDropDown(
+                              (prevState) => !prevState
+                            )
+                          : index === 2
+                          ? setResponsiveThirdLinkDropDown(
+                              (prevState) => !prevState
+                            )
+                          : setResponsiveFourthLinkDropDown(
+                              (prevState) => !prevState
+                            )
+                      }
+                    >
+                      <StyledListItemText
+                        primary={link?.innerText}
+                        {...styles}
+                      />
+                      <ListItemIcon sx={{ minWidth: "15px" }}>
+                        {link.showDropDown && <KeyboardArrowDown />}
+                      </ListItemIcon>
+                    </StyledListItemButton>
+                  </ListItem>
+                </StyledLink>
+                {link.showDropDown && (
+                  <Collapse
+                    in={
+                      index === 0
+                        ? responsiveFirstLinkDropDown
+                        : index === 1
+                        ? responsiveSecondLinkDropDown
+                        : index === 2
+                        ? responsiveThirdLinkDropDown
+                        : responsiveFourthLinkDropDown
+                    }
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <List component="div" disablePadding>
+                      {link.dropDown.map(
+                        (sublink, subindex) =>
+                          sublink?.dropDownInnerText && (
+                            <StyledLink
+                              href={sublink?.dropDownRedirectLink}
+                              key={subindex}
+                            >
+                              <StyledListItemButton>
+                                <StyledListItemText
+                                  sx={{ ml: -1.5 }}
+                                  primary={sublink?.dropDownInnerText}
+                                />
+                              </StyledListItemButton>
+                            </StyledLink>
+                          )
+                      )}
+                    </List>
+                  </Collapse>
+                )}
+              </React.Fragment>
+            ))}
           </List>
         </Container>
       </Drawer>

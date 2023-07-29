@@ -83,65 +83,30 @@ const buttonReducer = (state, action) => {
 
 const navReducer = (state, action) => {
   let linkIndex,
+    navLink,
     dropDownIndex,
     dropDownInnerText,
     dropDownRedirectLink,
+    dropDownLink,
     innerText,
     redirectLink,
-    icon,
     updatedLinks;
 
+  updatedLinks = structuredClone(state.links);
+
   switch (action.type) {
-    case navEventTypes.CHANGENAVINNERTEXT:
-      ({ linkIndex, innerText } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].innerText = innerText;
-      return { ...state, links: updatedLinks };
+    case navEventTypes.ADDNAVLINK:
+      ({ navLink } = action.payload);
 
-    case navEventTypes.CHANGENAVLINK:
-      ({ linkIndex, redirectLink } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].redirectLink = redirectLink;
-      return { ...state, links: updatedLinks };
+      updatedLinks.push(navLink);
+      return {
+        ...state,
+        links: updatedLinks,
+      };
 
-    case navEventTypes.CHANGENAVLINKICON:
-      ({ linkIndex, icon } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].icon = icon;
-      return { ...state, links: updatedLinks };
-
-    case navEventTypes.CHANGENAVLINKVISIBILITY:
+    case navEventTypes.DELETENAVLINK:
       ({ linkIndex } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].showLink = !updatedLinks[linkIndex].showLink;
-      return { ...state, links: updatedLinks };
-
-    case navEventTypes.CHANGENAVDROPDOWNINNERTEXT:
-      ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
-        dropDownInnerText;
-      return { ...state, links: updatedLinks };
-
-    case navEventTypes.CHANGENAVDROPDOWNLINK:
-      ({ linkIndex, dropDownIndex, dropDownRedirectLink } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
-        dropDownRedirectLink;
-      return { ...state, links: updatedLinks };
-
-    case navEventTypes.CHANGEDROPDOWNVISIBILITY:
-      ({ linkIndex } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].showDropDown =
-        !updatedLinks[linkIndex].showDropDown;
-      return { ...state, links: updatedLinks };
-
-    case navEventTypes.CHANGEDROPDOWNLINKVISIBILITY:
-      ({ linkIndex, dropDownIndex } = action.payload);
-      updatedLinks = structuredClone(state.links);
-      updatedLinks[linkIndex].dropDown[dropDownIndex].showDropDownLink =
-        !updatedLinks[linkIndex].dropDown[dropDownIndex].showDropDownLink;
+      updatedLinks.splice(linkIndex, 1);
       return { ...state, links: updatedLinks };
 
     case navEventTypes.CHANGENAVTITLE:
@@ -150,6 +115,44 @@ const navReducer = (state, action) => {
     case navEventTypes.CHANGENAVLOGO:
       return { ...state, logo: action.payload };
 
+    case navEventTypes.CHANGENAVINNERTEXT:
+      ({ linkIndex, innerText } = action.payload);
+      updatedLinks[linkIndex].innerText = innerText;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVREDIRECTLINK:
+      ({ linkIndex, redirectLink } = action.payload);
+      updatedLinks[linkIndex].redirectLink = redirectLink;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGEDROPDOWNVISIBILITY:
+      ({ linkIndex } = action.payload);
+      updatedLinks[linkIndex].showDropDown =
+        !updatedLinks[linkIndex].showDropDown;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.ADDROPDOWNLINK:
+      ({ linkIndex, dropDownLink } = action.payload);
+      updatedLinks[linkIndex].dropDown.push(dropDownLink);
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.DELETEDROPDOWNLINK:
+      ({ linkIndex, dropDownIndex } = action.payload);
+      updatedLinks[linkIndex].dropDown.splice(dropDownIndex, 1);
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVDROPDOWNINNERTEXT:
+      ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
+      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
+        dropDownInnerText;
+      return { ...state, links: updatedLinks };
+
+    case navEventTypes.CHANGENAVDROPDOWNLINK:
+      ({ linkIndex, dropDownIndex, dropDownRedirectLink } = action.payload);
+      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
+        dropDownRedirectLink;
+      return { ...state, links: updatedLinks };
+
     case commonEventType.SETINITIALSTATE:
       return {
         ...state,
@@ -157,6 +160,7 @@ const navReducer = (state, action) => {
         logo: action.payload.logo,
         links: action.payload.links,
       };
+
     default:
       return state;
   }
@@ -209,7 +213,10 @@ const BottomBar = () => {
       };
     }
     dispatchStore(
-      componentActions.updateComponent({ modifiedStyles, extraFunctionalities: structuredClone(extraFunctionalities) })
+      componentActions.updateComponent({
+        modifiedStyles,
+        extraFunctionalities: structuredClone(extraFunctionalities),
+      })
     );
   }, [commonState, buttonState, navState]);
 
@@ -248,16 +255,13 @@ const BottomBar = () => {
   }, [selectedComponent?.id, selectedComponent?.navId]);
 
   useEffect(() => {
-    // if (isUpdating) {
     const timeout = setTimeout(() => {
       updateStyleHandler();
     }, 200);
 
-    // setIsUpdating(false);
     return () => {
       clearTimeout(timeout);
     };
-    // }
   }, [commonState, navState, buttonState]);
 
   return (
@@ -266,10 +270,7 @@ const BottomBar = () => {
         <CommonPallete state={commonState} dispatch={dispatchCommonActions} />
       )}
       {selectedComponentType === component.BUTTON && (
-        <ButtonPallete
-          state={buttonState}
-          dispatch={dispatchButtonActions}
-        />
+        <ButtonPallete state={buttonState} dispatch={dispatchButtonActions} />
       )}
       {selectedComponentType === component.NAVBAR && (
         <NavbarPallete state={navState} dispatch={dispatchNavActions} />
