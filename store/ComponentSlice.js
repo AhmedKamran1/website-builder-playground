@@ -16,9 +16,14 @@ const componentSlice = createSlice({
       );
       if (replaceComponentIndex != -1) {
         state.componentData[replaceComponentIndex] = {
-          id: state.componentData[replaceComponentIndex].id,
           ...action.payload,
+          id: state.componentData[replaceComponentIndex].id,
+          styles: state.componentData[replaceComponentIndex].styles,
+          extraFunctionalities:
+            state.componentData[replaceComponentIndex].extraFunctionalities,
         };
+        state.selectedComponentDetails =
+          state.componentData[replaceComponentIndex];
       } else {
         state.componentData.push({
           id: state.componentId++,
