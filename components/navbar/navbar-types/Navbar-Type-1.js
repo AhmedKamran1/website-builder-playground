@@ -26,6 +26,7 @@ import {
   ResponsiveBox,
   ResponsiveTitleText,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
+import NavbarMenu from "./navbar-components/common-components/NavbarMenu";
 
 const NavbarType1 = ({
   styles,
@@ -34,6 +35,7 @@ const NavbarType1 = ({
   isfocused,
 }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+
   const [firstLinkDropDown, setFirstLinkDropDown] = useState(null);
   const [secondLinkDropDown, setSecondLinkDropDown] = useState(null);
   const [thirdLinkDropDown, setThirdLinkDropDown] = useState(null);
@@ -46,13 +48,10 @@ const NavbarType1 = ({
     switch (index) {
       case 0:
         return setFirstLinkDropDown;
-
       case 1:
         return setSecondLinkDropDown;
-
       case 2:
         return setThirdLinkDropDown;
-
       case 3:
         return setFourthLinkDropDown;
     }
@@ -62,13 +61,10 @@ const NavbarType1 = ({
     switch (index) {
       case 0:
         return firstLinkDropDown;
-
       case 1:
         return secondLinkDropDown;
-
       case 2:
         return thirdLinkDropDown;
-
       case 3:
         return fourthLinkDropDown;
     }
@@ -176,29 +172,12 @@ const NavbarType1 = ({
                   </StyledButton>
                 </StyledLink>
                 {link.showDropDown && (
-                  <Menu
-                    anchorEl={getLinkDropDown(index)}
-                    open={Boolean(getLinkDropDown(index))}
-                    onClose={(event) => handleCloseNavMenu(event, index)}
-                  >
-                    {link.dropDown.map(
-                      (sublink, sublinkIndex) =>
-                        sublink?.dropDownInnerText && (
-                          <StyledLink
-                            href={sublink?.dropDownRedirectLink}
-                            key={sublinkIndex}
-                          >
-                            <MenuItem
-                              onClick={(event) =>
-                                handleCloseNavMenu(event, index)
-                              }
-                            >
-                              {sublink?.dropDownInnerText}
-                            </MenuItem>
-                          </StyledLink>
-                        )
-                    )}
-                  </Menu>
+                  <NavbarMenu
+                    getLinkDropDown={getLinkDropDown}
+                    handleCloseNavMenu={handleCloseNavMenu}
+                    link={link}
+                    index={index}
+                  />
                 )}
               </React.Fragment>
             ))}

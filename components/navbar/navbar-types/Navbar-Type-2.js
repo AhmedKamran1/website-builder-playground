@@ -29,6 +29,9 @@ import {
   NavToolBar,
   ResponsiveContainer,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
+import NavbarDrawer2 from "./navbar-components/navbar-type-2/Navbar-Type-2-Drawer";
+import NavbarMenu from "./navbar-components/common-components/NavbarMenu";
+import NavbarTabs2 from "./navbar-components/navbar-type-2/Navbar-Type-2-Tabs";
 
 function CustomTabPanel(props) {
   const { children, value, index } = props;
@@ -73,13 +76,10 @@ const NavbarType2 = ({
     switch (index) {
       case 0:
         return setFirstLinkDropDown;
-
       case 1:
         return setSecondLinkDropDown;
-
       case 2:
         return setThirdLinkDropDown;
-
       case 3:
         return setFourthLinkDropDown;
     }
@@ -88,13 +88,10 @@ const NavbarType2 = ({
     switch (index) {
       case 0:
         return setResponsiveFirstLinkDropDown;
-
       case 1:
         return setResponsiveSecondLinkDropDown;
-
       case 2:
         return setResponsiveThirdLinkDropDown;
-
       case 3:
         return setResponsiveFourthLinkDropDown;
     }
@@ -104,13 +101,10 @@ const NavbarType2 = ({
     switch (index) {
       case 0:
         return firstLinkDropDown;
-
       case 1:
         return secondLinkDropDown;
-
       case 2:
         return thirdLinkDropDown;
-
       case 3:
         return fourthLinkDropDown;
     }
@@ -120,13 +114,10 @@ const NavbarType2 = ({
     switch (index) {
       case 0:
         return responsiveFirstLinkDropDown;
-
       case 1:
         return responsiveSecondLinkDropDown;
-
       case 2:
         return responsiveThirdLinkDropDown;
-
       case 3:
         return responsiveFourthLinkDropDown;
     }
@@ -163,32 +154,13 @@ const NavbarType2 = ({
           <MenuIcon />
         </IconButton>
         <NavToolBar>
-          <Tabs
-            value={tabValue}
-            textColor="inherit"
-            variant="fullWidth"
-            TabIndicatorProps={{
-              style: { backgroundColor: navLinkStyles.colorHex },
-            }}
-            onChange={handleTabChange}
-            sx={{ width: "100%" }}
-          >
-            {extraFunctionalities.links.map((link, index) => (
-              <TabItem
-                key={index}
-                LinkComponent={StyledLink}
-                icon={link.showDropDown ? <KeyboardArrowDown /> : ""}
-                iconPosition={link.showDropDown ? "end" : "start"}
-                href={link?.redirectLink}
-                label={link?.innerText}
-                sx={{ padding: 0 }}
-                onClick={(event) =>
-                  link.showDropDown && handleOpenNavMenu(event, index)
-                }
-                {...navLinkStyles}
-              />
-            ))}
-          </Tabs>
+          <NavbarTabs2
+            tabValue={tabValue}
+            navLinkStyles={navLinkStyles}
+            handleTabChange={handleTabChange}
+            links={extraFunctionalities.links}
+            handleOpenNavMenu={handleOpenNavMenu}
+          />
           <StyledButton variant="contained" {...loginButtonStyles}>
             Login
           </StyledButton>
@@ -197,106 +169,24 @@ const NavbarType2 = ({
           (link, index) =>
             link.showDropDown && (
               <CustomTabPanel value={tabValue} index={index} key={index}>
-                <Menu
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "center",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "center",
-                  }}
-                  anchorEl={getLinkDropDown(index)}
-                  open={Boolean(getLinkDropDown(index))}
-                  onClose={(event) => handleCloseNavMenu(event, index)}
-                >
-                  {link.dropDown.map(
-                    (sublink, sublinkIndex) =>
-                      sublink?.dropDownInnerText && (
-                        <StyledLink
-                          href={sublink?.dropDownRedirectLink}
-                          key={sublinkIndex}
-                        >
-                          <MenuItem
-                            onClick={(event) =>
-                              handleCloseNavMenu(event, index)
-                            }
-                          >
-                            {sublink?.dropDownInnerText}
-                          </MenuItem>
-                        </StyledLink>
-                      )
-                  )}
-                </Menu>
+                <NavbarMenu
+                  getLinkDropDown={getLinkDropDown}
+                  handleCloseNavMenu={handleCloseNavMenu}
+                  link={link}
+                  index={index}
+                />
               </CustomTabPanel>
             )
         )}
       </FullViewContainer>
-      <Drawer
-        anchor="left"
-        open={showDrawer}
-        onClose={handleNavDrawer}
-        sx={{
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: "45vw",
-          },
-        }}
-      >
-        <ResponsiveContainer>
-          <List sx={{ width: "90%" }}>
-            {extraFunctionalities.links.map((link, index) => (
-              <React.Fragment key={index}>
-                <StyledLink href={link?.redirectLink}>
-                  <ListItem disablePadding divider>
-                    <StyledListItemButton
-                      onClick={(event) => handleCollapseList(event, index)}
-                    >
-                      <StyledListItemText primary={link?.innerText} />
-                      <ListItemIcon sx={{ minWidth: "15px" }}>
-                        {link.showDropDown && <KeyboardArrowDown />}
-                      </ListItemIcon>
-                    </StyledListItemButton>
-                  </ListItem>
-                </StyledLink>
-                {link.showDropDown && (
-                  <Collapse
-                    in={getResponsiveLinkDropDown(index)}
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    <List component="div" disablePadding>
-                      {link.dropDown.map(
-                        (sublink, subindex) =>
-                          sublink?.dropDownInnerText && (
-                            <StyledLink
-                              href={sublink?.dropDownRedirectLink}
-                              key={subindex}
-                            >
-                              <StyledListItemButton>
-                                <StyledListItemText
-                                  sx={{ ml: -1.5 }}
-                                  primary={sublink?.dropDownInnerText}
-                                />
-                              </StyledListItemButton>
-                            </StyledLink>
-                          )
-                      )}
-                    </List>
-                  </Collapse>
-                )}
-              </React.Fragment>
-            ))}
-          </List>
-          <StyledButton
-            variant="contained"
-            sx={{ ml: -1.5 }}
-            {...loginButtonStyles}
-          >
-            Login
-          </StyledButton>
-        </ResponsiveContainer>
-      </Drawer>
+      <NavbarDrawer2
+        showDrawer={showDrawer}
+        handleNavDrawer={handleNavDrawer}
+        links={extraFunctionalities.links}
+        handleCollapseList={handleCollapseList}
+        getResponsiveLinkDropDown={getResponsiveLinkDropDown}
+        loginButtonStyles={loginButtonStyles}
+      />
     </NavigationBar>
   );
 };
