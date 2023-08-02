@@ -11,12 +11,30 @@ export const navLink = {
   dropDown: [dropDownLink],
 };
 
+export const navLinkStyles = {
+  colorHex: "#FFFFFF",
+  backgroundColor: "#000000",
+  fontWeight: "",
+  fontStyle: "",
+  fontFamily: "",
+  hoverColor: "#000000",
+};
+
+export const loginButtonStyles = {
+  colorHex: "#FFFFFF",
+  backgroundColor: "#000000",
+  fontWeight: "",
+  fontStyle: "",
+  fontFamily: "",
+  hoverColor: "#000000",
+};
+
 export const initialNavbarComponentStyles = [
   {
     navId: "1",
     styles: {
-      colorhex: "#FFFFFF",
-      backgroundcolor: "#000000",
+      navLinkStyles: navLinkStyles,
+      loginButtonStyles: loginButtonStyles,
     },
     extraFunctionalities: {
       title: "Add Title",
@@ -27,8 +45,8 @@ export const initialNavbarComponentStyles = [
   {
     navId: "2",
     styles: {
-      colorhex: "#FFFFFF",
-      backgroundcolor: "#000000",
+      navLinkStyles: navLinkStyles,
+      loginButtonStyles: loginButtonStyles,
     },
     extraFunctionalities: {
       title: "",

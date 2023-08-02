@@ -1,4 +1,8 @@
-import { navLink } from "../pre-defined-components-styles/navbar-styles";
+import {
+  loginButtonStyles,
+  navLink,
+  navLinkStyles,
+} from "../pre-defined-components-styles/navbar-styles";
 
 export const commonInitialState = {
   color: "#FFFFFF",
@@ -17,5 +21,9 @@ export const buttonInitialState = {
 export const navbarInitialState = {
   title: "",
   logo: "",
+  styles: {
+    navLinkStyles: navLinkStyles,
+    loginButtonStyles: loginButtonStyles,
+  },
   links: [navLink],
 };

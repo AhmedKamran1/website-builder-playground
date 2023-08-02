@@ -2,10 +2,10 @@ export const commonEventType = {
   SETINITIALSTATE: "setInitialState",
   CHANGECOLOR: "changeColor",
   CHANGEBGCOLOR: "changeBgColor",
-  CHANGEFONTWEIGHT: "changeFontWeight",
-  CHANGEFONTSTYLE: "changeFontStyle",
-  CHANGEHOVERCOLOR: "changeHoverColor",
-  CHANGEFONTFAMILY: "changeFontFamily",
+  // CHANGEFONTWEIGHT: "changeFontWeight",
+  // CHANGEFONTSTYLE: "changeFontStyle",
+  // CHANGEHOVERCOLOR: "changeHoverColor",
+  // CHANGEFONTFAMILY: "changeFontFamily",
 };
 
 export const buttonEventType = {
@@ -36,4 +36,13 @@ export const navEventTypes = {
   CHANGENAVLOGO: "changeNavLogo",
   CHANGENAVTITLE: "changeNavTitle",
   CHANGENAVLINKICON: "changeNavLinkIcon",
+  CHANGENAVFONTWEIGHT: "changeFontWeight",
+  CHANGENAVFONTSTYLE: "changeFontStyle",
+  CHANGENAVHOVERCOLOR: "changeHoverColor",
+  CHANGENAVFONTFAMILY: "changeFontFamily",
+  CHANGENAVLOGINBUTTONCOLOR: "changeNavLoginButtonColor",
+  CHANGENAVLOGINBUTTONBGCOLOR: "changeNavLoginButtonBackgroundColor",
+  CHANGENAVLOGINBUTTONHOVERCOLOR: "changeNavLoginButtonHoverColor",
+  CHANGENAVLOGINBUTTONFONTWEIGHT: "changeNavLoginButtonFontWeight",
+  CHANGENAVLOGINBUTTONFONTSTYLE: "changeNavLoginButtonFontStyle",
 };
