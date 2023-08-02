@@ -42,12 +42,46 @@ const NavbarType1 = ({
   const { navLinkStyles } = styles;
   const { loginButtonStyles } = styles;
 
-  const handleOpenNavMenu = (event, setState) => {
-    setState(event.currentTarget);
+  const getSetLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return setFirstLinkDropDown;
+
+      case 1:
+        return setSecondLinkDropDown;
+
+      case 2:
+        return setThirdLinkDropDown;
+
+      case 3:
+        return setFourthLinkDropDown;
+    }
   };
 
-  const handleCloseNavMenu = (event, setState) => {
-    setState(null);
+  const getLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return firstLinkDropDown;
+
+      case 1:
+        return secondLinkDropDown;
+
+      case 2:
+        return thirdLinkDropDown;
+
+      case 3:
+        return fourthLinkDropDown;
+    }
+  };
+
+  const handleOpenNavMenu = (event, index) => {
+    const setLinkDropDown = getSetLinkDropDown(index);
+    setLinkDropDown(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = (event, index) => {
+    const setLinkDropDown = getSetLinkDropDown(index);
+    setLinkDropDown(null);
   };
 
   return (
@@ -61,7 +95,7 @@ const NavbarType1 = ({
           <ResponsiveBox>
             <IconButton
               size="large"
-              onClick={(event) => handleOpenNavMenu(event, setAnchorElNav)}
+              onClick={(event) => setAnchorElNav(event.currentTarget)}
               color="inherit"
             >
               <MoreIcon />
@@ -79,7 +113,7 @@ const NavbarType1 = ({
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={(event) => handleCloseNavMenu(event, setAnchorElNav)}
+              onClose={(event) => setAnchorElNav(null)}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
@@ -134,14 +168,7 @@ const NavbarType1 = ({
                     sx={{ my: 2 }}
                     endIcon={link.showDropDown && <KeyboardArrowDown />}
                     onClick={(event) =>
-                      link.showDropDown &&
-                      (index === 0
-                        ? handleOpenNavMenu(event, setFirstLinkDropDown)
-                        : index === 1
-                        ? handleOpenNavMenu(event, setSecondLinkDropDown)
-                        : index === 2
-                        ? handleOpenNavMenu(event, setThirdLinkDropDown)
-                        : handleOpenNavMenu(event, setFourthLinkDropDown))
+                      link.showDropDown && handleOpenNavMenu(event, index)
                     }
                     {...navLinkStyles}
                   >
@@ -150,33 +177,9 @@ const NavbarType1 = ({
                 </StyledLink>
                 {link.showDropDown && (
                   <Menu
-                    anchorEl={
-                      index === 0
-                        ? firstLinkDropDown
-                        : index === 1
-                        ? secondLinkDropDown
-                        : index === 2
-                        ? thirdLinkDropDown
-                        : fourthLinkDropDown
-                    }
-                    open={Boolean(
-                      index === 0
-                        ? firstLinkDropDown
-                        : index === 1
-                        ? secondLinkDropDown
-                        : index === 2
-                        ? thirdLinkDropDown
-                        : fourthLinkDropDown
-                    )}
-                    onClose={(event) =>
-                      index === 0
-                        ? handleCloseNavMenu(event, setFirstLinkDropDown)
-                        : index === 1
-                        ? handleCloseNavMenu(event, setSecondLinkDropDown)
-                        : index === 2
-                        ? handleCloseNavMenu(event, setThirdLinkDropDown)
-                        : handleCloseNavMenu(event, setFourthLinkDropDown)
-                    }
+                    anchorEl={getLinkDropDown(index)}
+                    open={Boolean(getLinkDropDown(index))}
+                    onClose={(event) => handleCloseNavMenu(event, index)}
                   >
                     {link.dropDown.map(
                       (sublink, sublinkIndex) =>
@@ -187,25 +190,7 @@ const NavbarType1 = ({
                           >
                             <MenuItem
                               onClick={(event) =>
-                                index === 0
-                                  ? handleCloseNavMenu(
-                                      event,
-                                      setFirstLinkDropDown
-                                    )
-                                  : index === 1
-                                  ? handleCloseNavMenu(
-                                      event,
-                                      setSecondLinkDropDown
-                                    )
-                                  : index === 2
-                                  ? handleCloseNavMenu(
-                                      event,
-                                      setThirdLinkDropDown
-                                    )
-                                  : handleCloseNavMenu(
-                                      event,
-                                      setFourthLinkDropDown
-                                    )
+                                handleCloseNavMenu(event, index)
                               }
                             >
                               {sublink?.dropDownInnerText}

@@ -45,10 +45,10 @@ const NavbarType2 = ({
   const [showDrawer, setShowDrawer] = useState(false);
   const [tabValue, setTabValue] = useState(0);
 
-  const [tabFirstLinkDropDown, setTabFirstLinkDropDown] = useState(null);
-  const [tabSecondLinkDropDown, setTabSecondLinkDropDown] = useState(null);
-  const [tabThirdLinkDropDown, setTabThirdLinkDropDown] = useState(null);
-  const [tabFourthLinkDropDown, setTabFourthLinkDropDown] = useState(null);
+  const [firstLinkDropDown, setFirstLinkDropDown] = useState(null);
+  const [secondLinkDropDown, setSecondLinkDropDown] = useState(null);
+  const [thirdLinkDropDown, setThirdLinkDropDown] = useState(null);
+  const [fourthLinkDropDown, setFourthLinkDropDown] = useState(null);
 
   const { navLinkStyles } = styles;
   const { loginButtonStyles } = styles;
@@ -62,19 +62,89 @@ const NavbarType2 = ({
   const [responsiveFourthLinkDropDown, setResponsiveFourthLinkDropDown] =
     useState(null);
 
-  const handleNavMenu = () => {
+  const handleNavDrawer = () => {
     setShowDrawer((prevState) => !prevState);
   };
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
-  const handleOpenTabDropDown = (event, setState) => {
-    setState(event.currentTarget);
+  const getSetLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return setFirstLinkDropDown;
+
+      case 1:
+        return setSecondLinkDropDown;
+
+      case 2:
+        return setThirdLinkDropDown;
+
+      case 3:
+        return setFourthLinkDropDown;
+    }
+  };
+  const getSetResponsiveLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return setResponsiveFirstLinkDropDown;
+
+      case 1:
+        return setResponsiveSecondLinkDropDown;
+
+      case 2:
+        return setResponsiveThirdLinkDropDown;
+
+      case 3:
+        return setResponsiveFourthLinkDropDown;
+    }
   };
 
-  const handleCloseTabDropDown = (event, setState) => {
-    setState(null);
+  const getLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return firstLinkDropDown;
+
+      case 1:
+        return secondLinkDropDown;
+
+      case 2:
+        return thirdLinkDropDown;
+
+      case 3:
+        return fourthLinkDropDown;
+    }
+  };
+
+  const getResponsiveLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return responsiveFirstLinkDropDown;
+
+      case 1:
+        return responsiveSecondLinkDropDown;
+
+      case 2:
+        return responsiveThirdLinkDropDown;
+
+      case 3:
+        return responsiveFourthLinkDropDown;
+    }
+  };
+
+  const handleOpenNavMenu = (event, index) => {
+    const setLinkDropDown = getSetLinkDropDown(index);
+    setLinkDropDown(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = (event, index) => {
+    const setLinkDropDown = getSetLinkDropDown(index);
+    setLinkDropDown(null);
+  };
+
+  const handleCollapseList = (event, index) => {
+    const setLinkDropDown = getSetResponsiveLinkDropDown(index);
+    setLinkDropDown((prevState) => !prevState);
   };
 
   return (
@@ -86,7 +156,7 @@ const NavbarType2 = ({
       <FullViewContainer maxWidth="xl">
         <IconButton
           size="large"
-          onClick={handleNavMenu}
+          onClick={handleNavDrawer}
           color="inherit"
           sx={{ display: { xs: "block", md: "none" } }}
         >
@@ -113,14 +183,7 @@ const NavbarType2 = ({
                 label={link?.innerText}
                 sx={{ padding: 0 }}
                 onClick={(event) =>
-                  link.showDropDown &&
-                  (index === 0
-                    ? handleOpenTabDropDown(event, setTabFirstLinkDropDown)
-                    : index === 1
-                    ? handleOpenTabDropDown(event, setTabSecondLinkDropDown)
-                    : index === 2
-                    ? handleOpenTabDropDown(event, setTabThirdLinkDropDown)
-                    : handleOpenTabDropDown(event, setTabFourthLinkDropDown))
+                  link.showDropDown && handleOpenNavMenu(event, index)
                 }
                 {...navLinkStyles}
               />
@@ -143,33 +206,9 @@ const NavbarType2 = ({
                     vertical: "top",
                     horizontal: "center",
                   }}
-                  anchorEl={
-                    index === 0
-                      ? tabFirstLinkDropDown
-                      : index === 1
-                      ? tabSecondLinkDropDown
-                      : index === 2
-                      ? tabThirdLinkDropDown
-                      : tabFourthLinkDropDown
-                  }
-                  open={Boolean(
-                    index === 0
-                      ? tabFirstLinkDropDown
-                      : index === 1
-                      ? tabSecondLinkDropDown
-                      : index === 2
-                      ? tabThirdLinkDropDown
-                      : tabFourthLinkDropDown
-                  )}
-                  onClose={(event) =>
-                    index === 0
-                      ? handleCloseTabDropDown(event, setTabFirstLinkDropDown)
-                      : index === 1
-                      ? handleCloseTabDropDown(event, setTabSecondLinkDropDown)
-                      : index === 2
-                      ? handleCloseTabDropDown(event, setTabThirdLinkDropDown)
-                      : handleCloseTabDropDown(event, setTabFourthLinkDropDown)
-                  }
+                  anchorEl={getLinkDropDown(index)}
+                  open={Boolean(getLinkDropDown(index))}
+                  onClose={(event) => handleCloseNavMenu(event, index)}
                 >
                   {link.dropDown.map(
                     (sublink, sublinkIndex) =>
@@ -180,25 +219,7 @@ const NavbarType2 = ({
                         >
                           <MenuItem
                             onClick={(event) =>
-                              index === 0
-                                ? handleCloseTabDropDown(
-                                    event,
-                                    setTabFirstLinkDropDown
-                                  )
-                                : index === 1
-                                ? handleCloseTabDropDown(
-                                    event,
-                                    setTabSecondLinkDropDown
-                                  )
-                                : index === 2
-                                ? handleCloseTabDropDown(
-                                    event,
-                                    setTabThirdLinkDropDown
-                                  )
-                                : handleCloseTabDropDown(
-                                    event,
-                                    setTabFourthLinkDropDown
-                                  )
+                              handleCloseNavMenu(event, index)
                             }
                           >
                             {sublink?.dropDownInnerText}
@@ -214,7 +235,7 @@ const NavbarType2 = ({
       <Drawer
         anchor="left"
         open={showDrawer}
-        onClose={handleNavMenu}
+        onClose={handleNavDrawer}
         sx={{
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
@@ -229,23 +250,7 @@ const NavbarType2 = ({
                 <StyledLink href={link?.redirectLink}>
                   <ListItem disablePadding divider>
                     <StyledListItemButton
-                      onClick={() =>
-                        index === 0
-                          ? setResponsiveFirstLinkDropDown(
-                              (prevState) => !prevState
-                            )
-                          : index === 1
-                          ? setResponsiveSecondLinkDropDown(
-                              (prevState) => !prevState
-                            )
-                          : index === 2
-                          ? setResponsiveThirdLinkDropDown(
-                              (prevState) => !prevState
-                            )
-                          : setResponsiveFourthLinkDropDown(
-                              (prevState) => !prevState
-                            )
-                      }
+                      onClick={(event) => handleCollapseList(event, index)}
                     >
                       <StyledListItemText primary={link?.innerText} />
                       <ListItemIcon sx={{ minWidth: "15px" }}>
@@ -256,15 +261,7 @@ const NavbarType2 = ({
                 </StyledLink>
                 {link.showDropDown && (
                   <Collapse
-                    in={
-                      index === 0
-                        ? responsiveFirstLinkDropDown
-                        : index === 1
-                        ? responsiveSecondLinkDropDown
-                        : index === 2
-                        ? responsiveThirdLinkDropDown
-                        : responsiveFourthLinkDropDown
-                    }
+                    in={getResponsiveLinkDropDown(index)}
                     timeout="auto"
                     unmountOnExit
                   >
@@ -291,7 +288,11 @@ const NavbarType2 = ({
               </React.Fragment>
             ))}
           </List>
-          <StyledButton variant="contained" sx={{ ml: -1.5 }} {...loginButtonStyles}>
+          <StyledButton
+            variant="contained"
+            sx={{ ml: -1.5 }}
+            {...loginButtonStyles}
+          >
             Login
           </StyledButton>
         </ResponsiveContainer>
