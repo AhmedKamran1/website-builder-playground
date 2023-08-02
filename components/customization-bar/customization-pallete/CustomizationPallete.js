@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { componentType, selectedComponentData } from "@/store/ComponentSlice";
 import { componentActions } from "@/store/store";
 
-import CommonPallete from "./common-pallete/CommonPallete";
+import CommonPallete from "./common-palletes/CollorPallete";
 import ButtonPallete from "./specific-pallete/ButtonPallete";
 
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
@@ -23,21 +23,6 @@ import {
   commonInitialState,
   navbarInitialState,
 } from "@/helpers/customization-pallete/initial-reducer-states";
-
-const commonReducer = (state, action) => {
-  switch (action.type) {
-    case commonEventType.CHANGECOLOR:
-      return { ...state, color: action.payload };
-    case commonEventType.CHANGEBGCOLOR:
-      return { ...state, backgroundColor: action.payload };
-    case commonEventType.SETINITIALSTATE:
-      return {
-        ...state,
-        color: action.payload.color,
-        backgroundColor: action.payload.bgColor,
-      };
-  }
-};
 
 const buttonReducer = (state, action) => {
   switch (action.type) {
@@ -95,6 +80,8 @@ const navReducer = (state, action) => {
   updatedLinks = structuredClone(state.links);
 
   switch (action.type) {
+    // FUNCTIONALITIES
+
     case navEventTypes.ADDNAVLINK:
       ({ navLink } = action.payload);
 
@@ -158,7 +145,132 @@ const navReducer = (state, action) => {
         ...state,
         title: action.payload.title,
         logo: action.payload.logo,
+        styles: action.payload.styles,
         links: action.payload.links,
+      };
+
+    //NAVBAR LINK STYLES
+    case commonEventType.CHANGECOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          navLinkStyles: {
+            ...state.styles.navLinkStyles,
+            colorHex: action.payload,
+          },
+        },
+      };
+    case commonEventType.CHANGEBGCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          navLinkStyles: {
+            ...state.styles.navLinkStyles,
+            backgroundColor: action.payload,
+          },
+        },
+      };
+
+    case navEventTypes.CHANGENAVFONTSTYLE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          navLinkStyles: {
+            ...state.styles.navLinkStyles,
+            fontStyle: action.payload,
+            fontWeight: navbarInitialState.styles.navLinkStyles.fontWeight,
+          },
+        },
+      };
+
+    case navEventTypes.CHANGENAVFONTWEIGHT:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          navLinkStyles: {
+            ...state.styles.navLinkStyles,
+            fontWeight: action.payload,
+            fontStyle: navbarInitialState.styles.navLinkStyles.fontStyle,
+          },
+        },
+      };
+
+    case navEventTypes.CHANGENAVHOVERCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          navLinkStyles: {
+            ...state.styles.navLinkStyles,
+            hoverColor: action.payload,
+          },
+        },
+      };
+
+    //NAVBAR LOGIN BUTTON STYLES
+    case navEventTypes.CHANGENAVLOGINBUTTONCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          loginButtonStyles: {
+            ...state.styles.loginButtonStyles,
+            colorHex: action.payload,
+          },
+        },
+      };
+    case navEventTypes.CHANGENAVLOGINBUTTONBGCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          loginButtonStyles: {
+            ...state.styles.loginButtonStyles,
+            backgroundColor: action.payload,
+          },
+        },
+      };
+
+    case navEventTypes.CHANGENAVLOGINBUTTONHOVERCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          loginButtonStyles: {
+            ...state.styles.loginButtonStyles,
+            hoverColor: action.payload,
+          },
+        },
+      };
+
+    case navEventTypes.CHANGENAVLOGINBUTTONFONTSTYLE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          loginButtonStyles: {
+            ...state.styles.loginButtonStyles,
+            fontStyle: action.payload,
+            fontWeight: navbarInitialState.styles.loginButtonStyles.fontWeight,
+          },
+        },
+      };
+
+    case navEventTypes.CHANGENAVLOGINBUTTONFONTWEIGHT:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          loginButtonStyles: {
+            ...state.styles.loginButtonStyles,
+            fontWeight: action.payload,
+            fontStyle: navbarInitialState.styles.loginButtonStyles.fontStyle,
+          },
+        },
       };
 
     default:
@@ -171,10 +283,6 @@ const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
   const dispatchStore = useDispatch();
 
-  const [commonState, dispatchCommonActions] = useReducer(
-    commonReducer,
-    commonInitialState
-  );
   const [navState, dispatchNavActions] = useReducer(
     navReducer,
     navbarInitialState
@@ -189,8 +297,8 @@ const BottomBar = () => {
     let extraFunctionalities;
     if (selectedComponentType === component.BUTTON) {
       modifiedStyles = {
-        colorhex: commonState.color,
-        backgroundcolor: commonState.backgroundColor,
+        // colorhex: commonState.color,
+        // backgroundcolor: commonState.backgroundColor,
         fontweight: buttonState.fontWeight,
         fontstyle: buttonState.fontStyle,
         fontfamily: buttonState.fontFamily,
@@ -203,8 +311,8 @@ const BottomBar = () => {
     }
     if (selectedComponentType === component.NAVBAR) {
       modifiedStyles = {
-        colorhex: commonState.color,
-        backgroundcolor: commonState.backgroundColor,
+        navLinkStyles: navState.styles.navLinkStyles,
+        loginButtonStyles: navState.styles.loginButtonStyles,
       };
       extraFunctionalities = {
         title: navState.title,
@@ -214,29 +322,22 @@ const BottomBar = () => {
     }
     dispatchStore(
       componentActions.updateComponent({
-        modifiedStyles,
+        modifiedStyles: structuredClone(modifiedStyles),
         extraFunctionalities: structuredClone(extraFunctionalities),
       })
     );
-  }, [commonState, buttonState, navState]);
+  }, [buttonState, navState]);
 
   useEffect(() => {
     if (selectedComponent?.id) {
-      dispatchCommonActions({
-        type: commonEventType.SETINITIALSTATE,
-        payload: {
-          color: selectedComponent.styles.colorhex,
-          bgColor: selectedComponent.styles.backgroundcolor,
-        },
-      });
       if (selectedComponentType === component.BUTTON) {
         dispatchButtonActions({
           type: commonEventType.SETINITIALSTATE,
           payload: {
-            fontWeight: selectedComponent.styles.fontweight,
-            fontStyle: selectedComponent.styles.fontstyle,
-            fontFamily: selectedComponent.styles.fontfamily,
-            hoverColor: selectedComponent.styles.hovercolor,
+            fontWeight: selectedComponent.styles.fontWeight,
+            fontStyle: selectedComponent.styles.fontStyle,
+            fontFamily: selectedComponent.styles.fontFamily,
+            hoverColor: selectedComponent.styles.hoverColor,
             redirectLink: selectedComponent.extraFunctionalities.redirectLink,
             innerText: selectedComponent.extraFunctionalities.innerText,
           },
@@ -247,12 +348,13 @@ const BottomBar = () => {
           payload: {
             title: selectedComponent.extraFunctionalities.title,
             logo: selectedComponent.extraFunctionalities.logo,
+            styles: selectedComponent.styles,
             links: selectedComponent.extraFunctionalities.links,
           },
         });
       }
     }
-  }, [selectedComponent?.id, selectedComponent?.navId]);
+  }, [selectedComponent?.id]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -262,13 +364,10 @@ const BottomBar = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [commonState, navState, buttonState]);
+  }, [navState, buttonState]);
 
   return (
     <NavStyles.BottomBarGridContainer sx={{ overflowY: "scroll" }} item xs={12}>
-      {selectedComponent?.id && (
-        <CommonPallete state={commonState} dispatch={dispatchCommonActions} />
-      )}
       {selectedComponentType === component.BUTTON && (
         <ButtonPallete state={buttonState} dispatch={dispatchButtonActions} />
       )}
