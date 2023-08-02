@@ -6,8 +6,9 @@ import {
   StyledListItemButton,
   StyledListItemText,
   TabItem,
-} from "@/styles/pre-defined-components/navbar/navbar";
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import {
+  Box,
   Collapse,
   Container,
   Drawer,
@@ -22,6 +23,12 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
+import {
+  FullViewContainer,
+  NavToolBar,
+  ResponsiveContainer,
+} from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
 function CustomTabPanel(props) {
   const { children, value, index } = props;
@@ -42,6 +49,9 @@ const NavbarType2 = ({
   const [tabSecondLinkDropDown, setTabSecondLinkDropDown] = useState(null);
   const [tabThirdLinkDropDown, setTabThirdLinkDropDown] = useState(null);
   const [tabFourthLinkDropDown, setTabFourthLinkDropDown] = useState(null);
+
+  const { navLinkStyles } = styles;
+  const { loginButtonStyles } = styles;
 
   const [responsiveFirstLinkDropDown, setResponsiveFirstLinkDropDown] =
     useState(null);
@@ -69,25 +79,26 @@ const NavbarType2 = ({
 
   return (
     <NavigationBar
-      {...styles}
       onClick={componentSelectionHandler}
       isfocused={isfocused}
+      backgroundColor={navLinkStyles.backgroundColor}
     >
-      <Container
-        maxWidth="md"
-        sx={{
-          display: { xs: "none", md: "flex" },
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Toolbar sx={{ width: "100%" }}>
+      <FullViewContainer maxWidth="xl">
+        <IconButton
+          size="large"
+          onClick={handleNavMenu}
+          color="inherit"
+          sx={{ display: { xs: "block", md: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <NavToolBar>
           <Tabs
             value={tabValue}
             textColor="inherit"
             variant="fullWidth"
             TabIndicatorProps={{
-              style: { backgroundColor: styles.colorhex },
+              style: { backgroundColor: navLinkStyles.colorHex },
             }}
             onChange={handleTabChange}
             sx={{ width: "100%" }}
@@ -96,11 +107,11 @@ const NavbarType2 = ({
               <TabItem
                 key={index}
                 LinkComponent={StyledLink}
-                icon={link.showDropDown && <KeyboardArrowDown />}
+                icon={link.showDropDown ? <KeyboardArrowDown /> : ""}
                 iconPosition={link.showDropDown ? "end" : "start"}
                 href={link?.redirectLink}
                 label={link?.innerText}
-                sx={{ fontWeight: "600", padding: 0 }}
+                sx={{ padding: 0 }}
                 onClick={(event) =>
                   link.showDropDown &&
                   (index === 0
@@ -111,11 +122,14 @@ const NavbarType2 = ({
                     ? handleOpenTabDropDown(event, setTabThirdLinkDropDown)
                     : handleOpenTabDropDown(event, setTabFourthLinkDropDown))
                 }
-                {...styles}
+                {...navLinkStyles}
               />
             ))}
           </Tabs>
-        </Toolbar>
+          <StyledButton variant="contained" {...loginButtonStyles}>
+            Login
+          </StyledButton>
+        </NavToolBar>
         {extraFunctionalities.links.map(
           (link, index) =>
             link.showDropDown && (
@@ -158,27 +172,32 @@ const NavbarType2 = ({
                   }
                 >
                   {link.dropDown.map(
-                    (sublink, subindex) =>
+                    (sublink, sublinkIndex) =>
                       sublink?.dropDownInnerText && (
                         <StyledLink
                           href={sublink?.dropDownRedirectLink}
-                          key={subindex}
+                          key={sublinkIndex}
                         >
                           <MenuItem
                             onClick={(event) =>
-                              subindex === 0
+                              index === 0
                                 ? handleCloseTabDropDown(
                                     event,
                                     setTabFirstLinkDropDown
                                   )
-                                : subindex === 1
+                                : index === 1
                                 ? handleCloseTabDropDown(
                                     event,
                                     setTabSecondLinkDropDown
                                   )
-                                : handleCloseTabDropDown(
+                                : index === 2
+                                ? handleCloseTabDropDown(
                                     event,
                                     setTabThirdLinkDropDown
+                                  )
+                                : handleCloseTabDropDown(
+                                    event,
+                                    setTabFourthLinkDropDown
                                   )
                             }
                           >
@@ -191,12 +210,7 @@ const NavbarType2 = ({
               </CustomTabPanel>
             )
         )}
-      </Container>
-      <Container sx={{ display: { xs: "block", md: "none" } }}>
-        <IconButton size="large" onClick={handleNavMenu} color="inherit">
-          <MenuIcon />
-        </IconButton>
-      </Container>
+      </FullViewContainer>
       <Drawer
         anchor="left"
         open={showDrawer}
@@ -205,19 +219,10 @@ const NavbarType2 = ({
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: "45vw",
-            height: "100vh",
-            position: "static",
           },
         }}
       >
-        <Container
-          sx={{
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <ResponsiveContainer>
           <List sx={{ width: "90%" }}>
             {extraFunctionalities.links.map((link, index) => (
               <React.Fragment key={index}>
@@ -242,10 +247,7 @@ const NavbarType2 = ({
                             )
                       }
                     >
-                      <StyledListItemText
-                        primary={link?.innerText}
-                        {...styles}
-                      />
+                      <StyledListItemText primary={link?.innerText} />
                       <ListItemIcon sx={{ minWidth: "15px" }}>
                         {link.showDropDown && <KeyboardArrowDown />}
                       </ListItemIcon>
@@ -289,7 +291,10 @@ const NavbarType2 = ({
               </React.Fragment>
             ))}
           </List>
-        </Container>
+          <StyledButton variant="contained" sx={{ ml: -1.5 }} {...loginButtonStyles}>
+            Login
+          </StyledButton>
+        </ResponsiveContainer>
       </Drawer>
     </NavigationBar>
   );

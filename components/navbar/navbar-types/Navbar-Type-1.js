@@ -5,7 +5,7 @@ import {
   NavigationBar,
   ResponsiveText,
   StyledLink,
-} from "@/styles/pre-defined-components/navbar/navbar";
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 
 import { StyledButton } from "@/styles/pre-defined-components/button/button";
 
@@ -21,6 +21,12 @@ import IconButton from "@mui/material/IconButton";
 import { IconMenuItem, NestedMenuItem } from "mui-nested-menu";
 import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
 
+import {
+  FullViewBox,
+  ResponsiveBox,
+  ResponsiveTitleText,
+} from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
+
 const NavbarType1 = ({
   styles,
   extraFunctionalities,
@@ -31,6 +37,10 @@ const NavbarType1 = ({
   const [firstLinkDropDown, setFirstLinkDropDown] = useState(null);
   const [secondLinkDropDown, setSecondLinkDropDown] = useState(null);
   const [thirdLinkDropDown, setThirdLinkDropDown] = useState(null);
+  const [fourthLinkDropDown, setFourthLinkDropDown] = useState(null);
+
+  const { navLinkStyles } = styles;
+  const { loginButtonStyles } = styles;
 
   const handleOpenNavMenu = (event, setState) => {
     setState(event.currentTarget);
@@ -42,39 +52,13 @@ const NavbarType1 = ({
 
   return (
     <NavigationBar
-      {...styles}
+      backgroundColor={navLinkStyles.backgroundColor}
       onClick={componentSelectionHandler}
       isfocused={isfocused}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Avatar
-            alt="Remy Sharp"
-            src={extraFunctionalities?.logo}
-            sx={{
-              display: { xs: "none", md: "flex" },
-              mr: 1,
-              height: "50px",
-              width: "50px",
-            }}
-          />
-          <ResponsiveText
-            variant="subHeader"
-            noWrap
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-            }}
-            {...styles}
-          >
-            {extraFunctionalities?.title}
-          </ResponsiveText>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <ResponsiveBox>
             <IconButton
               size="large"
               onClick={(event) => handleOpenNavMenu(event, setAnchorElNav)}
@@ -124,39 +108,25 @@ const NavbarType1 = ({
                 </StyledLink>
               ))}
             </Menu>
-          </Box>
+          </ResponsiveBox>
           <Avatar
             alt="Remy Sharp"
             src={extraFunctionalities?.logo}
-            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            sx={{
+              mr: 1,
+              height: "55px",
+              width: "55px",
+            }}
           />
-
-          <ResponsiveText
+          <ResponsiveTitleText
             variant="subHeader"
             noWrap
-            // component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-            }}
-            {...styles}
+            href="/"
+            colorHex={navLinkStyles.colorHex}
           >
             {extraFunctionalities?.title}
-          </ResponsiveText>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              ml: 10,
-              gap: "20px",
-            }}
-          >
+          </ResponsiveTitleText>
+          <FullViewBox>
             {extraFunctionalities.links.map((link, index) => (
               <React.Fragment key={index}>
                 <StyledLink href={link?.redirectLink}>
@@ -165,13 +135,15 @@ const NavbarType1 = ({
                     endIcon={link.showDropDown && <KeyboardArrowDown />}
                     onClick={(event) =>
                       link.showDropDown &&
-                      (index === 1
+                      (index === 0
                         ? handleOpenNavMenu(event, setFirstLinkDropDown)
-                        : index === 2
+                        : index === 1
                         ? handleOpenNavMenu(event, setSecondLinkDropDown)
-                        : handleOpenNavMenu(event, setThirdLinkDropDown))
+                        : index === 2
+                        ? handleOpenNavMenu(event, setThirdLinkDropDown)
+                        : handleOpenNavMenu(event, setFourthLinkDropDown))
                     }
-                    {...styles}
+                    {...navLinkStyles}
                   >
                     {link.innerText}
                   </StyledButton>
@@ -179,49 +151,60 @@ const NavbarType1 = ({
                 {link.showDropDown && (
                   <Menu
                     anchorEl={
-                      index === 1
+                      index === 0
                         ? firstLinkDropDown
-                        : index === 2
+                        : index === 1
                         ? secondLinkDropDown
-                        : thirdLinkDropDown
+                        : index === 2
+                        ? thirdLinkDropDown
+                        : fourthLinkDropDown
                     }
                     open={Boolean(
-                      index === 1
+                      index === 0
                         ? firstLinkDropDown
-                        : index === 2
+                        : index === 1
                         ? secondLinkDropDown
-                        : thirdLinkDropDown
+                        : index === 2
+                        ? thirdLinkDropDown
+                        : fourthLinkDropDown
                     )}
                     onClose={(event) =>
-                      index === 1
+                      index === 0
                         ? handleCloseNavMenu(event, setFirstLinkDropDown)
-                        : index === 2
+                        : index === 1
                         ? handleCloseNavMenu(event, setSecondLinkDropDown)
-                        : handleCloseNavMenu(event, setThirdLinkDropDown)
+                        : index === 2
+                        ? handleCloseNavMenu(event, setThirdLinkDropDown)
+                        : handleCloseNavMenu(event, setFourthLinkDropDown)
                     }
                   >
                     {link.dropDown.map(
-                      (sublink, subindex) =>
+                      (sublink, sublinkIndex) =>
                         sublink?.dropDownInnerText && (
                           <StyledLink
                             href={sublink?.dropDownRedirectLink}
-                            key={subindex}
+                            key={sublinkIndex}
                           >
                             <MenuItem
                               onClick={(event) =>
-                                index === 1
+                                index === 0
                                   ? handleCloseNavMenu(
                                       event,
                                       setFirstLinkDropDown
                                     )
-                                  : index === 2
+                                  : index === 1
                                   ? handleCloseNavMenu(
                                       event,
                                       setSecondLinkDropDown
                                     )
-                                  : handleCloseNavMenu(
+                                  : index === 2
+                                  ? handleCloseNavMenu(
                                       event,
                                       setThirdLinkDropDown
+                                    )
+                                  : handleCloseNavMenu(
+                                      event,
+                                      setFourthLinkDropDown
                                     )
                               }
                             >
@@ -234,7 +217,14 @@ const NavbarType1 = ({
                 )}
               </React.Fragment>
             ))}
-          </Box>
+          </FullViewBox>
+          <StyledButton
+            variant="contained"
+            sx={{ my: 1.5, ml: "auto" }}
+            {...loginButtonStyles}
+          >
+            <ResponsiveText variant="helper">Login</ResponsiveText>
+          </StyledButton>
         </Toolbar>
       </Container>
     </NavigationBar>

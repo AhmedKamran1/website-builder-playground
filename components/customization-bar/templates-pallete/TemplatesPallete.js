@@ -28,13 +28,13 @@ const TopBar = () => {
           componentActions.addComponent({
             componentType: component.NAVBAR,
             navId: initialNavbarComponentStyles[event.target.value - 1].navId,
-            styles: {
-              ...initialNavbarComponentStyles[event.target.value - 1].styles,
-            },
-            extraFunctionalities: {
-              ...initialNavbarComponentStyles[event.target.value - 1]
-                .extraFunctionalities,
-            },
+            styles: structuredClone(
+              initialNavbarComponentStyles[event.target.value - 1].styles
+            ),
+            extraFunctionalities: structuredClone(
+              initialNavbarComponentStyles[event.target.value - 1]
+                .extraFunctionalities
+            ),
           })
         );
         break;
