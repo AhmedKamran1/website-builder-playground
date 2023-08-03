@@ -1,8 +1,8 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
 import { selectedComponentData } from "@/store/ComponentSlice";
 
-import { useSelector } from "react-redux";
 import { navEventTypes } from "@/helpers/constants/event-types/event-types";
 
 const NavbarLinks = ({ link, linkIndex, dispatch }) => {

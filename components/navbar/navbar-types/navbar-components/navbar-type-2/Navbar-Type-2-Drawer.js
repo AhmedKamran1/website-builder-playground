@@ -1,18 +1,15 @@
 import React from "react";
 
-import { ResponsiveContainer } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
-
 import { Collapse, Drawer, List, ListItem, ListItemIcon } from "@mui/material";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 import {
   StyledLink,
   StyledListItemButton,
   StyledListItemText,
 } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-
 import { StyledButton } from "@/styles/pre-defined-components/button/button";
-
-import { KeyboardArrowDown } from "@mui/icons-material";
+import { ResponsiveContainer } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
 const NavbarDrawer2 = ({
   showDrawer,

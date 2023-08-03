@@ -1,7 +1,5 @@
 import React from "react";
 
-import { commonEventType } from "@/helpers/constants/event-types/event-types";
-
 const CollorPallete = ({
   state,
   dispatch,

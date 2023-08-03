@@ -6,17 +6,19 @@ import {
   commonEventType,
   navEventTypes,
 } from "@/helpers/constants/event-types/event-types";
+
 import { Checkbox, Divider } from "@mui/material";
 
 import { selectedComponentData } from "@/store/ComponentSlice";
 import {
-  dropDownLink,
   initialNavbarComponentStyles,
   navLink,
 } from "@/helpers/pre-defined-components-styles/navbar-styles";
+import { navbar } from "@/helpers/constants/component-child-lengths/component-child-lengths";
+
 import NavbarPallete1 from "./navbar-pallete-type-1/Navbar-Pallete-Type-1";
 import NavbarPallete2 from "./navbar-pallete-type-2/Navbar-Pallete-Type-2";
-import { navbar } from "@/helpers/constants/component-child-lengths/component-child-lengths";
+
 import CommonPallete from "../../common-palletes/CollorPallete";
 import HoverColorPallete from "../../common-palletes/HoverColorPallete";
 import FontPallete from "../../common-palletes/FontPallete";

@@ -1,7 +1,8 @@
+import React from "react";
+
 import { navbar } from "@/helpers/constants/component-child-lengths/component-child-lengths";
 import { navEventTypes } from "@/helpers/constants/event-types/event-types";
 import { dropDownLink } from "@/helpers/pre-defined-components-styles/navbar-styles";
-import React from "react";
 
 const NavbarDropDownLinks = ({
   link,

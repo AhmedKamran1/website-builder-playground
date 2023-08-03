@@ -1,32 +1,30 @@
 import React, { useState } from "react";
-import Link from "next/link";
 
 import {
   NavigationBar,
   ResponsiveText,
   StyledLink,
 } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-
 import { StyledButton } from "@/styles/pre-defined-components/button/button";
-
-import Box from "@mui/material/Box";
-import Menu from "@mui/material/Menu";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import MenuItem from "@mui/material/MenuItem";
-import { Toolbar } from "@mui/material";
-
-import IconButton from "@mui/material/IconButton";
-import { IconMenuItem, NestedMenuItem } from "mui-nested-menu";
-import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
 
 import {
   FullViewBox,
   ResponsiveBox,
   ResponsiveTitleText,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
+
+import Menu from "@mui/material/Menu";
+import MoreIcon from "@mui/icons-material/MoreVert";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import { Toolbar } from "@mui/material";
+
+import IconButton from "@mui/material/IconButton";
+import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
+
 import NavbarMenu from "./navbar-components/common-components/NavbarMenu";
+
+import { IconMenuItem, NestedMenuItem } from "mui-nested-menu";
 
 const NavbarType1 = ({
   styles,
@@ -116,6 +114,13 @@ const NavbarType1 = ({
             >
               {extraFunctionalities.links.map((link, index) => (
                 <StyledLink href={link?.redirectLink} key={index}>
+                  {/* <MenuItem>
+                    <Menu>
+                      {link.dropDown.map((sublink, subindex) => (
+                        <MenuItem>{sublink?.dropDownInnerText}</MenuItem>
+                      ))}
+                    </Menu>
+                  </MenuItem> */}
                   <NestedMenuItem
                     key={index}
                     label={link?.innerText}

@@ -6,7 +6,6 @@ import {
 } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 
 import { KeyboardArrowDown } from "@mui/icons-material";
-
 import { Tabs } from "@mui/material";
 
 const NavbarTabs2 = ({

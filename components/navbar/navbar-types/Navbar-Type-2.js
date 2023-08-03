@@ -1,37 +1,19 @@
 import React, { useState } from "react";
 
-import {
-  NavigationBar,
-  StyledLink,
-  StyledListItemButton,
-  StyledListItemText,
-  TabItem,
-} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-import {
-  Box,
-  Collapse,
-  Container,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Tabs,
-  Toolbar,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { KeyboardArrowDown } from "@mui/icons-material";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
+import { NavigationBar } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+
 import {
   FullViewContainer,
   NavToolBar,
-  ResponsiveContainer,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
-import NavbarDrawer2 from "./navbar-components/navbar-type-2/Navbar-Type-2-Drawer";
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
+
+import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
 import NavbarMenu from "./navbar-components/common-components/NavbarMenu";
 import NavbarTabs2 from "./navbar-components/navbar-type-2/Navbar-Type-2-Tabs";
+import NavbarDrawer2 from "./navbar-components/navbar-type-2/Navbar-Type-2-Drawer";
 
 function CustomTabPanel(props) {
   const { children, value, index } = props;

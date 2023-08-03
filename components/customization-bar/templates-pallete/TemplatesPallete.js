@@ -1,13 +1,13 @@
 import * as TempStyles from "../../../styles/customization-bar/TopBar";
 import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
 
+import { useDispatch } from "react-redux";
+import { componentActions } from "@/store/store";
+
 import { component } from "@/helpers/constants/component-types/component-types";
 
 import { initialButtonComponentStyles } from "@/helpers/pre-defined-components-styles/button-styles";
 import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
-
-import { useDispatch } from "react-redux";
-import { componentActions } from "@/store/store";
 
 const TopBar = () => {
   const dispatch = useDispatch();

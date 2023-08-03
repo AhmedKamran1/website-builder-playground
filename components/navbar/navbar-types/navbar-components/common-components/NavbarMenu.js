@@ -1,6 +1,8 @@
-import { StyledLink } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-import { Menu, MenuItem } from "@mui/material";
 import React from "react";
+
+import { Menu, MenuItem } from "@mui/material";
+
+import { StyledLink } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 
 const NavbarMenu = ({ getLinkDropDown, handleCloseNavMenu, link, index }) => {
   return (
