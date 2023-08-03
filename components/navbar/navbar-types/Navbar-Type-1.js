@@ -17,14 +17,14 @@ import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import { Toolbar } from "@mui/material";
+import { MenuItem, Toolbar } from "@mui/material";
 
 import IconButton from "@mui/material/IconButton";
 import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
 
 import NavbarMenu from "./navbar-components/common-components/NavbarMenu";
 
-import { IconMenuItem, NestedMenuItem } from "mui-nested-menu";
+import NavbarSubMenu1 from "./navbar-components/navbar-type-1/Navbar-Type-1-SubMenu";
 
 const NavbarType1 = ({
   styles,
@@ -114,19 +114,9 @@ const NavbarType1 = ({
             >
               {extraFunctionalities.links.map((link, index) => (
                 <StyledLink href={link?.redirectLink} key={index}>
-                  {/* <MenuItem>
-                    <Menu>
-                      {link.dropDown.map((sublink, subindex) => (
-                        <MenuItem>{sublink?.dropDownInnerText}</MenuItem>
-                      ))}
-                    </Menu>
-                  </MenuItem> */}
-                  <NestedMenuItem
-                    key={index}
-                    label={link?.innerText}
-                    parentMenuOpen={link.showDropDown && Boolean(anchorElNav)}
-                    rightIcon={link.showDropDown && <KeyboardArrowRight />}
-                    LinkComponent={StyledLink}
+                  <NavbarSubMenu1
+                    title={link.innerText}
+                    showDropDown={link.showDropDown}
                   >
                     {link.dropDown.map(
                       (sublink, subindex) =>
@@ -135,11 +125,11 @@ const NavbarType1 = ({
                             href={sublink?.dropDownRedirectLink}
                             key={subindex}
                           >
-                            <IconMenuItem label={sublink?.dropDownInnerText} />
+                            <MenuItem>{sublink?.dropDownInnerText}</MenuItem>
                           </StyledLink>
                         )
                     )}
-                  </NestedMenuItem>
+                  </NavbarSubMenu1>
                 </StyledLink>
               ))}
             </Menu>
