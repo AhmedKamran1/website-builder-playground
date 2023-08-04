@@ -6,24 +6,25 @@ import { commonEventType } from "@/helpers/constants/event-types/event-types";
 import * as NavStyles from "../../../styles/customization-bar/BottomBar";
 
 import { useDispatch, useSelector } from "react-redux";
-import { componentType, selectedComponentData } from "@/store/ComponentSlice";
+import {
+  componentId,
+  componentType,
+  selectedComponentData,
+} from "@/store/ComponentSlice";
 import { componentActions } from "@/store/store";
 
 import ButtonPallete from "./specific-pallete/ButtonPallete";
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
 
-import {
-  buttonInitialState,
-  navbarInitialState,
-} from "@/helpers/customization-pallete/initial-reducer-states";
-import {
-  buttonReducer,
-  navReducer,
-} from "@/helpers/customization-pallete/reducers";
+import { buttonInitialState } from "@/helpers/customization-pallete/initial-reducer-states/initial-button-state";
+import { navbarInitialState } from "@/helpers/customization-pallete/initial-reducer-states/initial-navbar-state";
+import { buttonReducer } from "@/helpers/customization-pallete/reducers/button-reducer";
+import { navReducer } from "@/helpers/customization-pallete/reducers/navbar-reducer";
 
 const BottomBar = () => {
-  const selectedComponentType = useSelector(componentType);
   const selectedComponent = useSelector(selectedComponentData);
+  const selectedComponentType = useSelector(componentType);
+  const selectedComponentId = useSelector(componentId);
   const dispatchStore = useDispatch();
 
   const [navState, dispatchNavActions] = useReducer(
@@ -35,69 +36,52 @@ const BottomBar = () => {
     buttonInitialState
   );
 
-  const updateStyleHandler = useCallback(() => {
-    let modifiedStyles;
-    let extraFunctionalities;
-    if (selectedComponentType === component.BUTTON) {
-      modifiedStyles = {
-        colorHex: buttonState.color,
-        backgroundColor: buttonState.backgroundColor,
-        fontWeight: buttonState.fontWeight,
-        fontStyle: buttonState.fontStyle,
-        fontFamily: buttonState.fontFamily,
-        hoverColor: buttonState.hoverColor,
-      };
-      extraFunctionalities = {
-        redirectLink: buttonState.redirectLink,
-        innerText: buttonState.innerText,
-      };
-    }
-    if (selectedComponentType === component.NAVBAR) {
-      modifiedStyles = {
-        navLinkStyles: navState.styles.navLinkStyles,
-        loginButtonStyles: navState.styles.loginButtonStyles,
-      };
-      extraFunctionalities = {
-        title: navState.title,
-        logo: navState.logo,
-        links: navState.links,
-      };
-    }
+  const setStateHandler = useCallback(
+    (dispatchStateAction) => {
+      dispatchStateAction({
+        type: commonEventType.SETINITIALSTATE,
+        payload: selectedComponent,
+      });
+    },
+    [selectedComponent]
+  );
+
+  const storeDispatchHandler = useCallback((stateType) => {
     dispatchStore(
       componentActions.updateComponent({
-        modifiedStyles: structuredClone(modifiedStyles),
-        extraFunctionalities: structuredClone(extraFunctionalities),
+        modifiedStyles: structuredClone(stateType.styles),
+        extraFunctionalities: structuredClone(stateType.extraFunctionalities),
       })
     );
-  }, [buttonState, navState]);
+  }, []);
+
+  const updateStyleHandler = useCallback(() => {
+    switch (selectedComponentType) {
+      case component.BUTTON:
+        storeDispatchHandler(buttonState);
+        break;
+      case component.NAVBAR:
+        storeDispatchHandler(navState);
+        break;
+      default:
+        break;
+    }
+  }, [selectedComponentType, buttonState, navState]);
 
   useEffect(() => {
-    if (selectedComponent?.id) {
-      if (selectedComponentType === component.BUTTON) {
-        dispatchButtonActions({
-          type: commonEventType.SETINITIALSTATE,
-          payload: {
-            fontWeight: selectedComponent.styles.fontWeight,
-            fontStyle: selectedComponent.styles.fontStyle,
-            fontFamily: selectedComponent.styles.fontFamily,
-            hoverColor: selectedComponent.styles.hoverColor,
-            redirectLink: selectedComponent.extraFunctionalities.redirectLink,
-            innerText: selectedComponent.extraFunctionalities.innerText,
-          },
-        });
-      } else if (selectedComponentType === component.NAVBAR) {
-        dispatchNavActions({
-          type: commonEventType.SETINITIALSTATE,
-          payload: {
-            title: selectedComponent.extraFunctionalities.title,
-            logo: selectedComponent.extraFunctionalities.logo,
-            styles: selectedComponent.styles,
-            links: selectedComponent.extraFunctionalities.links,
-          },
-        });
+    if (selectedComponentId) {
+      switch (selectedComponentType) {
+        case component.BUTTON:
+          setStateHandler(dispatchButtonActions);
+          break;
+        case component.NAVBAR:
+          setStateHandler(dispatchNavActions);
+          break;
+        default:
+          break;
       }
     }
-  }, [selectedComponent?.id]);
+  }, [selectedComponentId, selectedComponentType]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
