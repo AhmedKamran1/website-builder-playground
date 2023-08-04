@@ -1,54 +1,9 @@
 import {
-  buttonEventType,
   commonEventType,
   navEventTypes,
-} from "../constants/event-types/event-types";
-import {
-  buttonInitialState,
-  navbarInitialState,
-} from "./initial-reducer-states";
+} from "../../constants/event-types/event-types";
 
-export const buttonReducer = (state, action) => {
-  switch (action.type) {
-    case buttonEventType.CHANGEREDIRECTLINK:
-      return { ...state, redirectLink: action.payload };
-    case buttonEventType.CHANGEFONTWEIGHT:
-      return {
-        ...state,
-        fontWeight: action.payload,
-        fontStyle: buttonInitialState.fontStyle,
-      };
-    case buttonEventType.CHANGEFONTSTYLE:
-      return {
-        ...state,
-        fontStyle: action.payload,
-        fontWeight: buttonInitialState.fontWeight,
-      };
-
-    case buttonEventType.CHANGEFONTFAMILY:
-      return {
-        ...state,
-        fontFamily: action.payload,
-      };
-    case buttonEventType.CHANGEHOVERCOLOR:
-      return { ...state, hoverColor: action.payload };
-    case buttonEventType.CHANGEINNERTEXT:
-      return { ...state, innerText: action.payload };
-
-    case commonEventType.SETINITIALSTATE:
-      return {
-        ...state,
-        fontWeight: action.payload.fontWeight,
-        fontStyle: action.payload.fontStyle,
-        fontFamily: action.payload.fontFamily,
-        hoverColor: action.payload.hoverColor,
-        redirectLink: action.payload.redirectLink,
-        innerText: action.payload.innerText,
-      };
-    default:
-      return state;
-  }
-};
+import { navbarInitialState } from "../initial-reducer-states/initial-navbar-state";
 
 export const navReducer = (state, action) => {
   let linkIndex,
@@ -61,7 +16,7 @@ export const navReducer = (state, action) => {
     redirectLink,
     updatedLinks;
 
-  updatedLinks = structuredClone(state.links);
+  updatedLinks = structuredClone(state.extraFunctionalities.links);
 
   switch (action.type) {
     // FUNCTIONALITIES
@@ -72,65 +27,126 @@ export const navReducer = (state, action) => {
       updatedLinks.push(navLink);
       return {
         ...state,
-        links: updatedLinks,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
       };
 
     case navEventTypes.DELETENAVLINK:
       ({ linkIndex } = action.payload);
       updatedLinks.splice(linkIndex, 1);
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.CHANGENAVTITLE:
-      return { ...state, title: action.payload };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          title: action.payload,
+        },
+      };
 
     case navEventTypes.CHANGENAVLOGO:
-      return { ...state, logo: action.payload };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          logo: action.payload,
+        },
+      };
 
     case navEventTypes.CHANGENAVINNERTEXT:
       ({ linkIndex, innerText } = action.payload);
       updatedLinks[linkIndex].innerText = innerText;
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.CHANGENAVREDIRECTLINK:
       ({ linkIndex, redirectLink } = action.payload);
       updatedLinks[linkIndex].redirectLink = redirectLink;
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.CHANGEDROPDOWNVISIBILITY:
       ({ linkIndex } = action.payload);
       updatedLinks[linkIndex].showDropDown =
         !updatedLinks[linkIndex].showDropDown;
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.ADDROPDOWNLINK:
       ({ linkIndex, dropDownLink } = action.payload);
       updatedLinks[linkIndex].dropDown.push(dropDownLink);
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.DELETEDROPDOWNLINK:
       ({ linkIndex, dropDownIndex } = action.payload);
       updatedLinks[linkIndex].dropDown.splice(dropDownIndex, 1);
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.CHANGENAVDROPDOWNINNERTEXT:
       ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
       updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
         dropDownInnerText;
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case navEventTypes.CHANGENAVDROPDOWNLINK:
       ({ linkIndex, dropDownIndex, dropDownRedirectLink } = action.payload);
       updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
         dropDownRedirectLink;
-      return { ...state, links: updatedLinks };
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          links: updatedLinks,
+        },
+      };
 
     case commonEventType.SETINITIALSTATE:
       return {
         ...state,
-        title: action.payload.title,
-        logo: action.payload.logo,
         styles: action.payload.styles,
-        links: action.payload.links,
+        extraFunctionalities: action.payload.extraFunctionalities,
       };
 
     //NAVBAR LINK STYLES
