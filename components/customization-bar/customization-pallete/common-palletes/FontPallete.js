@@ -12,7 +12,6 @@ const FontPallete = ({
       <p>Font Type: </p>
       <input
         type="radio"
-        id="Normal"
         checked={state.fontWeight === "normal"}
         value="normal"
         name={fontPalleteName}
@@ -23,10 +22,9 @@ const FontPallete = ({
           })
         }
       />
-      <label htmlFor="Normal">Normal</label>
+      <label>Normal</label>
       <input
         type="radio"
-        id="Bold"
         checked={state.fontWeight === "bold"}
         value="bold"
         name={fontPalleteName}
@@ -37,10 +35,9 @@ const FontPallete = ({
           })
         }
       />
-      <label htmlFor="Bold">Bold</label>
+      <label>Bold</label>
       <input
         type="radio"
-        id="Italic"
         checked={state.fontStyle === "italic"}
         value="italic"
         name={fontPalleteName}
@@ -51,7 +48,7 @@ const FontPallete = ({
           })
         }
       />
-      <label htmlFor="Italic">Italic</label>
+      <label>Italic</label>
     </div>
   );
 };

@@ -27,7 +27,7 @@ import NavbarDropDownLinks from "./common-navbar-palletes/NavbarDropDownLinks";
 
 const NavbarPallete = ({ state, dispatch }) => {
   const selectedComponent = useSelector(selectedComponentData);
-  const navLinksLength = state.links.length;
+  const navLinksLength = state.extraFunctionalities.links.length;
 
   const { navLinkStyles } = state.styles;
   const { loginButtonStyles } = state.styles;
@@ -35,7 +35,10 @@ const NavbarPallete = ({ state, dispatch }) => {
   return (
     <>
       {selectedComponent.navId === initialNavbarComponentStyles[0].navId && (
-        <NavbarPallete1 state={state} dispatch={dispatch} />
+        <NavbarPallete1
+          state={state.extraFunctionalities}
+          dispatch={dispatch}
+        />
       )}
       <Divider />
       {/* NAVBAR LOGIN BUTTON PALLETE */}
@@ -80,7 +83,7 @@ const NavbarPallete = ({ state, dispatch }) => {
         dispatch={dispatch}
         changeHoverColor={navEventTypes.CHANGENAVHOVERCOLOR}
       />
-      {state.links.map((link, linkIndex) => (
+      {state.extraFunctionalities.links.map((link, linkIndex) => (
         <React.Fragment key={linkIndex}>
           <NavbarLinks link={link} linkIndex={linkIndex} dispatch={dispatch} />
           {/* {selectedComponent.navId ===

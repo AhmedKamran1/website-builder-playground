@@ -12,14 +12,19 @@ import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-s
 const TopBar = () => {
   const dispatch = useDispatch();
 
-  const addComponentHandler = (event, styles, componentType) => {
+  const addComponentHandler = (
+    event,
+    styles,
+    extraFunctionalities,
+    componentType
+  ) => {
     switch (componentType) {
       case component.BUTTON:
         dispatch(
           componentActions.addComponent({
             componentType: component.BUTTON,
-            styles: { ...styles },
-            extraFunctionalities: {},
+            styles: styles,
+            extraFunctionalities: extraFunctionalities,
           })
         );
         break;
@@ -45,13 +50,18 @@ const TopBar = () => {
     <TempStyles.TopBarGridContainer item xs={12}>
       {/* <button onClick={()=>addComponentHandler}>div</button> */}
       {/* <br /> */}
-      {initialButtonComponentStyles.map((styles, index) => (
+      {initialButtonComponentStyles.map((button, index) => (
         <ButtonStyles.StyledButton
           variant="contained"
           key={index}
-          {...styles}
+          {...button.styles}
           onClick={(event) =>
-            addComponentHandler(event, styles, component.BUTTON)
+            addComponentHandler(
+              event,
+              button.styles,
+              button.extraFunctionalities,
+              component.BUTTON
+            )
           }
         >
           button
@@ -62,7 +72,7 @@ const TopBar = () => {
         <select
           defaultValue="none"
           onChange={(event) =>
-            addComponentHandler(event, null, component.NAVBAR)
+            addComponentHandler(event, null, null, component.NAVBAR)
           }
         >
           <option value="none" disabled hidden>
