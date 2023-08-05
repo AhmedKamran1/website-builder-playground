@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Collapse, Drawer, List, ListItem, ListItemIcon } from "@mui/material";
 import { KeyboardArrowDown } from "@mui/icons-material";
@@ -15,10 +15,47 @@ const NavbarDrawer2 = ({
   showDrawer,
   handleNavDrawer,
   links,
-  handleCollapseList,
-  getResponsiveLinkDropDown,
   loginButtonStyles,
 }) => {
+  const [responsiveFirstLinkDropDown, setResponsiveFirstLinkDropDown] =
+    useState(null);
+  const [responsiveSecondLinkDropDown, setResponsiveSecondLinkDropDown] =
+    useState(null);
+  const [responsiveThirdLinkDropDown, setResponsiveThirdLinkDropDown] =
+    useState(null);
+  const [responsiveFourthLinkDropDown, setResponsiveFourthLinkDropDown] =
+    useState(null);
+
+  const getSetResponsiveLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return setResponsiveFirstLinkDropDown;
+      case 1:
+        return setResponsiveSecondLinkDropDown;
+      case 2:
+        return setResponsiveThirdLinkDropDown;
+      case 3:
+        return setResponsiveFourthLinkDropDown;
+    }
+  };
+
+  const getResponsiveLinkDropDown = (index) => {
+    switch (index) {
+      case 0:
+        return responsiveFirstLinkDropDown;
+      case 1:
+        return responsiveSecondLinkDropDown;
+      case 2:
+        return responsiveThirdLinkDropDown;
+      case 3:
+        return responsiveFourthLinkDropDown;
+    }
+  };
+
+  const handleCollapseList = (event, index) => {
+    const setLinkDropDown = getSetResponsiveLinkDropDown(index);
+    setLinkDropDown((prevState) => !prevState);
+  };
   return (
     <Drawer
       anchor="left"
