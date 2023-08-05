@@ -7,7 +7,7 @@
 - Navbar link error issue // DONE
 - Navbar nested menu remove to manual //DONE
 - Fix inline styling and create new components using base component //DONE
-- Navbar components breakdown and fix code readability
+- Navbar components breakdown and fix code readability //DONE
 - Fix icon pack issue //DONE
 - Move the customization pallet to a base object and onclick to add more of that object and limit using the function and display toast that cant add more // DONE
 - Cutomization Pallete helper functions //DONE
@@ -17,6 +17,8 @@
 - add tooltip of focused component
 - nav2 tabs breaking on removal
 - Font Package https://www.npmjs.com/package/font-picker
+- Avatar or next image wrapper?
+- nav2 tabs getting bigger after adding icon
 
 # TO ASK
 - optimal way for common states and their constant??? TO ASK
@@ -27,8 +29,11 @@
 - Image uploading issue (create URL) and upload on submit //TO ASK
 - Slice update issue //LATER //TO ASK
 - structured clonings or what convention?? //TO ASK
-- Error handling for everything like text length or text length 0 etc for different types of palletes??
-- extrafunctionalities handling incase of multiple modifiable components in a component
+- Error handling for everything like text length or text length 0 etc for different types of palletes?? // TO ASK
+- extrafunctionalities handling incase of multiple modifiable components in a component?? // TO ASK
+- how to keep templates area design and functionality wise? // TO ASK
+- dom warning fix to ask better approach props!=="colorHex"// TO ASK
+- name clashings when too many subcomponents of navbar types // TO ASK
 
 
 # To resolve
