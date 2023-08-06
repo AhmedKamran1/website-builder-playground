@@ -25,12 +25,20 @@ import FontPallete from "../../common-palletes/FontPallete";
 import NavbarLinks from "./common-navbar-palletes/NavbarLinks";
 import NavbarDropDownLinks from "./common-navbar-palletes/NavbarDropDownLinks";
 
+import useDebouncedDispatch from "@/hooks/use-debounce";
+
 const NavbarPallete = ({ state, dispatch }) => {
   const selectedComponent = useSelector(selectedComponentData);
   const navLinksLength = state.extraFunctionalities.links.length;
 
   const { navLinkStyles } = state.styles;
   const { loginButtonStyles } = state.styles;
+
+
+  const debounceDispatchNavActions = useDebouncedDispatch(
+    dispatch,
+    200
+  );
 
   return (
     <>
@@ -45,18 +53,18 @@ const NavbarPallete = ({ state, dispatch }) => {
       <strong>Pallete for login button</strong>
       <CommonPallete
         state={loginButtonStyles}
-        dispatch={dispatch}
+        dispatch={debounceDispatchNavActions}
         changeColor={navEventTypes.CHANGENAVLOGINBUTTONCOLOR}
         changeBackgroundColor={navEventTypes.CHANGENAVLOGINBUTTONBGCOLOR}
       />
       <HoverColorPallete
         state={loginButtonStyles}
-        dispatch={dispatch}
+        dispatch={debounceDispatchNavActions}
         changeHoverColor={navEventTypes.CHANGENAVLOGINBUTTONHOVERCOLOR}
       />
       <FontPallete
         state={loginButtonStyles}
-        dispatch={dispatch}
+        dispatch={debounceDispatchNavActions}
         changeFontWeight={navEventTypes.CHANGENAVLOGINBUTTONFONTWEIGHT}
         changeFontStyle={navEventTypes.CHANGENAVLOGINBUTTONFONTSTYLE}
         fontPalleteName="loginButtonStyles"
@@ -67,20 +75,20 @@ const NavbarPallete = ({ state, dispatch }) => {
       <strong>Pallete for navbar</strong>
       <CommonPallete
         state={navLinkStyles}
-        dispatch={dispatch}
+        dispatch={debounceDispatchNavActions}
         changeColor={commonEventType.CHANGECOLOR}
         changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
       />
       <FontPallete
         state={navLinkStyles}
-        dispatch={dispatch}
+        dispatch={debounceDispatchNavActions}
         changeFontWeight={navEventTypes.CHANGENAVFONTWEIGHT}
         changeFontStyle={navEventTypes.CHANGENAVFONTSTYLE}
         fontPalleteName="navLinkStyles"
       />
       <HoverColorPallete
         state={navLinkStyles}
-        dispatch={dispatch}
+        dispatch={debounceDispatchNavActions}
         changeHoverColor={navEventTypes.CHANGENAVHOVERCOLOR}
       />
       {state.extraFunctionalities.links.map((link, linkIndex) => (
