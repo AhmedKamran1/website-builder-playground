@@ -4,6 +4,7 @@ import { StyledButton } from "@/styles/pre-defined-components/button/button";
 import { NavToolBar } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
 import NavbarTabs2 from "./Navbar-Type-2-Tabs";
+
 import NavbarMenu from "../common-components/NavbarMenu";
 
 function CustomTabPanel(props) {
@@ -70,7 +71,7 @@ const NavbarToolbar2 = ({ navLinkStyles, loginButtonStyles, links }) => {
           links={links}
           handleOpenNavMenu={handleOpenNavMenu}
         />
-        <StyledButton variant="contained" {...loginButtonStyles}>
+        <StyledButton variant="contained" {...loginButtonStyles} sx={{ml:2}}>
           Login
         </StyledButton>
       </NavToolBar>

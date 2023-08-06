@@ -5,11 +5,9 @@ import { KeyboardArrowDown } from "@mui/icons-material";
 
 import {
   StyledLink,
-  StyledListItemButton,
-  StyledListItemText,
 } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { StyledButton } from "@/styles/pre-defined-components/button/button";
-import { ResponsiveContainer } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
+import { ResponsiveContainer, StyledListItemButton, StyledListItemText } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
 const NavbarDrawer2 = ({
   showDrawer,

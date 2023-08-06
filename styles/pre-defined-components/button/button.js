@@ -1,20 +1,13 @@
-import { Button, styled } from "@mui/material";
+import { Button } from "@mui/material";
 
-export const StyledButton = styled(Button, {
-  shouldForwardProp: (props) =>
-    props !== "colorHex" &&
-    props !== "backgroundColor" &&
-    props !== "fontSize" &&
-    props !== "fontFamily" &&
-    props !== "fontWeight" &&
-    props !== "hoverColor"&&
-    props !== "fontStyle" 
-})(
+import { styledWithoutProps } from "../ignoredProps";
+
+export const StyledButton = styledWithoutProps(
+  Button,
   ({
     colorHex,
     backgroundColor,
     fontSize,
-    theme,
     fontFamily,
     fontWeight,
     fontStyle,
@@ -29,7 +22,6 @@ export const StyledButton = styled(Button, {
     fontStyle: fontStyle,
     border: isfocused ? "1px solid blue" : "none",
     margin: "0.25rem",
-
     "&:hover": {
       backgroundColor: hoverColor,
     },

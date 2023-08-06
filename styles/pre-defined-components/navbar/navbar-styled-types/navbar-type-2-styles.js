@@ -1,4 +1,6 @@
-import { styled, Box, Toolbar, Container } from "@mui/material";
+import { styled, Toolbar, Container, ListItemText, Tab, ListItemButton } from "@mui/material";
+
+import { styledWithoutProps } from "../../ignoredProps";
 
 export const NavToolBar = styled(Toolbar)(({ theme }) => ({
   width: "60%",
@@ -25,5 +27,46 @@ export const ResponsiveContainer = styled(Container)(({}) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  flexDirection:"column"
+  flexDirection: "column",
 }));
+
+export const StyledListItemButton = styledWithoutProps(
+  ListItemButton,
+  ({ theme }) => ({
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0.2em",
+    },
+  })
+);
+
+export const StyledListItemText = styledWithoutProps(
+  ListItemText,
+  ({ colorHex }) => ({
+    color: colorHex,
+  })
+);
+
+export const TabItem = styledWithoutProps(
+  Tab,
+  ({
+    colorHex,
+    backgroundColor,
+    fontSize,
+    fontFamily,
+    fontWeight,
+    fontStyle,
+    hoverColor,
+  }) => ({
+    backgroundColor: backgroundColor,
+    color: colorHex,
+    fontSize: fontSize,
+    fontFamily: fontFamily,
+    fontWeight: fontWeight,
+    fontStyle: fontStyle,
+    transition: "0.25s all",
+    "&:hover": {
+      backgroundColor: hoverColor,
+    },
+  })
+);
