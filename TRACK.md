@@ -18,7 +18,7 @@
 - Font Package https://www.npmjs.com/package/font-picker
 - Avatar or next image wrapper?
 - nav2 tabs getting bigger after adding icon // DONE
-- fix shouldforwardprop on every component to a helper function
+- fix shouldforwardprop on every component to a helper function //DONE
 
 # TO ASK
 - optimal way for common states and their constant??? TO ASK
