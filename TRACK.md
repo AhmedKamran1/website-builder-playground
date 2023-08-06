@@ -13,12 +13,12 @@
 - Cutomization Pallete helper functions //DONE
 - reducers individual component // DONE
 - Parent Id child relation //CANCELLED
-- debounce function hook for dispatch actions
-- add tooltip of focused component
+- debounce function hook for dispatch actions //DONE
 - nav2 tabs breaking on removal
 - Font Package https://www.npmjs.com/package/font-picker
 - Avatar or next image wrapper?
-- nav2 tabs getting bigger after adding icon
+- nav2 tabs getting bigger after adding icon // DONE
+- fix shouldforwardprop on every component to a helper function
 
 # TO ASK
 - optimal way for common states and their constant??? TO ASK
@@ -34,6 +34,7 @@
 - how to keep templates area design and functionality wise? // TO ASK
 - dom warning fix to ask better approach props!=="colorHex"// TO ASK
 - name clashings when too many subcomponents of navbar types // TO ASK
+- how tooltip should work? // TO ASK
 
 
 # To resolve
@@ -47,3 +48,6 @@
 # Later
 
 - navbar replace but other components add base on their type
+- add tooltip of focused component
+
+AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes
