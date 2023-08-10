@@ -14,7 +14,6 @@
 - reducers individual component // DONE
 - Parent Id child relation //CANCELLED
 - debounce function hook for dispatch actions //DONE
-- nav2 tabs breaking on removal
 - Font Package https://www.npmjs.com/package/font-picker
 - Avatar or next image wrapper?
 - nav2 tabs getting bigger after adding icon // DONE
@@ -35,6 +34,8 @@
 - dom warning fix to ask better approach props!=="colorHex"// TO ASK
 - name clashings when too many subcomponents of navbar types // TO ASK
 - how tooltip should work? // TO ASK
+- how sections should be added? // TO ASK
+- nav2 tabs breaking on removal
 
 
 # To resolve
@@ -49,5 +50,12 @@
 
 - navbar replace but other components add base on their type
 - add tooltip of focused component
+- template when added so edit area should not whole rerender. just only the added component should render. or any other better approach
 
 AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes
+
+
+# New to fixes
+
+- navState break states into multiple states for easibility
+- enums to be named properly
