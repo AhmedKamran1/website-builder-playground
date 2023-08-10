@@ -21,22 +21,11 @@ import { navbarInitialState } from "@/helpers/customization-pallete/initial-redu
 import { buttonReducer } from "@/helpers/customization-pallete/reducers/button-reducer";
 import { navReducer } from "@/helpers/customization-pallete/reducers/navbar-reducer";
 
-import FontPicker from "font-picker";
-import FontFamilyPallete from "./common-palletes/FontFamilyPallete";
-
 const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
   const selectedComponentType = useSelector(componentType);
   const selectedComponentId = useSelector(componentId);
   const dispatchStore = useDispatch();
-
-  // const fontPicker = new FontPicker(
-  //   "AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes",
-  //   "Open Sans",
-  //   { limit: 30 }
-  // );
-
-  // console.log(fontPicker)
 
   const [navState, dispatchNavActions] = useReducer(
     navReducer,
@@ -115,7 +104,6 @@ const BottomBar = () => {
       {selectedComponentType === component.NAVBAR && (
         <NavbarPallete state={navState} dispatch={dispatchNavActions} />
       )}
-      {/* <div id="font-picker"></div> */}
     </NavStyles.BottomBarGridContainer>
   );
 };

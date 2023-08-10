@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";
 import { componentData, componentId } from "@/store/ComponentSlice";
 import Navbar from "../navbar/Navbar";
+import SectionType1 from "../section/section-types/Section-Type-1";
+import Section from "../section/Section";
 
 const EditArea = () => {
   const selectedComponentId = useSelector(componentId);
@@ -50,6 +52,18 @@ const EditArea = () => {
             styles={styles}
             extraFunctionalities={extraFunctionalities}
             navbarId={componentData.navId}
+            componentSelectionHandler={() =>
+              componentSelectionHandler(componentData)
+            }
+            isfocused={+isFocused}
+          />
+        );
+      case component.SECTION:
+        return (
+          <Section
+            styles={styles}
+            extraFunctionalities={extraFunctionalities}
+            sectionId={componentData.secId}
             componentSelectionHandler={() =>
               componentSelectionHandler(componentData)
             }

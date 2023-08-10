@@ -8,6 +8,7 @@ import { component } from "@/helpers/constants/component-types/component-types";
 
 import { initialButtonComponentStyles } from "@/helpers/pre-defined-components-styles/button-styles";
 import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
+import { initialSectionComponentStyles } from "@/helpers/pre-defined-components-styles/section-styles";
 
 const TopBar = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,21 @@ const TopBar = () => {
             ),
             extraFunctionalities: structuredClone(
               initialNavbarComponentStyles[event.target.value - 1]
+                .extraFunctionalities
+            ),
+          })
+        );
+        break;
+      case component.SECTION:
+        dispatch(
+          componentActions.addComponent({
+            componentType: component.SECTION,
+            secId: initialSectionComponentStyles[event.target.value - 1].secId,
+            styles: structuredClone(
+              initialSectionComponentStyles[event.target.value - 1].styles
+            ),
+            extraFunctionalities: structuredClone(
+              initialSectionComponentStyles[event.target.value - 1]
                 .extraFunctionalities
             ),
           })
@@ -78,8 +94,22 @@ const TopBar = () => {
           <option value="none" disabled hidden>
             Select an Option
           </option>
-          <option>1</option>
-          <option>2</option>
+          <option value="1">Nav with Title and logo</option>
+          <option value="2">Simple Nav</option>
+        </select>
+      </div>
+      <div>
+        <span>Section Types:</span>
+        <select
+          defaultValue="none"
+          onChange={(event) =>
+            addComponentHandler(event, null, null, component.SECTION)
+          }
+        >
+          <option value="none" disabled hidden>
+            Select an Option
+          </option>
+          <option value="1">Image with text</option>
         </select>
       </div>
     </TempStyles.TopBarGridContainer>
