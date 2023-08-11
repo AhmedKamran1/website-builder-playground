@@ -17,7 +17,7 @@ const NavbarDropDownLinks = ({
         <button
           onClick={() =>
             dispatch({
-              type: navEventTypes.DELETEDROPDOWNLINK,
+              type: navEventTypes.navbarFunctionalities.DELETEDROPDOWNLINK,
               payload: {
                 dropDownIndex: sublinkIndex,
                 linkIndex: linkIndex,
@@ -35,7 +35,7 @@ const NavbarDropDownLinks = ({
         value={sublink.dropDownInnerText}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.CHANGENAVDROPDOWNINNERTEXT,
+            type: navEventTypes.navbarFunctionalities.CHANGENAVDROPDOWNINNERTEXT,
             payload: {
               linkIndex: linkIndex,
               dropDownIndex: sublinkIndex,
@@ -51,7 +51,7 @@ const NavbarDropDownLinks = ({
         value={sublink.dropDownRedirectLink}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.CHANGENAVDROPDOWNLINK,
+            type: navEventTypes.navbarFunctionalities.CHANGENAVDROPDOWNLINK,
             payload: {
               linkIndex: linkIndex,
               dropDownIndex: sublinkIndex,
@@ -66,7 +66,7 @@ const NavbarDropDownLinks = ({
           <button
             onClick={() =>
               dispatch({
-                type: navEventTypes.ADDROPDOWNLINK,
+                type: navEventTypes.navbarFunctionalities.ADDROPDOWNLINK,
                 payload: {
                   dropDownLink: dropDownLink,
                   linkIndex: linkIndex,

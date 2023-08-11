@@ -17,9 +17,18 @@ import ButtonPallete from "./specific-pallete/ButtonPallete";
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
 
 import { buttonInitialState } from "@/helpers/customization-pallete/initial-reducer-states/initial-button-state";
-import { navbarInitialState } from "@/helpers/customization-pallete/initial-reducer-states/initial-navbar-state";
+import {
+  navbarInitialFunctionalitiesState,
+  navbarInitialLinkStylesState,
+  navbarInitialLoginButtonStylesState,
+} from "@/helpers/customization-pallete/initial-reducer-states/initial-navbar-state";
 import { buttonReducer } from "@/helpers/customization-pallete/reducers/button-reducer";
-import { navReducer } from "@/helpers/customization-pallete/reducers/navbar-reducer";
+import {
+  navFunctionalitiesReducer,
+  navLoginButtonStylesReducer,
+  navReducer,
+  navStylesReducer,
+} from "@/helpers/customization-pallete/reducers/navbar-reducer";
 
 const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
@@ -27,10 +36,17 @@ const BottomBar = () => {
   const selectedComponentId = useSelector(componentId);
   const dispatchStore = useDispatch();
 
-  const [navState, dispatchNavActions] = useReducer(
-    navReducer,
-    navbarInitialState
+  const [navFunctionalitiesState, dispatchNavFunctionalitiesActions] =
+    useReducer(navFunctionalitiesReducer, navbarInitialFunctionalitiesState);
+  const [navStylesState, dispatchNavStylesActions] = useReducer(
+    navStylesReducer,
+    navbarInitialLinkStylesState
   );
+  const [navLoginButtonStylesState, dispatchNavLoginButtonStylesActions] =
+    useReducer(
+      navLoginButtonStylesReducer,
+      navbarInitialLoginButtonStylesState
+    );
   const [buttonState, dispatchButtonActions] = useReducer(
     buttonReducer,
     buttonInitialState
@@ -56,17 +72,32 @@ const BottomBar = () => {
   }, []);
 
   const updateStyleHandler = useCallback(() => {
+    let navState;
     switch (selectedComponentType) {
       case component.BUTTON:
         storeDispatchHandler(buttonState);
         break;
       case component.NAVBAR:
+        navState = {
+          styles: {
+            navLinkStyles: navStylesState.styles.navLinkStyles,
+            loginButtonStyles:
+              navLoginButtonStylesState.styles.loginButtonStyles,
+          },
+          extraFunctionalities: navFunctionalitiesState.extraFunctionalities,
+        };
         storeDispatchHandler(navState);
         break;
       default:
         break;
     }
-  }, [selectedComponentType, buttonState, navState]);
+  }, [
+    selectedComponentType,
+    buttonState,
+    navStylesState,
+    navLoginButtonStylesState,
+    navFunctionalitiesState,
+  ]);
 
   useEffect(() => {
     if (selectedComponentId) {
@@ -75,7 +106,9 @@ const BottomBar = () => {
           setStateHandler(dispatchButtonActions);
           break;
         case component.NAVBAR:
-          setStateHandler(dispatchNavActions);
+          setStateHandler(dispatchNavFunctionalitiesActions);
+          setStateHandler(dispatchNavStylesActions);
+          setStateHandler(dispatchNavLoginButtonStylesActions);
           break;
         default:
           break;
@@ -91,18 +124,29 @@ const BottomBar = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [navState, buttonState]);
+  }, [
+    navStylesState,
+    navLoginButtonStylesState,
+    navFunctionalitiesState,
+    buttonState,
+  ]);
 
   return (
     <NavStyles.BottomBarGridContainer sx={{ overflowY: "scroll" }} item xs={12}>
       {selectedComponentType === component.BUTTON && (
-        <ButtonPallete
-          state={buttonState}
-          dispatch={dispatchButtonActions}
-        />
+        <ButtonPallete state={buttonState} dispatch={dispatchButtonActions} />
       )}
       {selectedComponentType === component.NAVBAR && (
-        <NavbarPallete state={navState} dispatch={dispatchNavActions} />
+        <NavbarPallete
+          navFunctionalitiesState={navFunctionalitiesState}
+          navStylesState={navStylesState}
+          navLoginButtonStylesState={navLoginButtonStylesState}
+          dispatchNavFunctionalitiesActions={dispatchNavFunctionalitiesActions}
+          dispatchNavLoginButtonStylesActions={
+            dispatchNavLoginButtonStylesActions
+          }
+          dispatchNavStylesActions={dispatchNavStylesActions}
+        />
       )}
     </NavStyles.BottomBarGridContainer>
   );

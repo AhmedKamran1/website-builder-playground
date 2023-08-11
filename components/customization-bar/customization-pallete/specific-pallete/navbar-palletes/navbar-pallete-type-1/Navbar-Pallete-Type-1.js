@@ -15,7 +15,7 @@ const NavbarPallete1 = ({ state, dispatch }) => {
   useEffect(() => {
     if (imageFile) {
       dispatch({
-        type: navEventTypes.CHANGENAVLOGO,
+        type: navEventTypes.navbarFunctionalities.CHANGENAVLOGO,
         payload: URL.createObjectURL(imageFile),
       });
     }
@@ -32,7 +32,7 @@ const NavbarPallete1 = ({ state, dispatch }) => {
     );
     const { url: navbarLogo } = response.data;
     dispatch({
-      type: navEventTypes.CHANGENAVLOGO,
+      type: navEventTypes.navbarFunctionalities.CHANGENAVLOGO,
       payload: navbarLogo,
     });
   };
@@ -45,7 +45,7 @@ const NavbarPallete1 = ({ state, dispatch }) => {
         value={state.title}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.CHANGENAVTITLE,
+            type: navEventTypes.navbarFunctionalities.CHANGENAVTITLE,
             payload: event.target.value,
           })
         }

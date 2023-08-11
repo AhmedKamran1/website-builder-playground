@@ -22,7 +22,7 @@ const NavbarLinks = ({ link, linkIndex, dispatch }) => {
         <button
           onClick={() =>
             dispatch({
-              type: navEventTypes.DELETENAVLINK,
+              type: navEventTypes.navbarFunctionalities.DELETENAVLINK,
               payload: {
                 linkIndex: linkIndex,
               },
@@ -40,7 +40,7 @@ const NavbarLinks = ({ link, linkIndex, dispatch }) => {
         value={link.innerText}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.CHANGENAVINNERTEXT,
+            type: navEventTypes.navbarFunctionalities.CHANGENAVINNERTEXT,
             payload: {
               linkIndex: linkIndex,
               innerText: event.target.value,
@@ -56,7 +56,7 @@ const NavbarLinks = ({ link, linkIndex, dispatch }) => {
         value={link.redirectLink}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.CHANGENAVREDIRECTLINK,
+            type: navEventTypes.navbarFunctionalities.CHANGENAVREDIRECTLINK,
             payload: {
               linkIndex: linkIndex,
               redirectLink: event.target.value,

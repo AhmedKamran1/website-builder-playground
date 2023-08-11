@@ -27,46 +27,55 @@ import NavbarDropDownLinks from "./common-navbar-palletes/NavbarDropDownLinks";
 
 import useDebouncedDispatch from "@/hooks/use-debounce";
 
-const NavbarPallete = ({ state, dispatch }) => {
+const NavbarPallete = ({
+  navFunctionalitiesState,
+  navStylesState,
+  navLoginButtonStylesState,
+  dispatchNavFunctionalitiesActions,
+  dispatchNavLoginButtonStylesActions,
+  dispatchNavStylesActions,
+}) => {
   const selectedComponent = useSelector(selectedComponentData);
-  const navLinksLength = state.extraFunctionalities.links.length;
+  const navLinksLength = navFunctionalitiesState.extraFunctionalities.links.length;
 
-  const { navLinkStyles } = state.styles;
-  const { loginButtonStyles } = state.styles;
+  // const { navLinkStyles } = state.styles;
+  // const { loginButtonStyles } = state.styles;
 
-
-  const debounceDispatchNavActions = useDebouncedDispatch(
-    dispatch,
-    200
-  );
+  // const debounceDispatchNavActions = useDebouncedDispatch(dispatch, 200);
 
   return (
     <>
       {selectedComponent.navId === initialNavbarComponentStyles[0].navId && (
         <NavbarPallete1
-          state={state.extraFunctionalities}
-          dispatch={dispatch}
+          state={navFunctionalitiesState.extraFunctionalities}
+          dispatch={dispatchNavFunctionalitiesActions}
         />
       )}
       <Divider />
       {/* NAVBAR LOGIN BUTTON PALLETE */}
       <strong>Pallete for login button</strong>
       <CommonPallete
-        state={loginButtonStyles}
-        dispatch={debounceDispatchNavActions}
-        changeColor={navEventTypes.CHANGENAVLOGINBUTTONCOLOR}
-        changeBackgroundColor={navEventTypes.CHANGENAVLOGINBUTTONBGCOLOR}
+        state={navLoginButtonStylesState.styles.loginButtonStyles}
+        dispatch={dispatchNavLoginButtonStylesActions}
+        changeColor={commonEventType.CHANGECOLOR}
+        changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
       />
       <HoverColorPallete
-        state={loginButtonStyles}
-        dispatch={debounceDispatchNavActions}
-        changeHoverColor={navEventTypes.CHANGENAVLOGINBUTTONHOVERCOLOR}
+        state={navLoginButtonStylesState.styles.loginButtonStyles}
+        dispatch={dispatchNavLoginButtonStylesActions}
+        changeHoverColor={
+          navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR
+        }
       />
       <FontPallete
-        state={loginButtonStyles}
-        dispatch={debounceDispatchNavActions}
-        changeFontWeight={navEventTypes.CHANGENAVLOGINBUTTONFONTWEIGHT}
-        changeFontStyle={navEventTypes.CHANGENAVLOGINBUTTONFONTSTYLE}
+        state={navLoginButtonStylesState.styles.loginButtonStyles}
+        dispatch={dispatchNavLoginButtonStylesActions}
+        changeFontWeight={
+          navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT
+        }
+        changeFontStyle={
+          navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE
+        }
         fontPalleteName="loginButtonStyles"
       />
       <Divider />
@@ -74,27 +83,32 @@ const NavbarPallete = ({ state, dispatch }) => {
       {/* NAVBAR PALLETE */}
       <strong>Pallete for navbar</strong>
       <CommonPallete
-        state={navLinkStyles}
-        dispatch={debounceDispatchNavActions}
+        state={navStylesState.styles.navLinkStyles}
+        dispatch={dispatchNavStylesActions}
         changeColor={commonEventType.CHANGECOLOR}
         changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
       />
       <FontPallete
-        state={navLinkStyles}
-        dispatch={debounceDispatchNavActions}
-        changeFontWeight={navEventTypes.CHANGENAVFONTWEIGHT}
-        changeFontStyle={navEventTypes.CHANGENAVFONTSTYLE}
+        state={navStylesState.styles.navLinkStyles}
+        dispatch={dispatchNavStylesActions}
+        changeFontWeight={navEventTypes.navbarStyles.CHANGENAVFONTWEIGHT}
+        changeFontStyle={navEventTypes.navbarStyles.CHANGENAVFONTSTYLE}
         fontPalleteName="navLinkStyles"
       />
       <HoverColorPallete
-        state={navLinkStyles}
-        dispatch={debounceDispatchNavActions}
-        changeHoverColor={navEventTypes.CHANGENAVHOVERCOLOR}
+        state={navStylesState.styles.navLinkStyles}
+        dispatch={dispatchNavStylesActions}
+        changeHoverColor={navEventTypes.navbarStyles.CHANGENAVHOVERCOLOR}
       />
-      {state.extraFunctionalities.links.map((link, linkIndex) => (
-        <React.Fragment key={linkIndex}>
-          <NavbarLinks link={link} linkIndex={linkIndex} dispatch={dispatch} />
-          {/* {selectedComponent.navId ===
+      {navFunctionalitiesState.extraFunctionalities.links.map(
+        (link, linkIndex) => (
+          <React.Fragment key={linkIndex}>
+            <NavbarLinks
+              link={link}
+              linkIndex={linkIndex}
+              dispatch={dispatchNavFunctionalitiesActions}
+            />
+            {/* {selectedComponent.navId ===
                   initialNavbarComponentStyles[1].navId &&
                   !link.showDropDown && (
                     <NavbarPallete2
@@ -103,39 +117,41 @@ const NavbarPallete = ({ state, dispatch }) => {
                       dispatch={dispatch}
                     />
                   )} */}
-          <p style={{ fontWeight: "bold" }}>
-            Drop Down Menu
-            <Checkbox
-              checked={link.showDropDown}
-              onChange={() =>
-                dispatch({
-                  type: navEventTypes.CHANGEDROPDOWNVISIBILITY,
-                  payload: {
-                    linkIndex: linkIndex,
-                  },
-                })
-              }
-            />
-          </p>
-          {link.showDropDown &&
-            link.dropDown.map((sublink, sublinkIndex) => (
-              <NavbarDropDownLinks
-                key={sublinkIndex}
-                link={link}
-                linkIndex={linkIndex}
-                sublink={sublink}
-                sublinkIndex={sublinkIndex}
-                dispatch={dispatch}
+            <p style={{ fontWeight: "bold" }}>
+              Drop Down Menu
+              <Checkbox
+                checked={link.showDropDown}
+                onChange={() =>
+                  dispatchNavFunctionalitiesActions({
+                    type: navEventTypes.navbarFunctionalities
+                      .CHANGEDROPDOWNVISIBILITY,
+                    payload: {
+                      linkIndex: linkIndex,
+                    },
+                  })
+                }
               />
-            ))}
-          <Divider />
-        </React.Fragment>
-      ))}
+            </p>
+            {link.showDropDown &&
+              link.dropDown.map((sublink, sublinkIndex) => (
+                <NavbarDropDownLinks
+                  key={sublinkIndex}
+                  link={link}
+                  linkIndex={linkIndex}
+                  sublink={sublink}
+                  sublinkIndex={sublinkIndex}
+                  dispatch={dispatchNavFunctionalitiesActions}
+                />
+              ))}
+            <Divider />
+          </React.Fragment>
+        )
+      )}
       {navLinksLength !== navbar.navLinkLimit && (
         <button
           onClick={() =>
-            dispatch({
-              type: navEventTypes.ADDNAVLINK,
+            dispatchNavFunctionalitiesActions({
+              type: navEventTypes.navbarFunctionalities.ADDNAVLINK,
               payload: {
                 navLink: navLink,
               },
