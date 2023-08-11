@@ -3,9 +3,9 @@ import {
   navEventTypes,
 } from "../../constants/event-types/event-types";
 
-import { navbarInitialState } from "../initial-reducer-states/initial-navbar-state";
+import { navbarInitialLinkStylesState, navbarInitialLoginButtonStylesState, navbarInitialState } from "../initial-reducer-states/initial-navbar-state";
 
-export const navReducer = (state, action) => {
+export const navFunctionalitiesReducer = (state, action) => {
   let linkIndex,
     navLink,
     dropDownIndex,
@@ -21,7 +21,7 @@ export const navReducer = (state, action) => {
   switch (action.type) {
     // FUNCTIONALITIES
 
-    case navEventTypes.ADDNAVLINK:
+    case navEventTypes.navbarFunctionalities.ADDNAVLINK:
       ({ navLink } = action.payload);
 
       updatedLinks.push(navLink);
@@ -33,7 +33,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.DELETENAVLINK:
+    case navEventTypes.navbarFunctionalities.DELETENAVLINK:
       ({ linkIndex } = action.payload);
       updatedLinks.splice(linkIndex, 1);
       return {
@@ -44,7 +44,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVTITLE:
+    case navEventTypes.navbarFunctionalities.CHANGENAVTITLE:
       return {
         ...state,
         extraFunctionalities: {
@@ -53,7 +53,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVLOGO:
+    case navEventTypes.navbarFunctionalities.CHANGENAVLOGO:
       return {
         ...state,
         extraFunctionalities: {
@@ -62,7 +62,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVINNERTEXT:
+    case navEventTypes.navbarFunctionalities.CHANGENAVINNERTEXT:
       ({ linkIndex, innerText } = action.payload);
       updatedLinks[linkIndex].innerText = innerText;
       return {
@@ -73,7 +73,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVREDIRECTLINK:
+    case navEventTypes.navbarFunctionalities.CHANGENAVREDIRECTLINK:
       ({ linkIndex, redirectLink } = action.payload);
       updatedLinks[linkIndex].redirectLink = redirectLink;
       return {
@@ -84,7 +84,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGEDROPDOWNVISIBILITY:
+    case navEventTypes.navbarFunctionalities.CHANGEDROPDOWNVISIBILITY:
       ({ linkIndex } = action.payload);
       updatedLinks[linkIndex].showDropDown =
         !updatedLinks[linkIndex].showDropDown;
@@ -96,7 +96,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.ADDROPDOWNLINK:
+    case navEventTypes.navbarFunctionalities.ADDROPDOWNLINK:
       ({ linkIndex, dropDownLink } = action.payload);
       updatedLinks[linkIndex].dropDown.push(dropDownLink);
       return {
@@ -107,7 +107,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.DELETEDROPDOWNLINK:
+    case navEventTypes.navbarFunctionalities.DELETEDROPDOWNLINK:
       ({ linkIndex, dropDownIndex } = action.payload);
       updatedLinks[linkIndex].dropDown.splice(dropDownIndex, 1);
       return {
@@ -118,7 +118,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVDROPDOWNINNERTEXT:
+    case navEventTypes.navbarFunctionalities.CHANGENAVDROPDOWNINNERTEXT:
       ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
       updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
         dropDownInnerText;
@@ -130,7 +130,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVDROPDOWNLINK:
+    case navEventTypes.navbarFunctionalities.CHANGENAVDROPDOWNLINK:
       ({ linkIndex, dropDownIndex, dropDownRedirectLink } = action.payload);
       updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
         dropDownRedirectLink;
@@ -145,10 +145,13 @@ export const navReducer = (state, action) => {
     case commonEventType.SETINITIALSTATE:
       return {
         ...state,
-        styles: action.payload.styles,
         extraFunctionalities: action.payload.extraFunctionalities,
       };
+  }
+};
 
+export const navStylesReducer = (state, action) => {
+  switch (action.type) {
     //NAVBAR LINK STYLES
     case commonEventType.CHANGECOLOR:
       return {
@@ -173,7 +176,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVFONTSTYLE:
+    case navEventTypes.navbarStyles.CHANGENAVFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -181,12 +184,12 @@ export const navReducer = (state, action) => {
           navLinkStyles: {
             ...state.styles.navLinkStyles,
             fontStyle: action.payload,
-            fontWeight: navbarInitialState.styles.navLinkStyles.fontWeight,
+            fontWeight: navbarInitialLinkStylesState.styles.navLinkStyles.fontWeight,
           },
         },
       };
 
-    case navEventTypes.CHANGENAVFONTWEIGHT:
+    case navEventTypes.navbarStyles.CHANGENAVFONTWEIGHT:
       return {
         ...state,
         styles: {
@@ -194,12 +197,12 @@ export const navReducer = (state, action) => {
           navLinkStyles: {
             ...state.styles.navLinkStyles,
             fontWeight: action.payload,
-            fontStyle: navbarInitialState.styles.navLinkStyles.fontStyle,
+            fontStyle: navbarInitialLinkStylesState.styles.navLinkStyles.fontStyle,
           },
         },
       };
 
-    case navEventTypes.CHANGENAVHOVERCOLOR:
+    case navEventTypes.navbarStyles.CHANGENAVHOVERCOLOR:
       return {
         ...state,
         styles: {
@@ -211,8 +214,24 @@ export const navReducer = (state, action) => {
         },
       };
 
+    case commonEventType.SETINITIALSTATE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          navLinkStyles: action.payload.styles.navLinkStyles,
+        },
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const navLoginButtonStylesReducer = (state, action) => {
+  switch (action.type) {
     //NAVBAR LOGIN BUTTON STYLES
-    case navEventTypes.CHANGENAVLOGINBUTTONCOLOR:
+    case commonEventType.CHANGECOLOR:
       return {
         ...state,
         styles: {
@@ -223,7 +242,7 @@ export const navReducer = (state, action) => {
           },
         },
       };
-    case navEventTypes.CHANGENAVLOGINBUTTONBGCOLOR:
+    case commonEventType.CHANGEBGCOLOR:
       return {
         ...state,
         styles: {
@@ -235,7 +254,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVLOGINBUTTONHOVERCOLOR:
+    case navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR:
       return {
         ...state,
         styles: {
@@ -247,7 +266,7 @@ export const navReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.CHANGENAVLOGINBUTTONFONTSTYLE:
+    case navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -255,12 +274,12 @@ export const navReducer = (state, action) => {
           loginButtonStyles: {
             ...state.styles.loginButtonStyles,
             fontStyle: action.payload,
-            fontWeight: navbarInitialState.styles.loginButtonStyles.fontWeight,
+            fontWeight: navbarInitialLoginButtonStylesState.styles.loginButtonStyles.fontWeight,
           },
         },
       };
 
-    case navEventTypes.CHANGENAVLOGINBUTTONFONTWEIGHT:
+    case navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT:
       return {
         ...state,
         styles: {
@@ -268,12 +287,17 @@ export const navReducer = (state, action) => {
           loginButtonStyles: {
             ...state.styles.loginButtonStyles,
             fontWeight: action.payload,
-            fontStyle: navbarInitialState.styles.loginButtonStyles.fontStyle,
+            fontStyle: navbarInitialLoginButtonStylesState.styles.loginButtonStyles.fontStyle,
           },
         },
       };
-
-    default:
-      return state;
+    case commonEventType.SETINITIALSTATE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          loginButtonStyles: action.payload.styles.loginButtonStyles,
+        },
+      };
   }
 };
