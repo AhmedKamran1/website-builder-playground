@@ -36,12 +36,20 @@ const NavbarPallete = ({
   dispatchNavStylesActions,
 }) => {
   const selectedComponent = useSelector(selectedComponentData);
-  const navLinksLength = navFunctionalitiesState.extraFunctionalities.links.length;
+  const navLinksLength =
+    navFunctionalitiesState.extraFunctionalities.links.length;
 
-  // const { navLinkStyles } = state.styles;
-  // const { loginButtonStyles } = state.styles;
+  const { navLinkStyles } = navStylesState.styles;
+  const { loginButtonStyles } = navLoginButtonStylesState.styles;
 
-  // const debounceDispatchNavActions = useDebouncedDispatch(dispatch, 200);
+  const debounceNavLoginButtonStylesActions = useDebouncedDispatch(
+    dispatchNavLoginButtonStylesActions,
+    200
+  );
+  const debounceNavStylesActions = useDebouncedDispatch(
+    dispatchNavStylesActions,
+    200
+  );
 
   return (
     <>
@@ -55,21 +63,21 @@ const NavbarPallete = ({
       {/* NAVBAR LOGIN BUTTON PALLETE */}
       <strong>Pallete for login button</strong>
       <CommonPallete
-        state={navLoginButtonStylesState.styles.loginButtonStyles}
-        dispatch={dispatchNavLoginButtonStylesActions}
+        state={loginButtonStyles}
+        dispatch={debounceNavLoginButtonStylesActions}
         changeColor={commonEventType.CHANGECOLOR}
         changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
       />
       <HoverColorPallete
-        state={navLoginButtonStylesState.styles.loginButtonStyles}
-        dispatch={dispatchNavLoginButtonStylesActions}
+        state={loginButtonStyles}
+        dispatch={debounceNavLoginButtonStylesActions}
         changeHoverColor={
           navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR
         }
       />
       <FontPallete
-        state={navLoginButtonStylesState.styles.loginButtonStyles}
-        dispatch={dispatchNavLoginButtonStylesActions}
+        state={loginButtonStyles}
+        dispatch={debounceNavLoginButtonStylesActions}
         changeFontWeight={
           navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT
         }
@@ -83,21 +91,21 @@ const NavbarPallete = ({
       {/* NAVBAR PALLETE */}
       <strong>Pallete for navbar</strong>
       <CommonPallete
-        state={navStylesState.styles.navLinkStyles}
-        dispatch={dispatchNavStylesActions}
+        state={navLinkStyles}
+        dispatch={debounceNavStylesActions}
         changeColor={commonEventType.CHANGECOLOR}
         changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
       />
       <FontPallete
-        state={navStylesState.styles.navLinkStyles}
-        dispatch={dispatchNavStylesActions}
+        state={navLinkStyles}
+        dispatch={debounceNavStylesActions}
         changeFontWeight={navEventTypes.navbarStyles.CHANGENAVFONTWEIGHT}
         changeFontStyle={navEventTypes.navbarStyles.CHANGENAVFONTSTYLE}
         fontPalleteName="navLinkStyles"
       />
       <HoverColorPallete
-        state={navStylesState.styles.navLinkStyles}
-        dispatch={dispatchNavStylesActions}
+        state={navLinkStyles}
+        dispatch={debounceNavStylesActions}
         changeHoverColor={navEventTypes.navbarStyles.CHANGENAVHOVERCOLOR}
       />
       {navFunctionalitiesState.extraFunctionalities.links.map(

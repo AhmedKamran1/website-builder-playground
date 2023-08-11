@@ -26,7 +26,6 @@ import { buttonReducer } from "@/helpers/customization-pallete/reducers/button-r
 import {
   navFunctionalitiesReducer,
   navLoginButtonStylesReducer,
-  navReducer,
   navStylesReducer,
 } from "@/helpers/customization-pallete/reducers/navbar-reducer";
 
