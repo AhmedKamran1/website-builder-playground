@@ -56,8 +56,8 @@ AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes
 # New to fixes
 
 - navState break states into multiple states for easibility //DONE
-- enums to be named properly
-- (async thunk idk have to search)function to send updated component data to api and function to send add component data to api  
+- enums to be named properly //Done
 - remove dropdowns completely //DONE
+- (async thunk idk have to search)function to send updated component data to api and function to send add component data to api  
 - fix simple nav tabs to be buttons and add logo
 - pagename and website id work
