@@ -1,3 +1,3 @@
-export const navbar = {
-  navLinkLimit: 4,
+export const NavbarLengthEnum = {
+  NAVLINKLIMIT: 4,
 };

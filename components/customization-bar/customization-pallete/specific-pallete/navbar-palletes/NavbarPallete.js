@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import {
-  commonEventType,
-  navEventTypes,
+  CommonEventTypeEnum,
+  NavEventTypesEnum,
 } from "@/helpers/constants/event-types/event-types";
 
 import {  Divider } from "@mui/material";
@@ -14,7 +14,7 @@ import {
   initialNavbarComponentStyles,
   navLink,
 } from "@/helpers/pre-defined-components-styles/navbar-styles";
-import { navbar } from "@/helpers/constants/component-child-lengths/component-child-lengths";
+import { NavbarLengthEnum } from "@/helpers/constants/component-child-lengths/component-child-lengths";
 
 import NavbarPallete1 from "./navbar-pallete-type-1/Navbar-Pallete-Type-1";
 import NavbarPallete2 from "./navbar-pallete-type-2/Navbar-Pallete-Type-2";
@@ -64,24 +64,24 @@ const NavbarPallete = ({
       <CommonPallete
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
-        changeColor={commonEventType.CHANGECOLOR}
-        changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
+        changeColor={CommonEventTypeEnum.CHANGECOLOR}
+        changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <HoverColorPallete
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
         changeHoverColor={
-          navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR
+          NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR
         }
       />
       <FontPallete
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
         changeFontWeight={
-          navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT
+          NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT
         }
         changeFontStyle={
-          navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE
+          NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE
         }
         fontPalleteName="loginButtonStyles"
       />
@@ -92,20 +92,20 @@ const NavbarPallete = ({
       <CommonPallete
         state={navLinkStyles}
         dispatch={debounceNavStylesActions}
-        changeColor={commonEventType.CHANGECOLOR}
-        changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
+        changeColor={CommonEventTypeEnum.CHANGECOLOR}
+        changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <FontPallete
         state={navLinkStyles}
         dispatch={debounceNavStylesActions}
-        changeFontWeight={navEventTypes.navbarStyles.CHANGENAVFONTWEIGHT}
-        changeFontStyle={navEventTypes.navbarStyles.CHANGENAVFONTSTYLE}
+        changeFontWeight={NavEventTypesEnum.navbarStyles.CHANGENAVFONTWEIGHT}
+        changeFontStyle={NavEventTypesEnum.navbarStyles.CHANGENAVFONTSTYLE}
         fontPalleteName="navLinkStyles"
       />
       <HoverColorPallete
         state={navLinkStyles}
         dispatch={debounceNavStylesActions}
-        changeHoverColor={navEventTypes.navbarStyles.CHANGENAVHOVERCOLOR}
+        changeHoverColor={NavEventTypesEnum.navbarStyles.CHANGENAVHOVERCOLOR}
       />
       {navFunctionalitiesState.extraFunctionalities.links.map(
         (link, linkIndex) => (
@@ -128,11 +128,11 @@ const NavbarPallete = ({
           </React.Fragment>
         )
       )}
-      {navLinksLength !== navbar.navLinkLimit && (
+      {navLinksLength !== NavbarLengthEnum.NAVLINKLIMIT && (
         <button
           onClick={() =>
             dispatchNavFunctionalitiesActions({
-              type: navEventTypes.navbarFunctionalities.ADDNAVLINK,
+              type: NavEventTypesEnum.navbarFunctionalities.ADDNAVLINK,
               payload: {
                 navLink: navLink,
               },

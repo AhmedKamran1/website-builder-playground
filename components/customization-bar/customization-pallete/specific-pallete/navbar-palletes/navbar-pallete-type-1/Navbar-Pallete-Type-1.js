@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { navEventTypes } from "@/helpers/constants/event-types/event-types";
+import { NavEventTypesEnum } from "@/helpers/constants/event-types/event-types";
 
 import axios from "axios";
 
@@ -15,7 +15,7 @@ const NavbarPallete1 = ({ state, dispatch }) => {
   useEffect(() => {
     if (imageFile) {
       dispatch({
-        type: navEventTypes.navbarFunctionalities.CHANGENAVLOGO,
+        type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO,
         payload: URL.createObjectURL(imageFile),
       });
     }
@@ -32,7 +32,7 @@ const NavbarPallete1 = ({ state, dispatch }) => {
     );
     const { url: navbarLogo } = response.data;
     dispatch({
-      type: navEventTypes.navbarFunctionalities.CHANGENAVLOGO,
+      type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO,
       payload: navbarLogo,
     });
   };
@@ -45,7 +45,7 @@ const NavbarPallete1 = ({ state, dispatch }) => {
         value={state.title}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.navbarFunctionalities.CHANGENAVTITLE,
+            type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVTITLE,
             payload: event.target.value,
           })
         }

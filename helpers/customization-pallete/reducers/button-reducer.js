@@ -1,5 +1,5 @@
 import {
-  commonEventType,
+  CommonEventTypeEnum,
   buttonEventType,
 } from "@/helpers/constants/event-types/event-types";
 
@@ -7,7 +7,7 @@ import { buttonInitialState } from "../initial-reducer-states/initial-button-sta
 
 export const buttonReducer = (state, action) => {
   switch (action.type) {
-    case commonEventType.CHANGECOLOR:
+    case CommonEventTypeEnum.CHANGECOLOR:
       return {
         ...state,
         styles: {
@@ -15,7 +15,7 @@ export const buttonReducer = (state, action) => {
           colorHex: action.payload,
         },
       };
-    case commonEventType.CHANGEBGCOLOR:
+    case CommonEventTypeEnum.CHANGEBGCOLOR:
       return {
         ...state,
         styles: {
@@ -75,7 +75,7 @@ export const buttonReducer = (state, action) => {
         },
       };
 
-    case commonEventType.SETINITIALSTATE:
+    case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
         styles: action.payload.styles,

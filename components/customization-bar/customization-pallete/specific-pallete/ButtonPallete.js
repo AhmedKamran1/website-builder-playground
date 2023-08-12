@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   buttonEventType,
-  commonEventType,
+  CommonEventTypeEnum,
 } from "@/helpers/constants/event-types/event-types";
 import CollorPallete from "../common-palletes/CollorPallete";
 import FontPallete from "../common-palletes/FontPallete";
@@ -20,8 +20,8 @@ const ButtonPallete = ({ state, dispatch }) => {
       <CollorPallete
         state={state.styles}
         dispatch={debounceDispatchButtonActions}
-        changeColor={commonEventType.CHANGECOLOR}
-        changeBackgroundColor={commonEventType.CHANGEBGCOLOR}
+        changeColor={CommonEventTypeEnum.CHANGECOLOR}
+        changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <FontPallete
         state={state.extraFunctionalities}

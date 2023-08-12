@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { component } from "@/helpers/constants/component-types/component-types";
+import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
 
 import * as EditAreaStyles from "../../styles/edit-area/EditArea";
 import * as Styled from "../../styles/pre-defined-components/button/button";
@@ -33,7 +33,7 @@ const EditArea = () => {
   const renderComponent = (componentData, styles, extraFunctionalities) => {
     const isFocused = selectedComponentId === componentData.id;
     switch (componentData.componentType) {
-      case component.BUTTON:
+      case ComponentEnum.BUTTON:
         return (
           // <Link href={extraFunctionalities.redirectLink ?? ""}>
           <Styled.StyledButton
@@ -46,7 +46,7 @@ const EditArea = () => {
           </Styled.StyledButton>
           // </Link>
         );
-      case component.NAVBAR:
+      case ComponentEnum.NAVBAR:
         return (
           <Navbar
             styles={styles}
@@ -58,7 +58,7 @@ const EditArea = () => {
             isfocused={+isFocused}
           />
         );
-      case component.SECTION:
+      case ComponentEnum.SECTION:
         return (
           <Section
             styles={styles}

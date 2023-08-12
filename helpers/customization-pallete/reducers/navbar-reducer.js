@@ -1,6 +1,6 @@
 import {
-  commonEventType,
-  navEventTypes,
+  CommonEventTypeEnum,
+  NavEventTypesEnum,
 } from "../../constants/event-types/event-types";
 
 import {
@@ -16,7 +16,7 @@ export const navFunctionalitiesReducer = (state, action) => {
   switch (action.type) {
     // FUNCTIONALITIES
 
-    case navEventTypes.navbarFunctionalities.ADDNAVLINK:
+    case NavEventTypesEnum.navbarFunctionalities.ADDNAVLINK:
       ({ navLink } = action.payload);
 
       updatedLinks.push(navLink);
@@ -28,7 +28,7 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarFunctionalities.DELETENAVLINK:
+    case NavEventTypesEnum.navbarFunctionalities.DELETENAVLINK:
       ({ linkIndex } = action.payload);
       updatedLinks.splice(linkIndex, 1);
       return {
@@ -39,7 +39,7 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarFunctionalities.CHANGENAVTITLE:
+    case NavEventTypesEnum.navbarFunctionalities.CHANGENAVTITLE:
       return {
         ...state,
         extraFunctionalities: {
@@ -48,7 +48,7 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarFunctionalities.CHANGENAVLOGO:
+    case NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO:
       return {
         ...state,
         extraFunctionalities: {
@@ -57,7 +57,7 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarFunctionalities.CHANGENAVINNERTEXT:
+    case NavEventTypesEnum.navbarFunctionalities.CHANGENAVINNERTEXT:
       ({ linkIndex, innerText } = action.payload);
       updatedLinks[linkIndex].innerText = innerText;
       return {
@@ -68,7 +68,7 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarFunctionalities.CHANGENAVREDIRECTLINK:
+    case NavEventTypesEnum.navbarFunctionalities.CHANGENAVREDIRECTLINK:
       ({ linkIndex, redirectLink } = action.payload);
       updatedLinks[linkIndex].redirectLink = redirectLink;
       return {
@@ -79,7 +79,7 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case commonEventType.SETINITIALSTATE:
+    case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
         extraFunctionalities: action.payload.extraFunctionalities,
@@ -90,7 +90,7 @@ export const navFunctionalitiesReducer = (state, action) => {
 export const navStylesReducer = (state, action) => {
   switch (action.type) {
     //NAVBAR LINK STYLES
-    case commonEventType.CHANGECOLOR:
+    case CommonEventTypeEnum.CHANGECOLOR:
       return {
         ...state,
         styles: {
@@ -101,7 +101,7 @@ export const navStylesReducer = (state, action) => {
           },
         },
       };
-    case commonEventType.CHANGEBGCOLOR:
+    case CommonEventTypeEnum.CHANGEBGCOLOR:
       return {
         ...state,
         styles: {
@@ -113,7 +113,7 @@ export const navStylesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarStyles.CHANGENAVFONTSTYLE:
+    case NavEventTypesEnum.navbarStyles.CHANGENAVFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -127,7 +127,7 @@ export const navStylesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarStyles.CHANGENAVFONTWEIGHT:
+    case NavEventTypesEnum.navbarStyles.CHANGENAVFONTWEIGHT:
       return {
         ...state,
         styles: {
@@ -141,7 +141,7 @@ export const navStylesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarStyles.CHANGENAVHOVERCOLOR:
+    case NavEventTypesEnum.navbarStyles.CHANGENAVHOVERCOLOR:
       return {
         ...state,
         styles: {
@@ -153,7 +153,7 @@ export const navStylesReducer = (state, action) => {
         },
       };
 
-    case commonEventType.SETINITIALSTATE:
+    case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
         styles: {
@@ -170,7 +170,7 @@ export const navStylesReducer = (state, action) => {
 export const navLoginButtonStylesReducer = (state, action) => {
   switch (action.type) {
     //NAVBAR LOGIN BUTTON STYLES
-    case commonEventType.CHANGECOLOR:
+    case CommonEventTypeEnum.CHANGECOLOR:
       return {
         ...state,
         styles: {
@@ -181,7 +181,7 @@ export const navLoginButtonStylesReducer = (state, action) => {
           },
         },
       };
-    case commonEventType.CHANGEBGCOLOR:
+    case CommonEventTypeEnum.CHANGEBGCOLOR:
       return {
         ...state,
         styles: {
@@ -193,7 +193,7 @@ export const navLoginButtonStylesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR:
+    case NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR:
       return {
         ...state,
         styles: {
@@ -205,7 +205,7 @@ export const navLoginButtonStylesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE:
+    case NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -220,7 +220,7 @@ export const navLoginButtonStylesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT:
+    case NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT:
       return {
         ...state,
         styles: {
@@ -234,7 +234,7 @@ export const navLoginButtonStylesReducer = (state, action) => {
           },
         },
       };
-    case commonEventType.SETINITIALSTATE:
+    case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
         styles: {

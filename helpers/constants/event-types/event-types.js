@@ -1,4 +1,4 @@
-export const commonEventType = {
+export const CommonEventTypeEnum = {
   SETINITIALSTATE: "setInitialState",
   CHANGECOLOR: "changeColor",
   CHANGEBGCOLOR: "changeBgColor",
@@ -23,7 +23,7 @@ export const buttonEventType = {
   CHANGEFONTFAMILY: "changeFontFamily",
 };
 
-export const navEventTypes = {
+export const NavEventTypesEnum = {
   navbarFunctionalities: {
     CHANGENAVREDIRECTLINK: "changeNavRedirectLink",
     ADDNAVLINK: "addNavLink",

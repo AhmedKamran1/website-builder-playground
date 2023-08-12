@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useReducer } from "react";
 
-import { component } from "@/helpers/constants/component-types/component-types";
-import { commonEventType } from "@/helpers/constants/event-types/event-types";
+import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
+import { CommonEventTypeEnum } from "@/helpers/constants/event-types/event-types";
 
 import * as NavStyles from "../../../styles/customization-bar/BottomBar";
 
@@ -54,7 +54,7 @@ const BottomBar = () => {
   const setStateHandler = useCallback(
     (dispatchStateAction) => {
       dispatchStateAction({
-        type: commonEventType.SETINITIALSTATE,
+        type: CommonEventTypeEnum.SETINITIALSTATE,
         payload: selectedComponent,
       });
     },
@@ -73,10 +73,10 @@ const BottomBar = () => {
   const updateStyleHandler = useCallback(() => {
     let navState;
     switch (selectedComponentType) {
-      case component.BUTTON:
+      case ComponentEnum.BUTTON:
         storeDispatchHandler(buttonState);
         break;
-      case component.NAVBAR:
+      case ComponentEnum.NAVBAR:
         navState = {
           styles: {
             navLinkStyles: navStylesState.styles.navLinkStyles,
@@ -101,10 +101,10 @@ const BottomBar = () => {
   useEffect(() => {
     if (selectedComponentId) {
       switch (selectedComponentType) {
-        case component.BUTTON:
+        case ComponentEnum.BUTTON:
           setStateHandler(dispatchButtonActions);
           break;
-        case component.NAVBAR:
+        case ComponentEnum.NAVBAR:
           setStateHandler(dispatchNavFunctionalitiesActions);
           setStateHandler(dispatchNavStylesActions);
           setStateHandler(dispatchNavLoginButtonStylesActions);
@@ -132,10 +132,10 @@ const BottomBar = () => {
 
   return (
     <NavStyles.BottomBarGridContainer sx={{ overflowY: "scroll" }} item xs={12}>
-      {selectedComponentType === component.BUTTON && (
+      {selectedComponentType === ComponentEnum.BUTTON && (
         <ButtonPallete state={buttonState} dispatch={dispatchButtonActions} />
       )}
-      {selectedComponentType === component.NAVBAR && (
+      {selectedComponentType === ComponentEnum.NAVBAR && (
         <NavbarPallete
           navFunctionalitiesState={navFunctionalitiesState}
           navStylesState={navStylesState}

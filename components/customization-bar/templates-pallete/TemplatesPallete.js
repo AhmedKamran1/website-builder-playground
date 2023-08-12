@@ -4,7 +4,7 @@ import * as ButtonStyles from "../../../styles/pre-defined-components/button/but
 import { useDispatch } from "react-redux";
 import { componentActions } from "@/store/store";
 
-import { component } from "@/helpers/constants/component-types/component-types";
+import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
 
 import { initialButtonComponentStyles } from "@/helpers/pre-defined-components-styles/button-styles";
 import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
@@ -20,19 +20,19 @@ const TopBar = () => {
     componentType
   ) => {
     switch (componentType) {
-      case component.BUTTON:
+      case ComponentEnum.BUTTON:
         dispatch(
           componentActions.addComponent({
-            componentType: component.BUTTON,
+            componentType: ComponentEnum.BUTTON,
             styles: styles,
             extraFunctionalities: extraFunctionalities,
           })
         );
         break;
-      case component.NAVBAR:
+      case ComponentEnum.NAVBAR:
         dispatch(
           componentActions.addComponent({
-            componentType: component.NAVBAR,
+            componentType: ComponentEnum.NAVBAR,
             navId: initialNavbarComponentStyles[event.target.value - 1].navId,
             styles: structuredClone(
               initialNavbarComponentStyles[event.target.value - 1].styles
@@ -44,10 +44,10 @@ const TopBar = () => {
           })
         );
         break;
-      case component.SECTION:
+      case ComponentEnum.SECTION:
         dispatch(
           componentActions.addComponent({
-            componentType: component.SECTION,
+            componentType: ComponentEnum.SECTION,
             secId: initialSectionComponentStyles[event.target.value - 1].secId,
             styles: structuredClone(
               initialSectionComponentStyles[event.target.value - 1].styles
@@ -76,7 +76,7 @@ const TopBar = () => {
               event,
               button.styles,
               button.extraFunctionalities,
-              component.BUTTON
+              ComponentEnum.BUTTON
             )
           }
         >
@@ -88,7 +88,7 @@ const TopBar = () => {
         <select
           defaultValue="none"
           onChange={(event) =>
-            addComponentHandler(event, null, null, component.NAVBAR)
+            addComponentHandler(event, null, null, ComponentEnum.NAVBAR)
           }
         >
           <option value="none" disabled hidden>
@@ -103,7 +103,7 @@ const TopBar = () => {
         <select
           defaultValue="none"
           onChange={(event) =>
-            addComponentHandler(event, null, null, component.SECTION)
+            addComponentHandler(event, null, null, ComponentEnum.SECTION)
           }
         >
           <option value="none" disabled hidden>

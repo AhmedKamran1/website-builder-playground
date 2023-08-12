@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectedComponentData } from "@/store/ComponentSlice";
 
-import { navEventTypes } from "@/helpers/constants/event-types/event-types";
+import { NavEventTypesEnum } from "@/helpers/constants/event-types/event-types";
 
 const NavbarLinks = ({ link, linkIndex, dispatch }) => {
   const selectedComponent = useSelector(selectedComponentData);
@@ -22,7 +22,7 @@ const NavbarLinks = ({ link, linkIndex, dispatch }) => {
         <button
           onClick={() =>
             dispatch({
-              type: navEventTypes.navbarFunctionalities.DELETENAVLINK,
+              type: NavEventTypesEnum.navbarFunctionalities.DELETENAVLINK,
               payload: {
                 linkIndex: linkIndex,
               },
@@ -40,7 +40,7 @@ const NavbarLinks = ({ link, linkIndex, dispatch }) => {
         value={link.innerText}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.navbarFunctionalities.CHANGENAVINNERTEXT,
+            type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVINNERTEXT,
             payload: {
               linkIndex: linkIndex,
               innerText: event.target.value,
@@ -56,7 +56,7 @@ const NavbarLinks = ({ link, linkIndex, dispatch }) => {
         value={link.redirectLink}
         onChange={(event) =>
           dispatch({
-            type: navEventTypes.navbarFunctionalities.CHANGENAVREDIRECTLINK,
+            type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVREDIRECTLINK,
             payload: {
               linkIndex: linkIndex,
               redirectLink: event.target.value,
