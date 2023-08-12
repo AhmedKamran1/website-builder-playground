@@ -35,8 +35,6 @@
 - name clashings when too many subcomponents of navbar types // TO ASK
 - how tooltip should work? // TO ASK
 - how sections should be added? // TO ASK
-- nav2 tabs breaking on removal
-
 
 # To resolve
 
@@ -60,6 +58,6 @@ AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes
 - navState break states into multiple states for easibility //DONE
 - enums to be named properly
 - (async thunk idk have to search)function to send updated component data to api and function to send add component data to api  
-- remove dropdowns completely 
+- remove dropdowns completely //DONE
 - fix simple nav tabs to be buttons and add logo
 - pagename and website id work
