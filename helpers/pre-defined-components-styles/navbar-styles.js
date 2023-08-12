@@ -1,14 +1,7 @@
-export const dropDownLink = {
-  dropDownRedirectLink: "",
-  dropDownInnerText: "",
-};
-
 export const navLink = {
   innerText: "Home",
   redirectLink: "",
   icon: "",
-  showDropDown: false,
-  dropDown: [dropDownLink],
 };
 
 export const navLinkStyles = {

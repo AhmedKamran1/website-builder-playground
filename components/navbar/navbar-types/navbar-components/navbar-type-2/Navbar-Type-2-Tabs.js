@@ -3,17 +3,9 @@ import React from "react";
 import { StyledLink } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { TabItem } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
-import { KeyboardArrowDown } from "@mui/icons-material";
 import { Tabs } from "@mui/material";
 
-
-const NavbarTabs2 = ({
-  tabValue,
-  navLinkStyles,
-  handleTabChange,
-  links,
-  handleOpenNavMenu,
-}) => {
+const NavbarTabs2 = ({ tabValue, navLinkStyles, handleTabChange, links }) => {
   return (
     <Tabs
       value={tabValue}
@@ -28,14 +20,9 @@ const NavbarTabs2 = ({
         <TabItem
           key={index}
           LinkComponent={StyledLink}
-          icon={link.showDropDown ? <KeyboardArrowDown /> : ""}
-          iconPosition={link.showDropDown ? "end" : "start"}
           href={link?.redirectLink}
           label={link?.innerText}
           sx={{ padding: 0, minHeight: "48px", width: "25%" }}
-          onClick={(event) =>
-            link.showDropDown && handleOpenNavMenu(event, index)
-          }
           {...navLinkStyles}
         />
       ))}

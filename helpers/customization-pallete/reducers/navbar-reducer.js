@@ -3,18 +3,13 @@ import {
   navEventTypes,
 } from "../../constants/event-types/event-types";
 
-import { navbarInitialLinkStylesState, navbarInitialLoginButtonStylesState, navbarInitialState } from "../initial-reducer-states/initial-navbar-state";
+import {
+  navbarInitialLinkStylesState,
+  navbarInitialLoginButtonStylesState,
+} from "../initial-reducer-states/initial-navbar-state";
 
 export const navFunctionalitiesReducer = (state, action) => {
-  let linkIndex,
-    navLink,
-    dropDownIndex,
-    dropDownInnerText,
-    dropDownRedirectLink,
-    dropDownLink,
-    innerText,
-    redirectLink,
-    updatedLinks;
+  let linkIndex, navLink, innerText, redirectLink, updatedLinks;
 
   updatedLinks = structuredClone(state.extraFunctionalities.links);
 
@@ -84,64 +79,6 @@ export const navFunctionalitiesReducer = (state, action) => {
         },
       };
 
-    case navEventTypes.navbarFunctionalities.CHANGEDROPDOWNVISIBILITY:
-      ({ linkIndex } = action.payload);
-      updatedLinks[linkIndex].showDropDown =
-        !updatedLinks[linkIndex].showDropDown;
-      return {
-        ...state,
-        extraFunctionalities: {
-          ...state.extraFunctionalities,
-          links: updatedLinks,
-        },
-      };
-
-    case navEventTypes.navbarFunctionalities.ADDROPDOWNLINK:
-      ({ linkIndex, dropDownLink } = action.payload);
-      updatedLinks[linkIndex].dropDown.push(dropDownLink);
-      return {
-        ...state,
-        extraFunctionalities: {
-          ...state.extraFunctionalities,
-          links: updatedLinks,
-        },
-      };
-
-    case navEventTypes.navbarFunctionalities.DELETEDROPDOWNLINK:
-      ({ linkIndex, dropDownIndex } = action.payload);
-      updatedLinks[linkIndex].dropDown.splice(dropDownIndex, 1);
-      return {
-        ...state,
-        extraFunctionalities: {
-          ...state.extraFunctionalities,
-          links: updatedLinks,
-        },
-      };
-
-    case navEventTypes.navbarFunctionalities.CHANGENAVDROPDOWNINNERTEXT:
-      ({ linkIndex, dropDownIndex, dropDownInnerText } = action.payload);
-      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownInnerText =
-        dropDownInnerText;
-      return {
-        ...state,
-        extraFunctionalities: {
-          ...state.extraFunctionalities,
-          links: updatedLinks,
-        },
-      };
-
-    case navEventTypes.navbarFunctionalities.CHANGENAVDROPDOWNLINK:
-      ({ linkIndex, dropDownIndex, dropDownRedirectLink } = action.payload);
-      updatedLinks[linkIndex].dropDown[dropDownIndex].dropDownRedirectLink =
-        dropDownRedirectLink;
-      return {
-        ...state,
-        extraFunctionalities: {
-          ...state.extraFunctionalities,
-          links: updatedLinks,
-        },
-      };
-
     case commonEventType.SETINITIALSTATE:
       return {
         ...state,
@@ -184,7 +121,8 @@ export const navStylesReducer = (state, action) => {
           navLinkStyles: {
             ...state.styles.navLinkStyles,
             fontStyle: action.payload,
-            fontWeight: navbarInitialLinkStylesState.styles.navLinkStyles.fontWeight,
+            fontWeight:
+              navbarInitialLinkStylesState.styles.navLinkStyles.fontWeight,
           },
         },
       };
@@ -197,7 +135,8 @@ export const navStylesReducer = (state, action) => {
           navLinkStyles: {
             ...state.styles.navLinkStyles,
             fontWeight: action.payload,
-            fontStyle: navbarInitialLinkStylesState.styles.navLinkStyles.fontStyle,
+            fontStyle:
+              navbarInitialLinkStylesState.styles.navLinkStyles.fontStyle,
           },
         },
       };
@@ -274,7 +213,9 @@ export const navLoginButtonStylesReducer = (state, action) => {
           loginButtonStyles: {
             ...state.styles.loginButtonStyles,
             fontStyle: action.payload,
-            fontWeight: navbarInitialLoginButtonStylesState.styles.loginButtonStyles.fontWeight,
+            fontWeight:
+              navbarInitialLoginButtonStylesState.styles.loginButtonStyles
+                .fontWeight,
           },
         },
       };
@@ -287,7 +228,9 @@ export const navLoginButtonStylesReducer = (state, action) => {
           loginButtonStyles: {
             ...state.styles.loginButtonStyles,
             fontWeight: action.payload,
-            fontStyle: navbarInitialLoginButtonStylesState.styles.loginButtonStyles.fontStyle,
+            fontStyle:
+              navbarInitialLoginButtonStylesState.styles.loginButtonStyles
+                .fontStyle,
           },
         },
       };

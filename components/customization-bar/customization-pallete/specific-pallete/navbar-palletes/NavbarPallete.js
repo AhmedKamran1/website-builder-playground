@@ -7,7 +7,7 @@ import {
   navEventTypes,
 } from "@/helpers/constants/event-types/event-types";
 
-import { Checkbox, Divider } from "@mui/material";
+import {  Divider } from "@mui/material";
 
 import { selectedComponentData } from "@/store/ComponentSlice";
 import {
@@ -23,7 +23,6 @@ import CommonPallete from "../../common-palletes/CollorPallete";
 import HoverColorPallete from "../../common-palletes/HoverColorPallete";
 import FontPallete from "../../common-palletes/FontPallete";
 import NavbarLinks from "./common-navbar-palletes/NavbarLinks";
-import NavbarDropDownLinks from "./common-navbar-palletes/NavbarDropDownLinks";
 
 import useDebouncedDispatch from "@/hooks/use-debounce";
 
@@ -125,32 +124,6 @@ const NavbarPallete = ({
                       dispatch={dispatch}
                     />
                   )} */}
-            <p style={{ fontWeight: "bold" }}>
-              Drop Down Menu
-              <Checkbox
-                checked={link.showDropDown}
-                onChange={() =>
-                  dispatchNavFunctionalitiesActions({
-                    type: navEventTypes.navbarFunctionalities
-                      .CHANGEDROPDOWNVISIBILITY,
-                    payload: {
-                      linkIndex: linkIndex,
-                    },
-                  })
-                }
-              />
-            </p>
-            {link.showDropDown &&
-              link.dropDown.map((sublink, sublinkIndex) => (
-                <NavbarDropDownLinks
-                  key={sublinkIndex}
-                  link={link}
-                  linkIndex={linkIndex}
-                  sublink={sublink}
-                  sublinkIndex={sublinkIndex}
-                  dispatch={dispatchNavFunctionalitiesActions}
-                />
-              ))}
             <Divider />
           </React.Fragment>
         )
