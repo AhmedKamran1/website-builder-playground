@@ -10,8 +10,26 @@ import { initialButtonComponentStyles } from "@/helpers/pre-defined-components-s
 import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
 import { initialSectionComponentStyles } from "@/helpers/pre-defined-components-styles/section-styles";
 
+import { addComponent, addNavbarComponent } from "@/store/ComponentActions";
+
 const TopBar = () => {
   const dispatch = useDispatch();
+
+  const addNavbarComponentHandler = (event, styles, extraFunctionalities) => {
+    dispatch(
+      addNavbarComponent({
+        componentType: ComponentEnum.NAVBAR,
+        navId: initialNavbarComponentStyles[event.target.value - 1].navId,
+        styles: structuredClone(
+          initialNavbarComponentStyles[event.target.value - 1].styles
+        ),
+        extraFunctionalities: structuredClone(
+          initialNavbarComponentStyles[event.target.value - 1]
+            .extraFunctionalities
+        ),
+      })
+    );
+  };
 
   const addComponentHandler = (
     event,
@@ -22,31 +40,16 @@ const TopBar = () => {
     switch (componentType) {
       case ComponentEnum.BUTTON:
         dispatch(
-          componentActions.addComponent({
+          addComponent({
             componentType: ComponentEnum.BUTTON,
             styles: styles,
             extraFunctionalities: extraFunctionalities,
           })
         );
         break;
-      case ComponentEnum.NAVBAR:
-        dispatch(
-          componentActions.addComponent({
-            componentType: ComponentEnum.NAVBAR,
-            navId: initialNavbarComponentStyles[event.target.value - 1].navId,
-            styles: structuredClone(
-              initialNavbarComponentStyles[event.target.value - 1].styles
-            ),
-            extraFunctionalities: structuredClone(
-              initialNavbarComponentStyles[event.target.value - 1]
-                .extraFunctionalities
-            ),
-          })
-        );
-        break;
       case ComponentEnum.SECTION:
         dispatch(
-          componentActions.addComponent({
+          addComponent({
             componentType: ComponentEnum.SECTION,
             secId: initialSectionComponentStyles[event.target.value - 1].secId,
             styles: structuredClone(
@@ -85,17 +88,12 @@ const TopBar = () => {
       ))}
       <div>
         <span>Navbar Types:</span>
-        <select
-          defaultValue="none"
-          onChange={(event) =>
-            addComponentHandler(event, null, null, ComponentEnum.NAVBAR)
-          }
-        >
+        <select defaultValue="none" onChange={addNavbarComponentHandler}>
           <option value="none" disabled hidden>
             Select an Option
           </option>
           <option value="1">Nav with Title and logo</option>
-          <option value="2">Simple Nav</option>
+          <option value="2">Simple Nav with Drawer</option>
         </select>
       </div>
       <div>

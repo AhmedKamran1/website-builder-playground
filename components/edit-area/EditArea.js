@@ -8,19 +8,24 @@ import * as Styled from "../../styles/pre-defined-components/button/button";
 
 import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";
-import { componentData, componentId } from "@/store/ComponentSlice";
+import {
+  componentData,
+  componentId,
+  pageComponents,
+} from "@/store/ComponentSlice";
 import Navbar from "../navbar/Navbar";
 import SectionType1 from "../section/section-types/Section-Type-1";
 import Section from "../section/Section";
 
 const EditArea = () => {
   const selectedComponentId = useSelector(componentId);
-  const components = useSelector(componentData);
+  const allComponentData = useSelector(componentData);
+  const components = useSelector(pageComponents);
   const dispatch = useDispatch();
 
-  const componentPostHandler = () => {
-    console.log(components);
-  };
+  // const componentPostHandler = () => {
+  //   console.log(components);
+  // };
 
   const componentSelectionHandler = (componentData) => {
     dispatch(
@@ -31,8 +36,8 @@ const EditArea = () => {
   };
 
   const renderComponent = (componentData, styles, extraFunctionalities) => {
-    const isFocused = selectedComponentId === componentData.id;
-    switch (componentData.componentType) {
+    const isFocused = selectedComponentId === componentData?.id;
+    switch (componentData?.componentType) {
       case ComponentEnum.BUTTON:
         return (
           // <Link href={extraFunctionalities.redirectLink ?? ""}>
@@ -76,19 +81,27 @@ const EditArea = () => {
   };
 
   return (
+    // <EditAreaStyles.EditAreaContainer item xs={10}>
+    //   {components.map((data, index) => (
+    //     <React.Fragment key={index}>
+    //       {renderComponent(
+    //         data,
+    //         data.styles,
+    //         data.extraFunctionalities,
+    //         index + 1
+    //       )}
+    //     </React.Fragment>
+    //   ))}
+    // </EditAreaStyles.EditAreaContainer>
     <EditAreaStyles.EditAreaContainer item xs={10}>
-      {/* <button style={{ marginBottom: "5rem" }} onClick={componentPostHandler}>
-        Post
-      </button>
-      <br /> */}
+      {renderComponent(
+        allComponentData.navbarComponent,
+        allComponentData.navbarComponent.styles,
+        allComponentData.navbarComponent.extraFunctionalities
+      )}
       {components.map((data, index) => (
         <React.Fragment key={index}>
-          {renderComponent(
-            data,
-            data.styles,
-            data.extraFunctionalities,
-            index + 1
-          )}
+          {renderComponent(data, data.styles, data.extraFunctionalities)}
         </React.Fragment>
       ))}
     </EditAreaStyles.EditAreaContainer>

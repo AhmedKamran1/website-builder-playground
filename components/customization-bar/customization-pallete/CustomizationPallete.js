@@ -28,6 +28,10 @@ import {
   navLoginButtonStylesReducer,
   navStylesReducer,
 } from "@/helpers/customization-pallete/reducers/navbar-reducer";
+import {
+  updateComponent,
+  updateNavbarComponent,
+} from "@/store/ComponentActions";
 
 const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
@@ -61,9 +65,9 @@ const BottomBar = () => {
     [selectedComponent]
   );
 
-  const storeDispatchHandler = useCallback((stateType) => {
+  const storeDispatchHandler = useCallback((stateType, updateActionType) => {
     dispatchStore(
-      componentActions.updateComponent({
+      updateActionType({
         modifiedStyles: structuredClone(stateType.styles),
         extraFunctionalities: structuredClone(stateType.extraFunctionalities),
       })
@@ -74,7 +78,7 @@ const BottomBar = () => {
     let navState;
     switch (selectedComponentType) {
       case ComponentEnum.BUTTON:
-        storeDispatchHandler(buttonState);
+        storeDispatchHandler(buttonState, updateComponent);
         break;
       case ComponentEnum.NAVBAR:
         navState = {
@@ -85,7 +89,7 @@ const BottomBar = () => {
           },
           extraFunctionalities: navFunctionalitiesState.extraFunctionalities,
         };
-        storeDispatchHandler(navState);
+        storeDispatchHandler(navState, updateNavbarComponent);
         break;
       default:
         break;
