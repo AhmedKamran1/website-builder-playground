@@ -1,10 +1,6 @@
 import Link from "next/link";
 
-import {
-  AppBar,
-  Typography,
-  styled,
-} from "@mui/material";
+import { AppBar, Avatar, Typography, styled } from "@mui/material";
 
 import { baseFontSizes } from "@/helpers/font-sizes/font-sizes";
 
@@ -32,4 +28,11 @@ export const NavigationBar = styledWithoutProps(
 
 export const StyledLink = styled(Link)(() => ({
   all: "unset",
+}));
+
+export const NavbarLogo = styledWithoutProps(Avatar, ({ theme }) => ({
+  height: "55px",
+  width: "55px",
+  backgroundColor: "transparent",
+  marginRight:"15px"
 }));

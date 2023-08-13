@@ -42,11 +42,7 @@ const NavbarDrawer2 = ({
             </React.Fragment>
           ))}
         </List>
-        <StyledButton
-          variant="contained"
-          sx={{ ml: -1.5 }}
-          {...loginButtonStyles}
-        >
+        <StyledButton variant="contained" {...loginButtonStyles}>
           Login
         </StyledButton>
       </ResponsiveContainer>

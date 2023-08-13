@@ -1,6 +1,15 @@
-import { styled, Toolbar, Container, ListItemText, Tab, ListItemButton } from "@mui/material";
+import {
+  styled,
+  Toolbar,
+  Container,
+  ListItemText,
+  Tab,
+  ListItemButton,
+  Avatar,
+} from "@mui/material";
 
 import { styledWithoutProps } from "../../ignoredProps";
+import { NavbarLogo } from "../navbar-common-styles";
 
 export const NavToolBar = styled(Toolbar)(({ theme }) => ({
   width: "60%",
@@ -17,6 +26,7 @@ export const NavToolBar = styled(Toolbar)(({ theme }) => ({
 export const FullViewContainer = styled(Container)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
+  alignItems: "center",
   [theme.breakpoints.down("md")]: {
     justifyContent: "flex-start",
   },
@@ -70,3 +80,9 @@ export const TabItem = styledWithoutProps(
     },
   })
 );
+
+export const NavbarLogo2 = styledWithoutProps(NavbarLogo, ({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    marginLeft: "auto",
+  },
+}));
