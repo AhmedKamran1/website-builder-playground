@@ -12,6 +12,8 @@ import NavbarToolbar2 from "./Navbar-Type-2-Toolbar";
 import NavbarDrawer2 from "./Navbar-Type-2-Drawer";
 import Image from "next/image";
 
+import tempPhoto from "../../../../../assets/bgpic.jpg"
+
 const NavbarComponents2 = ({
   navLinkStyles,
   loginButtonStyles,
@@ -36,7 +38,7 @@ const NavbarComponents2 = ({
           <MenuIcon />
         </IconButton>
         <NavbarLogo2 alt="Remy Sharp">
-          <Image src={logo} alt="some text" fill />
+          <Image src={logo || tempPhoto} alt="some text" fill sizes="50px" />
         </NavbarLogo2>
         <NavbarToolbar2
           navLinkStyles={navLinkStyles}

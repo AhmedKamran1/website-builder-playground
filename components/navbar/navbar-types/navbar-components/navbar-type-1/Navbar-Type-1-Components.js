@@ -13,6 +13,8 @@ import NavbarResponsiveBox1 from "./Navbar-Type-1-RespBox";
 import NavbarFullViewBox1 from "./Navbar-Type-1-FullViewBox";
 import Image from "next/image";
 
+import tempPhoto from "../../../../../assets/bgpic.jpg";
+
 const NavbarComponents1 = ({
   navLinkStyles,
   loginButtonStyles,
@@ -21,8 +23,13 @@ const NavbarComponents1 = ({
   return (
     <Toolbar disableGutters>
       <NavbarResponsiveBox1 links={extraFunctionalities.links} />
-      <NavbarLogo alt="Remy Sharp">
-        <Image src={extraFunctionalities?.logo} alt="some text" fill />
+      <NavbarLogo>
+        <Image
+          src={extraFunctionalities?.logo || tempPhoto}
+          alt="some text"
+          fill
+          sizes="50px"
+        />
       </NavbarLogo>
       <ResponsiveTitleText
         variant="subHeader"

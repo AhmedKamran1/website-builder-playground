@@ -7,7 +7,7 @@ import {
   NavEventTypesEnum,
 } from "@/helpers/constants/event-types/event-types";
 
-import {  Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 
 import { selectedComponentData } from "@/store/ComponentSlice";
 import {
@@ -25,6 +25,8 @@ import FontPallete from "../../common-palletes/FontPallete";
 import NavbarLinks from "./common-navbar-palletes/NavbarLinks";
 
 import useDebouncedDispatch from "@/hooks/use-debounce";
+
+import NavbarImage from "./common-navbar-palletes/NavbarImage";
 
 const NavbarPallete = ({
   navFunctionalitiesState,
@@ -58,6 +60,7 @@ const NavbarPallete = ({
           dispatch={dispatchNavFunctionalitiesActions}
         />
       )}
+      <NavbarImage dispatch={dispatchNavFunctionalitiesActions} />
       <Divider />
       {/* NAVBAR LOGIN BUTTON PALLETE */}
       <strong>Pallete for login button</strong>
@@ -71,17 +74,20 @@ const NavbarPallete = ({
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
         changeHoverColor={
-          NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR
+          NavEventTypesEnum.navbarLoginButtonStyles
+            .CHANGENAVLOGINBUTTONHOVERCOLOR
         }
       />
       <FontPallete
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
         changeFontWeight={
-          NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT
+          NavEventTypesEnum.navbarLoginButtonStyles
+            .CHANGENAVLOGINBUTTONFONTWEIGHT
         }
         changeFontStyle={
-          NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE
+          NavEventTypesEnum.navbarLoginButtonStyles
+            .CHANGENAVLOGINBUTTONFONTSTYLE
         }
         fontPalleteName="loginButtonStyles"
       />
