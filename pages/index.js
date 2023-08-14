@@ -1,8 +1,11 @@
-import { getComponents } from "@/store/ComponentActions";
+import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
+import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
+import { addNavbarComponent, getComponents } from "@/store/ComponentActions";
 import { componentData } from "@/store/ComponentSlice";
 import { componentActions } from "@/store/store";
 import { Container } from "@mui/material";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
@@ -14,9 +17,22 @@ function HomePage() {
   const pageSelectionHandler = (pageName) => {
     dispatch(componentActions.resetComponents());
     dispatch(getComponents(pageName)).then(() => {
-      router.push("/editing-area");
+      router.push("/editing-area", null, { shallow: true });
     });
   };
+
+  useEffect(() => {
+    dispatch(
+      addNavbarComponent({
+        componentType: ComponentEnum.NAVBAR,
+        navId: initialNavbarComponentStyles[0].navId,
+        styles: structuredClone(initialNavbarComponentStyles[0].styles),
+        extraFunctionalities: structuredClone(
+          initialNavbarComponentStyles[0].extraFunctionalities
+        ),
+      })
+    );
+  }, []);
 
   return (
     <Container>

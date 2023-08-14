@@ -1,7 +1,7 @@
 import * as TempStyles from "../../../styles/customization-bar/TopBar";
 import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";
 
 import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
@@ -11,9 +11,11 @@ import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-s
 import { initialSectionComponentStyles } from "@/helpers/pre-defined-components-styles/section-styles";
 
 import { addComponent, addNavbarComponent } from "@/store/ComponentActions";
+import { saveStatus } from "@/store/ComponentSlice";
 
 const TopBar = () => {
   const dispatch = useDispatch();
+  const status = useSelector(saveStatus);
 
   const addNavbarComponentHandler = (event, styles, extraFunctionalities) => {
     dispatch(
@@ -110,6 +112,7 @@ const TopBar = () => {
           <option value="1">Image with text</option>
         </select>
       </div>
+      <h3>{status}</h3>
     </TempStyles.TopBarGridContainer>
   );
 };
