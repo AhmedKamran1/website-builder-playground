@@ -34,7 +34,6 @@
 - how to keep templates area design and functionality wise? // TO ASK
 - dom warning fix to ask better approach props!=="colorHex"// TO ASK
 - name clashings when too many subcomponents of navbar types // TO ASK
-- how tooltip should work? // TO ASK
 - how sections should be added? // TO ASK
 
 # To resolve
@@ -48,8 +47,9 @@
 # Later
 
 - navbar replace but other components add base on their type
-- add tooltip of focused component
+- add tooltip of focused component and how should it work
 - template when added so edit area should not whole rerender. just only the added component should render. or any other better approach
+- optimize next images
 
 # New to fixes
 
@@ -64,4 +64,6 @@
 # ASK
 
 - what will happen to componentId? we are using it for handling selected components and if we add dummy components then issue happens
+- what will happen to sectionId and NavId?
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
+- images should have alt text and redirect link?
