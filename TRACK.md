@@ -20,6 +20,7 @@
 - fix shouldforwardprop on every component to a helper function //DONE
 
 # TO ASK
+
 - optimal way for common states and their constant??? TO ASK
 - drawer alignment issue and nav2 alignment issue?? TO ASK
 - ux issues of nav1 and nav2 like when dropdown enable what to happen main link should work or not etc and focusing?? TO ASK
@@ -50,22 +51,17 @@
 - add tooltip of focused component
 - template when added so edit area should not whole rerender. just only the added component should render. or any other better approach
 
-AIzaSyAsxy6OklUuxBjHnNlcdkhfvDEBsm3IEes
-
-
 # New to fixes
 
 - navState break states into multiple states for easibility //DONE
 - enums to be named properly //Done
 - remove dropdowns completely //DONE
-- (async thunk)function to send updated component data to api and function to send add component data to api(different thunks for nav and page component which includes add/update reducers)  
-- pagename and website id work
-- fix simple nav tabs to be buttons and add logo with alt text and option to upload image 
+- what to add in some cases of pending and fullfilled? (isSaved) // DONE
+- (async thunk)function to send updated component data to api and function to send add component data to api(different thunks for nav and page component which includes add/update reducers) //DONE
+- pagename and website id work //DONE
+- fix simple nav tabs to be buttons and add logo with alt text and option to upload image
 
 # ASK
-- default behaviour implementation and code design if editing area is directly accessed?
-- what to add in some cases of pending and fullfilled?
-- what will happen to componentId? we are using it for handling selected components
-- navbar should be pre-added? pages wont be visible then if not added. and how will we fetch navbar on initial load if not pre-added? if pre-add then what approach to use?
-- page components pre-added?
-- templates in db why? pre-fetch and ssr why required?
+
+- what will happen to componentId? we are using it for handling selected components and if we add dummy components then issue happens
+- default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
