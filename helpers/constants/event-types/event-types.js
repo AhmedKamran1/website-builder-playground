@@ -47,3 +47,11 @@ export const NavEventTypesEnum = {
     CHANGENAVLOGINBUTTONFONTSTYLE: "changeNavLoginButtonFontStyle",
   },
 };
+
+export const SectionEventTypesEnum = {
+  sectionFunctionalities: {},
+  headingStyles: {},
+  paragraphStyles: {},
+  imageStyles: {},
+  sectionStyles: {},
+};

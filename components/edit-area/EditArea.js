@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
 
@@ -13,8 +12,9 @@ import {
   componentId,
   pageComponents,
 } from "@/store/ComponentSlice";
+
 import Navbar from "../navbar/Navbar";
-import SectionType1 from "../section/section-types/Section-Type-1";
+
 import Section from "../section/Section";
 
 const EditArea = () => {
@@ -22,10 +22,6 @@ const EditArea = () => {
   const allComponentData = useSelector(componentData);
   const components = useSelector(pageComponents);
   const dispatch = useDispatch();
-
-  // const componentPostHandler = () => {
-  //   console.log(components);
-  // };
 
   const componentSelectionHandler = (componentData) => {
     dispatch(
@@ -40,7 +36,6 @@ const EditArea = () => {
     switch (componentData?.componentType) {
       case ComponentEnum.BUTTON:
         return (
-          // <Link href={extraFunctionalities.redirectLink ?? ""}>
           <Styled.StyledButton
             variant="contained"
             {...styles}
@@ -49,7 +44,6 @@ const EditArea = () => {
           >
             {extraFunctionalities.innerText ?? "Button"}
           </Styled.StyledButton>
-          // </Link>
         );
       case ComponentEnum.NAVBAR:
         return (
@@ -81,18 +75,6 @@ const EditArea = () => {
   };
 
   return (
-    // <EditAreaStyles.EditAreaContainer item xs={10}>
-    //   {components.map((data, index) => (
-    //     <React.Fragment key={index}>
-    //       {renderComponent(
-    //         data,
-    //         data.styles,
-    //         data.extraFunctionalities,
-    //         index + 1
-    //       )}
-    //     </React.Fragment>
-    //   ))}
-    // </EditAreaStyles.EditAreaContainer>
     <EditAreaStyles.EditAreaContainer item xs={10}>
       {renderComponent(
         allComponentData.navbarComponent,

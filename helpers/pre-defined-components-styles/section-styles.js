@@ -3,6 +3,7 @@ export const headingStyles = {
   fontWeight: "",
   fontStyle: "",
   fontFamily: "",
+  textAlign: "center",
 };
 
 export const paragraphStyles = {
@@ -10,14 +11,32 @@ export const paragraphStyles = {
   fontWeight: "",
   fontStyle: "",
   fontFamily: "",
+  textAlign: "center",
 };
 
-export const sectionStyles = {
+export const blockStyles = {
   backgroundColor: "#000000",
+  flexDirection: "",
 };
 
 export const imageStyles = {
   borderRadius: "2%",
+};
+
+export const textFunctionalities = {
+  headingText: "This is a heading",
+  paragraphText: "This is a paragraph",
+};
+
+export const imageFunctionalities = {
+  image: "",
+  imageRedirectLink: "https://",
+  imageAltText: "Enter Text about image",
+};
+
+export const gridItem = {
+  textFunctionalities: textFunctionalities,
+  imageFunctionalities: imageFunctionalities,
 };
 
 export const initialSectionComponentStyles = [
@@ -27,14 +46,34 @@ export const initialSectionComponentStyles = [
       headingStyles: headingStyles,
       paragraphStyles: paragraphStyles,
       imageStyles: imageStyles,
-      sectionStyles: sectionStyles,
+      blockStyles: blockStyles,
     },
     extraFunctionalities: {
-      headingText: "Im HEading",
-      paragraphText: "hello how u are",
-      image: "",
-      imageRedirectLink: "",
-      imageAltText: "",
+      textFunctionalities: textFunctionalities,
+      imageFunctionalities: imageFunctionalities,
+    },
+  },
+  {
+    secId: "2",
+    styles: {
+      headingStyles: headingStyles,
+      paragraphStyles: paragraphStyles,
+      blockStyles: blockStyles,
+    },
+    extraFunctionalities: {
+      textFunctionalities: textFunctionalities,
+    },
+  },
+  {
+    secId: "3",
+    styles: {
+      headingStyles: headingStyles,
+      paragraphStyles: paragraphStyles,
+      imageStyles: imageStyles,
+      blockStyles: blockStyles,
+    },
+    extraFunctionalities: {
+      gridItems: [gridItem, gridItem, gridItem],
     },
   },
 ];

@@ -2,7 +2,6 @@ import * as TempStyles from "../../../styles/customization-bar/TopBar";
 import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
 
 import { useDispatch, useSelector } from "react-redux";
-import { componentActions } from "@/store/store";
 
 import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
 
@@ -110,6 +109,8 @@ const TopBar = () => {
             Select an Option
           </option>
           <option value="1">Image with text</option>
+          <option value="2">Heading and Paragraph</option>
+          <option value="3">Grid Images with description</option>
         </select>
       </div>
       <h3>{status}</h3>

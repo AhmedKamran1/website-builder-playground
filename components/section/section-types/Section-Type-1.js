@@ -1,4 +1,7 @@
-import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { Avatar, Box, Container } from "@mui/material";
 import React from "react";
 
@@ -8,13 +11,15 @@ const SectionType1 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { sectionStyles, headingStyles, paragraphStyles, imageStyles } = styles;
+  const { blockStyles, headingStyles, paragraphStyles, imageStyles } = styles;
+  const { textFunctionalities, imageFunctionalities } = extraFunctionalities;
+  const { headingText, paragraphText } = textFunctionalities;
+  const { image, imageRedirectLink, imageAltText } = imageFunctionalities;
 
   return (
     <Container
       onClick={componentSelectionHandler}
       isfocused={isfocused}
-      backgroundColor={sectionStyles.backgroundColor}
       sx={{
         minHeight: "400px",
         border: "1px solid red",
@@ -33,16 +38,16 @@ const SectionType1 = ({
           alignItems: "center",
         }}
       >
-        <Box>
-          <ResponsiveText variant="header">
-            {extraFunctionalities?.headingText}
-          </ResponsiveText>
-        </Box>
-        <Box>
-          <ResponsiveText variant="body">
-            {extraFunctionalities?.paragraphText}
-          </ResponsiveText>
-        </Box>
+        {headingText && (
+          <Box>
+            <ResponsiveText variant="header">{headingText}</ResponsiveText>
+          </Box>
+        )}
+        {paragraphText && (
+          <Box>
+            <ResponsiveText variant="body">{paragraphText}</ResponsiveText>
+          </Box>
+        )}
       </Box>
       <Box
         sx={{
@@ -52,13 +57,16 @@ const SectionType1 = ({
           alignItems: "center",
         }}
       >
-        <Avatar
-          src={extraFunctionalities?.image}
-          sx={{
-            height: "90%",
-            width: "50%",
-          }}
-        />
+        <StyledLink href={imageRedirectLink}>
+          <Avatar
+            src={image}
+            alt={imageAltText}
+            sx={{
+              height: "90%",
+              width: "50%",
+            }}
+          />
+        </StyledLink>
       </Box>
     </Container>
   );

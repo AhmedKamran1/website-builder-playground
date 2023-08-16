@@ -19,14 +19,14 @@ import { NavbarLengthEnum } from "@/helpers/constants/component-child-lengths/co
 import NavbarPallete1 from "./navbar-pallete-type-1/Navbar-Pallete-Type-1";
 import NavbarPallete2 from "./navbar-pallete-type-2/Navbar-Pallete-Type-2";
 
-import CommonPallete from "../../common-palletes/CollorPallete";
+import CollorPallete from "../../common-palletes/CollorPallete";
 import HoverColorPallete from "../../common-palletes/HoverColorPallete";
 import FontPallete from "../../common-palletes/FontPallete";
 import NavbarLinks from "./common-navbar-palletes/NavbarLinks";
 
 import useDebouncedDispatch from "@/hooks/use-debounce";
 
-import NavbarImage from "./common-navbar-palletes/NavbarImage";
+import ImagePallete from "../../common-palletes/ImagePallete";
 
 const NavbarPallete = ({
   navFunctionalitiesState,
@@ -60,11 +60,11 @@ const NavbarPallete = ({
           dispatch={dispatchNavFunctionalitiesActions}
         />
       )}
-      <NavbarImage dispatch={dispatchNavFunctionalitiesActions} />
+      <ImagePallete dispatch={dispatchNavFunctionalitiesActions} />
       <Divider />
       {/* NAVBAR LOGIN BUTTON PALLETE */}
       <strong>Pallete for login button</strong>
-      <CommonPallete
+      <CollorPallete
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
@@ -95,7 +95,7 @@ const NavbarPallete = ({
 
       {/* NAVBAR PALLETE */}
       <strong>Pallete for navbar</strong>
-      <CommonPallete
+      <CollorPallete
         state={navLinkStyles}
         dispatch={debounceNavStylesActions}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}

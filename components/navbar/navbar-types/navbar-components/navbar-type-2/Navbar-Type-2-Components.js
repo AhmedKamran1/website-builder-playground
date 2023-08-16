@@ -5,7 +5,7 @@ import {
   NavbarLogo2,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
-import { Avatar, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import NavbarToolbar2 from "./Navbar-Type-2-Toolbar";

@@ -50,6 +50,7 @@
 - add tooltip of focused component and how should it work
 - template when added so edit area should not whole rerender. just only the added component should render. or any other better approach
 - optimize next images
+- font bold, italic on selection just like teachable
 
 # New to fixes
 
@@ -67,3 +68,4 @@
 - what will happen to sectionId and NavId?
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
 - images should have alt text and redirect link?
+- navbar pre-fetch problem?

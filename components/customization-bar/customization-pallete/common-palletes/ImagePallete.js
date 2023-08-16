@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavEventTypesEnum } from "@/helpers/constants/event-types/event-types";
 
-const NavbarLogo = ({ dispatch }) => {
+const ImagePallete = ({ dispatch }) => {
   //TITLE AND IMAGE
   const [imageFile, setImageFile] = useState(null);
 
@@ -44,4 +44,4 @@ const NavbarLogo = ({ dispatch }) => {
   );
 };
 
-export default NavbarLogo;
+export default ImagePallete;
