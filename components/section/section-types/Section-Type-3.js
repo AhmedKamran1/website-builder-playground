@@ -2,6 +2,10 @@ import React from "react";
 
 import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { Avatar, Box, Container, Grid } from "@mui/material";
+import {
+  GridItem3,
+  SectionContainer3,
+} from "@/styles/pre-defined-components/section/section-styled-types/section-type-3-styles";
 
 const SectionType3 = ({
   extraFunctionalities,
@@ -10,48 +14,59 @@ const SectionType3 = ({
   styles,
 }) => {
   const { blockStyles, headingStyles, paragraphStyles, imageStyles } = styles;
-  const { gridItems } = extraFunctionalities;
+  const { imageGridFunctionalities } = extraFunctionalities;
 
   return (
-    <Container maxWidth="false" sx={{ border: "1px solid red" }}>
+    <SectionContainer3
+      onClick={componentSelectionHandler}
+      isfocused={isfocused}
+      maxWidth="false"
+      backgroundColor={blockStyles.backgroundColor}
+    >
       <Container maxWidth="md">
-        <Grid container spacing={2} columns={{ xs: 1, sm: 6, md: 12 }}>
-          {gridItems.map(
+        <Grid
+          justifyContent="space-evenly"
+          container
+          spacing={2}
+          columns={{ xs: 1, sm: 6, md: 12 }}
+        >
+          {imageGridFunctionalities.map(
             ({ textFunctionalities, imageFunctionalities }, index) => (
               <Grid item xs={1} sm={3} md={4} key={index}>
-                <Box
-                  sx={{
-                    minHeight: "250px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "12px",
-                  }}
-                >
-                  <Box sx={{ height: "200px", width: "100%" }}>
+                <GridItem3>
+                  <Box sx={{ height: "220px", width: "100%" }}>
                     <Avatar
-                      sx={{ height: "100%", width: "100%", borderRadius: "2%" }}
+                      src={imageFunctionalities.image}
+                      sx={{
+                        height: "100%",
+                        width: "100%",
+                        borderRadius: `${imageStyles.borderRadius}%`,
+                      }}
                     />
                   </Box>
-                  <Box textAlign="center">
-                    <ResponsiveText variant="header">
-                      This is heading
+                  <Box textAlign={headingStyles.textAlign}>
+                    <ResponsiveText
+                      variant="subHeader"
+                      colorHex={headingStyles.colorHex}
+                    >
+                      {textFunctionalities.headingText}
                     </ResponsiveText>
                   </Box>
-                  <Box textAlign="center">
-                    <ResponsiveText variant="body">
-                      This is paragraphThis is paragraphThis is paragraphThis is
-                      paragraphThis is paragraphThis is paragraphThis is
-                      paragraphThis is paragraphThis is paragraphThis is
+                  <Box textAlign={paragraphStyles.textAlign}>
+                    <ResponsiveText
+                      variant="mainBody"
+                      colorHex={paragraphStyles.colorHex}
+                    >
+                      {textFunctionalities.paragraphText}
                     </ResponsiveText>
                   </Box>
-                </Box>
+                </GridItem3>
               </Grid>
             )
           )}
         </Grid>
       </Container>
-    </Container>
+    </SectionContainer3>
   );
 };
 
