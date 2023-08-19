@@ -49,9 +49,38 @@ export const NavEventTypesEnum = {
 };
 
 export const SectionEventTypesEnum = {
-  sectionFunctionalities: {},
-  headingStyles: {},
-  paragraphStyles: {},
-  imageStyles: {},
-  sectionStyles: {},
+  sectionTextFunctionalities: {
+    CHANGEHEADINGTEXT: "changeHeadingText",
+    CHANGEPARAGRAPHTEXT: "changeParagraphText",
+  },
+  sectionImageFunctionalities: {
+    CHANGEIMAGE: "changeImage",
+    CHANGEIMAGEREDIRECTLINK: "changeImageRedirectLink",
+    CHANGEIMAGEALTTEXT: "changeImageAltText",
+  },
+  sectionGridImageFunctionalities: {
+    CHANGEGRIDIMAGE: "changeImage",
+    CHANGEGRIDIMAGEREDIRECTLINK: "changeImageRedirectLink",
+    CHANGEGRIDIMAGEALTTEXT: "changeImageAltText",
+    ADDGRIDIMAGE: "addGridImage",
+    DELETEGRIDIMAGE: "deleteGridImage",
+    CHANGEGRIDHEADINGTEXT: "changeGridHeadingText",
+    CHANGEGRIDPARAGRAPHTEXT: "changeGridParagraphText",
+  },
+  headingStyles: {
+    CHANGEHEADINGTEXTALIGNMENT: "changeTextAlignment",
+    CHANGEHEADINGFONTWEIGHT: "changeFontWeight",
+    CHANGEHEADINGFONTSTYLE: "changeFontStyle",
+  },
+  paragraphStyles: {
+    CHANGEPARAGRAPHTEXTALIGNMENT: "changeTextAlignment",
+    CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
+    CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
+  },
+  imageStyles: {
+    CHANGEIMAGEBORDERADIUS: "changeImageBorderRadius",
+  },
+  blockStyles: {
+    CHANGEFLEXDIRECTION: "changeFlexDirection",
+  },
 };

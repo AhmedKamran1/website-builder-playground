@@ -16,11 +16,11 @@ export const paragraphStyles = {
 
 export const blockStyles = {
   backgroundColor: "#000000",
-  flexDirection: "",
+  flexDirection: "row",
 };
 
 export const imageStyles = {
-  borderRadius: "2%",
+  borderRadius: 1,
 };
 
 export const textFunctionalities = {
@@ -34,7 +34,7 @@ export const imageFunctionalities = {
   imageAltText: "Enter Text about image",
 };
 
-export const gridItem = {
+export const gridImageItem = {
   textFunctionalities: textFunctionalities,
   imageFunctionalities: imageFunctionalities,
 };
@@ -73,7 +73,11 @@ export const initialSectionComponentStyles = [
       blockStyles: blockStyles,
     },
     extraFunctionalities: {
-      gridItems: [gridItem, gridItem, gridItem],
+      imageGridFunctionalities: [
+        structuredClone(gridImageItem),
+        structuredClone(gridImageItem),
+        structuredClone(gridImageItem),
+      ],
     },
   },
 ];
