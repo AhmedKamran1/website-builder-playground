@@ -1,7 +1,11 @@
 import React from "react";
 
 import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
+import {
+  SectionContainer2,
+  SectionTextBox2,
+} from "@/styles/pre-defined-components/section/section-styled-types/section-type-2-styles";
 
 const SectionType2 = ({
   extraFunctionalities,
@@ -9,30 +13,30 @@ const SectionType2 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { headingStyles, paragraphStyles } = styles;
+  const { headingStyles, paragraphStyles, blockStyles } = styles;
   const { textFunctionalities } = extraFunctionalities;
   const { headingText, paragraphText } = textFunctionalities;
 
   return (
-    <Container
+    <SectionContainer2
+      onClick={componentSelectionHandler}
+      isfocused={isfocused}
       maxWidth={false}
-      sx={{
-        minHeight: "400px",
-        border: "1px solid red",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "15px",
-      }}
+      backgroundColor={blockStyles.backgroundColor}
     >
-      <Box maxWidth="600px" textAlign="center" fontSize="2.5rem">
-        <ResponsiveText variant="header">{headingText}</ResponsiveText>
-      </Box>
-      <Box maxWidth="800px" textAlign="center">
-        <ResponsiveText variant="body">{paragraphText}</ResponsiveText>
-      </Box>
-    </Container>
+      <SectionTextBox2>
+        <Box textAlign={headingStyles.textAlign}>
+          <ResponsiveText variant="header" colorHex={headingStyles.colorHex}>
+            {headingText}
+          </ResponsiveText>
+        </Box>
+        <Box textAlign={paragraphStyles.textAlign}>
+          <ResponsiveText variant="mainBody" colorHex={paragraphStyles.colorHex}>
+            {paragraphText}
+          </ResponsiveText>
+        </Box>
+      </SectionTextBox2>
+    </SectionContainer2>
   );
 };
 
