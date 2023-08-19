@@ -2,7 +2,12 @@ import {
   ResponsiveText,
   StyledLink,
 } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-import { Avatar, Box, Container } from "@mui/material";
+import {
+  SectionContainer1,
+  SectionImageBox1,
+  SectionTextBox1,
+} from "@/styles/pre-defined-components/section/section-styled-types/section-type-1-styles";
+import { Avatar, Box } from "@mui/material";
 import React from "react";
 
 const SectionType1 = ({
@@ -17,58 +22,43 @@ const SectionType1 = ({
   const { image, imageRedirectLink, imageAltText } = imageFunctionalities;
 
   return (
-    <Container
+    <SectionContainer1
       onClick={componentSelectionHandler}
       isfocused={isfocused}
-      sx={{
-        minHeight: "400px",
-        border: "1px solid red",
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-      }}
       maxWidth={false}
+      backgroundColor={blockStyles.backgroundColor}
+      flexDirection={blockStyles.flexDirection}
     >
-      <Box
-        sx={{
-          width: "45%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <SectionTextBox1>
         {headingText && (
-          <Box>
-            <ResponsiveText variant="header">{headingText}</ResponsiveText>
+          <Box textAlign={headingStyles.textAlign}>
+            <ResponsiveText variant="header" colorHex={headingStyles.colorHex}>
+              {headingText}
+            </ResponsiveText>
           </Box>
         )}
         {paragraphText && (
-          <Box>
-            <ResponsiveText variant="body">{paragraphText}</ResponsiveText>
+          <Box textAlign={paragraphStyles.textAlign}>
+            <ResponsiveText variant="mainBody" colorHex={paragraphStyles.colorHex}>
+              {paragraphText}
+            </ResponsiveText>
           </Box>
         )}
-      </Box>
-      <Box
-        sx={{
-          width: "45%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      </SectionTextBox1>
+      <SectionImageBox1>
         <StyledLink href={imageRedirectLink}>
           <Avatar
             src={image}
             alt={imageAltText}
             sx={{
-              height: "90%",
-              width: "50%",
+              height: "100%",
+              width: "100%",
+              borderRadius: `${imageStyles.borderRadius}%`,
             }}
           />
         </StyledLink>
-      </Box>
-    </Container>
+      </SectionImageBox1>
+    </SectionContainer1>
   );
 };
 
