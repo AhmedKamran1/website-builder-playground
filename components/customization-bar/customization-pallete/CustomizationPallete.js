@@ -11,7 +11,6 @@ import {
   componentType,
   selectedComponentData,
 } from "@/store/ComponentSlice";
-import { componentActions } from "@/store/store";
 
 import ButtonPallete from "./specific-pallete/ButtonPallete";
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
@@ -32,12 +31,33 @@ import {
   updateComponent,
   updateNavbarComponent,
 } from "@/store/ComponentActions";
+import {
+  sectionBlockStylesReducer,
+  sectionGridImageReducer,
+  sectionHeadingStylesReducer,
+  sectionImageReducer,
+  sectionImageStylesReducer,
+  sectionParagraphStylesReducer,
+  sectionTextReducer,
+} from "@/helpers/customization-pallete/reducers/section-reducer";
+import {
+  sectionInitialBlockStylesState,
+  sectionInitialGridImageFunctionalitiesState,
+  sectionInitialHeadingStylesState,
+  sectionInitialImageFunctionalitiesState,
+  sectionInitialImageStylesState,
+  sectionInitialParagraphStylesState,
+  sectionInitialTextFunctionalitiesState,
+} from "@/helpers/customization-pallete/initial-reducer-states/initial-section-state";
+import SectionPallete from "./specific-pallete/section-palletes/SectionPallete";
 
 const BottomBar = () => {
   const selectedComponent = useSelector(selectedComponentData);
   const selectedComponentType = useSelector(componentType);
   const selectedComponentId = useSelector(componentId);
   const dispatchStore = useDispatch();
+
+  //NAVBAR STATES
 
   const [navFunctionalitiesState, dispatchNavFunctionalitiesActions] =
     useReducer(navFunctionalitiesReducer, navbarInitialFunctionalitiesState);
@@ -50,6 +70,38 @@ const BottomBar = () => {
       navLoginButtonStylesReducer,
       navbarInitialLoginButtonStylesState
     );
+
+  //SECTION STATES
+
+  const [sectionTextFunctionalitiesState, dispatchSectionTextActions] =
+    useReducer(sectionTextReducer, sectionInitialTextFunctionalitiesState);
+
+  const [sectionImageFunctionalitiesState, dispatchSectionImageActions] =
+    useReducer(sectionImageReducer, sectionInitialImageFunctionalitiesState);
+
+  const [
+    sectionGridImageFunctionalitiesState,
+    dispatchSectionGridImageActions,
+  ] = useReducer(
+    sectionGridImageReducer,
+    sectionInitialGridImageFunctionalitiesState
+  );
+
+  const [sectionHeadingStylesState, dispatchSectionHeadingStylesActions] =
+    useReducer(sectionHeadingStylesReducer, sectionInitialHeadingStylesState);
+
+  const [sectionParagraphStylesState, dispatchSectionParagraphStylesActions] =
+    useReducer(
+      sectionParagraphStylesReducer,
+      sectionInitialParagraphStylesState
+    );
+
+  const [sectionImageStylesState, dispatchSectionImageStylesActions] =
+    useReducer(sectionImageStylesReducer, sectionInitialImageStylesState);
+
+  const [sectionBlockStylesState, dispatchSectionBlockStylesActions] =
+    useReducer(sectionBlockStylesReducer, sectionInitialBlockStylesState);
+
   const [buttonState, dispatchButtonActions] = useReducer(
     buttonReducer,
     buttonInitialState
@@ -76,6 +128,7 @@ const BottomBar = () => {
 
   const updateStyleHandler = useCallback(() => {
     let navState;
+    let sectionState;
     switch (selectedComponentType) {
       case ComponentEnum.BUTTON:
         storeDispatchHandler(buttonState, updateComponent);
@@ -91,6 +144,28 @@ const BottomBar = () => {
         };
         storeDispatchHandler(navState, updateNavbarComponent);
         break;
+      case ComponentEnum.SECTION:
+        sectionState = {
+          styles: {
+            headingStyles: sectionHeadingStylesState.styles.headingStyles,
+            paragraphStyles: sectionParagraphStylesState.styles.paragraphStyles,
+            imageStyles: sectionImageStylesState.styles.imageStyles,
+            blockStyles: sectionBlockStylesState.styles.blockStyles,
+          },
+          extraFunctionalities: {
+            textFunctionalities:
+              sectionTextFunctionalitiesState.extraFunctionalities
+                .textFunctionalities,
+            imageFunctionalities:
+              sectionImageFunctionalitiesState.extraFunctionalities
+                .imageFunctionalities,
+            imageGridFunctionalities:
+              sectionGridImageFunctionalitiesState.extraFunctionalities
+                .imageGridFunctionalities,
+          },
+        };
+        storeDispatchHandler(sectionState, updateComponent);
+        break;
       default:
         break;
     }
@@ -100,6 +175,13 @@ const BottomBar = () => {
     navStylesState,
     navLoginButtonStylesState,
     navFunctionalitiesState,
+    sectionTextFunctionalitiesState,
+    sectionImageFunctionalitiesState,
+    sectionGridImageFunctionalitiesState,
+    sectionHeadingStylesState,
+    sectionParagraphStylesState,
+    sectionImageStylesState,
+    sectionBlockStylesState,
   ]);
 
   useEffect(() => {
@@ -113,6 +195,14 @@ const BottomBar = () => {
           setStateHandler(dispatchNavStylesActions);
           setStateHandler(dispatchNavLoginButtonStylesActions);
           break;
+        case ComponentEnum.SECTION:
+          setStateHandler(dispatchSectionTextActions);
+          setStateHandler(dispatchSectionImageActions);
+          setStateHandler(dispatchSectionGridImageActions);
+          setStateHandler(dispatchSectionHeadingStylesActions);
+          setStateHandler(dispatchSectionParagraphStylesActions);
+          setStateHandler(dispatchSectionBlockStylesActions);
+          setStateHandler(dispatchSectionImageStylesActions);
         default:
           break;
       }
@@ -131,11 +221,18 @@ const BottomBar = () => {
     navStylesState,
     navLoginButtonStylesState,
     navFunctionalitiesState,
+    sectionTextFunctionalitiesState,
+    sectionImageFunctionalitiesState,
+    sectionGridImageFunctionalitiesState,
+    sectionHeadingStylesState,
+    sectionParagraphStylesState,
+    sectionImageStylesState,
+    sectionBlockStylesState,
     buttonState,
   ]);
 
   return (
-    <NavStyles.BottomBarGridContainer sx={{ overflowY: "scroll" }} item xs={12}>
+    <NavStyles.BottomBarGridContainer sx={{ overflowY: "auto" }} item xs={12}>
       {selectedComponentType === ComponentEnum.BUTTON && (
         <ButtonPallete state={buttonState} dispatch={dispatchButtonActions} />
       )}
@@ -149,6 +246,28 @@ const BottomBar = () => {
             dispatchNavLoginButtonStylesActions
           }
           dispatchNavStylesActions={dispatchNavStylesActions}
+        />
+      )}
+      {selectedComponentType === ComponentEnum.SECTION && (
+        <SectionPallete
+          sectionTextState={sectionTextFunctionalitiesState}
+          sectionImageState={sectionImageFunctionalitiesState}
+          sectionGridImageState={sectionGridImageFunctionalitiesState}
+          sectionHeadingStylesState={sectionHeadingStylesState}
+          sectionParagraphStylesState={sectionParagraphStylesState}
+          sectionImageStylesState={sectionImageStylesState}
+          sectionBlockStylesState={sectionBlockStylesState}
+          dispatchTextActions={dispatchSectionTextActions}
+          dispatchImageActions={dispatchSectionImageActions}
+          dispatchGridImageActions={dispatchSectionGridImageActions}
+          dispatchSectionHeadingStylesActions={
+            dispatchSectionHeadingStylesActions
+          }
+          dispatchSectionParagraphStylesActions={
+            dispatchSectionParagraphStylesActions
+          }
+          dispatchSectionImageStylesActions={dispatchSectionImageStylesActions}
+          dispatchSectionBlockStylesActions={dispatchSectionBlockStylesActions}
         />
       )}
     </NavStyles.BottomBarGridContainer>

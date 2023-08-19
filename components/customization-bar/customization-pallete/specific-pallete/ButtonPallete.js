@@ -9,18 +9,20 @@ import FontPallete from "../common-palletes/FontPallete";
 import HoverColorPallete from "../common-palletes/HoverColorPallete";
 
 import useDebouncedDispatch from "@/hooks/use-debounce";
+import BgColorPallete from "../common-palletes/BgColorPallete";
 
 const ButtonPallete = ({ state, dispatch }) => {
-  const debounceDispatchButtonActions = useDebouncedDispatch(
-    dispatch,
-    200
-  );
+  const debounceDispatchButtonActions = useDebouncedDispatch(dispatch, 200);
   return (
     <>
       <CollorPallete
         state={state.styles}
         dispatch={debounceDispatchButtonActions}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
+      />
+      <BgColorPallete
+        state={state.styles}
+        dispatch={debounceDispatchButtonActions}
         changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <FontPallete

@@ -27,6 +27,7 @@ import NavbarLinks from "./common-navbar-palletes/NavbarLinks";
 import useDebouncedDispatch from "@/hooks/use-debounce";
 
 import ImagePallete from "../../common-palletes/ImagePallete";
+import BgColorPallete from "../../common-palletes/BgColorPallete";
 
 const NavbarPallete = ({
   navFunctionalitiesState,
@@ -60,7 +61,15 @@ const NavbarPallete = ({
           dispatch={dispatchNavFunctionalitiesActions}
         />
       )}
-      <ImagePallete dispatch={dispatchNavFunctionalitiesActions} />
+      {/* <ImagePallete
+        state={}
+        dispatchImage={dispatchNavFunctionalitiesActions}
+        dispatchImageRedirectLink={null}
+        dispatchImageAltText={null}
+        changeImage={NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO}
+        changeImageRedirectLink={}
+        changeImageAltText={}
+      /> */}
       <Divider />
       {/* NAVBAR LOGIN BUTTON PALLETE */}
       <strong>Pallete for login button</strong>
@@ -68,6 +77,10 @@ const NavbarPallete = ({
         state={loginButtonStyles}
         dispatch={debounceNavLoginButtonStylesActions}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
+      />
+      <BgColorPallete
+        state={loginButtonStyles}
+        dispatch={debounceNavLoginButtonStylesActions}
         changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <HoverColorPallete
@@ -99,6 +112,10 @@ const NavbarPallete = ({
         state={navLinkStyles}
         dispatch={debounceNavStylesActions}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
+      />
+      <BgColorPallete
+        state={navLinkStyles}
+        dispatch={debounceNavStylesActions}
         changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <FontPallete

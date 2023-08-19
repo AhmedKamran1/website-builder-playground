@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
-import { NavEventTypesEnum } from "@/helpers/constants/event-types/event-types";
+import { Box, Slider } from "@mui/material";
+import {
+  borderRadiusMaxRange,
+  borderRadiusRange,
+} from "@/helpers/slider-values/slider-values";
 
-const ImagePallete = ({ dispatch }) => {
+const ImagePallete = ({
+  imageFunctionalitiesState,
+  imageStylesState,
+  dispatchImageFunctionalities,
+  dispatchImageStyles,
+  changeImage,
+  changeImageRedirectLink,
+  changeImageAltText,
+  changeImageBorderRadius,
+}) => {
   //TITLE AND IMAGE
   const [imageFile, setImageFile] = useState(null);
 
@@ -13,8 +26,8 @@ const ImagePallete = ({ dispatch }) => {
 
   useEffect(() => {
     if (imageFile) {
-      dispatch({
-        type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO,
+      dispatchImageFunctionalities({
+        type: changeImage,
         payload: URL.createObjectURL(imageFile),
       });
     }
@@ -30,16 +43,54 @@ const ImagePallete = ({ dispatch }) => {
       formData
     );
     const { url: navbarLogo } = response.data;
-    dispatch({
-      type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO,
+    dispatchImageFunctionalities({
+      type: changeImage,
       payload: navbarLogo,
     });
   };
 
   return (
     <>
-      <span>Logo</span>
+      <span>Image</span>
       <input type="file" accept="image/*" onChange={temporaryNavLogoHandler} />
+      <br />
+      <span>Image Redirect Link</span>
+      <input
+        type="text"
+        value={imageFunctionalitiesState.imageRedirectLink}
+        onChange={(event) =>
+          dispatchImageFunctionalities({
+            type: changeImageRedirectLink,
+            payload: event.target.value,
+          })
+        }
+      />
+      <br />
+      <span>Image Alt text</span>
+      <input
+        type="text"
+        value={imageFunctionalitiesState.imageAltText}
+        onChange={(event) =>
+          dispatchImageFunctionalities({
+            type: changeImageAltText,
+            payload: event.target.value,
+          })
+        }
+      />
+
+      <Box sx={{ width: "200px" }}>
+        <Slider
+          value={imageStylesState.borderRadius}
+          marks={borderRadiusRange}
+          max={borderRadiusMaxRange}
+          onChange={(event) =>
+            dispatchImageStyles({
+              type: changeImageBorderRadius,
+              payload: event.target.value,
+            })
+          }
+        />
+      </Box>
     </>
   );
 };

@@ -75,7 +75,7 @@ const EditArea = () => {
   };
 
   return (
-    <EditAreaStyles.EditAreaContainer item xs={10}>
+    <EditAreaStyles.EditAreaContainer item xs={10} sx={{overflowY:"scroll"}}>
       {renderComponent(
         allComponentData.navbarComponent,
         allComponentData.navbarComponent.styles,
