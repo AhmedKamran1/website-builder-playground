@@ -14,4 +14,5 @@ export const styledWithoutProps = createStyledWithForwarding([
     "fontWeight",
     "fontStyle",
     "hoverColor",
+    "flexDirection"
   ]);
