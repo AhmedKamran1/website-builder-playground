@@ -73,3 +73,5 @@
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
 - navbar pre-fetch problem?
 - image pallete and similar properties like used in gridimages are slightly different what to do?
+- SectionGridImage.js me jugaar
+- 2 types of same pallete one for grid and other for non-grid
