@@ -1,3 +1,4 @@
+import { imageFunctionalities } from "@/helpers/pre-defined-components-styles/section-styles";
 import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import {
   SectionButtonContainer4,
@@ -20,18 +21,34 @@ const SectionType4 = ({
   const { headingText, paragraphText } = textFunctionalities;
 
   return (
-    <SectionContainer4 maxWidth="false">
+    <SectionContainer4
+      onClick={componentSelectionHandler}
+      isfocused={isfocused}
+      maxWidth="false"
+      backgroundColor={blockStyles.backgroundColor}
+    >
       <Grid container>
         <SectionImageContainer4 item xs={12} md={6}>
-          <Avatar sx={{ height: "100%", width: "100%", borderRadius: 0 }} />
+          <Avatar
+            src={imageFunctionalities.image}
+            sx={{ height: "100%", width: "100%", borderRadius: 0 }}
+          />
         </SectionImageContainer4>
         <SectionTextWrapperContainer4 item xs={12} md={6}>
           <SectionTextContainer4>
-            <Box textAlign="left">
-              <ResponsiveText variant="header">{headingText}</ResponsiveText>
+            <Box textAlign={headingStyles.textAlign}>
+              <ResponsiveText
+                variant="header"
+                colorHex={headingStyles.colorHex}
+              >
+                {headingText}
+              </ResponsiveText>
             </Box>
-            <Box textAlign="left">
-              <ResponsiveText variant="mainBody">
+            <Box textAlign={paragraphStyles.textAlign}>
+              <ResponsiveText
+                variant="mainBody"
+                colorHex={paragraphStyles.colorHex}
+              >
                 {paragraphText}
               </ResponsiveText>
             </Box>

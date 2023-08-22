@@ -28,6 +28,7 @@ import useDebouncedDispatch from "@/hooks/use-debounce";
 
 import ImagePallete from "../../common-palletes/ImagePallete";
 import BgColorPallete from "../../common-palletes/BgColorPallete";
+import AddItem from "../../common-palletes/AddItem";
 
 const NavbarPallete = ({
   navFunctionalitiesState,
@@ -152,18 +153,13 @@ const NavbarPallete = ({
         )
       )}
       {navLinksLength !== NavbarLengthEnum.NAVLINKLIMIT && (
-        <button
-          onClick={() =>
-            dispatchNavFunctionalitiesActions({
-              type: NavEventTypesEnum.navbarFunctionalities.ADDNAVLINK,
-              payload: {
-                navLink: navLink,
-              },
-            })
-          }
+        <AddItem
+          dispatch={dispatchNavFunctionalitiesActions}
+          itemType={navLink}
+          addItem={NavEventTypesEnum.navbarFunctionalities.ADDNAVLINK}
         >
           Add Page
-        </button>
+        </AddItem>
       )}
     </>
   );

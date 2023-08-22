@@ -5,6 +5,7 @@ import { Avatar, Box, Container, Grid } from "@mui/material";
 import {
   GridItem3,
   SectionContainer3,
+  SectionItemContainer3,
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-3-styles";
 import { formatText } from "@/util/format-text";
 
@@ -34,7 +35,7 @@ const SectionType3 = ({
           {imageGridFunctionalities.map(
             ({ textFunctionalities, imageFunctionalities }, index) => (
               <Grid item xs={1} sm={3} md={4} key={index}>
-                <GridItem3>
+                <SectionItemContainer3>
                   <Box sx={{ height: "200px", width: "100%" }}>
                     <Avatar
                       src={imageFunctionalities.image}
@@ -61,7 +62,7 @@ const SectionType3 = ({
                       {formatText(textFunctionalities.paragraphText)}
                     </ResponsiveText>
                   </Box>
-                </GridItem3>
+                </SectionItemContainer3>
               </Grid>
             )
           )}

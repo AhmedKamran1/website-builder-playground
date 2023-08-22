@@ -20,7 +20,12 @@ const SectionType6 = ({
   const { imageGridFunctionalities } = extraFunctionalities;
 
   return (
-    <SectionContainer6 maxWidth="false">
+    <SectionContainer6
+      onClick={componentSelectionHandler}
+      isfocused={isfocused}
+      maxWidth="false"
+      backgroundColor={blockStyles.backgroundColor}
+    >
       <Container maxWidth="lg">
         <Grid
           justifyContent="space-evenly"
@@ -34,6 +39,7 @@ const SectionType6 = ({
                 <SectionCardContainer6>
                   <SectionImageContainer6>
                     <Avatar
+                      src={imageFunctionalities.image}
                       sx={{
                         height: "100%",
                         width: "100%",
@@ -43,13 +49,19 @@ const SectionType6 = ({
                   </SectionImageContainer6>
                   <SectionTextWrapperContainer6>
                     <SectionTextContainer6>
-                      <Box textAlign="center">
-                        <ResponsiveText variant="subHeader">
+                      <Box textAlign={headingStyles.textAlign}>
+                        <ResponsiveText
+                          variant="subHeader"
+                          colorHex={headingStyles.colorHex}
+                        >
                           {textFunctionalities.headingText}
                         </ResponsiveText>
                       </Box>
-                      <Box textAlign="center">
-                        <ResponsiveText variant="mainBody">
+                      <Box textAlign={paragraphStyles.textAlign}>
+                        <ResponsiveText
+                          variant="mainBody"
+                          colorHex={paragraphStyles.colorHex}
+                        >
                           {textFunctionalities.paragraphText}
                         </ResponsiveText>
                       </Box>

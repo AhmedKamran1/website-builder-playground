@@ -43,7 +43,7 @@ const SectionPallete1 = ({
           SectionEventTypesEnum.sectionImageFunctionalities.CHANGEIMAGEALTTEXT
         }
         changeImageBorderRadius={
-          SectionEventTypesEnum.imageStyles.CHANGEIMAGEBORDERADIUS
+          SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS
         }
       />
     </>

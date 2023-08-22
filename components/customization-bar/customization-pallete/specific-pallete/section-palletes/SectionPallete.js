@@ -18,6 +18,10 @@ import {
   borderRadiusMaxRange,
   borderRadiusRange,
 } from "@/helpers/slider-values/slider-values";
+import AddItem from "../../common-palletes/AddItem";
+import DeleteItem from "../../common-palletes/DeleteItem";
+import SectionPallete6 from "./section-pallete-type-6/section-pallete-type-6";
+import SectionPallete5 from "./section-pallete-type-5/section-pallete-type-5";
 
 const SectionPallete = ({
   sectionTextState,
@@ -44,7 +48,11 @@ const SectionPallete = ({
 
   const { headingStyles } = sectionHeadingStylesState.styles;
   const { paragraphStyles } = sectionParagraphStylesState.styles;
+  // const { subHeadingStyles } = sectionCardStylesState.styles;
   const { imageStyles } = sectionImageStylesState.styles;
+  // const { cardStyles } = sectionCardStylesState.styles;
+  // const { pricingStyles } = sectionPricingStylesState.styles;
+  // const { buttonStyles } = sectionButtonStylesState.styles;
   const { blockStyles } = sectionBlockStylesState.styles;
 
   const debounceSectionHeadingStylesActions = useDebouncedDispatch(
@@ -112,7 +120,9 @@ const SectionPallete = ({
           SectionEventTypesEnum.paragraphStyles.CHANGEPARAGRAPHTEXTALIGNMENT
         }
       />
-      {(selectedComponent.secId === "1" || selectedComponent.secId === "2") && (
+      {(selectedComponent.secId === "1" ||
+        selectedComponent.secId === "2" ||
+        selectedComponent.secId === "4") && (
         <SectionTextArea
           state={textFunctionalities}
           dispatch={dispatchTextActions}
@@ -132,49 +142,67 @@ const SectionPallete = ({
             max={borderRadiusMaxRange}
             onChange={(event) =>
               dispatchSectionImageStylesActions({
-                type: SectionEventTypesEnum.imageStyles.CHANGEIMAGEBORDERADIUS,
+                type: SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS,
                 payload: event.target.value,
               })
             }
           />
         </Box>
       )}
-      {selectedComponent.secId === "3" &&
+      {(selectedComponent.secId === "3" ||
+        selectedComponent.secId === "5" ||
+        selectedComponent.secId === "6") &&
         imageGridFunctionalities.map((gridItem, gridIndex) => (
           <React.Fragment key={gridIndex}>
             <br />
             <strong>Grid Number {gridIndex + 1}</strong>
-            <button
-              onClick={() =>
-                dispatchGridImageActions({
-                  type: SectionEventTypesEnum.sectionGridImageFunctionalities
-                    .DELETEGRIDIMAGE,
-                  payload: gridIndex,
-                })
+            <DeleteItem
+              dispatch={dispatchGridImageActions}
+              index={gridIndex}
+              deleteItem={
+                SectionEventTypesEnum.sectionGridImageFunctionalities
+                  .DELETEGRIDITEM
               }
             >
-              Remove Grid
-            </button>
-            <SectionPallete3
-              gridItem={gridItem}
-              gridIndex={gridIndex}
-              dispatchGridImageActions={dispatchGridImageActions}
-            />
+              Delete Item
+            </DeleteItem>
+
+            {selectedComponent.secId === "3" && (
+              <SectionPallete3
+                gridItem={gridItem}
+                gridIndex={gridIndex}
+                dispatchGridImageActions={dispatchGridImageActions}
+              />
+            )}
+            {selectedComponent.secId === "5" && (
+              <SectionPallete5
+                gridItem={gridItem}
+                gridIndex={gridIndex}
+                dispatchGridImageActions={dispatchGridImageActions}
+              />
+            )}
+            {selectedComponent.secId === "6" && (
+              <SectionPallete6
+                gridItem={gridItem}
+                gridIndex={gridIndex}
+                dispatchGridImageActions={dispatchGridImageActions}
+              />
+            )}
             <Divider />
           </React.Fragment>
         ))}
-      {selectedComponent.secId === "3" && (
-        <button
-          onClick={() =>
-            dispatchGridImageActions({
-              type: SectionEventTypesEnum.sectionGridImageFunctionalities
-                .ADDGRIDIMAGE,
-              payload: gridImageItem,
-            })
+      {(selectedComponent.secId === "3" ||
+        selectedComponent.secId === "5" ||
+        selectedComponent.secId === "6") && (
+        <AddItem
+          dispatch={dispatchGridImageActions}
+          itemType={gridImageItem}
+          addItem={
+            SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM
           }
         >
-          Add Image
-        </button>
+          Add Item
+        </AddItem>
       )}
     </>
   );
