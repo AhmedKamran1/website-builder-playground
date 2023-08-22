@@ -61,7 +61,7 @@
 - (async thunk)function to send updated component data to api and function to send add component data to api(different thunks for nav and page component which includes add/update reducers) //DONE
 - pagename and website id work //DONE
 - fix simple nav tabs to be buttons and add logo with alt text and option to upload image
-- paragraph change on enter press and render accordingly to it
+- paragraph change on enter press and render accordingly to it //DONE
 - PALLETES for sec3, STYLED COMPONENTS for sec3, extract common components,fix image pallete for navbar,fix section palletes structure
 - update happening on changing selected component
 
