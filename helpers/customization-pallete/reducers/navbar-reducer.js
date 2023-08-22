@@ -9,17 +9,14 @@ import {
 } from "../initial-reducer-states/initial-navbar-state";
 
 export const navFunctionalitiesReducer = (state, action) => {
-  let linkIndex, navLink, innerText, redirectLink, updatedLinks;
+  let linkIndex, innerText, redirectLink, updatedLinks;
 
   updatedLinks = structuredClone(state.extraFunctionalities.links);
 
   switch (action.type) {
     // FUNCTIONALITIES
-
     case NavEventTypesEnum.navbarFunctionalities.ADDNAVLINK:
-      ({ navLink } = action.payload);
-
-      updatedLinks.push(navLink);
+      updatedLinks.push(action.payload);
       return {
         ...state,
         extraFunctionalities: {
@@ -29,8 +26,7 @@ export const navFunctionalitiesReducer = (state, action) => {
       };
 
     case NavEventTypesEnum.navbarFunctionalities.DELETENAVLINK:
-      ({ linkIndex } = action.payload);
-      updatedLinks.splice(linkIndex, 1);
+      updatedLinks.splice(action.payload, 1);
       return {
         ...state,
         extraFunctionalities: {
@@ -193,7 +189,8 @@ export const navLoginButtonStylesReducer = (state, action) => {
         },
       };
 
-    case NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONHOVERCOLOR:
+    case NavEventTypesEnum.navbarLoginButtonStyles
+      .CHANGENAVLOGINBUTTONHOVERCOLOR:
       return {
         ...state,
         styles: {
@@ -205,7 +202,8 @@ export const navLoginButtonStylesReducer = (state, action) => {
         },
       };
 
-    case NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTSTYLE:
+    case NavEventTypesEnum.navbarLoginButtonStyles
+      .CHANGENAVLOGINBUTTONFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -220,7 +218,8 @@ export const navLoginButtonStylesReducer = (state, action) => {
         },
       };
 
-    case NavEventTypesEnum.navbarLoginButtonStyles.CHANGENAVLOGINBUTTONFONTWEIGHT:
+    case NavEventTypesEnum.navbarLoginButtonStyles
+      .CHANGENAVLOGINBUTTONFONTWEIGHT:
       return {
         ...state,
         styles: {
