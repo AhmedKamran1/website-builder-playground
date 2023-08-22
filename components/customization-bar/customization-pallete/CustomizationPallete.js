@@ -33,20 +33,28 @@ import {
 } from "@/store/ComponentActions";
 import {
   sectionBlockStylesReducer,
+  sectionButtonStylesReducer,
+  sectionCardStylesReducer,
   sectionGridImageReducer,
   sectionHeadingStylesReducer,
   sectionImageReducer,
   sectionImageStylesReducer,
   sectionParagraphStylesReducer,
+  sectionPricingStylesReducer,
+  sectionSubHeadingStylesReducer,
   sectionTextReducer,
 } from "@/helpers/customization-pallete/reducers/section-reducer";
 import {
   sectionInitialBlockStylesState,
+  sectionInitialButtonStylesState,
+  sectionInitialCardStylesState,
   sectionInitialGridImageFunctionalitiesState,
   sectionInitialHeadingStylesState,
   sectionInitialImageFunctionalitiesState,
   sectionInitialImageStylesState,
   sectionInitialParagraphStylesState,
+  sectionInitialPricingStylesState,
+  sectionInitialSubHeadingStylesState,
   sectionInitialTextFunctionalitiesState,
 } from "@/helpers/customization-pallete/initial-reducer-states/initial-section-state";
 import SectionPallete from "./specific-pallete/section-palletes/SectionPallete";
@@ -61,6 +69,7 @@ const BottomBar = () => {
 
   const [navFunctionalitiesState, dispatchNavFunctionalitiesActions] =
     useReducer(navFunctionalitiesReducer, navbarInitialFunctionalitiesState);
+
   const [navStylesState, dispatchNavStylesActions] = useReducer(
     navStylesReducer,
     navbarInitialLinkStylesState
@@ -95,6 +104,20 @@ const BottomBar = () => {
       sectionParagraphStylesReducer,
       sectionInitialParagraphStylesState
     );
+  const [sectionSubHeadingStylesState, dispatchSectionSubHeadingStylesActions] =
+    useReducer(
+      sectionSubHeadingStylesReducer,
+      sectionInitialSubHeadingStylesState
+    );
+  const [sectionCardStylesState, dispatchSectionCardStylesActions] = useReducer(
+    sectionCardStylesReducer,
+    sectionInitialCardStylesState
+  );
+  const [sectionPricingStylesState, dispatchSectionPricingStylesActions] =
+    useReducer(sectionPricingStylesReducer, sectionInitialPricingStylesState);
+    
+  const [sectionButtonStylesState, dispatchSectionButtonStylesActions] =
+    useReducer(sectionButtonStylesReducer, sectionInitialButtonStylesState);
 
   const [sectionImageStylesState, dispatchSectionImageStylesActions] =
     useReducer(sectionImageStylesReducer, sectionInitialImageStylesState);
