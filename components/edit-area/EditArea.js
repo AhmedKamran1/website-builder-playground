@@ -16,6 +16,8 @@ import {
 import Navbar from "../navbar/Navbar";
 
 import Section from "../section/Section";
+import { Avatar, Box, Container, Grid } from "@mui/material";
+import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 
 const EditArea = () => {
   const selectedComponentId = useSelector(componentId);
@@ -75,7 +77,7 @@ const EditArea = () => {
   };
 
   return (
-    <EditAreaStyles.EditAreaContainer item xs={10} sx={{overflowY:"scroll"}}>
+    <EditAreaStyles.EditAreaContainer item xs={10} sx={{ overflowY: "auto" }}>
       {renderComponent(
         allComponentData.navbarComponent,
         allComponentData.navbarComponent.styles,

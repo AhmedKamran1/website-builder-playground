@@ -22,7 +22,7 @@ export const sectionInitialImageFunctionalitiesState = {
 
 export const sectionInitialGridImageFunctionalitiesState = {
   extraFunctionalities: {
-    imageGridFunctionalities: [gridImageItem],
+    imageGridFunctionalities: [],
   },
 };
 

@@ -111,6 +111,9 @@ const TopBar = () => {
           <option value="1">Image with text</option>
           <option value="2">Heading and Paragraph</option>
           <option value="3">Grid Images with description</option>
+          <option value="4">Site Banner</option>
+          <option value="5">Grid Services Text Cards</option>
+          <option value="6">Grid Services Image With Text Cards</option>
         </select>
       </div>
       <h3>{status}</h3>
