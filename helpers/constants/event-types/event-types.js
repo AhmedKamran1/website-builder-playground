@@ -52,6 +52,8 @@ export const SectionEventTypesEnum = {
   sectionTextFunctionalities: {
     CHANGEHEADINGTEXT: "changeHeadingText",
     CHANGEPARAGRAPHTEXT: "changeParagraphText",
+    CHANGESUBHEADINGTEXT: "changeSubHeadingText",
+    CHANGEPRICINGTEXT: "changePricingText",
   },
   sectionImageFunctionalities: {
     CHANGEIMAGE: "changeImage",
@@ -62,10 +64,12 @@ export const SectionEventTypesEnum = {
     CHANGEGRIDIMAGE: "changeImage",
     CHANGEGRIDIMAGEREDIRECTLINK: "changeImageRedirectLink",
     CHANGEGRIDIMAGEALTTEXT: "changeImageAltText",
-    ADDGRIDIMAGE: "addGridImage",
-    DELETEGRIDIMAGE: "deleteGridImage",
+    ADDGRIDITEM: "addGridItem",
+    DELETEGRIDITEM: "deleteGridItem",
     CHANGEGRIDHEADINGTEXT: "changeGridHeadingText",
     CHANGEGRIDPARAGRAPHTEXT: "changeGridParagraphText",
+    CHANGEGRIDSUBHEADINGTEXT: "changeGridSubHeadingText",
+    CHANGEGRIDPRICINGTEXT: "changeGridPricingText",
   },
   headingStyles: {
     CHANGEHEADINGTEXTALIGNMENT: "changeTextAlignment",
@@ -77,8 +81,25 @@ export const SectionEventTypesEnum = {
     CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
     CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
   },
+  subHeadingStyles: {
+    CHANGEPARAGRAPHTEXTALIGNMENT: "changeTextAlignment",
+    CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
+    CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
+  },
+  buttonStyles: {
+    CHANGEBORDERRADIUS: "changeBorderRadius",
+    CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
+    CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
+  },
+  pricingStyles: {
+    CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
+    CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
+  },
+  cardStyles: {
+    CHANGEBORDERRADIUS: "changeBorderRadius",
+  },
   imageStyles: {
-    CHANGEIMAGEBORDERADIUS: "changeImageBorderRadius",
+    CHANGEBORDERRADIUS: "changeBorderRadius",
   },
   blockStyles: {
     CHANGEFLEXDIRECTION: "changeFlexDirection",
