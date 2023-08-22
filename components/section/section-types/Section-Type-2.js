@@ -6,6 +6,7 @@ import {
   SectionContainer2,
   SectionTextBox2,
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-2-styles";
+import { formatText } from "@/util/format-text";
 
 const SectionType2 = ({
   extraFunctionalities,
@@ -27,12 +28,15 @@ const SectionType2 = ({
       <SectionTextBox2>
         <Box textAlign={headingStyles.textAlign}>
           <ResponsiveText variant="header" colorHex={headingStyles.colorHex}>
-            {headingText}
+            {formatText(headingText)}
           </ResponsiveText>
         </Box>
         <Box textAlign={paragraphStyles.textAlign}>
-          <ResponsiveText variant="mainBody" colorHex={paragraphStyles.colorHex}>
-            {paragraphText}
+          <ResponsiveText
+            variant="mainBody"
+            colorHex={paragraphStyles.colorHex}
+          >
+            {formatText(paragraphText)}
           </ResponsiveText>
         </Box>
       </SectionTextBox2>

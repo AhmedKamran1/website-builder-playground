@@ -6,6 +6,7 @@ import {
   GridItem3,
   SectionContainer3,
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-3-styles";
+import { formatText } from "@/util/format-text";
 
 const SectionType3 = ({
   extraFunctionalities,
@@ -34,7 +35,7 @@ const SectionType3 = ({
             ({ textFunctionalities, imageFunctionalities }, index) => (
               <Grid item xs={1} sm={3} md={4} key={index}>
                 <GridItem3>
-                  <Box sx={{ height: "220px", width: "100%" }}>
+                  <Box sx={{ height: "200px", width: "100%" }}>
                     <Avatar
                       src={imageFunctionalities.image}
                       sx={{
@@ -49,7 +50,7 @@ const SectionType3 = ({
                       variant="subHeader"
                       colorHex={headingStyles.colorHex}
                     >
-                      {textFunctionalities.headingText}
+                      {formatText(textFunctionalities.headingText)}
                     </ResponsiveText>
                   </Box>
                   <Box textAlign={paragraphStyles.textAlign}>
@@ -57,7 +58,7 @@ const SectionType3 = ({
                       variant="mainBody"
                       colorHex={paragraphStyles.colorHex}
                     >
-                      {textFunctionalities.paragraphText}
+                      {formatText(textFunctionalities.paragraphText)}
                     </ResponsiveText>
                   </Box>
                 </GridItem3>
