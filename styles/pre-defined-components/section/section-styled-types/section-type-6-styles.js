@@ -11,19 +11,22 @@ export const SectionContainer6 = styledWithoutProps(
   })
 );
 
-export const SectionTextWrapperContainer6 = styledWithoutProps(Box, ({theme}) => ({
-  width: "55%",
-  border: "1px solid red",
-  padding: "1.5rem",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  gap: "20px",
-  [theme.breakpoints.down("lg")]: {
-    width: "100%",
-    padding:"1rem"
-  },
-}));
+export const SectionTextWrapperContainer6 = styledWithoutProps(
+  Box,
+  ({ theme }) => ({
+    width: "55%",
+    border: "1px solid red",
+    padding: "1.5rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: "20px",
+    [theme.breakpoints.down("lg")]: {
+      width: "100%",
+      padding: "1rem",
+    },
+  })
+);
 
 export const SectionTextContainer6 = styledWithoutProps(Box, ({ theme }) => ({
   display: "flex",
@@ -32,6 +35,7 @@ export const SectionTextContainer6 = styledWithoutProps(Box, ({ theme }) => ({
 }));
 
 export const SectionImageContainer6 = styledWithoutProps(Box, ({ theme }) => ({
+  height: "220px",
   width: "45%",
   [theme.breakpoints.down("lg")]: {
     height: "200px",

@@ -2,15 +2,13 @@ import { Box, Container, Grid } from "@mui/material";
 
 import { styledWithoutProps } from "../../ignoredProps";
 
-// export const SectionContainer4 = styledWithoutProps(
-//   Container,
-//   ({ backgroundColor }) => ({
-//     border: "1px solid red",
-//     minHeight: "500px",
-//     padding: "2rem",
-//     backgroundColor: backgroundColor,
-//   })
-// );
+export const SectionContainer5 = styledWithoutProps(
+  Container,
+  ({ backgroundColor }) => ({
+    padding: "2rem",
+    backgroundColor: backgroundColor,
+  })
+);
 
 export const SectionCardContainer5 = styledWithoutProps(Box, ({}) => ({
   border: "1px solid black",

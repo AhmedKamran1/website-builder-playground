@@ -10,7 +10,7 @@ export const SectionContainer3 = styledWithoutProps(
   })
 );
 
-export const GridItem3 = styledWithoutProps(Box, ({  }) => ({
+export const SectionItemContainer3 = styledWithoutProps(Box, ({  }) => ({
   minHeight: "250px",
   display: "flex",
   flexDirection: "column",
