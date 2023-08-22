@@ -15,12 +15,12 @@
 - Parent Id child relation //CANCELLED
 - debounce function hook for dispatch actions //DONE
 - Font Package https://www.npmjs.com/package/font-picker
-- Avatar or next image wrapper?
 - nav2 tabs getting bigger after adding icon // DONE
 - fix shouldforwardprop on every component to a helper function //DONE
 
 # TO ASK
 
+- Avatar or next image wrapper?
 - optimal way for common states and their constant??? TO ASK
 - drawer alignment issue and nav2 alignment issue?? TO ASK
 - ux issues of nav1 and nav2 like when dropdown enable what to happen main link should work or not etc and focusing?? TO ASK
@@ -61,16 +61,15 @@
 - (async thunk)function to send updated component data to api and function to send add component data to api(different thunks for nav and page component which includes add/update reducers) //DONE
 - pagename and website id work //DONE
 - fix simple nav tabs to be buttons and add logo with alt text and option to upload image
+- paragraph change on enter press and render accordingly to it
+- PALLETES for sec3, STYLED COMPONENTS for sec3, extract common components,fix image pallete for navbar,fix section palletes structure
 - update happening on changing selected component
 
 # ASK
 
+- split updates into styles and extrafunctionalities. only one should update at a time
 - what will happen to componentId? we are using it for handling selected components and if we add dummy components then issue happens
 - what will happen to sectionId and NavId?
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
-- images should have alt text and redirect link?
 - navbar pre-fetch problem?
 - image pallete and similar properties like used in gridimages are slightly different what to do?
-
-
-- PALLETES for sec3, STYLED COMPONENTS for sec3, extract common components,fix image pallete for navbar,fix section palletes structure
