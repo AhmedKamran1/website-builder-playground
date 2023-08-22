@@ -1,10 +1,15 @@
 import {
   blockStyles,
+  buttonStyles,
+  cardStyles,
   gridImageItem,
+  gridImageWithButtonItem,
   headingStyles,
   imageFunctionalities,
   imageStyles,
   paragraphStyles,
+  pricingStyles,
+  subHeadingStyles,
   textFunctionalities,
 } from "@/helpers/pre-defined-components-styles/section-styles";
 
@@ -22,7 +27,7 @@ export const sectionInitialImageFunctionalitiesState = {
 
 export const sectionInitialGridImageFunctionalitiesState = {
   extraFunctionalities: {
-    imageGridFunctionalities: [],
+    imageGridFunctionalities: [gridImageWithButtonItem],
   },
 };
 
@@ -31,16 +36,43 @@ export const sectionInitialHeadingStylesState = {
     headingStyles: headingStyles,
   },
 };
+
 export const sectionInitialParagraphStylesState = {
   styles: {
     paragraphStyles: paragraphStyles,
   },
 };
+
+export const sectionInitialSubHeadingStylesState = {
+  styles: {
+    subHeadingStyles: subHeadingStyles,
+  },
+};
+
+export const sectionInitialCardStylesState = {
+  styles: {
+    cardStyles: cardStyles,
+  },
+};
+
+export const sectionInitialButtonStylesState = {
+  styles: {
+    buttonStyles: buttonStyles,
+  },
+};
+
+export const sectionInitialPricingStylesState = {
+  styles: {
+    pricingStyles: pricingStyles,
+  },
+};
+
 export const sectionInitialImageStylesState = {
   styles: {
     imageStyles: imageStyles,
   },
 };
+
 export const sectionInitialBlockStylesState = {
   styles: {
     blockStyles: blockStyles,

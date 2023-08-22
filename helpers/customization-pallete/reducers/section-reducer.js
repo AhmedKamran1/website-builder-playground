@@ -3,8 +3,12 @@ import {
   SectionEventTypesEnum,
 } from "../../constants/event-types/event-types";
 import {
+  sectionInitialButtonStylesState,
+  sectionInitialCardStylesState,
   sectionInitialHeadingStylesState,
   sectionInitialParagraphStylesState,
+  sectionInitialPricingStylesState,
+  sectionInitialSubHeadingStylesState,
 } from "../initial-reducer-states/initial-section-state";
 
 export const sectionTextReducer = (state, action) => {
@@ -106,8 +110,10 @@ export const sectionImageReducer = (state, action) => {
 export const sectionGridImageReducer = (state, action) => {
   let updatedGridImages,
     gridIndex,
+    subHeadingText,
     headingText,
     paragraphText,
+    pricingText,
     image,
     imageAltText,
     imageRedirectLink;
@@ -127,7 +133,7 @@ export const sectionGridImageReducer = (state, action) => {
         },
       };
     //GRID FUNCTIONALITIES
-    case SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDIMAGE:
+    case SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM:
       updatedGridImages.push(action.payload);
       return {
         ...state,
@@ -137,7 +143,7 @@ export const sectionGridImageReducer = (state, action) => {
         },
       };
 
-    case SectionEventTypesEnum.sectionGridImageFunctionalities.DELETEGRIDIMAGE:
+    case SectionEventTypesEnum.sectionGridImageFunctionalities.DELETEGRIDITEM:
       updatedGridImages.splice(action.payload, 1);
       return {
         ...state,
@@ -159,6 +165,33 @@ export const sectionGridImageReducer = (state, action) => {
           imageGridFunctionalities: updatedGridImages,
         },
       };
+
+    case SectionEventTypesEnum.sectionGridImageFunctionalities
+      .CHANGEGRIDSUBHEADINGTEXT:
+      ({ gridIndex, subHeadingText } = action.payload);
+      updatedGridImages[gridIndex].textFunctionalities.subHeadingText =
+        subHeadingText;
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          imageGridFunctionalities: updatedGridImages,
+        },
+      };
+
+    case SectionEventTypesEnum.sectionGridImageFunctionalities
+      .CHANGEGRIDPRICINGTEXT:
+      ({ gridIndex, pricingText } = action.payload);
+      updatedGridImages[gridIndex].textFunctionalities.pricingText =
+        pricingText;
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          imageGridFunctionalities: updatedGridImages,
+        },
+      };
+
     case SectionEventTypesEnum.sectionGridImageFunctionalities
       .CHANGEGRIDPARAGRAPHTEXT:
       ({ gridIndex, paragraphText } = action.payload);
@@ -351,9 +384,245 @@ export const sectionParagraphStylesReducer = (state, action) => {
   }
 };
 
+export const sectionSubHeadingStylesReducer = (state, action) => {
+  switch (action.type) {
+    case CommonEventTypeEnum.CHANGECOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          subHeadingStyles: {
+            ...state.styles.subHeadingStyles,
+            colorHex: action.payload,
+          },
+        },
+      };
+    case SectionEventTypesEnum.subHeadingStyles.CHANGEPARAGRAPHFONTSTYLE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          subHeadingStyles: {
+            ...state.styles.subHeadingStyles,
+            fontStyle: action.payload,
+            fontWeight:
+              sectionInitialSubHeadingStylesState.styles.subHeadingStyles
+                .fontWeight,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.subHeadingStyles.CHANGEPARAGRAPHFONTWEIGHT:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          subHeadingStyles: {
+            ...state.styles.subHeadingStyles,
+            fontWeight: action.payload,
+            fontStyle:
+              sectionInitialSubHeadingStylesState.styles.subHeadingStyles
+                .fontStyle,
+          },
+        },
+      };
+    case SectionEventTypesEnum.subHeadingStyles.CHANGEPARAGRAPHTEXTALIGNMENT:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          subHeadingStyles: {
+            ...state.styles.subHeadingStyles,
+            textAlign: action.payload,
+          },
+        },
+      };
+    case CommonEventTypeEnum.SETINITIALSTATE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          subHeadingStyles: action.payload.styles.subHeadingStyles,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+export const sectionPricingStylesReducer = (state, action) => {
+  switch (action.type) {
+    case CommonEventTypeEnum.CHANGECOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          pricingStyles: {
+            ...state.styles.pricingStyles,
+            colorHex: action.payload,
+          },
+        },
+      };
+    case SectionEventTypesEnum.pricingStyles.CHANGEPARAGRAPHFONTSTYLE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          pricingStyles: {
+            ...state.styles.pricingStyles,
+            fontStyle: action.payload,
+            fontWeight:
+              sectionInitialPricingStylesState.styles.pricingStyles.fontWeight,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.pricingStyles.CHANGEPARAGRAPHFONTWEIGHT:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          pricingStyles: {
+            ...state.styles.pricingStyles,
+            fontWeight: action.payload,
+            fontStyle:
+              sectionInitialPricingStylesState.styles.pricingStyles.fontStyle,
+          },
+        },
+      };
+
+    case CommonEventTypeEnum.SETINITIALSTATE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          pricingStyles: action.payload.styles.pricingStyles,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+export const sectionCardStylesReducer = (state, action) => {
+  switch (action.type) {
+    case CommonEventTypeEnum.CHANGEBGCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          cardStyles: {
+            ...state.styles.cardStyles,
+            backgroundColor: action.payload,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.cardStyles.CHANGEIMAGEBORDERADIUS:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          cardStyles: {
+            ...state.styles.cardStyles,
+            borderRadius: action.payload,
+          },
+        },
+      };
+
+    case CommonEventTypeEnum.SETINITIALSTATE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          cardStyles: action.payload.styles.cardStyles,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+export const sectionButtonStylesReducer = (state, action) => {
+  switch (action.type) {
+    case CommonEventTypeEnum.CHANGECOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          buttonStyles: {
+            ...state.styles.buttonStyles,
+            colorHex: action.payload,
+          },
+        },
+      };
+
+    case CommonEventTypeEnum.CHANGEBGCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          buttonStyles: {
+            ...state.styles.buttonStyles,
+            backgroundColor: action.payload,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.buttonStyles.CHANGEPARAGRAPHFONTSTYLE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          buttonStyles: {
+            ...state.styles.buttonStyles,
+            fontStyle: action.payload,
+            fontWeight:
+              sectionInitialButtonStylesState.styles.buttonStyles.fontWeight,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.buttonStyles.CHANGEPARAGRAPHFONTWEIGHT:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          buttonStyles: {
+            ...state.styles.buttonStyles,
+            fontWeight: action.payload,
+            fontStyle:
+              sectionInitialButtonStylesState.styles.buttonStyles.fontStyle,
+          },
+        },
+      };
+    case SectionEventTypesEnum.buttonStyles.CHANGEBORDERRADIUS:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          buttonStyles: {
+            ...state.styles.buttonStyles,
+            borderRadius: action.payload,
+          },
+        },
+      };
+    case CommonEventTypeEnum.SETINITIALSTATE:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          subHeadingStyles: action.payload.styles.subHeadingStyles,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
 export const sectionImageStylesReducer = (state, action) => {
   switch (action.type) {
-    case SectionEventTypesEnum.imageStyles.CHANGEIMAGEBORDERADIUS:
+    case SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS:
       return {
         ...state,
         styles: {

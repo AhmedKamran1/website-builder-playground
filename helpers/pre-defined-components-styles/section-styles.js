@@ -1,40 +1,45 @@
 export const headingStyles = {
-  colorHex: "#FFFFFF",
+  colorHex: "#000000",
   fontWeight: "",
   fontStyle: "",
-  fontFamily: "",
+  textAlign: "center",
+};
+
+export const subHeadingStyles = {
+  colorHex: "#000000",
+  fontWeight: "",
+  fontStyle: "",
   textAlign: "center",
 };
 
 export const paragraphStyles = {
-  colorHex: "#FFFFFF",
+  colorHex: "#000000",
   fontWeight: "",
   fontStyle: "",
-  fontFamily: "",
   textAlign: "center",
 };
 
 export const buttonStyles = {
-  colorHex: "#FFFFFF",
+  colorHex: "#000000",
+  backgroundColor: "#FFFFFF",
   fontWeight: "",
   fontStyle: "",
-  fontFamily: "",
+  borderRadius: 1,
 };
 
 export const pricingStyles = {
-  colorHex: "#FFFFFF",
+  colorHex: "#000000",
   fontWeight: "",
   fontStyle: "",
-  fontFamily: "",
 };
 
 export const blockStyles = {
-  backgroundColor: "#000000",
+  backgroundColor: "#FFFFFF",
   flexDirection: "row",
 };
 
 export const cardStyles = {
-  backgroundColor: "#000000",
+  backgroundColor: "#FFFFFF",
   borderRadius: 1,
 };
 
