@@ -1,5 +1,6 @@
 import {
   blockStyles,
+  buttonFunctionalities,
   buttonStyles,
   cardStyles,
   gridImageItem,
@@ -22,6 +23,12 @@ export const sectionInitialTextFunctionalitiesState = {
 export const sectionInitialImageFunctionalitiesState = {
   extraFunctionalities: {
     imageFunctionalities: imageFunctionalities,
+  },
+};
+
+export const sectionInitialButtonFunctionalitiesState = {
+  extraFunctionalities: {
+    buttonFunctionalities: buttonFunctionalities,
   },
 };
 

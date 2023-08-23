@@ -2,10 +2,6 @@ export const CommonEventTypeEnum = {
   SETINITIALSTATE: "setInitialState",
   CHANGECOLOR: "changeColor",
   CHANGEBGCOLOR: "changeBgColor",
-  // CHANGEFONTWEIGHT: "changeFontWeight",
-  // CHANGEFONTSTYLE: "changeFontStyle",
-  // CHANGEHOVERCOLOR: "changeHoverColor",
-  // CHANGEFONTFAMILY: "changeFontFamily",
 };
 
 export const buttonEventType = {
@@ -60,6 +56,11 @@ export const SectionEventTypesEnum = {
     CHANGEIMAGEREDIRECTLINK: "changeImageRedirectLink",
     CHANGEIMAGEALTTEXT: "changeImageAltText",
   },
+  sectionButtonFunctionalities: {
+    CHANGEBUTTONVISIBILITY: "changeButtonVisibility",
+    CHANGEBUTTONTEXT: "changeButtonText",
+    CHANGEBUTTONREDIRECTLINK: "changeButtonRedirectLink",
+  },
   sectionGridImageFunctionalities: {
     CHANGEGRIDIMAGE: "changeImage",
     CHANGEGRIDIMAGEREDIRECTLINK: "changeImageRedirectLink",
@@ -70,26 +71,29 @@ export const SectionEventTypesEnum = {
     CHANGEGRIDPARAGRAPHTEXT: "changeGridParagraphText",
     CHANGEGRIDSUBHEADINGTEXT: "changeGridSubHeadingText",
     CHANGEGRIDPRICINGTEXT: "changeGridPricingText",
+    CHANGEGRIDBUTTONTEXT: "changeGridButtonText",
+    CHANGEGRIDBUTTONREDIRECTLINK: "changeGridButtonRedirectLink",
   },
   headingStyles: {
-    CHANGEHEADINGTEXTALIGNMENT: "changeTextAlignment",
+    CHANGEHEADINGTEXTALIGNMENT: "changeHeadingTextAlignment",
     CHANGEHEADINGFONTWEIGHT: "changeFontWeight",
     CHANGEHEADINGFONTSTYLE: "changeFontStyle",
   },
   paragraphStyles: {
-    CHANGEPARAGRAPHTEXTALIGNMENT: "changeTextAlignment",
+    CHANGEPARAGRAPHTEXTALIGNMENT: "changeParagraphTextAlignment",
     CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
     CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
   },
   subHeadingStyles: {
-    CHANGEPARAGRAPHTEXTALIGNMENT: "changeTextAlignment",
+    CHANGEPARAGRAPHTEXTALIGNMENT: "changeSubHeadingTextAlignment",
     CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
     CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
   },
   buttonStyles: {
     CHANGEBORDERRADIUS: "changeBorderRadius",
-    CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
-    CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
+    CHANGEBUTTONFONTWEIGHT: "changeButtonFontWeight",
+    CHANGEBUTTONFONTSTYLE: "changeButtonFontStyle",
+    CHANGEBUTTONHOVERCOLOR: "changeButtonHoverColor",
   },
   pricingStyles: {
     CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",

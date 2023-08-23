@@ -1,20 +1,20 @@
 export const headingStyles = {
   colorHex: "#000000",
-  fontWeight: "",
+  fontWeight: "bold",
   fontStyle: "",
   textAlign: "center",
 };
 
 export const subHeadingStyles = {
   colorHex: "#000000",
-  fontWeight: "",
+  fontWeight: "normal",
   fontStyle: "",
   textAlign: "center",
 };
 
 export const paragraphStyles = {
   colorHex: "#000000",
-  fontWeight: "",
+  fontWeight: "normal",
   fontStyle: "",
   textAlign: "center",
 };
@@ -22,14 +22,15 @@ export const paragraphStyles = {
 export const buttonStyles = {
   colorHex: "#000000",
   backgroundColor: "#FFFFFF",
-  fontWeight: "",
+  fontWeight: "normal",
   fontStyle: "",
+  hoverColor: "#FF0000",
   borderRadius: 1,
 };
 
 export const pricingStyles = {
   colorHex: "#000000",
-  fontWeight: "",
+  fontWeight: "bold",
   fontStyle: "",
 };
 
@@ -61,7 +62,8 @@ export const imageFunctionalities = {
 };
 
 export const buttonFunctionalities = {
-  buttonText: "Button",
+  showButton: true,
+  buttonText: "Action",
   buttonRedirectLink: "https://",
 };
 
@@ -163,6 +165,8 @@ export const initialSectionComponentStyles = [
       paragraphStyles: paragraphStyles,
       imageStyles: imageStyles,
       blockStyles: blockStyles,
+      cardStyles: cardStyles,
+      buttonStyles: buttonStyles,
     },
     extraFunctionalities: {
       imageGridFunctionalities: [

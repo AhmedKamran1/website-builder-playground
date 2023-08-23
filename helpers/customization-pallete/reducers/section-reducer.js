@@ -107,6 +107,49 @@ export const sectionImageReducer = (state, action) => {
   }
 };
 
+export const sectionButtonReducer = (state, action) => {
+  switch (action.type) {
+    // BUTTON FUNCTIONALITIES
+    case SectionEventTypesEnum.sectionButtonFunctionalities.CHANGEBUTTONTEXT:
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          buttonFunctionalities: {
+            ...state.extraFunctionalities.buttonFunctionalities,
+            buttonText: action.payload,
+          },
+        },
+      };
+    case SectionEventTypesEnum.sectionButtonFunctionalities
+      .CHANGEBUTTONREDIRECTLINK:
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          buttonFunctionalities: {
+            ...state.extraFunctionalities.buttonFunctionalities,
+            buttonRedirectLink: action.payload,
+          },
+        },
+      };
+
+    case CommonEventTypeEnum.SETINITIALSTATE:
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          buttonFunctionalities: action.payload.extraFunctionalities
+            .buttonFunctionalities ?? {
+            ...state.extraFunctionalities.buttonFunctionalities,
+          },
+        },
+      };
+    default:
+      return state;
+  }
+};
+
 export const sectionGridImageReducer = (state, action) => {
   let updatedGridImages,
     gridIndex,
@@ -116,7 +159,9 @@ export const sectionGridImageReducer = (state, action) => {
     pricingText,
     image,
     imageAltText,
-    imageRedirectLink;
+    imageRedirectLink,
+    buttonText,
+    buttonRedirectLink;
   updatedGridImages = structuredClone(
     state.extraFunctionalities.imageGridFunctionalities
   );
@@ -240,6 +285,31 @@ export const sectionGridImageReducer = (state, action) => {
         },
       };
 
+    case SectionEventTypesEnum.sectionGridImageFunctionalities
+      .CHANGEGRIDBUTTONTEXT:
+      ({ gridIndex, buttonText } = action.payload);
+      updatedGridImages[gridIndex].buttonFunctionalities.buttonText =
+        buttonText;
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          imageGridFunctionalities: updatedGridImages,
+        },
+      };
+    case SectionEventTypesEnum.sectionGridImageFunctionalities
+      .CHANGEGRIDBUTTONREDIRECTLINK:
+      ({ gridIndex, buttonRedirectLink } = action.payload);
+      updatedGridImages[gridIndex].buttonFunctionalities.buttonRedirectLink =
+        buttonRedirectLink;
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          imageGridFunctionalities: updatedGridImages,
+        },
+      };
+
     case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
@@ -275,8 +345,7 @@ export const sectionHeadingStylesReducer = (state, action) => {
           headingStyles: {
             ...state.styles.headingStyles,
             fontStyle: action.payload,
-            fontWeight:
-              sectionInitialHeadingStylesState.styles.headingStyles.fontWeight,
+            fontWeight: "",
           },
         },
       };
@@ -289,8 +358,7 @@ export const sectionHeadingStylesReducer = (state, action) => {
           headingStyles: {
             ...state.styles.headingStyles,
             fontWeight: action.payload,
-            fontStyle:
-              sectionInitialHeadingStylesState.styles.headingStyles.fontStyle,
+            fontStyle: "",
           },
         },
       };
@@ -339,9 +407,7 @@ export const sectionParagraphStylesReducer = (state, action) => {
           paragraphStyles: {
             ...state.styles.paragraphStyles,
             fontStyle: action.payload,
-            fontWeight:
-              sectionInitialParagraphStylesState.styles.paragraphStyles
-                .fontWeight,
+            fontWeight: "",
           },
         },
       };
@@ -354,9 +420,7 @@ export const sectionParagraphStylesReducer = (state, action) => {
           paragraphStyles: {
             ...state.styles.paragraphStyles,
             fontWeight: action.payload,
-            fontStyle:
-              sectionInitialParagraphStylesState.styles.paragraphStyles
-                .fontStyle,
+            fontStyle: "",
           },
         },
       };
@@ -518,7 +582,7 @@ export const sectionCardStylesReducer = (state, action) => {
         },
       };
 
-    case SectionEventTypesEnum.cardStyles.CHANGEIMAGEBORDERADIUS:
+    case SectionEventTypesEnum.cardStyles.CHANGEBORDERRADIUS:
       return {
         ...state,
         styles: {
@@ -535,7 +599,9 @@ export const sectionCardStylesReducer = (state, action) => {
         ...state,
         styles: {
           ...state.styles,
-          cardStyles: action.payload.styles.cardStyles,
+          cardStyles: action.payload.styles.cardStyles ?? {
+            ...state.styles.cardStyles,
+          },
         },
       };
     default:
@@ -569,7 +635,19 @@ export const sectionButtonStylesReducer = (state, action) => {
         },
       };
 
-    case SectionEventTypesEnum.buttonStyles.CHANGEPARAGRAPHFONTSTYLE:
+    case SectionEventTypesEnum.buttonStyles.CHANGEBUTTONHOVERCOLOR:
+      return {
+        ...state,
+        styles: {
+          ...state.styles,
+          buttonStyles: {
+            ...state.styles.buttonStyles,
+            hoverColor: action.payload,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.buttonStyles.CHANGEBUTTONFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -583,7 +661,7 @@ export const sectionButtonStylesReducer = (state, action) => {
         },
       };
 
-    case SectionEventTypesEnum.buttonStyles.CHANGEPARAGRAPHFONTWEIGHT:
+    case SectionEventTypesEnum.buttonStyles.CHANGEBUTTONFONTWEIGHT:
       return {
         ...state,
         styles: {
@@ -612,7 +690,9 @@ export const sectionButtonStylesReducer = (state, action) => {
         ...state,
         styles: {
           ...state.styles,
-          subHeadingStyles: action.payload.styles.subHeadingStyles,
+          buttonStyles: action.payload.styles.buttonStyles ?? {
+            ...state.styles.buttonStyles,
+          },
         },
       };
     default:
