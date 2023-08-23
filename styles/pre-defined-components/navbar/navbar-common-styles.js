@@ -8,9 +8,11 @@ import { styledWithoutProps } from "../ignoredProps";
 
 export const ResponsiveText = styledWithoutProps(
   Typography,
-  ({ variant, colorHex, theme }) => ({
+  ({ variant, colorHex, fontStyle, fontWeight, theme }) => ({
     fontSize: baseFontSizes[variant].default,
     color: colorHex,
+    fontStyle: fontStyle,
+    fontWeight: fontWeight,
     [theme.breakpoints.down("sm")]: {
       fontSize: baseFontSizes[variant].small,
     },
@@ -34,5 +36,5 @@ export const NavbarLogo = styledWithoutProps(Avatar, ({ theme }) => ({
   height: "55px",
   width: "55px",
   backgroundColor: "transparent",
-  marginRight:"15px"
+  marginRight: "15px",
 }));

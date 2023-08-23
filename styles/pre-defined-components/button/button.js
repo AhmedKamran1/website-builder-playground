@@ -12,6 +12,7 @@ export const StyledButton = styledWithoutProps(
     fontWeight,
     fontStyle,
     hoverColor,
+    borderRadius,
     isfocused,
   }) => ({
     backgroundColor: backgroundColor,
@@ -20,6 +21,7 @@ export const StyledButton = styledWithoutProps(
     fontFamily: fontFamily,
     fontWeight: fontWeight,
     fontStyle: fontStyle,
+    borderRadius: `${borderRadius}%`,
     border: isfocused ? "1px solid blue" : "none",
     margin: "0.25rem",
     "&:hover": {

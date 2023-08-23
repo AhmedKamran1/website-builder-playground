@@ -1,6 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 
 import { styledWithoutProps } from "../../ignoredProps";
+import { StyledButton } from "../../button/button";
 
 export const SectionContainer6 = styledWithoutProps(
   Container,
@@ -13,7 +14,7 @@ export const SectionContainer6 = styledWithoutProps(
 
 export const SectionTextWrapperContainer6 = styledWithoutProps(
   Box,
-  ({ theme }) => ({
+  ({ backgroundColor, theme }) => ({
     width: "55%",
     border: "1px solid red",
     padding: "1.5rem",
@@ -21,6 +22,7 @@ export const SectionTextWrapperContainer6 = styledWithoutProps(
     flexDirection: "column",
     justifyContent: "space-between",
     gap: "20px",
+    backgroundColor: backgroundColor,
     [theme.breakpoints.down("lg")]: {
       width: "100%",
       padding: "1rem",
@@ -43,20 +45,26 @@ export const SectionImageContainer6 = styledWithoutProps(Box, ({ theme }) => ({
   },
 }));
 
-export const SectionButtonWrapperContainer6 = styledWithoutProps(Box, ({}) => ({
-  height: "35px",
-  width: "100px",
-  border: "1px solid black",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-}));
+export const SectionButtonContainer6 = styledWithoutProps(
+  StyledButton,
+  ({}) => ({
+    height: "35px",
+    width: "100px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  })
+);
 
-export const SectionCardContainer6 = styledWithoutProps(Box, ({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  minHeight: "220px",
-  [theme.breakpoints.down("lg")]: {
-    flexDirection: "column",
-  },
-}));
+export const SectionCardContainer6 = styledWithoutProps(
+  Box,
+  ({ borderRadius, theme }) => ({
+    display: "flex",
+    flexDirection: "row",
+    minHeight: "220px",
+    borderRadius: borderRadius,
+    [theme.breakpoints.down("lg")]: {
+      flexDirection: "column",
+    },
+  })
+);
