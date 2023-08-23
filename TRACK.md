@@ -62,7 +62,9 @@
 - pagename and website id work //DONE
 - fix simple nav tabs to be buttons and add logo with alt text and option to upload image
 - paragraph change on enter press and render accordingly to it //DONE
-- PALLETES for sec3, STYLED COMPONENTS for sec3, extract common components,fix image pallete for navbar,fix section palletes structure
+- extract common components,fix image pallete for navbar,fix section palletes structure
+- remove button work completely
+- naming conventions of states in customization pallete, grid naming convention
 - update happening on changing selected component
 
 # ASK
@@ -73,5 +75,8 @@
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
 - navbar pre-fetch problem?
 - image pallete and similar properties like used in gridimages are slightly different what to do?
-- SectionGridImage.js me jugaar
+- SectionGridImage.js and SectionGridButton.js me jugaar
 - 2 types of same pallete one for grid and other for non-grid
+- button styles should have bold/italic text options?
+
+fix section pallete structure, 3 newly added section all properties, old sections all properties
