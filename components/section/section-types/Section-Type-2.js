@@ -27,7 +27,12 @@ const SectionType2 = ({
     >
       <SectionTextBox2>
         <Box textAlign={headingStyles.textAlign}>
-          <ResponsiveText variant="header" colorHex={headingStyles.colorHex}>
+          <ResponsiveText
+            variant="header"
+            colorHex={headingStyles.colorHex}
+            fontStyle={headingStyles.fontStyle}
+            fontWeight={headingStyles.fontWeight}
+          >
             {formatText(headingText)}
           </ResponsiveText>
         </Box>
@@ -35,6 +40,8 @@ const SectionType2 = ({
           <ResponsiveText
             variant="mainBody"
             colorHex={paragraphStyles.colorHex}
+            fontStyle={paragraphStyles.fontStyle}
+            fontWeight={paragraphStyles.fontWeight}
           >
             {formatText(paragraphText)}
           </ResponsiveText>

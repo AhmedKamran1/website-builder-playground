@@ -1,5 +1,9 @@
-import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+import {
+  SectionButtonContainer6,
   SectionButtonWrapperContainer6,
   SectionCardContainer6,
   SectionContainer6,
@@ -16,7 +20,14 @@ const SectionType6 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { blockStyles, headingStyles, paragraphStyles, imageStyles } = styles;
+  const {
+    buttonStyles,
+    cardStyles,
+    blockStyles,
+    headingStyles,
+    paragraphStyles,
+    imageStyles,
+  } = styles;
   const { imageGridFunctionalities } = extraFunctionalities;
 
   return (
@@ -34,9 +45,18 @@ const SectionType6 = ({
           columns={{ xs: 1, sm: 4, md: 6, lg: 12 }}
         >
           {imageGridFunctionalities.map(
-            ({ textFunctionalities, imageFunctionalities }, index) => (
+            (
+              {
+                textFunctionalities,
+                imageFunctionalities,
+                buttonFunctionalities,
+              },
+              index
+            ) => (
               <Grid item xs={1} sm={2} md={2} lg={6} key={index}>
-                <SectionCardContainer6>
+                <SectionCardContainer6
+                  borderRadius={`${cardStyles.borderRadius}%`}
+                >
                   <SectionImageContainer6>
                     <Avatar
                       src={imageFunctionalities.image}
@@ -47,12 +67,16 @@ const SectionType6 = ({
                       }}
                     />
                   </SectionImageContainer6>
-                  <SectionTextWrapperContainer6>
+                  <SectionTextWrapperContainer6
+                    backgroundColor={cardStyles.backgroundColor}
+                  >
                     <SectionTextContainer6>
                       <Box textAlign={headingStyles.textAlign}>
                         <ResponsiveText
                           variant="subHeader"
                           colorHex={headingStyles.colorHex}
+                          fontStyle={headingStyles.fontStyle}
+                          fontWeight={headingStyles.fontWeight}
                         >
                           {textFunctionalities.headingText}
                         </ResponsiveText>
@@ -61,6 +85,8 @@ const SectionType6 = ({
                         <ResponsiveText
                           variant="mainBody"
                           colorHex={paragraphStyles.colorHex}
+                          fontStyle={paragraphStyles.fontStyle}
+                          fontWeight={paragraphStyles.fontWeight}
                         >
                           {textFunctionalities.paragraphText}
                         </ResponsiveText>
@@ -73,9 +99,18 @@ const SectionType6 = ({
                         alignItems: "center",
                       }}
                     >
-                      <SectionButtonWrapperContainer6>
-                        Button
-                      </SectionButtonWrapperContainer6>
+                      {/* <StyledLink
+                        href={buttonFunctionalities.buttonRedirectLink}
+                      > */}
+                      <SectionButtonContainer6
+                        variant="contained"
+                        {...buttonStyles}
+                      >
+                        <ResponsiveText variant="helper">
+                          {buttonFunctionalities.buttonText}
+                        </ResponsiveText>
+                      </SectionButtonContainer6>
+                      {/* </StyledLink> */}
                       <Box>
                         <ResponsiveText variant="subHeader">
                           {textFunctionalities.pricingText}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SectionGridTextArea from "../common-section-palletes/SectionGridTextArea";
-import SectionGridCardColor from "../common-section-palletes/SectionGridCardColor";
+import SectionGridButton from "../common-section-palletes/SectionGridButton";
 
 const SectionPallete5 = ({ gridItem, gridIndex, dispatchGridImageActions }) => {
   return (
@@ -10,7 +10,11 @@ const SectionPallete5 = ({ gridItem, gridIndex, dispatchGridImageActions }) => {
         gridIndex={gridIndex}
         dispatchGridImageActions={dispatchGridImageActions}
       />
-      {/* <SectionGridCardColor /> */}
+      <SectionGridButton
+        gridItem={gridItem}
+        gridIndex={gridIndex}
+        dispatchGridImageActions={dispatchGridImageActions}
+      />
     </>
   );
 };

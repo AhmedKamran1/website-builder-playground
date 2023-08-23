@@ -1,4 +1,7 @@
-import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import {
   SectionButtonContainer5,
   SectionCardContainer5,
@@ -14,7 +17,14 @@ const SectionType5 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { blockStyles, headingStyles, paragraphStyles, imageStyles } = styles;
+  const {
+    buttonStyles,
+    cardStyles,
+    blockStyles,
+    headingStyles,
+    paragraphStyles,
+    imageStyles,
+  } = styles;
   const { imageGridFunctionalities } = extraFunctionalities;
 
   return (
@@ -32,50 +42,72 @@ const SectionType5 = ({
           spacing={1.5}
           columns={{ xs: 1, sm: 6, md: 12 }}
         >
-          {imageGridFunctionalities.map(({ textFunctionalities }, index) => (
-            <Grid item xs={1} sm={3} md={4} key={index}>
-              <SectionCardContainer5>
-                <SectionPriceContainer5>
-                  <ResponsiveText variant="subHeader">
-                    {textFunctionalities.pricingText}
-                  </ResponsiveText>
-                </SectionPriceContainer5>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "40px",
-                  }}
+          {imageGridFunctionalities.map(
+            ({ textFunctionalities, buttonFunctionalities }, index) => (
+              <Grid item xs={1} sm={3} md={4} key={index}>
+                <SectionCardContainer5
+                  backgroundColor={cardStyles.backgroundColor}
+                  borderRadius={`${cardStyles.borderRadius}%`}
                 >
+                  <SectionPriceContainer5>
+                    <ResponsiveText variant="subHeader">
+                      {textFunctionalities.pricingText}
+                    </ResponsiveText>
+                  </SectionPriceContainer5>
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: "15px",
+                      gap: "30px",
                     }}
                   >
-                    <Box textAlign={headingStyles.textAlign}>
-                      <ResponsiveText
-                        variant="header"
-                        colorHex={headingStyles.colorHex}
-                      >
-                        {textFunctionalities.headingText}
-                      </ResponsiveText>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "15px",
+                      }}
+                    >
+                      <Box textAlign={headingStyles.textAlign}>
+                        <ResponsiveText
+                          variant="subHeader"
+                          colorHex={headingStyles.colorHex}
+                          fontStyle={headingStyles.fontStyle}
+                          fontWeight={headingStyles.fontWeight}
+                        >
+                          {textFunctionalities.headingText}
+                        </ResponsiveText>
+                      </Box>
+                      <Box textAlign={paragraphStyles.textAlign}>
+                        <ResponsiveText
+                          variant="mainBody"
+                          colorHex={paragraphStyles.colorHex}
+                          fontStyle={paragraphStyles.fontStyle}
+                          fontWeight={paragraphStyles.fontWeight}
+                        >
+                          {textFunctionalities.paragraphText}
+                        </ResponsiveText>
+                      </Box>
                     </Box>
-                    <Box textAlign={paragraphStyles.textAlign}>
-                      <ResponsiveText
-                        variant="mainBody"
-                        colorHex={paragraphStyles.colorHex}
-                      >
-                        {textFunctionalities.paragraphText}
-                      </ResponsiveText>
+                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                      {/* <StyledLink
+                        href={buttonFunctionalities.buttonRedirectLink}
+                      > */}
+                        <SectionButtonContainer5
+                          variant="contained"
+                          {...buttonStyles}
+                        >
+                          <ResponsiveText variant="helper">
+                            {buttonFunctionalities.buttonText}
+                          </ResponsiveText>
+                        </SectionButtonContainer5>
+                      {/* </StyledLink> */}
                     </Box>
                   </Box>
-                  <SectionButtonContainer5>Button</SectionButtonContainer5>
-                </Box>
-              </SectionCardContainer5>
-            </Grid>
-          ))}
+                </SectionCardContainer5>
+              </Grid>
+            )
+          )}
         </Grid>
       </Container>
     </SectionContainer5>

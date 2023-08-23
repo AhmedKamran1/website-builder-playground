@@ -50,6 +50,8 @@ const SectionType3 = ({
                     <ResponsiveText
                       variant="subHeader"
                       colorHex={headingStyles.colorHex}
+                      fontStyle={headingStyles.fontStyle}
+                      fontWeight={headingStyles.fontWeight}
                     >
                       {formatText(textFunctionalities.headingText)}
                     </ResponsiveText>
@@ -58,6 +60,8 @@ const SectionType3 = ({
                     <ResponsiveText
                       variant="mainBody"
                       colorHex={paragraphStyles.colorHex}
+                      fontStyle={paragraphStyles.fontStyle}
+                      fontWeight={paragraphStyles.fontWeight}
                     >
                       {formatText(textFunctionalities.paragraphText)}
                     </ResponsiveText>
