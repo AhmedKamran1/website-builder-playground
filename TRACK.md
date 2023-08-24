@@ -78,5 +78,6 @@
 - SectionGridImage.js and SectionGridButton.js me jugaar
 - 2 types of same pallete one for grid and other for non-grid
 - button styles should have bold/italic text options?
+- in whole project index is utilized as key while mapping whhich is not recommended
 
 fix section pallete structure, 3 newly added section all properties, old sections all properties
