@@ -134,6 +134,19 @@ export const sectionButtonReducer = (state, action) => {
         },
       };
 
+    case SectionEventTypesEnum.sectionButtonFunctionalities
+      .CHANGEBUTTONVISIBILITY:
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          buttonFunctionalities: {
+            ...state.extraFunctionalities.buttonFunctionalities,
+            showButton: !state.extraFunctionalities.buttonFunctionalities.showButton,
+          },
+        },
+      };
+
     case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
