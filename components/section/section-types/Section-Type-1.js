@@ -1,3 +1,4 @@
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
 import {
   ResponsiveText,
   StyledLink,
@@ -63,6 +64,14 @@ const SectionType1 = ({
                   </ResponsiveText>
                 </Box>
               )}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <StyledButton variant="contained">efewqfewf</StyledButton>
+              </Box>
             </SectionTextBox1>
           </Grid>
           <Grid item xs={12} lg={6}>

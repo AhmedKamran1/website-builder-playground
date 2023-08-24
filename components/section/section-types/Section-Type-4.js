@@ -1,4 +1,3 @@
-import { imageFunctionalities } from "@/helpers/pre-defined-components-styles/section-styles";
 import { StyledButton } from "@/styles/pre-defined-components/button/button";
 import {
   ResponsiveText,
@@ -28,9 +27,10 @@ const SectionType4 = ({
     paragraphStyles,
     imageStyles,
   } = styles;
-  const { textFunctionalities, buttonFunctionalities } = extraFunctionalities;
+  const { textFunctionalities, imageFunctionalities, buttonFunctionalities } =
+    extraFunctionalities;
   const { headingText, paragraphText } = textFunctionalities;
-  const { buttonText, buttonRedirectLink } = buttonFunctionalities;
+  const { showButton, buttonText, buttonRedirectLink } = buttonFunctionalities;
 
   return (
     <SectionContainer4
@@ -46,10 +46,12 @@ const SectionType4 = ({
           md={6}
           borderRadius={`${cardStyles.borderRadius}%`}
         >
-          <Avatar
-            src={imageFunctionalities.image}
-            sx={{ height: "100%", width: "100%", borderRadius: 0 }}
-          />
+          <StyledLink href={imageFunctionalities.imageRedirectLink}>
+            <Avatar
+              src={imageFunctionalities.image}
+              sx={{ height: "100%", width: "100%", borderRadius: 0 }}
+            />
+          </StyledLink>
         </SectionImageContainer4>
         <SectionTextWrapperContainer4
           item
@@ -82,11 +84,13 @@ const SectionType4 = ({
             <Box
               sx={{ display: "flex", justifyContent: headingStyles.textAlign }}
             >
-              {/* <StyledLink href={buttonRedirectLink}> */}
+              {showButton && (
+                // <StyledLink href={buttonRedirectLink}>
                 <SectionButtonContainer4 variant="contained" {...buttonStyles}>
                   <ResponsiveText variant="helper">{buttonText}</ResponsiveText>
                 </SectionButtonContainer4>
-              {/* </StyledLink> */}
+                // </StyledLink>
+              )}
             </Box>
           </SectionTextContainer4>
         </SectionTextWrapperContainer4>

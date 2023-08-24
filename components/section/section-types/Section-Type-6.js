@@ -1,3 +1,4 @@
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
 import {
   ResponsiveText,
   StyledLink,
@@ -58,14 +59,16 @@ const SectionType6 = ({
                   borderRadius={`${cardStyles.borderRadius}%`}
                 >
                   <SectionImageContainer6>
-                    <Avatar
-                      src={imageFunctionalities.image}
-                      sx={{
-                        height: "100%",
-                        width: "100%",
-                        borderRadius: 0,
-                      }}
-                    />
+                    <StyledLink href={imageFunctionalities.imageRedirectLink}>
+                      <Avatar
+                        src={imageFunctionalities.image}
+                        sx={{
+                          height: "100%",
+                          width: "100%",
+                          borderRadius: 0,
+                        }}
+                      />
+                    </StyledLink>
                   </SectionImageContainer6>
                   <SectionTextWrapperContainer6
                     backgroundColor={cardStyles.backgroundColor}

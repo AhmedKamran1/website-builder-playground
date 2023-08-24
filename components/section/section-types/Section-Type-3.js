@@ -1,6 +1,9 @@
 import React from "react";
 
-import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { Avatar, Box, Container, Grid } from "@mui/material";
 import {
   GridItem3,
@@ -8,6 +11,7 @@ import {
   SectionItemContainer3,
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-3-styles";
 import { formatText } from "@/util/format-text";
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
 
 const SectionType3 = ({
   extraFunctionalities,
@@ -37,14 +41,16 @@ const SectionType3 = ({
               <Grid item xs={1} sm={3} md={4} key={index}>
                 <SectionItemContainer3>
                   <Box sx={{ height: "200px", width: "100%" }}>
-                    <Avatar
-                      src={imageFunctionalities.image}
-                      sx={{
-                        height: "100%",
-                        width: "100%",
-                        borderRadius: `${imageStyles.borderRadius}%`,
-                      }}
-                    />
+                    <StyledLink href={imageFunctionalities.imageRedirectLink}>
+                      <Avatar
+                        src={imageFunctionalities.image}
+                        sx={{
+                          height: "100%",
+                          width: "100%",
+                          borderRadius: `${imageStyles.borderRadius}%`,
+                        }}
+                      />
+                    </StyledLink>
                   </Box>
                   <Box textAlign={headingStyles.textAlign}>
                     <ResponsiveText
@@ -71,6 +77,13 @@ const SectionType3 = ({
             )
           )}
         </Grid>
+      </Container>
+      <Container maxWidth="md">
+        <Box
+          sx={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
+        >
+          <StyledButton variant="contained">Button</StyledButton>
+        </Box>
       </Container>
     </SectionContainer3>
   );

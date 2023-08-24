@@ -1,3 +1,4 @@
+import { StyledButton } from "@/styles/pre-defined-components/button/button";
 import {
   ResponsiveText,
   StyledLink,
@@ -93,14 +94,14 @@ const SectionType5 = ({
                       {/* <StyledLink
                         href={buttonFunctionalities.buttonRedirectLink}
                       > */}
-                        <SectionButtonContainer5
-                          variant="contained"
-                          {...buttonStyles}
-                        >
-                          <ResponsiveText variant="helper">
-                            {buttonFunctionalities.buttonText}
-                          </ResponsiveText>
-                        </SectionButtonContainer5>
+                      <SectionButtonContainer5
+                        variant="contained"
+                        {...buttonStyles}
+                      >
+                        <ResponsiveText variant="helper">
+                          {buttonFunctionalities.buttonText}
+                        </ResponsiveText>
+                      </SectionButtonContainer5>
                       {/* </StyledLink> */}
                     </Box>
                   </Box>
