@@ -28,6 +28,10 @@ import SectionPallete6 from "./section-pallete-type-6/section-pallete-type-6";
 import SectionPallete5 from "./section-pallete-type-5/section-pallete-type-5";
 import CommonButtonPallete from "../../common-palletes/CommonButtonPallete";
 import FontPallete from "../../common-palletes/FontPallete";
+import SectionCardStyles from "./common-section-palletes/SectionCardStyles";
+import SectionCommonStyles from "./common-section-palletes/SectionCommonStyles";
+import SectionPallete4 from "./section-pallete-type-4/section-pallete-type-4";
+import SectionPallete2 from "./section-pallete-type-2/section-pallete-type-2";
 
 const SectionPallete = ({
   sectionTextState,
@@ -95,221 +99,78 @@ const SectionPallete = ({
 
   return (
     <>
-      {(selectedComponent.secId === "4" ||
-        selectedComponent.secId === "5" ||
-        selectedComponent.secId === "6") && (
-        <>
-          <strong>Card Color</strong>
-          <BgColorPallete
-            state={cardStyles}
-            dispatch={debounceSectionCardStylesActions}
-            changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
-          />
-          <Box sx={{ width: "200px" }}>
-            <Slider
-              value={cardStyles.borderRadius}
-              marks={borderRadiusRange}
-              max={borderRadiusMaxRange}
-              onChange={(event) =>
-                debounceSectionCardStylesActions({
-                  type: SectionEventTypesEnum.cardStyles.CHANGEBORDERRADIUS,
-                  payload: event.target.value,
-                })
-              }
-            />
-          </Box>
-          <strong>Button Properties</strong>
-          <CommonButtonPallete
-            state={buttonStyles}
-            dispatch={debounceSectionButtonStylesActions}
-          />
-          {/* <FontPallete
-            state={buttonStyles}
-            dispatch={debounceSectionButtonStylesActions}
-            changeFontWeight={
-              SectionEventTypesEnum.buttonStyles.CHANGEBUTTONFONTWEIGHT
-            }
-            changeFontStyle={
-              SectionEventTypesEnum.buttonStyles.CHANGEBUTTONFONTSTYLE
-            }
-            fontPalleteName="buttonStyles"
-          /> */}
-        </>
-      )}
-      <p>BLOCK STYLES</p>
-      <BgColorPallete
-        state={blockStyles}
-        dispatch={debounceSectionBlockStylesActions}
-        changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
+      <SectionCommonStyles
+        blockStyles={blockStyles}
+        headingStyles={headingStyles}
+        paragraphStyles={paragraphStyles}
+        debounceSectionBlockStylesActions={debounceSectionBlockStylesActions}
+        debounceSectionHeadingStylesActions={
+          debounceSectionHeadingStylesActions
+        }
+        debounceSectionParagraphStylesActions={
+          debounceSectionParagraphStylesActions
+        }
       />
-      <Divider />
-      <strong>Section Content</strong>
       {selectedComponent.secId === "1" && (
         <SectionPallete1
+          textFunctionalities={textFunctionalities}
+          dispatchTextActions={dispatchTextActions}
           blockState={blockStyles}
           imageFunctionalitiesState={imageFunctionalities}
           imageStylesState={imageStyles}
           debounceSectionBlockStylesActions={debounceSectionBlockStylesActions}
           debounceSectionImageStylesActions={debounceSectionImageStylesActions}
           dispatchImageActions={dispatchImageActions}
-          changeFlexDirection={
-            SectionEventTypesEnum.blockStyles.CHANGEFLEXDIRECTION
-          }
         />
       )}
-      <p>Heading Color</p>
-      <CollorPallete
-        state={headingStyles}
-        dispatch={debounceSectionHeadingStylesActions}
-        changeColor={CommonEventTypeEnum.CHANGECOLOR}
-      />
-
-      <p>Paragraph Color</p>
-      <CollorPallete
-        state={paragraphStyles}
-        dispatch={debounceSectionParagraphStylesActions}
-        changeColor={CommonEventTypeEnum.CHANGECOLOR}
-      />
-
-      <SectionTextAlignment
-        headingState={headingStyles}
-        paragraphState={paragraphStyles}
-        dispatchHeadingStyles={debounceSectionHeadingStylesActions}
-        dispatchParagraphStyles={debounceSectionParagraphStylesActions}
-        changeHeadingAlignment={
-          SectionEventTypesEnum.headingStyles.CHANGEHEADINGTEXTALIGNMENT
-        }
-        changeParagraphAlignment={
-          SectionEventTypesEnum.paragraphStyles.CHANGEPARAGRAPHTEXTALIGNMENT
-        }
-      />
-      <p>Heading Font Type</p>
-      <FontPallete
-        state={headingStyles}
-        dispatch={debounceSectionHeadingStylesActions}
-        changeFontWeight={
-          SectionEventTypesEnum.headingStyles.CHANGEHEADINGFONTWEIGHT
-        }
-        changeFontStyle={
-          SectionEventTypesEnum.headingStyles.CHANGEHEADINGFONTSTYLE
-        }
-        fontPalleteName="headingStyles"
-      />
-      <p>Paragraph Font Type</p>
-      <FontPallete
-        state={paragraphStyles}
-        dispatch={debounceSectionParagraphStylesActions}
-        changeFontWeight={
-          SectionEventTypesEnum.paragraphStyles.CHANGEPARAGRAPHFONTWEIGHT
-        }
-        changeFontStyle={
-          SectionEventTypesEnum.paragraphStyles.CHANGEPARAGRAPHFONTSTYLE
-        }
-        fontPalleteName="paragraphStyles"
-      />
-      {(selectedComponent.secId === "1" ||
-        selectedComponent.secId === "2" ||
-        selectedComponent.secId === "4") && (
-        <SectionTextArea
-          state={textFunctionalities}
-          dispatch={dispatchTextActions}
-          changeHeadingText={
-            SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
-          }
-          changeParagraphText={
-            SectionEventTypesEnum.sectionTextFunctionalities.CHANGEPARAGRAPHTEXT
-          }
+      {selectedComponent.secId === "2" && (
+        <SectionPallete2
+          textFunctionalities={textFunctionalities}
+          dispatchTextActions={dispatchTextActions}
         />
       )}
       {selectedComponent.secId === "3" && (
-        <Box sx={{ width: "200px" }}>
-          <Slider
-            value={imageStyles.borderRadius}
-            marks={borderRadiusRange}
-            max={borderRadiusMaxRange}
-            onChange={(event) =>
-              dispatchSectionImageStylesActions({
-                type: SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS,
-                payload: event.target.value,
-              })
-            }
-          />
-        </Box>
+        <SectionPallete3
+          imageStyles={imageStyles}
+          imageGridFunctionalities={imageGridFunctionalities}
+          dispatchGridImageActions={dispatchGridImageActions}
+        />
       )}
-      {(selectedComponent.secId === "3" ||
-        selectedComponent.secId === "5" ||
-        selectedComponent.secId === "6") &&
-        imageGridFunctionalities.map((gridItem, gridIndex) => (
-          <React.Fragment key={gridIndex}>
-            <br />
-            <strong>Grid Number {gridIndex + 1}</strong>
-            <DeleteItem
-              dispatch={dispatchGridImageActions}
-              index={gridIndex}
-              deleteItem={
-                SectionEventTypesEnum.sectionGridImageFunctionalities
-                  .DELETEGRIDITEM
-              }
-            >
-              Delete Item
-            </DeleteItem>
-
-            {selectedComponent.secId === "3" && (
-              <SectionPallete3
-                gridItem={gridItem}
-                gridIndex={gridIndex}
-                dispatchGridImageActions={dispatchGridImageActions}
-              />
-            )}
-            {selectedComponent.secId === "5" && (
-              <SectionPallete5
-                gridItem={gridItem}
-                gridIndex={gridIndex}
-                dispatchGridImageActions={dispatchGridImageActions}
-              />
-            )}
-            {selectedComponent.secId === "6" && (
-              <SectionPallete6
-                gridItem={gridItem}
-                gridIndex={gridIndex}
-                dispatchGridImageActions={dispatchGridImageActions}
-              />
-            )}
-            <Divider />
-          </React.Fragment>
-        ))}
-      {selectedComponent.secId === "3" && (
-        <AddItem
-          dispatch={dispatchGridImageActions}
-          itemType={gridImageItem}
-          addItem={
-            SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM
+      {selectedComponent.secId === "4" && (
+        <SectionPallete4
+          textFunctionalities={textFunctionalities}
+          dispatchTextActions={dispatchTextActions}
+          cardStyles={cardStyles}
+          buttonStyles={buttonStyles}
+          debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+          debounceSectionButtonStylesActions={
+            debounceSectionButtonStylesActions
           }
-        >
-          Add Item
-        </AddItem>
+        />
       )}
       {selectedComponent.secId === "5" && (
-        <AddItem
-          dispatch={dispatchGridImageActions}
-          itemType={gridTextItem}
-          addItem={
-            SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM
+        <SectionPallete5
+          cardStyles={cardStyles}
+          buttonStyles={buttonStyles}
+          debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+          debounceSectionButtonStylesActions={
+            debounceSectionButtonStylesActions
           }
-        >
-          Add Item
-        </AddItem>
+          imageGridFunctionalities={imageGridFunctionalities}
+          dispatchGridImageActions={dispatchGridImageActions}
+        />
       )}
       {selectedComponent.secId === "6" && (
-        <AddItem
-          dispatch={dispatchGridImageActions}
-          itemType={gridImageWithButtonItem}
-          addItem={
-            SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM
+        <SectionPallete6
+          cardStyles={cardStyles}
+          buttonStyles={buttonStyles}
+          debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+          debounceSectionButtonStylesActions={
+            debounceSectionButtonStylesActions
           }
-        >
-          Add Item
-        </AddItem>
+          imageGridFunctionalities={imageGridFunctionalities}
+          dispatchGridImageActions={dispatchGridImageActions}
+        />
       )}
     </>
   );
