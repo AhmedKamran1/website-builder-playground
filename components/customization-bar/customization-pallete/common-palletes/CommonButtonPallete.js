@@ -15,6 +15,7 @@ import {
 const CommonButtonPallete = ({ state, dispatch }) => {
   return (
     <>
+      <strong>Button Properties</strong>
       <CollorPallete
         state={state}
         dispatch={dispatch}

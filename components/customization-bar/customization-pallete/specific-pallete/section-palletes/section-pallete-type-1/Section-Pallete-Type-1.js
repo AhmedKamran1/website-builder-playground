@@ -1,15 +1,17 @@
 import React from "react";
 import ImagePallete from "../../../common-palletes/ImagePallete";
 import { SectionEventTypesEnum } from "@/helpers/constants/event-types/event-types";
+import SectionTextArea from "../common-section-palletes/SectionTextArea";
 
 const SectionPallete1 = ({
+  textFunctionalities,
+  dispatchTextActions,
   dispatchImageActions,
   debounceSectionBlockStylesActions,
   debounceSectionImageStylesActions,
   blockState,
   imageFunctionalitiesState,
   imageStylesState,
-  changeFlexDirection,
 }) => {
   return (
     <>
@@ -18,7 +20,7 @@ const SectionPallete1 = ({
           value={blockState.flexDirection}
           onChange={(event) =>
             debounceSectionBlockStylesActions({
-              type: changeFlexDirection,
+              type: SectionEventTypesEnum.blockStyles.CHANGEFLEXDIRECTION,
               payload: event.target.value,
             })
           }
@@ -44,6 +46,16 @@ const SectionPallete1 = ({
         }
         changeImageBorderRadius={
           SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS
+        }
+      />
+      <SectionTextArea
+        state={textFunctionalities}
+        dispatch={dispatchTextActions}
+        changeHeadingText={
+          SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
+        }
+        changeParagraphText={
+          SectionEventTypesEnum.sectionTextFunctionalities.CHANGEPARAGRAPHTEXT
         }
       />
     </>
