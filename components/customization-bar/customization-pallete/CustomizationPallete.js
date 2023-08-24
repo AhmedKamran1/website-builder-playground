@@ -294,6 +294,7 @@ const BottomBar = () => {
         <SectionPallete
           sectionTextState={sectionTextFunctionalitiesState}
           sectionImageState={sectionImageFunctionalitiesState}
+          sectionButtonState={sectionButtonFunctionalitiesState}
           sectionGridImageState={sectionGridImageFunctionalitiesState}
           sectionHeadingStylesState={sectionHeadingStylesState}
           sectionParagraphStylesState={sectionParagraphStylesState}
@@ -303,6 +304,7 @@ const BottomBar = () => {
           sectionButtonStylesState={sectionButtonStylesState}
           dispatchTextActions={dispatchSectionTextActions}
           dispatchImageActions={dispatchSectionImageActions}
+          dispatchButtonActions={dispatchSectionButtonActions}
           dispatchGridImageActions={dispatchSectionGridImageActions}
           dispatchSectionHeadingStylesActions={
             dispatchSectionHeadingStylesActions

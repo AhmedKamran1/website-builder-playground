@@ -36,6 +36,7 @@ import SectionPallete2 from "./section-pallete-type-2/section-pallete-type-2";
 const SectionPallete = ({
   sectionTextState,
   sectionImageState,
+  sectionButtonState,
   sectionGridImageState,
   sectionHeadingStylesState,
   sectionParagraphStylesState,
@@ -45,6 +46,7 @@ const SectionPallete = ({
   sectionButtonStylesState,
   dispatchTextActions,
   dispatchImageActions,
+  dispatchButtonActions,
   dispatchGridImageActions,
   dispatchSectionHeadingStylesActions,
   dispatchSectionParagraphStylesActions,
@@ -57,6 +59,7 @@ const SectionPallete = ({
 
   const { textFunctionalities } = sectionTextState.extraFunctionalities;
   const { imageFunctionalities } = sectionImageState.extraFunctionalities;
+  const { buttonFunctionalities } = sectionButtonState.extraFunctionalities;
   const { imageGridFunctionalities } =
     sectionGridImageState.extraFunctionalities;
 
@@ -138,10 +141,12 @@ const SectionPallete = ({
       )}
       {selectedComponent.secId === "4" && (
         <SectionPallete4
+          buttonFunctionalities={buttonFunctionalities}
           textFunctionalities={textFunctionalities}
           dispatchTextActions={dispatchTextActions}
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
+          dispatchButtonFunctionalities={dispatchButtonActions}
           debounceSectionCardStylesActions={debounceSectionCardStylesActions}
           debounceSectionButtonStylesActions={
             debounceSectionButtonStylesActions

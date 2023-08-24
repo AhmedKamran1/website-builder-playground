@@ -1,9 +1,38 @@
-import React from 'react'
+import { SectionEventTypesEnum } from "@/helpers/constants/event-types/event-types";
+import { Checkbox } from "@mui/material";
+import React from "react";
 
-const SectionButton = () => {
+const SectionButton = ({ state, dispatch }) => {
   return (
-    <div>SectionButton</div>
-  )
-}
+    <>
+      <div>
+        <p>Button Text</p>
+        <textarea
+          value={state.buttonText}
+          onInput={(event) =>
+            dispatch({
+              type: SectionEventTypesEnum.sectionButtonFunctionalities
+                .CHANGEBUTTONTEXT,
+              payload: event.target.value,
+            })
+          }
+        />
+      </div>
+      <div>
+        <p>Button Redirect Link</p>
+        <textarea
+          value={state.buttonRedirectLink}
+          onInput={(event) =>
+            dispatch({
+              type: SectionEventTypesEnum.sectionButtonFunctionalities
+                .CHANGEBUTTONREDIRECTLINK,
+              payload: event.target.value,
+            })
+          }
+        />
+      </div>
+    </>
+  );
+};
 
-export default SectionButton
+export default SectionButton;
