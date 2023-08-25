@@ -1,11 +1,11 @@
 import * as TempStyles from "../../../styles/customization-bar/TopBar";
-import * as ButtonStyles from "../../../styles/pre-defined-components/button/button";
+
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
 
-import { initialButtonComponentStyles } from "@/helpers/pre-defined-components-styles/button-styles";
+
 import { initialNavbarComponentStyles } from "@/helpers/pre-defined-components-styles/navbar-styles";
 import { initialSectionComponentStyles } from "@/helpers/pre-defined-components-styles/section-styles";
 
@@ -39,15 +39,6 @@ const TopBar = () => {
     componentType
   ) => {
     switch (componentType) {
-      case ComponentEnum.BUTTON:
-        dispatch(
-          addComponent({
-            componentType: ComponentEnum.BUTTON,
-            styles: styles,
-            extraFunctionalities: extraFunctionalities,
-          })
-        );
-        break;
       case ComponentEnum.SECTION:
         dispatch(
           addComponent({
@@ -68,25 +59,6 @@ const TopBar = () => {
 
   return (
     <TempStyles.TopBarGridContainer item xs={12}>
-      {/* <button onClick={()=>addComponentHandler}>div</button> */}
-      {/* <br /> */}
-      {/* {initialButtonComponentStyles.map((button, index) => (
-        <ButtonStyles.StyledButton
-          variant="contained"
-          key={index}
-          {...button.styles}
-          onClick={(event) =>
-            addComponentHandler(
-              event,
-              button.styles,
-              button.extraFunctionalities,
-              ComponentEnum.BUTTON
-            )
-          }
-        >
-          button
-        </ButtonStyles.StyledButton>
-      ))} */}
       <div>
         <span>Navbar Types:</span>
         <select defaultValue="none" onChange={addNavbarComponentHandler}>

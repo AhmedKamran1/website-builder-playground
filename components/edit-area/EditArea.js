@@ -35,17 +35,6 @@ const EditArea = () => {
   const renderComponent = (componentData, styles, extraFunctionalities) => {
     const isFocused = selectedComponentId === componentData?.id;
     switch (componentData?.componentType) {
-      // case ComponentEnum.BUTTON:
-      //   return (
-      //     <Styled.StyledButton
-      //       variant="contained"
-      //       {...styles}
-      //       onClick={() => componentSelectionHandler(componentData)}
-      //       isfocused={+isFocused}
-      //     >
-      //       {extraFunctionalities.innerText ?? "Button"}
-      //     </Styled.StyledButton>
-      //   );
       case ComponentEnum.NAVBAR:
         return (
           <Navbar

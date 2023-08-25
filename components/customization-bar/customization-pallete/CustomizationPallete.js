@@ -12,16 +12,14 @@ import {
   selectedComponentData,
 } from "@/store/ComponentSlice";
 
-import ButtonPallete from "./specific-pallete/ButtonPallete";
 import NavbarPallete from "./specific-pallete/navbar-palletes/NavbarPallete";
 
-import { buttonInitialState } from "@/helpers/customization-pallete/initial-reducer-states/initial-button-state";
 import {
   navbarInitialFunctionalitiesState,
   navbarInitialLinkStylesState,
   navbarInitialLoginButtonStylesState,
 } from "@/helpers/customization-pallete/initial-reducer-states/initial-navbar-state";
-import { buttonReducer } from "@/helpers/customization-pallete/reducers/button-reducer";
+
 import {
   navFunctionalitiesReducer,
   navLoginButtonStylesReducer,
@@ -130,11 +128,6 @@ const BottomBar = () => {
   const [sectionBlockStylesState, dispatchSectionBlockStylesActions] =
     useReducer(sectionBlockStylesReducer, sectionInitialBlockStylesState);
 
-  const [buttonState, dispatchButtonActions] = useReducer(
-    buttonReducer,
-    buttonInitialState
-  );
-
   const setStateHandler = useCallback(
     (dispatchStateAction) => {
       dispatchStateAction({
@@ -158,9 +151,6 @@ const BottomBar = () => {
     let navState;
     let sectionState;
     switch (selectedComponentType) {
-      case ComponentEnum.BUTTON:
-        storeDispatchHandler(buttonState, updateComponent);
-        break;
       case ComponentEnum.NAVBAR:
         navState = {
           styles: {
@@ -207,7 +197,7 @@ const BottomBar = () => {
     }
   }, [
     selectedComponentType,
-    buttonState,
+
     navStylesState,
     navLoginButtonStylesState,
     navFunctionalitiesState,
@@ -228,9 +218,6 @@ const BottomBar = () => {
   useEffect(() => {
     if (selectedComponentId) {
       switch (selectedComponentType) {
-        case ComponentEnum.BUTTON:
-          setStateHandler(dispatchButtonActions);
-          break;
         case ComponentEnum.NAVBAR:
           setStateHandler(dispatchNavFunctionalitiesActions);
           setStateHandler(dispatchNavStylesActions);
@@ -279,14 +266,10 @@ const BottomBar = () => {
     sectionBlockStylesState,
     sectionCardStylesState,
     sectionButtonStylesState,
-    buttonState,
   ]);
 
   return (
     <NavStyles.BottomBarGridContainer sx={{ overflowY: "auto" }} item xs={12}>
-      {selectedComponentType === ComponentEnum.BUTTON && (
-        <ButtonPallete state={buttonState} dispatch={dispatchButtonActions} />
-      )}
       {selectedComponentType === ComponentEnum.NAVBAR && (
         <NavbarPallete
           navFunctionalitiesState={navFunctionalitiesState}
