@@ -1,9 +1,6 @@
 import React from "react";
 
-import {
-  ResponsiveText,
-  StyledLink,
-} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+
 import { Avatar, Box, Container, Grid } from "@mui/material";
 import {
   GridItem3,
@@ -11,7 +8,8 @@ import {
   SectionItemContainer3,
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-3-styles";
 import { formatText } from "@/util/format-text";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
+
+import { ResponsiveText, StyledButton, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const SectionType3 = ({
   extraFunctionalities,

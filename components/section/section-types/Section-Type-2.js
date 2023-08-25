@@ -1,16 +1,14 @@
 import React from "react";
 
-import {
-  ResponsiveText,
-  StyledLink,
-} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+
 import { Box } from "@mui/material";
 import {
   SectionContainer2,
   SectionTextBox2,
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-2-styles";
 import { formatText } from "@/util/format-text";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
+
+import { ResponsiveText, StyledButton, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const SectionType2 = ({
   extraFunctionalities,

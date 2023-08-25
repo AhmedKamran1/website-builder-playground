@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 
 import { styledWithoutProps } from "../../ignoredProps";
-import { StyledButton } from "../../button/button";
+import { StyledButton } from "../../common-styled-components/common-components";
 
 export const SectionContainer5 = styledWithoutProps(
   Container,
@@ -13,7 +13,7 @@ export const SectionContainer5 = styledWithoutProps(
 
 export const SectionCardContainer5 = styledWithoutProps(
   Box,
-  ({ borderRadius, backgroundColor,theme }) => ({
+  ({ borderRadius, backgroundColor, theme }) => ({
     border: "1px solid black",
     minHeight: "250px",
     display: "flex",

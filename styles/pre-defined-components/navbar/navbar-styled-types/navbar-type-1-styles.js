@@ -1,5 +1,5 @@
 import { styled, Box } from "@mui/material";
-import { ResponsiveText } from "../navbar-common-styles";
+import { ResponsiveText } from "../../common-styled-components/common-components";
 
 export const ResponsiveBox = styled(Box)(({ theme }) => ({
   flexGrow: 1,

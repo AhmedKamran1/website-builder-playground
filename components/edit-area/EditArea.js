@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentEnum } from "@/helpers/constants/component-types/component-types";
 
 import * as EditAreaStyles from "../../styles/edit-area/EditArea";
-import * as Styled from "../../styles/pre-defined-components/button/button";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { componentActions } from "@/store/store";
@@ -16,8 +16,7 @@ import {
 import Navbar from "../navbar/Navbar";
 
 import Section from "../section/Section";
-import { Avatar, Box, Container, Grid } from "@mui/material";
-import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+
 
 const EditArea = () => {
   const selectedComponentId = useSelector(componentId);
@@ -36,17 +35,17 @@ const EditArea = () => {
   const renderComponent = (componentData, styles, extraFunctionalities) => {
     const isFocused = selectedComponentId === componentData?.id;
     switch (componentData?.componentType) {
-      case ComponentEnum.BUTTON:
-        return (
-          <Styled.StyledButton
-            variant="contained"
-            {...styles}
-            onClick={() => componentSelectionHandler(componentData)}
-            isfocused={+isFocused}
-          >
-            {extraFunctionalities.innerText ?? "Button"}
-          </Styled.StyledButton>
-        );
+      // case ComponentEnum.BUTTON:
+      //   return (
+      //     <Styled.StyledButton
+      //       variant="contained"
+      //       {...styles}
+      //       onClick={() => componentSelectionHandler(componentData)}
+      //       isfocused={+isFocused}
+      //     >
+      //       {extraFunctionalities.innerText ?? "Button"}
+      //     </Styled.StyledButton>
+      //   );
       case ComponentEnum.NAVBAR:
         return (
           <Navbar

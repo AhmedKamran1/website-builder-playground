@@ -2,13 +2,14 @@ import React from "react";
 
 import { Drawer, List, ListItem } from "@mui/material";
 
-import { StyledLink } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
+
+
 import {
   ResponsiveContainer,
   StyledListItemButton,
   StyledListItemText,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
+import { StyledButton, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const NavbarDrawer2 = ({
   showDrawer,

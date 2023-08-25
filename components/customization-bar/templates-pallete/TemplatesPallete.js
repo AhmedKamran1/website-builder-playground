@@ -70,7 +70,7 @@ const TopBar = () => {
     <TempStyles.TopBarGridContainer item xs={12}>
       {/* <button onClick={()=>addComponentHandler}>div</button> */}
       {/* <br /> */}
-      {initialButtonComponentStyles.map((button, index) => (
+      {/* {initialButtonComponentStyles.map((button, index) => (
         <ButtonStyles.StyledButton
           variant="contained"
           key={index}
@@ -86,7 +86,7 @@ const TopBar = () => {
         >
           button
         </ButtonStyles.StyledButton>
-      ))}
+      ))} */}
       <div>
         <span>Navbar Types:</span>
         <select defaultValue="none" onChange={addNavbarComponentHandler}>

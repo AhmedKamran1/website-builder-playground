@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 
 import { styledWithoutProps } from "../../ignoredProps";
-import { StyledButton } from "../../button/button";
+import { StyledButton } from "../../common-styled-components/common-components";
 
 export const SectionContainer6 = styledWithoutProps(
   Container,

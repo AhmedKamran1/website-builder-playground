@@ -6,18 +6,18 @@ import { baseFontSizes } from "@/helpers/font-sizes/font-sizes";
 
 import { styledWithoutProps } from "../ignoredProps";
 
-export const ResponsiveText = styledWithoutProps(
-  Typography,
-  ({ variant, colorHex, fontStyle, fontWeight, theme }) => ({
-    fontSize: baseFontSizes[variant].default,
-    color: colorHex,
-    fontStyle: fontStyle,
-    fontWeight: fontWeight,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: baseFontSizes[variant].small,
-    },
-  })
-);
+// export const ResponsiveText = styledWithoutProps(
+//   Typography,
+//   ({ variant, colorHex, fontStyle, fontWeight, theme }) => ({
+//     fontSize: baseFontSizes[variant].default,
+//     color: colorHex,
+//     fontStyle: fontStyle,
+//     fontWeight: fontWeight,
+//     [theme.breakpoints.down("sm")]: {
+//       fontSize: baseFontSizes[variant].small,
+//     },
+//   })
+// );
 
 export const NavigationBar = styledWithoutProps(
   AppBar,
@@ -28,9 +28,9 @@ export const NavigationBar = styledWithoutProps(
   })
 );
 
-export const StyledLink = styled(Link)(() => ({
-  all: "unset",
-}));
+// export const StyledLink = styled(Link)(() => ({
+//   all: "unset",
+// }));
 
 export const NavbarLogo = styledWithoutProps(Avatar, ({ theme }) => ({
   height: "55px",

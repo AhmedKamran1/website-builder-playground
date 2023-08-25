@@ -1,8 +1,10 @@
 import React from "react";
 
-import { StyledLink } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { FullViewBox } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
+import {
+  StyledButton,
+  StyledLink,
+} from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const NavbarFullViewBox1 = ({ links, navLinkStyles }) => {
   return (

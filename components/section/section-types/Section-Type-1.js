@@ -1,8 +1,6 @@
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
-import {
-  ResponsiveText,
-  StyledLink,
-} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+
+import { ResponsiveText, StyledButton, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
+
 import {
   SectionContainer1,
   SectionImageBox1,

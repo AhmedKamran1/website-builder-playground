@@ -3,10 +3,10 @@ import React from "react";
 import { Avatar, Toolbar } from "@mui/material";
 
 import { ResponsiveTitleText } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
-import { StyledButton } from "@/styles/pre-defined-components/button/button";
+
 import {
   NavbarLogo,
-  ResponsiveText,
+ 
 } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 
 import NavbarResponsiveBox1 from "./Navbar-Type-1-RespBox";
@@ -14,6 +14,7 @@ import NavbarFullViewBox1 from "./Navbar-Type-1-FullViewBox";
 import Image from "next/image";
 
 import tempPhoto from "../../../../../assets/bgpic.jpg";
+import { ResponsiveText, StyledButton } from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const NavbarComponents1 = ({
   navLinkStyles,

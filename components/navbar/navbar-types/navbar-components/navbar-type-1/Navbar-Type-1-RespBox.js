@@ -4,7 +4,7 @@ import { IconButton, Menu, MenuItem } from "@mui/material";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
 import { ResponsiveBox } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
-import { StyledLink } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+import { StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const NavbarResponsiveBox1 = ({ links }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
