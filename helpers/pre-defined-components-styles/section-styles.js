@@ -91,10 +91,12 @@ export const initialSectionComponentStyles = [
       paragraphStyles: paragraphStyles,
       imageStyles: imageStyles,
       blockStyles: blockStyles,
+      buttonStyles: buttonStyles,
     },
     extraFunctionalities: {
       textFunctionalities: textFunctionalities,
       imageFunctionalities: imageFunctionalities,
+      buttonFunctionalities: buttonFunctionalities,
     },
   },
   {
@@ -103,9 +105,11 @@ export const initialSectionComponentStyles = [
       headingStyles: headingStyles,
       paragraphStyles: paragraphStyles,
       blockStyles: blockStyles,
+      buttonStyles: buttonStyles,
     },
     extraFunctionalities: {
       textFunctionalities: textFunctionalities,
+      buttonFunctionalities: buttonFunctionalities,
     },
   },
   {
@@ -115,6 +119,7 @@ export const initialSectionComponentStyles = [
       paragraphStyles: paragraphStyles,
       imageStyles: imageStyles,
       blockStyles: blockStyles,
+      buttonStyles: buttonStyles,
     },
     extraFunctionalities: {
       imageGridFunctionalities: [
@@ -123,6 +128,7 @@ export const initialSectionComponentStyles = [
         structuredClone(gridImageItem),
         structuredClone(gridImageItem),
       ],
+      buttonFunctionalities: buttonFunctionalities,
     },
   },
   {
