@@ -1,10 +1,17 @@
 import React from "react";
 import ImagePallete from "../../../common-palletes/ImagePallete";
-import { SectionEventTypesEnum } from "@/helpers/constants/event-types/event-types";
+import {
+  CommonEventTypeEnum,
+  SectionEventTypesEnum,
+} from "@/helpers/constants/event-types/event-types";
 import SectionTextArea from "../common-section-palletes/SectionTextArea";
 import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
 import SectionButton from "../common-section-palletes/SectionButton";
 import { Checkbox } from "@mui/material";
+import SectionSubHeading from "../common-section-palletes/SectionSubHeading";
+import SectionSubHeadingAlignment from "../common-section-palletes/SectionSubHeadingAlignment";
+import CollorPallete from "../../../common-palletes/CollorPallete";
+import FontPallete from "../../../common-palletes/FontPallete";
 
 const SectionPallete1 = ({
   textFunctionalities,
@@ -14,14 +21,41 @@ const SectionPallete1 = ({
   debounceSectionBlockStylesActions,
   debounceSectionImageStylesActions,
   debounceSectionButtonStylesActions,
+  debounceSectionSubHeadingStylesActions,
   dispatchButtonFunctionalities,
   imageFunctionalities,
   blockStyles,
   imageStyles,
   buttonStyles,
+  subHeadingStyles,
 }) => {
   return (
     <>
+      <strong>Sub Heading Content</strong>
+      <CollorPallete
+        state={subHeadingStyles}
+        dispatch={debounceSectionSubHeadingStylesActions}
+        changeColor={CommonEventTypeEnum.CHANGECOLOR}
+      />
+      <SectionSubHeading
+        state={textFunctionalities}
+        dispatch={dispatchTextActions}
+      />
+      <SectionSubHeadingAlignment
+        state={subHeadingStyles}
+        dispatch={debounceSectionSubHeadingStylesActions}
+      />
+      <FontPallete
+        state={subHeadingStyles}
+        dispatch={debounceSectionSubHeadingStylesActions}
+        changeFontWeight={
+          SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGFONTWEIGHT
+        }
+        changeFontStyle={
+          SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGFONTSTYLE
+        }
+        fontPalleteName="subHeadingStyles"
+      />
       <div>
         <select
           value={blockStyles.flexDirection}
@@ -79,6 +113,7 @@ const SectionPallete1 = ({
           />
         </>
       )}
+
       <SectionTextArea
         state={textFunctionalities}
         dispatch={dispatchTextActions}

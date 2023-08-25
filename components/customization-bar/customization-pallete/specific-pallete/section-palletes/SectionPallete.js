@@ -17,6 +17,7 @@ import {
   gridImageItem,
   gridImageWithButtonItem,
   gridTextItem,
+  subHeadingStyles,
 } from "@/helpers/pre-defined-components-styles/section-styles";
 import {
   borderRadiusMaxRange,
@@ -40,6 +41,7 @@ const SectionPallete = ({
   sectionGridImageState,
   sectionHeadingStylesState,
   sectionParagraphStylesState,
+  sectionSubHeadingStylesState,
   sectionImageStylesState,
   sectionBlockStylesState,
   sectionCardStylesState,
@@ -50,6 +52,7 @@ const SectionPallete = ({
   dispatchGridImageActions,
   dispatchSectionHeadingStylesActions,
   dispatchSectionParagraphStylesActions,
+  dispatchSectionSubHeadingStylesActions,
   dispatchSectionImageStylesActions,
   dispatchSectionBlockStylesActions,
   dispatchSectionCardStylesActions,
@@ -65,7 +68,7 @@ const SectionPallete = ({
 
   const { headingStyles } = sectionHeadingStylesState.styles;
   const { paragraphStyles } = sectionParagraphStylesState.styles;
-  // const { subHeadingStyles } = sectionCardStylesState.styles;
+  const { subHeadingStyles } = sectionSubHeadingStylesState.styles;
   const { imageStyles } = sectionImageStylesState.styles;
   const { cardStyles } = sectionCardStylesState.styles;
   // const { pricingStyles } = sectionPricingStylesState.styles;
@@ -78,6 +81,11 @@ const SectionPallete = ({
   );
   const debounceSectionParagraphStylesActions = useDebouncedDispatch(
     dispatchSectionParagraphStylesActions,
+    200
+  );
+
+  const debounceSectionSubHeadingStylesActions = useDebouncedDispatch(
+    dispatchSectionSubHeadingStylesActions,
     200
   );
 
@@ -123,17 +131,22 @@ const SectionPallete = ({
           blockStyles={blockStyles}
           imageFunctionalities={imageFunctionalities}
           imageStyles={imageStyles}
+          subHeadingStyles={subHeadingStyles}
           dispatchButtonFunctionalities={dispatchButtonActions}
           debounceSectionBlockStylesActions={debounceSectionBlockStylesActions}
           debounceSectionImageStylesActions={debounceSectionImageStylesActions}
           debounceSectionButtonStylesActions={
             debounceSectionButtonStylesActions
           }
+          debounceSectionSubHeadingStylesActions={
+            debounceSectionSubHeadingStylesActions
+          }
           dispatchImageActions={dispatchImageActions}
         />
       )}
       {selectedComponent.secId === "2" && (
         <SectionPallete2
+          subHeadingStyles={subHeadingStyles}
           buttonStyles={buttonStyles}
           buttonFunctionalities={buttonFunctionalities}
           textFunctionalities={textFunctionalities}
@@ -141,6 +154,9 @@ const SectionPallete = ({
           dispatchButtonFunctionalities={dispatchButtonActions}
           debounceSectionButtonStylesActions={
             debounceSectionButtonStylesActions
+          }
+          debounceSectionSubHeadingStylesActions={
+            debounceSectionSubHeadingStylesActions
           }
         />
       )}

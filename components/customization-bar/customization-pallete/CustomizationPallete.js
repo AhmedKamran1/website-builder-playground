@@ -181,6 +181,9 @@ const BottomBar = () => {
             blockStyles: sectionBlockStylesState.styles.blockStyles,
             cardStyles: sectionCardStylesState.styles.cardStyles,
             buttonStyles: sectionButtonStylesState.styles.buttonStyles,
+            subHeadingStyles:
+              sectionSubHeadingStylesState.styles.subHeadingStyles,
+            // pricingStyles: sectionPricingStylesState.styles.pricingStyles,
           },
           extraFunctionalities: {
             textFunctionalities:
@@ -214,6 +217,8 @@ const BottomBar = () => {
     sectionGridImageFunctionalitiesState,
     sectionHeadingStylesState,
     sectionParagraphStylesState,
+    sectionSubHeadingStylesState,
+    // sectionPricingStylesState,
     sectionImageStylesState,
     sectionBlockStylesState,
     sectionCardStylesState,
@@ -238,6 +243,8 @@ const BottomBar = () => {
           setStateHandler(dispatchSectionGridImageActions);
           setStateHandler(dispatchSectionHeadingStylesActions);
           setStateHandler(dispatchSectionParagraphStylesActions);
+          setStateHandler(dispatchSectionSubHeadingStylesActions);
+          // setStateHandler(dispatchSectionPricingStylesActions)
           setStateHandler(dispatchSectionBlockStylesActions);
           setStateHandler(dispatchSectionImageStylesActions);
           setStateHandler(dispatchSectionCardStylesActions);
@@ -266,6 +273,8 @@ const BottomBar = () => {
     sectionGridImageFunctionalitiesState,
     sectionHeadingStylesState,
     sectionParagraphStylesState,
+    sectionSubHeadingStylesState,
+    // sectionPricingStylesState,
     sectionImageStylesState,
     sectionBlockStylesState,
     sectionCardStylesState,
@@ -298,6 +307,8 @@ const BottomBar = () => {
           sectionGridImageState={sectionGridImageFunctionalitiesState}
           sectionHeadingStylesState={sectionHeadingStylesState}
           sectionParagraphStylesState={sectionParagraphStylesState}
+          sectionSubHeadingStylesState={sectionSubHeadingStylesState}
+          // sectionPricingStylesState={sectionPricingStylesState}
           sectionImageStylesState={sectionImageStylesState}
           sectionBlockStylesState={sectionBlockStylesState}
           sectionCardStylesState={sectionCardStylesState}
@@ -312,6 +323,12 @@ const BottomBar = () => {
           dispatchSectionParagraphStylesActions={
             dispatchSectionParagraphStylesActions
           }
+          dispatchSectionSubHeadingStylesActions={
+            dispatchSectionSubHeadingStylesActions
+          }
+          // dispatchSectionPricingStylesActions={
+          //   dispatchSectionPricingStylesActions
+          // }
           dispatchSectionImageStylesActions={dispatchSectionImageStylesActions}
           dispatchSectionBlockStylesActions={dispatchSectionBlockStylesActions}
           dispatchSectionCardStylesActions={dispatchSectionCardStylesActions}

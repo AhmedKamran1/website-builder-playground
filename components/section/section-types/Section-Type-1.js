@@ -24,11 +24,12 @@ const SectionType1 = ({
     blockStyles,
     headingStyles,
     paragraphStyles,
+    subHeadingStyles,
     imageStyles,
   } = styles;
   const { textFunctionalities, imageFunctionalities, buttonFunctionalities } =
     extraFunctionalities;
-  const { headingText, paragraphText } = textFunctionalities;
+  const { headingText, paragraphText, subHeadingText } = textFunctionalities;
   const { image, imageRedirectLink, imageAltText } = imageFunctionalities;
   const { buttonText, buttonRedirectLink, showButton } = buttonFunctionalities;
 
@@ -48,6 +49,16 @@ const SectionType1 = ({
         >
           <Grid item xs={8} lg={6}>
             <SectionTextBox1>
+              <Box textAlign={subHeadingStyles.textAlign}>
+                <ResponsiveText
+                  variant="subHeader"
+                  colorHex={subHeadingStyles.colorHex}
+                  fontStyle={subHeadingStyles.fontStyle}
+                  fontWeight={subHeadingStyles.fontWeight}
+                >
+                  {formatText(subHeadingText)}
+                </ResponsiveText>
+              </Box>
               {headingText && (
                 <Box textAlign={headingStyles.textAlign}>
                   <ResponsiveText
@@ -90,7 +101,7 @@ const SectionType1 = ({
               )}
             </SectionTextBox1>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={6} margin="auto">
             <SectionImageBox1>
               <StyledLink href={imageRedirectLink} style={{ width: "70%" }}>
                 <Avatar

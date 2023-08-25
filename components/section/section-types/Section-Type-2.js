@@ -18,9 +18,15 @@ const SectionType2 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { buttonStyles,headingStyles, paragraphStyles, blockStyles } = styles;
+  const {
+    buttonStyles,
+    headingStyles,
+    subHeadingStyles,
+    paragraphStyles,
+    blockStyles,
+  } = styles;
   const { textFunctionalities, buttonFunctionalities } = extraFunctionalities;
-  const { headingText, paragraphText } = textFunctionalities;
+  const { headingText, paragraphText, subHeadingText } = textFunctionalities;
   const { buttonText, buttonRedirectLink, showButton } = buttonFunctionalities;
 
   return (
@@ -31,6 +37,16 @@ const SectionType2 = ({
       backgroundColor={blockStyles.backgroundColor}
     >
       <SectionTextBox2>
+        <Box textAlign={subHeadingStyles.textAlign}>
+          <ResponsiveText
+            variant="subHeader"
+            colorHex={subHeadingStyles.colorHex}
+            fontStyle={subHeadingStyles.fontStyle}
+            fontWeight={subHeadingStyles.fontWeight}
+          >
+            {formatText(subHeadingText)}
+          </ResponsiveText>
+        </Box>
         {headingText && (
           <Box textAlign={headingStyles.textAlign}>
             <ResponsiveText
