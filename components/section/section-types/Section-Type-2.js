@@ -1,6 +1,9 @@
 import React from "react";
 
-import { ResponsiveText } from "@/styles/pre-defined-components/navbar/navbar-common-styles";
+import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/navbar/navbar-common-styles";
 import { Box } from "@mui/material";
 import {
   SectionContainer2,
@@ -15,9 +18,10 @@ const SectionType2 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { headingStyles, paragraphStyles, blockStyles } = styles;
-  const { textFunctionalities } = extraFunctionalities;
+  const { buttonStyles,headingStyles, paragraphStyles, blockStyles } = styles;
+  const { textFunctionalities, buttonFunctionalities } = extraFunctionalities;
   const { headingText, paragraphText } = textFunctionalities;
+  const { buttonText, buttonRedirectLink, showButton } = buttonFunctionalities;
 
   return (
     <SectionContainer2
@@ -51,14 +55,20 @@ const SectionType2 = ({
             </ResponsiveText>
           </Box>
         )}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <StyledButton variant="contained">Hello</StyledButton>
-        </Box>
+        {showButton && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: headingStyles.textAlign,
+            }}
+          >
+            {/* <StyledLink href={buttonRedirectLink}> */}
+            <StyledButton variant="contained" {...buttonStyles}>
+              <ResponsiveText variant="helper">{buttonText}</ResponsiveText>
+            </StyledButton>
+            {/* </StyledLink> */}
+          </Box>
+        )}
       </SectionTextBox2>
     </SectionContainer2>
   );

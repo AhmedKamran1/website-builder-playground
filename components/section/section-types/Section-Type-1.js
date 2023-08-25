@@ -19,10 +19,18 @@ const SectionType1 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { blockStyles, headingStyles, paragraphStyles, imageStyles } = styles;
-  const { textFunctionalities, imageFunctionalities } = extraFunctionalities;
+  const {
+    buttonStyles,
+    blockStyles,
+    headingStyles,
+    paragraphStyles,
+    imageStyles,
+  } = styles;
+  const { textFunctionalities, imageFunctionalities, buttonFunctionalities } =
+    extraFunctionalities;
   const { headingText, paragraphText } = textFunctionalities;
   const { image, imageRedirectLink, imageAltText } = imageFunctionalities;
+  const { buttonText, buttonRedirectLink, showButton } = buttonFunctionalities;
 
   return (
     <SectionContainer1
@@ -64,14 +72,22 @@ const SectionType1 = ({
                   </ResponsiveText>
                 </Box>
               )}
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <StyledButton variant="contained">efewqfewf</StyledButton>
-              </Box>
+              {showButton && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: headingStyles.textAlign,
+                  }}
+                >
+                  {/* <StyledLink href={buttonRedirectLink}> */}
+                  <StyledButton variant="contained" {...buttonStyles}>
+                    <ResponsiveText variant="helper">
+                      {buttonText}
+                    </ResponsiveText>
+                  </StyledButton>
+                  {/* </StyledLink> */}
+                </Box>
+              )}
             </SectionTextBox1>
           </Grid>
           <Grid item xs={12} lg={6}>

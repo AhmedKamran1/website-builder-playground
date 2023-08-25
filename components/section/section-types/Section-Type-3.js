@@ -19,8 +19,16 @@ const SectionType3 = ({
   componentSelectionHandler,
   styles,
 }) => {
-  const { blockStyles, headingStyles, paragraphStyles, imageStyles } = styles;
-  const { imageGridFunctionalities } = extraFunctionalities;
+  const {
+    buttonStyles,
+    blockStyles,
+    headingStyles,
+    paragraphStyles,
+    imageStyles,
+  } = styles;
+  const { imageGridFunctionalities, buttonFunctionalities } =
+    extraFunctionalities;
+  const { buttonText, buttonRedirectLink, showButton } = buttonFunctionalities;
 
   return (
     <SectionContainer3
@@ -78,13 +86,23 @@ const SectionType3 = ({
           )}
         </Grid>
       </Container>
-      <Container maxWidth="md">
-        <Box
-          sx={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
-        >
-          <StyledButton variant="contained">Button</StyledButton>
-        </Box>
-      </Container>
+      {showButton && (
+        <Container maxWidth="md">
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: headingStyles.textAlign,
+              marginTop: "30px",
+            }}
+          >
+            {/* <StyledLink href={buttonRedirectLink}> */}
+            <StyledButton variant="contained" {...buttonStyles}>
+              <ResponsiveText variant="helper">{buttonText}</ResponsiveText>
+            </StyledButton>
+            {/* </StyledLink> */}
+          </Box>
+        </Container>
+      )}
     </SectionContainer3>
   );
 };

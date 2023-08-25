@@ -117,26 +117,45 @@ const SectionPallete = ({
       {selectedComponent.secId === "1" && (
         <SectionPallete1
           textFunctionalities={textFunctionalities}
+          buttonFunctionalities={buttonFunctionalities}
+          buttonStyles={buttonStyles}
           dispatchTextActions={dispatchTextActions}
-          blockState={blockStyles}
-          imageFunctionalitiesState={imageFunctionalities}
-          imageStylesState={imageStyles}
+          blockStyles={blockStyles}
+          imageFunctionalities={imageFunctionalities}
+          imageStyles={imageStyles}
+          dispatchButtonFunctionalities={dispatchButtonActions}
           debounceSectionBlockStylesActions={debounceSectionBlockStylesActions}
           debounceSectionImageStylesActions={debounceSectionImageStylesActions}
+          debounceSectionButtonStylesActions={
+            debounceSectionButtonStylesActions
+          }
           dispatchImageActions={dispatchImageActions}
         />
       )}
       {selectedComponent.secId === "2" && (
         <SectionPallete2
+          buttonStyles={buttonStyles}
+          buttonFunctionalities={buttonFunctionalities}
           textFunctionalities={textFunctionalities}
           dispatchTextActions={dispatchTextActions}
+          dispatchButtonFunctionalities={dispatchButtonActions}
+          debounceSectionButtonStylesActions={
+            debounceSectionButtonStylesActions
+          }
         />
       )}
       {selectedComponent.secId === "3" && (
         <SectionPallete3
+          buttonStyles={buttonStyles}
+          buttonFunctionalities={buttonFunctionalities}
           imageStyles={imageStyles}
           imageGridFunctionalities={imageGridFunctionalities}
           dispatchGridImageActions={dispatchGridImageActions}
+          dispatchButtonFunctionalities={dispatchButtonActions}
+          dispatchSectionImageStylesActions={dispatchSectionImageStylesActions}
+          debounceSectionButtonStylesActions={
+            debounceSectionButtonStylesActions
+          }
         />
       )}
       {selectedComponent.secId === "4" && (
