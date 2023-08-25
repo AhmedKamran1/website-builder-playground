@@ -64,7 +64,7 @@
 - paragraph change on enter press and render accordingly to it //DONE
 - extract common components,fix image pallete for navbar,fix section palletes structure
 - remove button work completely
-- naming conventions of states in customization pallete, grid naming convention, enums of sections/navbar if necessary
+- naming conventions of states in customization pallete/ section pallete, grid naming convention, enums of sections/navbar if necessary
 - remove unnesecary properties from common-section-palletes folders components
 - update happening on changing selected component
 
