@@ -85,9 +85,9 @@ export const SectionEventTypesEnum = {
     CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
   },
   subHeadingStyles: {
-    CHANGEPARAGRAPHTEXTALIGNMENT: "changeSubHeadingTextAlignment",
-    CHANGEPARAGRAPHFONTWEIGHT: "changeFontWeight",
-    CHANGEPARAGRAPHFONTSTYLE: "changeFontStyle",
+    CHANGESUBHEADINGTEXTALIGNMENT: "changeSubHeadingTextAlignment",
+    CHANGESUBHEADINGFONTWEIGHT: "changeSubHeadingFontWeight",
+    CHANGESUBHEADINGFONTSTYLE: "changeSubHeadingFontStyle",
   },
   buttonStyles: {
     CHANGEBORDERRADIUS: "changeBorderRadius",
