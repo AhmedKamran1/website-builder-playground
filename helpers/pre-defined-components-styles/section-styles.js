@@ -30,8 +30,6 @@ export const buttonStyles = {
 
 export const pricingStyles = {
   colorHex: "#000000",
-  fontWeight: "bold",
-  fontStyle: "",
 };
 
 export const blockStyles = {
@@ -89,6 +87,7 @@ export const initialSectionComponentStyles = [
     styles: {
       headingStyles: headingStyles,
       paragraphStyles: paragraphStyles,
+      subHeadingStyles: subHeadingStyles,
       imageStyles: imageStyles,
       blockStyles: blockStyles,
       buttonStyles: buttonStyles,
@@ -104,6 +103,7 @@ export const initialSectionComponentStyles = [
     styles: {
       headingStyles: headingStyles,
       paragraphStyles: paragraphStyles,
+      subHeadingStyles: subHeadingStyles,
       blockStyles: blockStyles,
       buttonStyles: buttonStyles,
     },

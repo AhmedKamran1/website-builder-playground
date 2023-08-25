@@ -4,11 +4,7 @@ import {
 } from "../../constants/event-types/event-types";
 import {
   sectionInitialButtonStylesState,
-  sectionInitialCardStylesState,
-  sectionInitialHeadingStylesState,
-  sectionInitialParagraphStylesState,
   sectionInitialPricingStylesState,
-  sectionInitialSubHeadingStylesState,
 } from "../initial-reducer-states/initial-section-state";
 
 export const sectionTextReducer = (state, action) => {
@@ -33,6 +29,30 @@ export const sectionTextReducer = (state, action) => {
           textFunctionalities: {
             ...state.extraFunctionalities.textFunctionalities,
             paragraphText: action.payload,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.sectionTextFunctionalities.CHANGESUBHEADINGTEXT:
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          textFunctionalities: {
+            ...state.extraFunctionalities.textFunctionalities,
+            subHeadingText: action.payload,
+          },
+        },
+      };
+
+    case SectionEventTypesEnum.sectionTextFunctionalities.CHANGEPRICINGTEXT:
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          textFunctionalities: {
+            ...state.extraFunctionalities.textFunctionalities,
+            pricingText: action.payload,
           },
         },
       };
@@ -142,7 +162,8 @@ export const sectionButtonReducer = (state, action) => {
           ...state.extraFunctionalities,
           buttonFunctionalities: {
             ...state.extraFunctionalities.buttonFunctionalities,
-            showButton: !state.extraFunctionalities.buttonFunctionalities.showButton,
+            showButton:
+              !state.extraFunctionalities.buttonFunctionalities.showButton,
           },
         },
       };
@@ -474,7 +495,7 @@ export const sectionSubHeadingStylesReducer = (state, action) => {
           },
         },
       };
-    case SectionEventTypesEnum.subHeadingStyles.CHANGEPARAGRAPHFONTSTYLE:
+    case SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGFONTSTYLE:
       return {
         ...state,
         styles: {
@@ -482,14 +503,12 @@ export const sectionSubHeadingStylesReducer = (state, action) => {
           subHeadingStyles: {
             ...state.styles.subHeadingStyles,
             fontStyle: action.payload,
-            fontWeight:
-              sectionInitialSubHeadingStylesState.styles.subHeadingStyles
-                .fontWeight,
+            fontWeight: "",
           },
         },
       };
 
-    case SectionEventTypesEnum.subHeadingStyles.CHANGEPARAGRAPHFONTWEIGHT:
+    case SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGFONTWEIGHT:
       return {
         ...state,
         styles: {
@@ -497,13 +516,11 @@ export const sectionSubHeadingStylesReducer = (state, action) => {
           subHeadingStyles: {
             ...state.styles.subHeadingStyles,
             fontWeight: action.payload,
-            fontStyle:
-              sectionInitialSubHeadingStylesState.styles.subHeadingStyles
-                .fontStyle,
+            fontStyle: "",
           },
         },
       };
-    case SectionEventTypesEnum.subHeadingStyles.CHANGEPARAGRAPHTEXTALIGNMENT:
+    case SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGTEXTALIGNMENT:
       return {
         ...state,
         styles: {
@@ -519,7 +536,9 @@ export const sectionSubHeadingStylesReducer = (state, action) => {
         ...state,
         styles: {
           ...state.styles,
-          subHeadingStyles: action.payload.styles.subHeadingStyles,
+          subHeadingStyles: action.payload.styles.subHeadingStyles ?? {
+            ...state.styles.subHeadingStyles,
+          },
         },
       };
     default:
@@ -540,34 +559,6 @@ export const sectionPricingStylesReducer = (state, action) => {
           },
         },
       };
-    case SectionEventTypesEnum.pricingStyles.CHANGEPARAGRAPHFONTSTYLE:
-      return {
-        ...state,
-        styles: {
-          ...state.styles,
-          pricingStyles: {
-            ...state.styles.pricingStyles,
-            fontStyle: action.payload,
-            fontWeight:
-              sectionInitialPricingStylesState.styles.pricingStyles.fontWeight,
-          },
-        },
-      };
-
-    case SectionEventTypesEnum.pricingStyles.CHANGEPARAGRAPHFONTWEIGHT:
-      return {
-        ...state,
-        styles: {
-          ...state.styles,
-          pricingStyles: {
-            ...state.styles.pricingStyles,
-            fontWeight: action.payload,
-            fontStyle:
-              sectionInitialPricingStylesState.styles.pricingStyles.fontStyle,
-          },
-        },
-      };
-
     case CommonEventTypeEnum.SETINITIALSTATE:
       return {
         ...state,
