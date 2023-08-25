@@ -62,7 +62,7 @@
 - pagename and website id work //DONE
 - fix simple nav tabs to be buttons and add logo with alt text and option to upload image
 - paragraph change on enter press and render accordingly to it //DONE
-- extract common components,fix image pallete for navbar,fix section palletes structure
+- extract common components,fix image pallete for navbar,fix section palletes structure, fix navbar pallete structure if necessary
 - remove button work completely
 - naming conventions of states in customization pallete/ section pallete, grid naming convention, enums of sections/navbar if necessary
 - remove unnesecary properties from common-section-palletes folders components
