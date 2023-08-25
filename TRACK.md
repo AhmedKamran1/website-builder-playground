@@ -80,5 +80,8 @@
 - 2 types of same pallete one for grid and other for non-grid
 - button styles should have bold/italic text options?
 - in whole project index is utilized as key while mapping whhich is not recommended
+- button property discussion to navigate to different page implementation when clicked
+- best way to organize section pallete structure and components?
+- how will pricing work like simple text or something else etc?
 
 fix section pallete structure, 3 newly added section all properties, old sections all properties, image working for section pallete 4
