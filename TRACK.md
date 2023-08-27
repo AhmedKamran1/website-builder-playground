@@ -63,7 +63,7 @@
 - fix simple nav tabs to be buttons and add logo with alt text and option to upload image
 - paragraph change on enter press and render accordingly to it //DONE
 - extract common components,fix image pallete for navbar,fix section palletes structure, fix navbar pallete structure if necessary
-- remove button work completely
+- remove button work completely // DONE
 - naming conventions of states in customization pallete/ section pallete, grid naming convention, enums of sections/navbar if necessary
 - remove unnesecary properties from common-section-palletes folders components
 - update happening on changing selected component
@@ -76,7 +76,7 @@
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
 - navbar pre-fetch problem?
 - image pallete and similar properties like used in gridimages are slightly different what to do?
-- SectionGridImage.js and SectionGridButton.js me jugaar
+- SectionGridImage.js and SectionGridButton.js and SectionGridPrice.js me jugaar
 - 2 types of same pallete one for grid and other for non-grid
 - button styles should have bold/italic text options?
 - in whole project index is utilized as key while mapping whhich is not recommended
