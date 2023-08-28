@@ -24,7 +24,7 @@ export const NavigationBar = styledWithoutProps(
   ({ backgroundColor, isfocused }) => ({
     position: "static",
     backgroundColor: backgroundColor,
-    border: isfocused ? "1px solid blue" : "none",
+    border: isfocused ? "1px solid blue" : "1px solid transparent",
   })
 );
 

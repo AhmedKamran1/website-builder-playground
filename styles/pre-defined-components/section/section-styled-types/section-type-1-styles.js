@@ -4,11 +4,12 @@ import { styledWithoutProps } from "../../ignoredProps";
 
 export const SectionContainer1 = styledWithoutProps(
   Container,
-  ({ backgroundColor, theme }) => ({
+  ({ backgroundColor, isfocused, theme }) => ({
     display: "flex",
     flexDirection: "column",
     padding: "2rem",
     backgroundColor: backgroundColor,
+    border: isfocused ? "1px solid blue" : "1px solid transparent",
     [theme.breakpoints.down("md")]: {
       padding: "2rem 0",
     },

@@ -5,11 +5,12 @@ import { StyledButton } from "../../common-styled-components/common-components";
 
 export const SectionContainer4 = styledWithoutProps(
   Container,
-  ({ backgroundColor }) => ({
+  ({ isfocused, backgroundColor }) => ({
     border: "1px solid red",
     minHeight: "500px",
     padding: "2rem",
     backgroundColor: backgroundColor,
+    border: isfocused ? "1px solid blue" : "1px solid transparent",
   })
 );
 
@@ -72,7 +73,6 @@ export const SectionButtonContainer4 = styledWithoutProps(
   StyledButton,
   ({}) => ({
     height: "40px",
-    width: "100px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
