@@ -30,11 +30,13 @@ import {
   updateNavbarComponent,
 } from "@/store/ComponentActions";
 import {
+  gridItemsReducer,
   sectionBlockStylesReducer,
   sectionButtonReducer,
   sectionButtonStylesReducer,
   sectionCardStylesReducer,
   sectionGridImageReducer,
+  sectionGridItemsReducer,
   sectionHeadingStylesReducer,
   sectionImageReducer,
   sectionImageStylesReducer,
@@ -49,6 +51,7 @@ import {
   sectionInitialButtonStylesState,
   sectionInitialCardStylesState,
   sectionInitialGridImageFunctionalitiesState,
+  sectionInitialGridItemsFunctionalitiesState,
   sectionInitialHeadingStylesState,
   sectionInitialImageFunctionalitiesState,
   sectionInitialImageStylesState,
@@ -83,54 +86,62 @@ const BottomBar = () => {
 
   //SECTION STATES
 
-  const [sectionTextFunctionalitiesState, dispatchSectionTextActions] =
-    useReducer(sectionTextReducer, sectionInitialTextFunctionalitiesState);
-
-  const [sectionImageFunctionalitiesState, dispatchSectionImageActions] =
-    useReducer(sectionImageReducer, sectionInitialImageFunctionalitiesState);
-
-  const [sectionButtonFunctionalitiesState, dispatchSectionButtonActions] =
-    useReducer(sectionButtonReducer, sectionInitialButtonFunctionalitiesState);
-
-  // const [sectionPricingFunctionalitiesState, dispatchSectionPricingActions] =
-  // useReducer(sectionPricingReducer, sectionInitialPricingFunctionalitiesState);
-
-  const [
-    sectionGridImageFunctionalitiesState,
-    dispatchSectionGridImageActions,
-  ] = useReducer(
-    sectionGridImageReducer,
-    sectionInitialGridImageFunctionalitiesState
+  const [textFunctionalities, dispatchText] = useReducer(
+    sectionTextReducer,
+    sectionInitialTextFunctionalitiesState
   );
 
-  const [sectionHeadingStylesState, dispatchSectionHeadingStylesActions] =
-    useReducer(sectionHeadingStylesReducer, sectionInitialHeadingStylesState);
+  const [imageFunctionalities, dispatchImage] = useReducer(
+    sectionImageReducer,
+    sectionInitialImageFunctionalitiesState
+  );
 
-  const [sectionParagraphStylesState, dispatchSectionParagraphStylesActions] =
-    useReducer(
-      sectionParagraphStylesReducer,
-      sectionInitialParagraphStylesState
-    );
-  const [sectionSubHeadingStylesState, dispatchSectionSubHeadingStylesActions] =
-    useReducer(
-      sectionSubHeadingStylesReducer,
-      sectionInitialSubHeadingStylesState
-    );
-  const [sectionCardStylesState, dispatchSectionCardStylesActions] = useReducer(
+  const [buttonFunctionalities, dispatchButton] = useReducer(
+    sectionButtonReducer,
+    sectionInitialButtonFunctionalitiesState
+  );
+
+  const [gridItemsFunctionalities, dispatchGridItems] = useReducer(
+    sectionGridItemsReducer,
+    sectionInitialGridItemsFunctionalitiesState
+  );
+
+  const [headingStyles, dispatchHeadingStyles] = useReducer(
+    sectionHeadingStylesReducer,
+    sectionInitialHeadingStylesState
+  );
+
+  const [paragraphStyles, dispatchParagraphStyles] = useReducer(
+    sectionParagraphStylesReducer,
+    sectionInitialParagraphStylesState
+  );
+  const [subHeadingStyles, dispatchSubHeadingStyles] = useReducer(
+    sectionSubHeadingStylesReducer,
+    sectionInitialSubHeadingStylesState
+  );
+  const [cardStyles, dispatchCardStyles] = useReducer(
     sectionCardStylesReducer,
     sectionInitialCardStylesState
   );
-  const [sectionPricingStylesState, dispatchSectionPricingStylesActions] =
-    useReducer(sectionPricingStylesReducer, sectionInitialPricingStylesState);
+  const [pricingStyles, dispatchPricingStyles] = useReducer(
+    sectionPricingStylesReducer,
+    sectionInitialPricingStylesState
+  );
 
-  const [sectionButtonStylesState, dispatchSectionButtonStylesActions] =
-    useReducer(sectionButtonStylesReducer, sectionInitialButtonStylesState);
+  const [buttonStyles, dispatchButtonStyles] = useReducer(
+    sectionButtonStylesReducer,
+    sectionInitialButtonStylesState
+  );
 
-  const [sectionImageStylesState, dispatchSectionImageStylesActions] =
-    useReducer(sectionImageStylesReducer, sectionInitialImageStylesState);
+  const [imageStyles, dispatchImageStyles] = useReducer(
+    sectionImageStylesReducer,
+    sectionInitialImageStylesState
+  );
 
-  const [sectionBlockStylesState, dispatchSectionBlockStylesActions] =
-    useReducer(sectionBlockStylesReducer, sectionInitialBlockStylesState);
+  const [blockStyles, dispatchBlockStyles] = useReducer(
+    sectionBlockStylesReducer,
+    sectionInitialBlockStylesState
+  );
 
   const setStateHandler = useCallback(
     (dispatchStateAction) => {
@@ -169,29 +180,25 @@ const BottomBar = () => {
       case ComponentEnum.SECTION:
         sectionState = {
           styles: {
-            headingStyles: sectionHeadingStylesState.styles.headingStyles,
-            paragraphStyles: sectionParagraphStylesState.styles.paragraphStyles,
-            imageStyles: sectionImageStylesState.styles.imageStyles,
-            blockStyles: sectionBlockStylesState.styles.blockStyles,
-            cardStyles: sectionCardStylesState.styles.cardStyles,
-            buttonStyles: sectionButtonStylesState.styles.buttonStyles,
-            subHeadingStyles:
-              sectionSubHeadingStylesState.styles.subHeadingStyles,
-            pricingStyles: sectionPricingStylesState.styles.pricingStyles,
+            headingStyles: headingStyles.styles.headingStyles,
+            paragraphStyles: paragraphStyles.styles.paragraphStyles,
+            imageStyles: imageStyles.styles.imageStyles,
+            blockStyles: blockStyles.styles.blockStyles,
+            cardStyles: cardStyles.styles.cardStyles,
+            buttonStyles: buttonStyles.styles.buttonStyles,
+            subHeadingStyles: subHeadingStyles.styles.subHeadingStyles,
+            pricingStyles: pricingStyles.styles.pricingStyles,
           },
           extraFunctionalities: {
             textFunctionalities:
-              sectionTextFunctionalitiesState.extraFunctionalities
-                .textFunctionalities,
+              textFunctionalities.extraFunctionalities.textFunctionalities,
             imageFunctionalities:
-              sectionImageFunctionalitiesState.extraFunctionalities
-                .imageFunctionalities,
+              imageFunctionalities.extraFunctionalities.imageFunctionalities,
             buttonFunctionalities:
-              sectionButtonFunctionalitiesState.extraFunctionalities
-                .buttonFunctionalities,
-            imageGridFunctionalities:
-              sectionGridImageFunctionalitiesState.extraFunctionalities
-                .imageGridFunctionalities,
+              buttonFunctionalities.extraFunctionalities.buttonFunctionalities,
+            gridItemsFunctionalities:
+              gridItemsFunctionalities.extraFunctionalities
+                .gridItemsFunctionalities,
           },
         };
         storeDispatchHandler(sectionState, updateComponent);
@@ -201,22 +208,21 @@ const BottomBar = () => {
     }
   }, [
     selectedComponentType,
-
     navStylesState,
     navLoginButtonStylesState,
     navFunctionalitiesState,
-    sectionTextFunctionalitiesState,
-    sectionImageFunctionalitiesState,
-    sectionButtonFunctionalitiesState,
-    sectionGridImageFunctionalitiesState,
-    sectionHeadingStylesState,
-    sectionParagraphStylesState,
-    sectionSubHeadingStylesState,
-    sectionPricingStylesState,
-    sectionImageStylesState,
-    sectionBlockStylesState,
-    sectionCardStylesState,
-    sectionButtonStylesState,
+    textFunctionalities,
+    imageFunctionalities,
+    buttonFunctionalities,
+    gridItemsFunctionalities,
+    headingStyles,
+    paragraphStyles,
+    subHeadingStyles,
+    pricingStyles,
+    imageStyles,
+    blockStyles,
+    cardStyles,
+    buttonStyles,
   ]);
 
   useEffect(() => {
@@ -228,18 +234,18 @@ const BottomBar = () => {
           setStateHandler(dispatchNavLoginButtonStylesActions);
           break;
         case ComponentEnum.SECTION:
-          setStateHandler(dispatchSectionTextActions);
-          setStateHandler(dispatchSectionImageActions);
-          setStateHandler(dispatchSectionButtonActions);
-          setStateHandler(dispatchSectionGridImageActions);
-          setStateHandler(dispatchSectionHeadingStylesActions);
-          setStateHandler(dispatchSectionParagraphStylesActions);
-          setStateHandler(dispatchSectionSubHeadingStylesActions);
-          setStateHandler(dispatchSectionPricingStylesActions);
-          setStateHandler(dispatchSectionBlockStylesActions);
-          setStateHandler(dispatchSectionImageStylesActions);
-          setStateHandler(dispatchSectionCardStylesActions);
-          setStateHandler(dispatchSectionButtonStylesActions);
+          setStateHandler(dispatchText);
+          setStateHandler(dispatchImage);
+          setStateHandler(dispatchButton);
+          setStateHandler(dispatchGridItems);
+          setStateHandler(dispatchHeadingStyles);
+          setStateHandler(dispatchParagraphStyles);
+          setStateHandler(dispatchSubHeadingStyles);
+          setStateHandler(dispatchPricingStyles);
+          setStateHandler(dispatchBlockStyles);
+          setStateHandler(dispatchImageStyles);
+          setStateHandler(dispatchCardStyles);
+          setStateHandler(dispatchButtonStyles);
         default:
           break;
       }
@@ -258,18 +264,18 @@ const BottomBar = () => {
     navStylesState,
     navLoginButtonStylesState,
     navFunctionalitiesState,
-    sectionTextFunctionalitiesState,
-    sectionImageFunctionalitiesState,
-    sectionButtonFunctionalitiesState,
-    sectionGridImageFunctionalitiesState,
-    sectionHeadingStylesState,
-    sectionParagraphStylesState,
-    sectionSubHeadingStylesState,
-    sectionPricingStylesState,
-    sectionImageStylesState,
-    sectionBlockStylesState,
-    sectionCardStylesState,
-    sectionButtonStylesState,
+    textFunctionalities,
+    imageFunctionalities,
+    buttonFunctionalities,
+    gridItemsFunctionalities,
+    headingStyles,
+    paragraphStyles,
+    subHeadingStyles,
+    pricingStyles,
+    imageStyles,
+    blockStyles,
+    cardStyles,
+    buttonStyles,
   ]);
 
   return (
@@ -288,40 +294,39 @@ const BottomBar = () => {
       )}
       {selectedComponentType === ComponentEnum.SECTION && (
         <SectionPallete
-          sectionTextState={sectionTextFunctionalitiesState}
-          sectionImageState={sectionImageFunctionalitiesState}
-          sectionButtonState={sectionButtonFunctionalitiesState}
-          sectionGridImageState={sectionGridImageFunctionalitiesState}
-          sectionHeadingStylesState={sectionHeadingStylesState}
-          sectionParagraphStylesState={sectionParagraphStylesState}
-          sectionSubHeadingStylesState={sectionSubHeadingStylesState}
-          sectionPricingStylesState={sectionPricingStylesState}
-          sectionImageStylesState={sectionImageStylesState}
-          sectionBlockStylesState={sectionBlockStylesState}
-          sectionCardStylesState={sectionCardStylesState}
-          sectionButtonStylesState={sectionButtonStylesState}
-          dispatchTextActions={dispatchSectionTextActions}
-          dispatchImageActions={dispatchSectionImageActions}
-          dispatchButtonActions={dispatchSectionButtonActions}
-          dispatchGridImageActions={dispatchSectionGridImageActions}
-          dispatchSectionHeadingStylesActions={
-            dispatchSectionHeadingStylesActions
+          textFunctionalities={
+            textFunctionalities.extraFunctionalities.textFunctionalities
           }
-          dispatchSectionParagraphStylesActions={
-            dispatchSectionParagraphStylesActions
+          imageFunctionalities={
+            imageFunctionalities.extraFunctionalities.imageFunctionalities
           }
-          dispatchSectionSubHeadingStylesActions={
-            dispatchSectionSubHeadingStylesActions
+          buttonFunctionalities={
+            buttonFunctionalities.extraFunctionalities.buttonFunctionalities
           }
-          dispatchSectionPricingStylesActions={
-            dispatchSectionPricingStylesActions
+          gridItemsFunctionalities={
+            gridItemsFunctionalities.extraFunctionalities
+              .gridItemsFunctionalities
           }
-          dispatchSectionImageStylesActions={dispatchSectionImageStylesActions}
-          dispatchSectionBlockStylesActions={dispatchSectionBlockStylesActions}
-          dispatchSectionCardStylesActions={dispatchSectionCardStylesActions}
-          dispatchSectionButtonStylesActions={
-            dispatchSectionButtonStylesActions
-          }
+          headingStyles={headingStyles.styles.headingStyles}
+          paragraphStyles={paragraphStyles.styles.paragraphStyles}
+          subHeadingStyles={subHeadingStyles.styles.subHeadingStyles}
+          pricingStyles={pricingStyles.styles.pricingStyles}
+          imageStyles={imageStyles.styles.imageStyles}
+          blockStyles={blockStyles.styles.blockStyles}
+          cardStyles={cardStyles.styles.cardStyles}
+          buttonStyles={buttonStyles.styles.buttonStyles}
+          dispatchText={dispatchText}
+          dispatchImage={dispatchImage}
+          dispatchButton={dispatchButton}
+          dispatchGridItems={dispatchGridItems}
+          dispatchHeadingStyles={dispatchHeadingStyles}
+          dispatchParagraphStyles={dispatchParagraphStyles}
+          dispatchSubHeadingStyles={dispatchSubHeadingStyles}
+          dispatchPricingStyles={dispatchPricingStyles}
+          dispatchImageStyles={dispatchImageStyles}
+          dispatchBlockStyles={dispatchBlockStyles}
+          dispatchCardStyles={dispatchCardStyles}
+          dispatchButtonStyles={dispatchButtonStyles}
         />
       )}
     </NavStyles.BottomBarGridContainer>

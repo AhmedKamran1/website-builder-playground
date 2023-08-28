@@ -128,7 +128,7 @@ export const initialSectionComponentStyles = [
       buttonStyles: buttonStyles,
     },
     extraFunctionalities: {
-      imageGridFunctionalities: [
+      gridItemsFunctionalities: [
         structuredClone(gridImageItem),
         structuredClone(gridImageItem),
         structuredClone(gridImageItem),
@@ -164,7 +164,7 @@ export const initialSectionComponentStyles = [
       buttonStyles: buttonStyles,
     },
     extraFunctionalities: {
-      imageGridFunctionalities: [
+      gridItemsFunctionalities: [
         structuredClone(gridTextItem),
         structuredClone(gridTextItem),
       ],
@@ -182,7 +182,7 @@ export const initialSectionComponentStyles = [
       pricingStyles: pricingStyles,
     },
     extraFunctionalities: {
-      imageGridFunctionalities: [
+      gridItemsFunctionalities: [
         structuredClone(gridImageWithButtonItem),
         structuredClone(gridImageWithButtonItem),
         structuredClone(gridImageWithButtonItem),

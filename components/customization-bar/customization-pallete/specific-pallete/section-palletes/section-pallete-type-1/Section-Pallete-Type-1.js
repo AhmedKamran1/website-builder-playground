@@ -16,38 +16,35 @@ import FontPallete from "../../../common-palletes/FontPallete";
 const SectionPallete1 = ({
   textFunctionalities,
   buttonFunctionalities,
-  dispatchTextActions,
-  dispatchImageActions,
-  debounceSectionBlockStylesActions,
-  debounceSectionImageStylesActions,
-  debounceSectionButtonStylesActions,
-  debounceSectionSubHeadingStylesActions,
-  dispatchButtonFunctionalities,
   imageFunctionalities,
   blockStyles,
   imageStyles,
   buttonStyles,
   subHeadingStyles,
+  dispatchText,
+  dispatchButton,
+  dispatchImage,
+  debounceBlockStyles,
+  debounceImageStyles,
+  debounceButtonStyles,
+  debounceSubHeadingStyles,
 }) => {
   return (
     <>
       <strong>Sub Heading Content</strong>
       <CollorPallete
         state={subHeadingStyles}
-        dispatch={debounceSectionSubHeadingStylesActions}
+        dispatch={debounceSubHeadingStyles}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
-      <SectionSubHeading
-        state={textFunctionalities}
-        dispatch={dispatchTextActions}
-      />
+      <SectionSubHeading state={textFunctionalities} dispatch={dispatchText} />
       <SectionSubHeadingAlignment
         state={subHeadingStyles}
-        dispatch={debounceSectionSubHeadingStylesActions}
+        dispatch={debounceSubHeadingStyles}
       />
       <FontPallete
         state={subHeadingStyles}
-        dispatch={debounceSectionSubHeadingStylesActions}
+        dispatch={debounceSubHeadingStyles}
         changeFontWeight={
           SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGFONTWEIGHT
         }
@@ -60,7 +57,7 @@ const SectionPallete1 = ({
         <select
           value={blockStyles.flexDirection}
           onChange={(event) =>
-            debounceSectionBlockStylesActions({
+            debounceBlockStyles({
               type: SectionEventTypesEnum.blockStyles.CHANGEFLEXDIRECTION,
               payload: event.target.value,
             })
@@ -73,8 +70,8 @@ const SectionPallete1 = ({
       <ImagePallete
         imageFunctionalitiesState={imageFunctionalities}
         imageStylesState={imageStyles}
-        dispatchImageFunctionalities={dispatchImageActions}
-        dispatchImageStyles={debounceSectionImageStylesActions}
+        dispatchImageFunctionalities={dispatchImage}
+        dispatchImageStyles={debounceImageStyles}
         changeImage={
           SectionEventTypesEnum.sectionImageFunctionalities.CHANGEIMAGE
         }
@@ -94,7 +91,7 @@ const SectionPallete1 = ({
         <Checkbox
           checked={buttonFunctionalities.showButton}
           onChange={() =>
-            dispatchButtonFunctionalities({
+            dispatchButton({
               type: SectionEventTypesEnum.sectionButtonFunctionalities
                 .CHANGEBUTTONVISIBILITY,
             })
@@ -105,18 +102,18 @@ const SectionPallete1 = ({
         <>
           <CommonButtonPallete
             state={buttonStyles}
-            dispatch={debounceSectionButtonStylesActions}
+            dispatch={debounceButtonStyles}
           />
           <SectionButton
             state={buttonFunctionalities}
-            dispatch={dispatchButtonFunctionalities}
+            dispatch={dispatchButton}
           />
         </>
       )}
 
       <SectionTextArea
         state={textFunctionalities}
-        dispatch={dispatchTextActions}
+        dispatch={dispatchText}
         changeHeadingText={
           SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
         }

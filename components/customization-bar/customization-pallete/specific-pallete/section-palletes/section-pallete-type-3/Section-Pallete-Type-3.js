@@ -14,14 +14,14 @@ import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
 import SectionButton from "../common-section-palletes/SectionButton";
 
 const SectionPallete3 = ({
+  gridItemsFunctionalities,
+  buttonFunctionalities,
   buttonStyles,
   imageStyles,
-  buttonFunctionalities,
-  imageGridFunctionalities,
-  dispatchGridImageActions,
-  dispatchButtonFunctionalities,
-  dispatchSectionImageStylesActions,
-  debounceSectionButtonStylesActions,
+  dispatchButton,
+  dispatchGridItems,
+  dispatchImageStyles,
+  debounceButtonStyles,
 }) => {
   return (
     <>
@@ -30,7 +30,7 @@ const SectionPallete3 = ({
         <Checkbox
           checked={buttonFunctionalities.showButton}
           onChange={() =>
-            dispatchButtonFunctionalities({
+            dispatchButton({
               type: SectionEventTypesEnum.sectionButtonFunctionalities
                 .CHANGEBUTTONVISIBILITY,
             })
@@ -41,11 +41,11 @@ const SectionPallete3 = ({
         <>
           <CommonButtonPallete
             state={buttonStyles}
-            dispatch={debounceSectionButtonStylesActions}
+            dispatch={debounceButtonStyles}
           />
           <SectionButton
             state={buttonFunctionalities}
-            dispatch={dispatchButtonFunctionalities}
+            dispatch={dispatchButton}
           />
         </>
       )}
@@ -55,19 +55,19 @@ const SectionPallete3 = ({
           marks={borderRadiusRange}
           max={borderRadiusMaxRange}
           onChange={(event) =>
-            dispatchSectionImageStylesActions({
+            dispatchImageStyles({
               type: SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS,
               payload: event.target.value,
             })
           }
         />
       </Box>
-      {imageGridFunctionalities.map((gridItem, gridIndex) => (
+      {gridItemsFunctionalities.map((gridItem, gridIndex) => (
         <React.Fragment key={gridIndex}>
           <Divider />
           <strong>Grid Number {gridIndex + 1}</strong>
           <DeleteItem
-            dispatch={dispatchGridImageActions}
+            dispatch={dispatchGridItems}
             index={gridIndex}
             deleteItem={
               SectionEventTypesEnum.sectionGridImageFunctionalities
@@ -79,18 +79,18 @@ const SectionPallete3 = ({
           <SectionGridTextArea
             gridItem={gridItem}
             gridIndex={gridIndex}
-            dispatchGridImageActions={dispatchGridImageActions}
+            dispatchGridImageActions={dispatchGridItems}
           />
           <SectionGridImage
             gridItem={gridItem}
             gridIndex={gridIndex}
-            dispatchGridImageActions={dispatchGridImageActions}
+            dispatchGridImageActions={dispatchGridItems}
           />
         </React.Fragment>
       ))}
       <Divider />
       <AddItem
-        dispatch={dispatchGridImageActions}
+        dispatch={dispatchGridItems}
         itemType={gridImageItem}
         addItem={
           SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM

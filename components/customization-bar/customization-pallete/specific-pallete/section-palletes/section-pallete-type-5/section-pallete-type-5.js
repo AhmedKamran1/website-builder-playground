@@ -15,34 +15,32 @@ const SectionPallete5 = ({
   cardStyles,
   buttonStyles,
   pricingStyles,
-  debounceSectionCardStylesActions,
-  debounceSectionButtonStylesActions,
-  debounceSectionPricingStylesActions,
-  imageGridFunctionalities,
-  dispatchGridImageActions,
+  gridItemsFunctionalities,
+  dispatchGridItems,
+  debounceCardStyles,
+  debounceButtonStyles,
+  debouncePricingStyles,
 }) => {
   return (
     <>
       <SectionCardStyles
         cardStyles={cardStyles}
-        debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+        debounceSectionCardStylesActions={debounceCardStyles}
       />
       <SectionPricingStyles
         pricingStyles={pricingStyles}
-        debounceSectionPricingStylesActions={
-          debounceSectionPricingStylesActions
-        }
+        debounceSectionPricingStylesActions={debouncePricingStyles}
       />
       <CommonButtonPallete
         state={buttonStyles}
-        dispatch={debounceSectionButtonStylesActions}
+        dispatch={debounceButtonStyles}
       />
-      {imageGridFunctionalities.map((gridItem, gridIndex) => (
+      {gridItemsFunctionalities.map((gridItem, gridIndex) => (
         <React.Fragment key={gridIndex}>
           <Divider />
           <strong>Grid Number {gridIndex + 1}</strong>
           <DeleteItem
-            dispatch={dispatchGridImageActions}
+            dispatch={dispatchGridItems}
             index={gridIndex}
             deleteItem={
               SectionEventTypesEnum.sectionGridImageFunctionalities
@@ -54,23 +52,23 @@ const SectionPallete5 = ({
           <SectionGridTextArea
             gridItem={gridItem}
             gridIndex={gridIndex}
-            dispatchGridImageActions={dispatchGridImageActions}
+            dispatchGridImageActions={dispatchGridItems}
           />
           <SectionGridPrice
             gridItem={gridItem}
             gridIndex={gridIndex}
-            dispatchGridImageActions={dispatchGridImageActions}
+            dispatchGridImageActions={dispatchGridItems}
           />
           <SectionGridButton
             gridItem={gridItem}
             gridIndex={gridIndex}
-            dispatchGridImageActions={dispatchGridImageActions}
+            dispatchGridImageActions={dispatchGridItems}
           />
         </React.Fragment>
       ))}
       <Divider />
       <AddItem
-        dispatch={dispatchGridImageActions}
+        dispatch={dispatchGridItems}
         itemType={gridTextItem}
         addItem={
           SectionEventTypesEnum.sectionGridImageFunctionalities.ADDGRIDITEM

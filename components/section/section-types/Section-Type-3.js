@@ -24,7 +24,7 @@ const SectionType3 = ({
     paragraphStyles,
     imageStyles,
   } = styles;
-  const { imageGridFunctionalities, buttonFunctionalities } =
+  const { gridItemsFunctionalities, buttonFunctionalities } =
     extraFunctionalities;
   const { buttonText, buttonRedirectLink, showButton } = buttonFunctionalities;
 
@@ -42,7 +42,7 @@ const SectionType3 = ({
           spacing={2}
           columns={{ xs: 1, sm: 6, md: 12 }}
         >
-          {imageGridFunctionalities.map(
+          {gridItemsFunctionalities.map(
             ({ textFunctionalities, imageFunctionalities }, index) => (
               <Grid item xs={1} sm={3} md={4} key={index}>
                 <SectionItemContainer3>
@@ -89,7 +89,7 @@ const SectionType3 = ({
           <Box
             sx={{
               display: "flex",
-              justifyContent: headingStyles.textAlign,
+              justifyContent: "center",
               marginTop: "30px",
             }}
           >

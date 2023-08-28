@@ -15,14 +15,12 @@ import ImagePallete from "../../../common-palletes/ImagePallete";
 const SectionPallete4 = ({
   textFunctionalities,
   buttonFunctionalities,
-  imageFunctionalities,
-  dispatchTextActions,
-  dispatchImageActions,
   cardStyles,
   buttonStyles,
-  debounceSectionCardStylesActions,
-  debounceSectionButtonStylesActions,
-  dispatchButtonFunctionalities,
+  dispatchText,
+  dispatchButton,
+  debounceCardStyles,
+  debounceButtonStyles,
 }) => {
   return (
     <>
@@ -47,14 +45,14 @@ const SectionPallete4 = ({
       /> */}
       <SectionCardStyles
         cardStyles={cardStyles}
-        debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+        debounceSectionCardStylesActions={debounceCardStyles}
       />
       <div>
         <strong>Show Button</strong>
         <Checkbox
           checked={buttonFunctionalities.showButton}
           onChange={() =>
-            dispatchButtonFunctionalities({
+            dispatchButton({
               type: SectionEventTypesEnum.sectionButtonFunctionalities
                 .CHANGEBUTTONVISIBILITY,
             })
@@ -65,17 +63,17 @@ const SectionPallete4 = ({
         <>
           <CommonButtonPallete
             state={buttonStyles}
-            dispatch={debounceSectionButtonStylesActions}
+            dispatch={debounceButtonStyles}
           />
           <SectionButton
             state={buttonFunctionalities}
-            dispatch={dispatchButtonFunctionalities}
+            dispatch={dispatchButton}
           />
         </>
       )}
       <SectionTextArea
         state={textFunctionalities}
-        dispatch={dispatchTextActions}
+        dispatch={dispatchText}
         changeHeadingText={
           SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
         }

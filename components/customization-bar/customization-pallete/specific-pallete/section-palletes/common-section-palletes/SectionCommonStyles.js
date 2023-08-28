@@ -13,16 +13,16 @@ const SectionCommonStyles = ({
   blockStyles,
   headingStyles,
   paragraphStyles,
-  debounceSectionBlockStylesActions,
-  debounceSectionHeadingStylesActions,
-  debounceSectionParagraphStylesActions,
+  debounceBlockStyles,
+  debounceHeadingStyles,
+  debounceParagraphStyles,
 }) => {
   return (
     <div>
       <p>BLOCK STYLES</p>
       <BgColorPallete
         state={blockStyles}
-        dispatch={debounceSectionBlockStylesActions}
+        dispatch={debounceBlockStyles}
         changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
       <Divider />
@@ -30,20 +30,20 @@ const SectionCommonStyles = ({
       <p>Heading Color</p>
       <CollorPallete
         state={headingStyles}
-        dispatch={debounceSectionHeadingStylesActions}
+        dispatch={debounceHeadingStyles}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
       <p>Paragraph Color</p>
       <CollorPallete
         state={paragraphStyles}
-        dispatch={debounceSectionParagraphStylesActions}
+        dispatch={debounceParagraphStyles}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
       <SectionTextAlignment
         headingState={headingStyles}
         paragraphState={paragraphStyles}
-        dispatchHeadingStyles={debounceSectionHeadingStylesActions}
-        dispatchParagraphStyles={debounceSectionParagraphStylesActions}
+        dispatchHeadingStyles={debounceHeadingStyles}
+        dispatchParagraphStyles={debounceParagraphStyles}
         changeHeadingAlignment={
           SectionEventTypesEnum.headingStyles.CHANGEHEADINGTEXTALIGNMENT
         }
@@ -54,7 +54,7 @@ const SectionCommonStyles = ({
       <p>Heading Font Type</p>
       <FontPallete
         state={headingStyles}
-        dispatch={debounceSectionHeadingStylesActions}
+        dispatch={debounceHeadingStyles}
         changeFontWeight={
           SectionEventTypesEnum.headingStyles.CHANGEHEADINGFONTWEIGHT
         }
@@ -66,7 +66,7 @@ const SectionCommonStyles = ({
       <p>Paragraph Font Type</p>
       <FontPallete
         state={paragraphStyles}
-        dispatch={debounceSectionParagraphStylesActions}
+        dispatch={debounceParagraphStyles}
         changeFontWeight={
           SectionEventTypesEnum.paragraphStyles.CHANGEPARAGRAPHFONTWEIGHT
         }

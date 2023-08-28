@@ -184,7 +184,7 @@ export const sectionButtonReducer = (state, action) => {
   }
 };
 
-export const sectionGridImageReducer = (state, action) => {
+export const sectionGridItemsReducer = (state, action) => {
   let updatedGridImages,
     gridIndex,
     subHeadingText,
@@ -198,7 +198,7 @@ export const sectionGridImageReducer = (state, action) => {
     buttonText,
     buttonRedirectLink;
   updatedGridImages = structuredClone(
-    state.extraFunctionalities.imageGridFunctionalities
+    state.extraFunctionalities.gridItemsFunctionalities
   );
   switch (action.type) {
     case CommonEventTypeEnum.CHANGECOLOR:
@@ -219,7 +219,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -229,7 +229,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -242,7 +242,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -255,7 +255,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -268,7 +268,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -281,7 +281,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -294,7 +294,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -305,7 +305,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
     case SectionEventTypesEnum.sectionGridImageFunctionalities
@@ -317,7 +317,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
     case SectionEventTypesEnum.sectionGridImageFunctionalities
@@ -329,7 +329,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -342,7 +342,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
     case SectionEventTypesEnum.sectionGridImageFunctionalities
@@ -354,7 +354,7 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities: updatedGridImages,
+          gridItemsFunctionalities: updatedGridImages,
         },
       };
 
@@ -363,8 +363,8 @@ export const sectionGridImageReducer = (state, action) => {
         ...state,
         extraFunctionalities: {
           ...state.extraFunctionalities,
-          imageGridFunctionalities:
-            action.payload.extraFunctionalities.imageGridFunctionalities ?? [],
+          gridItemsFunctionalities:
+            action.payload.extraFunctionalities.gridItemsFunctionalities ?? [],
         },
       };
     default:

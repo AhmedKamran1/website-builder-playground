@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import { Box } from "@mui/material";
 import {
   SectionContainer2,
@@ -8,7 +7,11 @@ import {
 } from "@/styles/pre-defined-components/section/section-styled-types/section-type-2-styles";
 import { formatText } from "@/util/format-text";
 
-import { ResponsiveText, StyledButton, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
+import {
+  ResponsiveText,
+  StyledButton,
+  StyledLink,
+} from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 const SectionType2 = ({
   extraFunctionalities,
@@ -35,16 +38,18 @@ const SectionType2 = ({
       backgroundColor={blockStyles.backgroundColor}
     >
       <SectionTextBox2>
-        <Box textAlign={subHeadingStyles.textAlign}>
-          <ResponsiveText
-            variant="subHeader"
-            colorHex={subHeadingStyles.colorHex}
-            fontStyle={subHeadingStyles.fontStyle}
-            fontWeight={subHeadingStyles.fontWeight}
-          >
-            {formatText(subHeadingText)}
-          </ResponsiveText>
-        </Box>
+        {subHeadingText && (
+          <Box textAlign={subHeadingStyles.textAlign}>
+            <ResponsiveText
+              variant="subHeader"
+              colorHex={subHeadingStyles.colorHex}
+              fontStyle={subHeadingStyles.fontStyle}
+              fontWeight={subHeadingStyles.fontWeight}
+            >
+              {formatText(subHeadingText)}
+            </ResponsiveText>
+          </Box>
+        )}
         {headingText && (
           <Box textAlign={headingStyles.textAlign}>
             <ResponsiveText

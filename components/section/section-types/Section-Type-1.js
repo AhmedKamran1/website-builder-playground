@@ -1,5 +1,8 @@
-
-import { ResponsiveText, StyledButton, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
+import {
+  ResponsiveText,
+  StyledButton,
+  StyledLink,
+} from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 import {
   SectionContainer1,
@@ -47,16 +50,18 @@ const SectionType1 = ({
         >
           <Grid item xs={8} lg={6}>
             <SectionTextBox1>
-              <Box textAlign={subHeadingStyles.textAlign}>
-                <ResponsiveText
-                  variant="subHeader"
-                  colorHex={subHeadingStyles.colorHex}
-                  fontStyle={subHeadingStyles.fontStyle}
-                  fontWeight={subHeadingStyles.fontWeight}
-                >
-                  {formatText(subHeadingText)}
-                </ResponsiveText>
-              </Box>
+              {subHeadingText && (
+                <Box textAlign={subHeadingStyles.textAlign}>
+                  <ResponsiveText
+                    variant="subHeader"
+                    colorHex={subHeadingStyles.colorHex}
+                    fontStyle={subHeadingStyles.fontStyle}
+                    fontWeight={subHeadingStyles.fontWeight}
+                  >
+                    {formatText(subHeadingText)}
+                  </ResponsiveText>
+                </Box>
+              )}
               {headingText && (
                 <Box textAlign={headingStyles.textAlign}>
                   <ResponsiveText

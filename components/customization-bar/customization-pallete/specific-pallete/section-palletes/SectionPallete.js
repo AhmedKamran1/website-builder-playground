@@ -35,83 +35,56 @@ import SectionPallete4 from "./section-pallete-type-4/section-pallete-type-4";
 import SectionPallete2 from "./section-pallete-type-2/section-pallete-type-2";
 
 const SectionPallete = ({
-  sectionTextState,
-  sectionImageState,
-  sectionButtonState,
-  sectionGridImageState,
-  sectionHeadingStylesState,
-  sectionParagraphStylesState,
-  sectionSubHeadingStylesState,
-  sectionImageStylesState,
-  sectionBlockStylesState,
-  sectionCardStylesState,
-  sectionButtonStylesState,
-  sectionPricingStylesState,
-  dispatchTextActions,
-  dispatchImageActions,
-  dispatchButtonActions,
-  dispatchGridImageActions,
-  dispatchSectionHeadingStylesActions,
-  dispatchSectionParagraphStylesActions,
-  dispatchSectionSubHeadingStylesActions,
-  dispatchSectionImageStylesActions,
-  dispatchSectionBlockStylesActions,
-  dispatchSectionCardStylesActions,
-  dispatchSectionButtonStylesActions,
-  dispatchSectionPricingStylesActions,
+  textFunctionalities,
+  imageFunctionalities,
+  buttonFunctionalities,
+  gridItemsFunctionalities,
+  headingStyles,
+  paragraphStyles,
+  subHeadingStyles,
+  pricingStyles,
+  imageStyles,
+  blockStyles,
+  cardStyles,
+  buttonStyles,
+  dispatchText,
+  dispatchImage,
+  dispatchButton,
+  dispatchGridItems,
+  dispatchHeadingStyles,
+  dispatchParagraphStyles,
+  dispatchSubHeadingStyles,
+  dispatchPricingStyles,
+  dispatchImageStyles,
+  dispatchBlockStyles,
+  dispatchCardStyles,
+  dispatchButtonStyles,
 }) => {
   const selectedComponent = useSelector(selectedComponentData);
 
-  const { textFunctionalities } = sectionTextState.extraFunctionalities;
-  const { imageFunctionalities } = sectionImageState.extraFunctionalities;
-  const { buttonFunctionalities } = sectionButtonState.extraFunctionalities;
-  const { imageGridFunctionalities } =
-    sectionGridImageState.extraFunctionalities;
-
-  const { headingStyles } = sectionHeadingStylesState.styles;
-  const { paragraphStyles } = sectionParagraphStylesState.styles;
-  const { subHeadingStyles } = sectionSubHeadingStylesState.styles;
-  const { imageStyles } = sectionImageStylesState.styles;
-  const { cardStyles } = sectionCardStylesState.styles;
-  const { pricingStyles } = sectionPricingStylesState.styles;
-  const { buttonStyles } = sectionButtonStylesState.styles;
-  const { blockStyles } = sectionBlockStylesState.styles;
-
-  const debounceSectionHeadingStylesActions = useDebouncedDispatch(
-    dispatchSectionHeadingStylesActions,
+  const debounceHeadingStyles = useDebouncedDispatch(
+    dispatchHeadingStyles,
     200
   );
-  const debounceSectionParagraphStylesActions = useDebouncedDispatch(
-    dispatchSectionParagraphStylesActions,
+  const debounceParagraphStyles = useDebouncedDispatch(
+    dispatchParagraphStyles,
     200
   );
 
-  const debounceSectionSubHeadingStylesActions = useDebouncedDispatch(
-    dispatchSectionSubHeadingStylesActions,
+  const debounceSubHeadingStyles = useDebouncedDispatch(
+    dispatchSubHeadingStyles,
     200
   );
 
-  const debounceSectionImageStylesActions = useDebouncedDispatch(
-    dispatchSectionImageStylesActions,
-    200
-  );
-  const debounceSectionBlockStylesActions = useDebouncedDispatch(
-    dispatchSectionBlockStylesActions,
-    200
-  );
+  const debounceImageStyles = useDebouncedDispatch(dispatchImageStyles, 200);
+  const debounceBlockStyles = useDebouncedDispatch(dispatchBlockStyles, 200);
 
-  const debounceSectionCardStylesActions = useDebouncedDispatch(
-    dispatchSectionCardStylesActions,
-    200
-  );
+  const debounceCardStyles = useDebouncedDispatch(dispatchCardStyles, 200);
 
-  const debounceSectionButtonStylesActions = useDebouncedDispatch(
-    dispatchSectionButtonStylesActions,
-    200
-  );
+  const debounceButtonStyles = useDebouncedDispatch(dispatchButtonStyles, 200);
 
-  const debounceSectionPricingStylesActions = useDebouncedDispatch(
-    dispatchSectionPricingStylesActions,
+  const debouncePricingStyles = useDebouncedDispatch(
+    dispatchPricingStyles,
     200
   );
 
@@ -121,78 +94,62 @@ const SectionPallete = ({
         blockStyles={blockStyles}
         headingStyles={headingStyles}
         paragraphStyles={paragraphStyles}
-        debounceSectionBlockStylesActions={debounceSectionBlockStylesActions}
-        debounceSectionHeadingStylesActions={
-          debounceSectionHeadingStylesActions
-        }
-        debounceSectionParagraphStylesActions={
-          debounceSectionParagraphStylesActions
-        }
+        debounceBlockStyles={debounceBlockStyles}
+        debounceHeadingStyles={debounceHeadingStyles}
+        debounceParagraphStyles={debounceParagraphStyles}
       />
       {selectedComponent.secId === "1" && (
         <SectionPallete1
           textFunctionalities={textFunctionalities}
           buttonFunctionalities={buttonFunctionalities}
-          buttonStyles={buttonStyles}
-          dispatchTextActions={dispatchTextActions}
-          blockStyles={blockStyles}
           imageFunctionalities={imageFunctionalities}
+          blockStyles={blockStyles}
           imageStyles={imageStyles}
+          buttonStyles={buttonStyles}
           subHeadingStyles={subHeadingStyles}
-          dispatchButtonFunctionalities={dispatchButtonActions}
-          debounceSectionBlockStylesActions={debounceSectionBlockStylesActions}
-          debounceSectionImageStylesActions={debounceSectionImageStylesActions}
-          debounceSectionButtonStylesActions={
-            debounceSectionButtonStylesActions
-          }
-          debounceSectionSubHeadingStylesActions={
-            debounceSectionSubHeadingStylesActions
-          }
-          dispatchImageActions={dispatchImageActions}
+          dispatchText={dispatchText}
+          dispatchButton={dispatchButton}
+          dispatchImage={dispatchImage}
+          debounceBlockStyles={debounceBlockStyles}
+          debounceImageStyles={debounceImageStyles}
+          debounceButtonStyles={debounceButtonStyles}
+          debounceSubHeadingStyles={debounceSubHeadingStyles}
         />
       )}
       {selectedComponent.secId === "2" && (
         <SectionPallete2
-          subHeadingStyles={subHeadingStyles}
-          buttonStyles={buttonStyles}
           buttonFunctionalities={buttonFunctionalities}
           textFunctionalities={textFunctionalities}
-          dispatchTextActions={dispatchTextActions}
-          dispatchButtonFunctionalities={dispatchButtonActions}
-          debounceSectionButtonStylesActions={
-            debounceSectionButtonStylesActions
-          }
-          debounceSectionSubHeadingStylesActions={
-            debounceSectionSubHeadingStylesActions
-          }
+          subHeadingStyles={subHeadingStyles}
+          buttonStyles={buttonStyles}
+          dispatchText={dispatchText}
+          dispatchButton={dispatchButton}
+          debounceButtonStyles={debounceButtonStyles}
+          debounceSubHeadingStyles={debounceSubHeadingStyles}
         />
       )}
       {selectedComponent.secId === "3" && (
         <SectionPallete3
-          buttonStyles={buttonStyles}
+          gridItemsFunctionalities={gridItemsFunctionalities}
           buttonFunctionalities={buttonFunctionalities}
+          buttonStyles={buttonStyles}
           imageStyles={imageStyles}
-          imageGridFunctionalities={imageGridFunctionalities}
-          dispatchGridImageActions={dispatchGridImageActions}
-          dispatchButtonFunctionalities={dispatchButtonActions}
-          dispatchSectionImageStylesActions={dispatchSectionImageStylesActions}
-          debounceSectionButtonStylesActions={
-            debounceSectionButtonStylesActions
-          }
+          dispatchButton={dispatchButton}
+          dispatchGridItems={dispatchGridItems}
+          dispatchImageStyles={dispatchImageStyles}
+          debounceButtonStyles={debounceButtonStyles}
         />
       )}
       {selectedComponent.secId === "4" && (
         <SectionPallete4
-          buttonFunctionalities={buttonFunctionalities}
           textFunctionalities={textFunctionalities}
-          dispatchTextActions={dispatchTextActions}
+          buttonFunctionalities={buttonFunctionalities}
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
-          dispatchButtonFunctionalities={dispatchButtonActions}
-          debounceSectionCardStylesActions={debounceSectionCardStylesActions}
-          debounceSectionButtonStylesActions={
-            debounceSectionButtonStylesActions
-          }
+          dispatchText={dispatchText}
+          dispatchButton={dispatchButton}
+          debounceCardStyles={debounceCardStyles}
+          debounceButtonStyles={debounceButtonStyles}
         />
       )}
       {selectedComponent.secId === "5" && (
@@ -200,15 +157,11 @@ const SectionPallete = ({
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
           pricingStyles={pricingStyles}
-          debounceSectionCardStylesActions={debounceSectionCardStylesActions}
-          debounceSectionButtonStylesActions={
-            debounceSectionButtonStylesActions
-          }
-          debounceSectionPricingStylesActions={
-            debounceSectionPricingStylesActions
-          }
-          imageGridFunctionalities={imageGridFunctionalities}
-          dispatchGridImageActions={dispatchGridImageActions}
+          gridItemsFunctionalities={gridItemsFunctionalities}
+          dispatchGridItems={dispatchGridItems}
+          debounceCardStyles={debounceCardStyles}
+          debounceButtonStyles={debounceButtonStyles}
+          debouncePricingStyles={debouncePricingStyles}
         />
       )}
       {selectedComponent.secId === "6" && (
@@ -216,15 +169,11 @@ const SectionPallete = ({
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
           pricingStyles={pricingStyles}
-          debounceSectionCardStylesActions={debounceSectionCardStylesActions}
-          debounceSectionButtonStylesActions={
-            debounceSectionButtonStylesActions
-          }
-          debounceSectionPricingStylesActions={
-            debounceSectionPricingStylesActions
-          }
-          imageGridFunctionalities={imageGridFunctionalities}
-          dispatchGridImageActions={dispatchGridImageActions}
+          gridItemsFunctionalities={gridItemsFunctionalities}
+          dispatchGridItems={dispatchGridItems}
+          debounceCardStyles={debounceCardStyles}
+          debounceButtonStyles={debounceButtonStyles}
+          debouncePricingStyles={debouncePricingStyles}
         />
       )}
     </>

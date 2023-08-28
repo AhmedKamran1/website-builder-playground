@@ -26,7 +26,7 @@ const SectionType5 = ({
     paragraphStyles,
     pricingStyles,
   } = styles;
-  const { imageGridFunctionalities } = extraFunctionalities;
+  const { gridItemsFunctionalities } = extraFunctionalities;
 
   return (
     <SectionContainer5
@@ -43,7 +43,7 @@ const SectionType5 = ({
           spacing={1.5}
           columns={{ xs: 1, sm: 6, md: 12 }}
         >
-          {imageGridFunctionalities.map(
+          {gridItemsFunctionalities.map(
             (
               {
                 textFunctionalities,

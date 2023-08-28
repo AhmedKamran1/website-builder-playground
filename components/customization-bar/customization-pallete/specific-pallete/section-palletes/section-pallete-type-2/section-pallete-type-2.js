@@ -12,34 +12,31 @@ import SectionSubHeadingAlignment from "../common-section-palletes/SectionSubHea
 import FontPallete from "../../../common-palletes/FontPallete";
 
 const SectionPallete2 = ({
-  buttonStyles,
-  subHeadingStyles,
   buttonFunctionalities,
   textFunctionalities,
-  dispatchTextActions,
-  dispatchButtonFunctionalities,
-  debounceSectionButtonStylesActions,
-  debounceSectionSubHeadingStylesActions,
+  subHeadingStyles,
+  buttonStyles,
+  dispatchText,
+  dispatchButton,
+  debounceButtonStyles,
+  debounceSubHeadingStyles,
 }) => {
   return (
     <>
       <strong>Sub Heading Content</strong>
       <CollorPallete
         state={subHeadingStyles}
-        dispatch={debounceSectionSubHeadingStylesActions}
+        dispatch={debounceSubHeadingStyles}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
-      <SectionSubHeading
-        state={textFunctionalities}
-        dispatch={dispatchTextActions}
-      />
+      <SectionSubHeading state={textFunctionalities} dispatch={dispatchText} />
       <SectionSubHeadingAlignment
         state={subHeadingStyles}
-        dispatch={debounceSectionSubHeadingStylesActions}
+        dispatch={debounceSubHeadingStyles}
       />
       <FontPallete
         state={subHeadingStyles}
-        dispatch={debounceSectionSubHeadingStylesActions}
+        dispatch={debounceSubHeadingStyles}
         changeFontWeight={
           SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGFONTWEIGHT
         }
@@ -53,7 +50,7 @@ const SectionPallete2 = ({
         <Checkbox
           checked={buttonFunctionalities.showButton}
           onChange={() =>
-            dispatchButtonFunctionalities({
+            dispatchButton({
               type: SectionEventTypesEnum.sectionButtonFunctionalities
                 .CHANGEBUTTONVISIBILITY,
             })
@@ -64,17 +61,17 @@ const SectionPallete2 = ({
         <>
           <CommonButtonPallete
             state={buttonStyles}
-            dispatch={debounceSectionButtonStylesActions}
+            dispatch={debounceButtonStyles}
           />
           <SectionButton
             state={buttonFunctionalities}
-            dispatch={dispatchButtonFunctionalities}
+            dispatch={dispatchButton}
           />
         </>
       )}
       <SectionTextArea
         state={textFunctionalities}
-        dispatch={dispatchTextActions}
+        dispatch={dispatchText}
         changeHeadingText={
           SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
         }

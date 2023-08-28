@@ -32,9 +32,9 @@ export const sectionInitialButtonFunctionalitiesState = {
   },
 };
 
-export const sectionInitialGridImageFunctionalitiesState = {
+export const sectionInitialGridItemsFunctionalitiesState = {
   extraFunctionalities: {
-    imageGridFunctionalities: [gridImageWithButtonItem],
+    gridItemsFunctionalities: [],
   },
 };
 
