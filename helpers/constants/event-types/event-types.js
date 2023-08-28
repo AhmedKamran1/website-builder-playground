@@ -49,7 +49,6 @@ export const SectionEventTypesEnum = {
     CHANGEHEADINGTEXT: "changeHeadingText",
     CHANGEPARAGRAPHTEXT: "changeParagraphText",
     CHANGESUBHEADINGTEXT: "changeSubHeadingText",
-    CHANGEPRICINGTEXT: "changePricingText",
   },
   sectionImageFunctionalities: {
     CHANGEIMAGE: "changeImage",
@@ -71,6 +70,7 @@ export const SectionEventTypesEnum = {
     CHANGEGRIDPARAGRAPHTEXT: "changeGridParagraphText",
     CHANGEGRIDSUBHEADINGTEXT: "changeGridSubHeadingText",
     CHANGEGRIDPRICINGTEXT: "changeGridPricingText",
+    CHANGEGRIDPRICINGCURRENCYTYPE: "changeGridPricingCurrencyType",
     CHANGEGRIDBUTTONTEXT: "changeGridButtonText",
     CHANGEGRIDBUTTONREDIRECTLINK: "changeGridButtonRedirectLink",
   },

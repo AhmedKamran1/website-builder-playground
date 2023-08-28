@@ -191,6 +191,7 @@ export const sectionGridImageReducer = (state, action) => {
     headingText,
     paragraphText,
     pricingText,
+    currencyType,
     image,
     imageAltText,
     imageRedirectLink,
@@ -261,8 +262,21 @@ export const sectionGridImageReducer = (state, action) => {
     case SectionEventTypesEnum.sectionGridImageFunctionalities
       .CHANGEGRIDPRICINGTEXT:
       ({ gridIndex, pricingText } = action.payload);
-      updatedGridImages[gridIndex].textFunctionalities.pricingText =
+      updatedGridImages[gridIndex].pricingFunctionalities.pricingText =
         pricingText;
+      return {
+        ...state,
+        extraFunctionalities: {
+          ...state.extraFunctionalities,
+          imageGridFunctionalities: updatedGridImages,
+        },
+      };
+
+    case SectionEventTypesEnum.sectionGridImageFunctionalities
+      .CHANGEGRIDPRICINGCURRENCYTYPE:
+      ({ gridIndex, currencyType } = action.payload);
+      updatedGridImages[gridIndex].pricingFunctionalities.currencyType =
+        currencyType;
       return {
         ...state,
         extraFunctionalities: {
@@ -564,7 +578,9 @@ export const sectionPricingStylesReducer = (state, action) => {
         ...state,
         styles: {
           ...state.styles,
-          pricingStyles: action.payload.styles.pricingStyles,
+          pricingStyles: action.payload.styles.pricingStyles ?? {
+            ...state.styles.pricingStyles,
+          },
         },
       };
     default:

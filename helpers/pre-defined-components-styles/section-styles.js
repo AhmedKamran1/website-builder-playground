@@ -50,13 +50,17 @@ export const textFunctionalities = {
   subHeadingText: "This is subheading",
   headingText: "This is a heading",
   paragraphText: "This is a paragraph",
-  pricingText: "1000 Rs",
 };
 
 export const imageFunctionalities = {
   image: "",
   imageRedirectLink: "https://",
   imageAltText: "Enter Text about image",
+};
+
+export const pricingFunctionalities = {
+  pricingText: "0",
+  currencyType: "PKR",
 };
 
 export const buttonFunctionalities = {
@@ -74,11 +78,13 @@ export const gridImageWithButtonItem = {
   textFunctionalities: textFunctionalities,
   imageFunctionalities: imageFunctionalities,
   buttonFunctionalities: buttonFunctionalities,
+  pricingFunctionalities: pricingFunctionalities,
 };
 
 export const gridTextItem = {
   textFunctionalities: textFunctionalities,
   buttonFunctionalities: buttonFunctionalities,
+  pricingFunctionalities: pricingFunctionalities,
 };
 
 export const initialSectionComponentStyles = [
@@ -173,6 +179,7 @@ export const initialSectionComponentStyles = [
       blockStyles: blockStyles,
       cardStyles: cardStyles,
       buttonStyles: buttonStyles,
+      pricingStyles: pricingStyles,
     },
     extraFunctionalities: {
       imageGridFunctionalities: [

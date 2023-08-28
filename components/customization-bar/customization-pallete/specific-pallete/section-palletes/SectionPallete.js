@@ -46,6 +46,7 @@ const SectionPallete = ({
   sectionBlockStylesState,
   sectionCardStylesState,
   sectionButtonStylesState,
+  sectionPricingStylesState,
   dispatchTextActions,
   dispatchImageActions,
   dispatchButtonActions,
@@ -57,6 +58,7 @@ const SectionPallete = ({
   dispatchSectionBlockStylesActions,
   dispatchSectionCardStylesActions,
   dispatchSectionButtonStylesActions,
+  dispatchSectionPricingStylesActions,
 }) => {
   const selectedComponent = useSelector(selectedComponentData);
 
@@ -71,7 +73,7 @@ const SectionPallete = ({
   const { subHeadingStyles } = sectionSubHeadingStylesState.styles;
   const { imageStyles } = sectionImageStylesState.styles;
   const { cardStyles } = sectionCardStylesState.styles;
-  // const { pricingStyles } = sectionPricingStylesState.styles;
+  const { pricingStyles } = sectionPricingStylesState.styles;
   const { buttonStyles } = sectionButtonStylesState.styles;
   const { blockStyles } = sectionBlockStylesState.styles;
 
@@ -105,6 +107,11 @@ const SectionPallete = ({
 
   const debounceSectionButtonStylesActions = useDebouncedDispatch(
     dispatchSectionButtonStylesActions,
+    200
+  );
+
+  const debounceSectionPricingStylesActions = useDebouncedDispatch(
+    dispatchSectionPricingStylesActions,
     200
   );
 
@@ -192,9 +199,13 @@ const SectionPallete = ({
         <SectionPallete5
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
+          pricingStyles={pricingStyles}
           debounceSectionCardStylesActions={debounceSectionCardStylesActions}
           debounceSectionButtonStylesActions={
             debounceSectionButtonStylesActions
+          }
+          debounceSectionPricingStylesActions={
+            debounceSectionPricingStylesActions
           }
           imageGridFunctionalities={imageGridFunctionalities}
           dispatchGridImageActions={dispatchGridImageActions}
@@ -204,9 +215,13 @@ const SectionPallete = ({
         <SectionPallete6
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
+          pricingStyles={pricingStyles}
           debounceSectionCardStylesActions={debounceSectionCardStylesActions}
           debounceSectionButtonStylesActions={
             debounceSectionButtonStylesActions
+          }
+          debounceSectionPricingStylesActions={
+            debounceSectionPricingStylesActions
           }
           imageGridFunctionalities={imageGridFunctionalities}
           dispatchGridImageActions={dispatchGridImageActions}

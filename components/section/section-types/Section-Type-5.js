@@ -1,5 +1,7 @@
-
-import { ResponsiveText, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
+import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 import {
   SectionButtonContainer5,
@@ -22,7 +24,7 @@ const SectionType5 = ({
     blockStyles,
     headingStyles,
     paragraphStyles,
-    imageStyles,
+    pricingStyles,
   } = styles;
   const { imageGridFunctionalities } = extraFunctionalities;
 
@@ -42,15 +44,26 @@ const SectionType5 = ({
           columns={{ xs: 1, sm: 6, md: 12 }}
         >
           {imageGridFunctionalities.map(
-            ({ textFunctionalities, buttonFunctionalities }, index) => (
+            (
+              {
+                textFunctionalities,
+                buttonFunctionalities,
+                pricingFunctionalities,
+              },
+              index
+            ) => (
               <Grid item xs={1} sm={3} md={4} key={index}>
                 <SectionCardContainer5
                   backgroundColor={cardStyles.backgroundColor}
                   borderRadius={`${cardStyles.borderRadius}%`}
                 >
                   <SectionPriceContainer5>
-                    <ResponsiveText variant="subHeader">
-                      {textFunctionalities.pricingText}
+                    <ResponsiveText
+                      variant="subHeader"
+                      colorHex={pricingStyles.colorHex}
+                    >
+                      {pricingFunctionalities.pricingText}
+                      {pricingFunctionalities.currencyType}
                     </ResponsiveText>
                   </SectionPriceContainer5>
                   <Box

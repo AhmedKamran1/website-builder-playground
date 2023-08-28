@@ -9,20 +9,30 @@ import { SectionEventTypesEnum } from "@/helpers/constants/event-types/event-typ
 import { gridImageWithButtonItem } from "@/helpers/pre-defined-components-styles/section-styles";
 import SectionCardStyles from "../common-section-palletes/SectionCardStyles";
 import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
+import SectionGridPrice from "../common-section-palletes/SectionGridPrice";
+import SectionPricingStyles from "../common-section-palletes/SectionPricingStyles";
 
 const SectionPallete6 = ({
   cardStyles,
   buttonStyles,
+  pricingStyles,
   debounceSectionCardStylesActions,
   debounceSectionButtonStylesActions,
   imageGridFunctionalities,
   dispatchGridImageActions,
+  debounceSectionPricingStylesActions,
 }) => {
   return (
     <>
       <SectionCardStyles
         cardStyles={cardStyles}
         debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+      />
+      <SectionPricingStyles
+        pricingStyles={pricingStyles}
+        debounceSectionPricingStylesActions={
+          debounceSectionPricingStylesActions
+        }
       />
       <CommonButtonPallete
         state={buttonStyles}
@@ -43,6 +53,11 @@ const SectionPallete6 = ({
             Delete Item
           </DeleteItem>
           <SectionGridTextArea
+            gridItem={gridItem}
+            gridIndex={gridIndex}
+            dispatchGridImageActions={dispatchGridImageActions}
+          />
+          <SectionGridPrice
             gridItem={gridItem}
             gridIndex={gridIndex}
             dispatchGridImageActions={dispatchGridImageActions}

@@ -1,0 +1,1 @@
+export const currencyTypes = ["PKR","USD","Riyal"]

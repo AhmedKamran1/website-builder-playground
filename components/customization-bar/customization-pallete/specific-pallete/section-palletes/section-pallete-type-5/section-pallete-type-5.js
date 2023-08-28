@@ -8,12 +8,16 @@ import { Divider } from "@mui/material";
 import AddItem from "../../../common-palletes/AddItem";
 import SectionCardStyles from "../common-section-palletes/SectionCardStyles";
 import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
+import SectionGridPrice from "../common-section-palletes/SectionGridPrice";
+import SectionPricingStyles from "../common-section-palletes/SectionPricingStyles";
 
 const SectionPallete5 = ({
   cardStyles,
   buttonStyles,
+  pricingStyles,
   debounceSectionCardStylesActions,
   debounceSectionButtonStylesActions,
+  debounceSectionPricingStylesActions,
   imageGridFunctionalities,
   dispatchGridImageActions,
 }) => {
@@ -22,6 +26,12 @@ const SectionPallete5 = ({
       <SectionCardStyles
         cardStyles={cardStyles}
         debounceSectionCardStylesActions={debounceSectionCardStylesActions}
+      />
+      <SectionPricingStyles
+        pricingStyles={pricingStyles}
+        debounceSectionPricingStylesActions={
+          debounceSectionPricingStylesActions
+        }
       />
       <CommonButtonPallete
         state={buttonStyles}
@@ -42,6 +52,11 @@ const SectionPallete5 = ({
             Delete Item
           </DeleteItem>
           <SectionGridTextArea
+            gridItem={gridItem}
+            gridIndex={gridIndex}
+            dispatchGridImageActions={dispatchGridImageActions}
+          />
+          <SectionGridPrice
             gridItem={gridItem}
             gridIndex={gridIndex}
             dispatchGridImageActions={dispatchGridImageActions}

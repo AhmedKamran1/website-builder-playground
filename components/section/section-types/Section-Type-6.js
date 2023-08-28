@@ -1,5 +1,7 @@
-
-import { ResponsiveText, StyledLink } from "@/styles/pre-defined-components/common-styled-components/common-components";
+import {
+  ResponsiveText,
+  StyledLink,
+} from "@/styles/pre-defined-components/common-styled-components/common-components";
 
 import {
   SectionButtonContainer6,
@@ -25,7 +27,7 @@ const SectionType6 = ({
     blockStyles,
     headingStyles,
     paragraphStyles,
-    imageStyles,
+    pricingStyles,
   } = styles;
   const { imageGridFunctionalities } = extraFunctionalities;
 
@@ -49,6 +51,7 @@ const SectionType6 = ({
                 textFunctionalities,
                 imageFunctionalities,
                 buttonFunctionalities,
+                pricingFunctionalities,
               },
               index
             ) => (
@@ -113,8 +116,12 @@ const SectionType6 = ({
                       </SectionButtonContainer6>
                       {/* </StyledLink> */}
                       <Box>
-                        <ResponsiveText variant="subHeader">
-                          {textFunctionalities.pricingText}
+                        <ResponsiveText
+                          variant="subHeader"
+                          colorHex={pricingStyles.colorHex}
+                        >
+                          {pricingFunctionalities.pricingText}
+                          {pricingFunctionalities.currencyType}
                         </ResponsiveText>
                       </Box>
                     </Box>

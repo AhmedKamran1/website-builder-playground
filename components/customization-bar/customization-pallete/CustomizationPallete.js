@@ -53,6 +53,7 @@ import {
   sectionInitialImageFunctionalitiesState,
   sectionInitialImageStylesState,
   sectionInitialParagraphStylesState,
+  sectionInitialPricingFunctionalitiesState,
   sectionInitialPricingStylesState,
   sectionInitialSubHeadingStylesState,
   sectionInitialTextFunctionalitiesState,
@@ -90,6 +91,9 @@ const BottomBar = () => {
 
   const [sectionButtonFunctionalitiesState, dispatchSectionButtonActions] =
     useReducer(sectionButtonReducer, sectionInitialButtonFunctionalitiesState);
+
+  // const [sectionPricingFunctionalitiesState, dispatchSectionPricingActions] =
+  // useReducer(sectionPricingReducer, sectionInitialPricingFunctionalitiesState);
 
   const [
     sectionGridImageFunctionalitiesState,
@@ -173,7 +177,7 @@ const BottomBar = () => {
             buttonStyles: sectionButtonStylesState.styles.buttonStyles,
             subHeadingStyles:
               sectionSubHeadingStylesState.styles.subHeadingStyles,
-            // pricingStyles: sectionPricingStylesState.styles.pricingStyles,
+            pricingStyles: sectionPricingStylesState.styles.pricingStyles,
           },
           extraFunctionalities: {
             textFunctionalities:
@@ -208,7 +212,7 @@ const BottomBar = () => {
     sectionHeadingStylesState,
     sectionParagraphStylesState,
     sectionSubHeadingStylesState,
-    // sectionPricingStylesState,
+    sectionPricingStylesState,
     sectionImageStylesState,
     sectionBlockStylesState,
     sectionCardStylesState,
@@ -231,7 +235,7 @@ const BottomBar = () => {
           setStateHandler(dispatchSectionHeadingStylesActions);
           setStateHandler(dispatchSectionParagraphStylesActions);
           setStateHandler(dispatchSectionSubHeadingStylesActions);
-          // setStateHandler(dispatchSectionPricingStylesActions)
+          setStateHandler(dispatchSectionPricingStylesActions);
           setStateHandler(dispatchSectionBlockStylesActions);
           setStateHandler(dispatchSectionImageStylesActions);
           setStateHandler(dispatchSectionCardStylesActions);
@@ -261,7 +265,7 @@ const BottomBar = () => {
     sectionHeadingStylesState,
     sectionParagraphStylesState,
     sectionSubHeadingStylesState,
-    // sectionPricingStylesState,
+    sectionPricingStylesState,
     sectionImageStylesState,
     sectionBlockStylesState,
     sectionCardStylesState,
@@ -291,7 +295,7 @@ const BottomBar = () => {
           sectionHeadingStylesState={sectionHeadingStylesState}
           sectionParagraphStylesState={sectionParagraphStylesState}
           sectionSubHeadingStylesState={sectionSubHeadingStylesState}
-          // sectionPricingStylesState={sectionPricingStylesState}
+          sectionPricingStylesState={sectionPricingStylesState}
           sectionImageStylesState={sectionImageStylesState}
           sectionBlockStylesState={sectionBlockStylesState}
           sectionCardStylesState={sectionCardStylesState}
@@ -309,9 +313,9 @@ const BottomBar = () => {
           dispatchSectionSubHeadingStylesActions={
             dispatchSectionSubHeadingStylesActions
           }
-          // dispatchSectionPricingStylesActions={
-          //   dispatchSectionPricingStylesActions
-          // }
+          dispatchSectionPricingStylesActions={
+            dispatchSectionPricingStylesActions
+          }
           dispatchSectionImageStylesActions={dispatchSectionImageStylesActions}
           dispatchSectionBlockStylesActions={dispatchSectionBlockStylesActions}
           dispatchSectionCardStylesActions={dispatchSectionCardStylesActions}
