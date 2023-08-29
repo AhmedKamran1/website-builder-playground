@@ -7,9 +7,10 @@ const SectionButton = ({ state, dispatch }) => {
     <>
       <div>
         <p>Button Text</p>
-        <textarea
+        <input
+          type="text"
           value={state.buttonText}
-          onInput={(event) =>
+          onChange={(event) =>
             dispatch({
               type: SectionEventTypesEnum.sectionButtonFunctionalities
                 .CHANGEBUTTONTEXT,
@@ -20,9 +21,10 @@ const SectionButton = ({ state, dispatch }) => {
       </div>
       <div>
         <p>Button Redirect Link</p>
-        <textarea
+        <input
+          type="text"
           value={state.buttonRedirectLink}
-          onInput={(event) =>
+          onChange={(event) =>
             dispatch({
               type: SectionEventTypesEnum.sectionButtonFunctionalities
                 .CHANGEBUTTONREDIRECTLINK,

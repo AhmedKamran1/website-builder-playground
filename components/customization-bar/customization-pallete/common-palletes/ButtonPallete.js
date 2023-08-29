@@ -12,7 +12,7 @@ import {
   borderRadiusRange,
 } from "@/helpers/slider-values/slider-values";
 
-const CommonButtonPallete = ({ state, dispatch }) => {
+const ButtonPallete = ({ state, dispatch }) => {
   return (
     <>
       <strong>Button Properties</strong>
@@ -61,4 +61,4 @@ const CommonButtonPallete = ({ state, dispatch }) => {
   );
 };
 
-export default CommonButtonPallete;
+export default ButtonPallete;

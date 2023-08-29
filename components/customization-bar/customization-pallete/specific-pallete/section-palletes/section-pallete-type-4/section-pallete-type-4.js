@@ -7,10 +7,11 @@ import DeleteItem from "../../../common-palletes/DeleteItem";
 import { Checkbox, Divider } from "@mui/material";
 import AddItem from "../../../common-palletes/AddItem";
 import SectionCardStyles from "../common-section-palletes/SectionCardStyles";
-import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
-import SectionTextArea from "../common-section-palletes/SectionTextArea";
+import ButtonPallete from "../../../common-palletes/ButtonPallete";
 import SectionButton from "../common-section-palletes/SectionButton";
 import ImagePallete from "../../../common-palletes/ImagePallete";
+
+import SectionTextContent from "../common-section-palletes/SectionTextContent";
 
 const SectionPallete4 = ({
   textFunctionalities,
@@ -61,7 +62,7 @@ const SectionPallete4 = ({
       </div>
       {buttonFunctionalities.showButton && (
         <>
-          <CommonButtonPallete
+          <ButtonPallete
             state={buttonStyles}
             dispatch={debounceButtonStyles}
           />
@@ -71,16 +72,24 @@ const SectionPallete4 = ({
           />
         </>
       )}
-      <SectionTextArea
-        state={textFunctionalities}
+      <SectionTextContent
+        state={textFunctionalities.headingText}
         dispatch={dispatchText}
-        changeHeadingText={
+        changeTextContent={
           SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
         }
-        changeParagraphText={
+      >
+        Heading Text
+      </SectionTextContent>
+      <SectionTextContent
+        state={textFunctionalities.paragraphText}
+        dispatch={dispatchText}
+        changeTextContent={
           SectionEventTypesEnum.sectionTextFunctionalities.CHANGEPARAGRAPHTEXT
         }
-      />
+      >
+        Paragraph Text
+      </SectionTextContent>
     </>
   );
 };

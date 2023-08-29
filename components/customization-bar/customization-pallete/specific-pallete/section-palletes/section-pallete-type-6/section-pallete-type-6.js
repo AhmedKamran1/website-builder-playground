@@ -5,12 +5,15 @@ import SectionGridButton from "../common-section-palletes/SectionGridButton";
 import { Divider } from "@mui/material";
 import DeleteItem from "../../../common-palletes/DeleteItem";
 import AddItem from "../../../common-palletes/AddItem";
-import { SectionEventTypesEnum } from "@/helpers/constants/event-types/event-types";
+import {
+  CommonEventTypeEnum,
+  SectionEventTypesEnum,
+} from "@/helpers/constants/event-types/event-types";
 import { gridImageWithButtonItem } from "@/helpers/pre-defined-components-styles/section-styles";
 import SectionCardStyles from "../common-section-palletes/SectionCardStyles";
-import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
+import ButtonPallete from "../../../common-palletes/ButtonPallete";
 import SectionGridPrice from "../common-section-palletes/SectionGridPrice";
-import SectionPricingStyles from "../common-section-palletes/SectionPricingStyles";
+import CollorPallete from "../../../common-palletes/CollorPallete";
 
 const SectionPallete6 = ({
   cardStyles,
@@ -28,14 +31,13 @@ const SectionPallete6 = ({
         cardStyles={cardStyles}
         debounceSectionCardStylesActions={debounceCardStyles}
       />
-      <SectionPricingStyles
-        pricingStyles={pricingStyles}
-        debounceSectionPricingStylesActions={debouncePricingStyles}
+      <strong>Pricing Color</strong>
+      <CollorPallete
+        state={pricingStyles}
+        dispatch={debouncePricingStyles}
+        changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
-      <CommonButtonPallete
-        state={buttonStyles}
-        dispatch={debounceButtonStyles}
-      />
+      <ButtonPallete state={buttonStyles} dispatch={debounceButtonStyles} />
       {gridItemsFunctionalities.map((gridItem, gridIndex) => (
         <React.Fragment key={gridIndex}>
           <Divider />

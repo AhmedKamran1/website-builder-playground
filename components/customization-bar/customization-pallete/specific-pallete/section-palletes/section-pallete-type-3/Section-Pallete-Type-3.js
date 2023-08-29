@@ -10,7 +10,7 @@ import {
   borderRadiusRange,
 } from "@/helpers/slider-values/slider-values";
 import AddItem from "../../../common-palletes/AddItem";
-import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
+import ButtonPallete from "../../../common-palletes/ButtonPallete";
 import SectionButton from "../common-section-palletes/SectionButton";
 
 const SectionPallete3 = ({
@@ -39,7 +39,7 @@ const SectionPallete3 = ({
       </div>
       {buttonFunctionalities.showButton && (
         <>
-          <CommonButtonPallete
+          <ButtonPallete
             state={buttonStyles}
             dispatch={debounceButtonStyles}
           />

@@ -1,37 +1,19 @@
 import React from "react";
 
 const SectionTextAlignment = ({
-  headingState,
-  paragraphState,
-  dispatchHeadingStyles,
-  dispatchParagraphStyles,
-  changeHeadingAlignment,
-  changeParagraphAlignment,
+  state,
+  dispatch,
+  changeTextAlignment,
+  children,
 }) => {
   return (
     <div>
-      {/* heading alignment */}
-      <p>Heading Alignment</p>
+      <p>{children}</p>
       <select
-        value={headingState.textAlign}
+        value={state.textAlign}
         onChange={(event) =>
-          dispatchHeadingStyles({
-            type: changeHeadingAlignment,
-            payload: event.target.value,
-          })
-        }
-      >
-        <option value="center">Center</option>
-        <option value="right">Right</option>
-        <option value="left">Left</option>
-      </select>
-      {/* paragraph alignment */}
-      <p>Paragraph Alignment</p>
-      <select
-        value={paragraphState.textAlign}
-        onChange={(event) =>
-          dispatchParagraphStyles({
-            type: changeParagraphAlignment,
+          dispatch({
+            type: changeTextAlignment,
             payload: event.target.value,
           })
         }

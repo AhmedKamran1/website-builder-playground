@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import SectionGridTextArea from "../common-section-palletes/SectionGridTextArea";
 import SectionGridButton from "../common-section-palletes/SectionGridButton";
 import { gridTextItem } from "@/helpers/pre-defined-components-styles/section-styles";
-import { SectionEventTypesEnum } from "@/helpers/constants/event-types/event-types";
+import { CommonEventTypeEnum, SectionEventTypesEnum } from "@/helpers/constants/event-types/event-types";
 import DeleteItem from "../../../common-palletes/DeleteItem";
 import { Divider } from "@mui/material";
 import AddItem from "../../../common-palletes/AddItem";
 import SectionCardStyles from "../common-section-palletes/SectionCardStyles";
-import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
+import ButtonPallete from "../../../common-palletes/ButtonPallete";
 import SectionGridPrice from "../common-section-palletes/SectionGridPrice";
-import SectionPricingStyles from "../common-section-palletes/SectionPricingStyles";
+import CollorPallete from "../../../common-palletes/CollorPallete";
 
 const SectionPallete5 = ({
   cardStyles,
@@ -27,11 +27,13 @@ const SectionPallete5 = ({
         cardStyles={cardStyles}
         debounceSectionCardStylesActions={debounceCardStyles}
       />
-      <SectionPricingStyles
-        pricingStyles={pricingStyles}
-        debounceSectionPricingStylesActions={debouncePricingStyles}
+      <strong>Pricing Color</strong>
+      <CollorPallete
+        state={pricingStyles}
+        dispatch={debouncePricingStyles}
+        changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
-      <CommonButtonPallete
+      <ButtonPallete
         state={buttonStyles}
         dispatch={debounceButtonStyles}
       />

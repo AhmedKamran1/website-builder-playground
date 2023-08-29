@@ -4,14 +4,14 @@ import {
   CommonEventTypeEnum,
   SectionEventTypesEnum,
 } from "@/helpers/constants/event-types/event-types";
-import SectionTextArea from "../common-section-palletes/SectionTextArea";
-import CommonButtonPallete from "../../../common-palletes/CommonButtonPallete";
+
 import SectionButton from "../common-section-palletes/SectionButton";
 import { Checkbox } from "@mui/material";
-import SectionSubHeading from "../common-section-palletes/SectionSubHeading";
-import SectionSubHeadingAlignment from "../common-section-palletes/SectionSubHeadingAlignment";
 import CollorPallete from "../../../common-palletes/CollorPallete";
 import FontPallete from "../../../common-palletes/FontPallete";
+import SectionTextAlignment from "../common-section-palletes/SectionTextAlignment";
+import SectionTextContent from "../common-section-palletes/SectionTextContent";
+import ButtonPallete from "../../../common-palletes/ButtonPallete";
 
 const SectionPallete1 = ({
   textFunctionalities,
@@ -37,11 +37,42 @@ const SectionPallete1 = ({
         dispatch={debounceSubHeadingStyles}
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
-      <SectionSubHeading state={textFunctionalities} dispatch={dispatchText} />
-      <SectionSubHeadingAlignment
+      <SectionTextContent
+        state={textFunctionalities.headingText}
+        dispatch={dispatchText}
+        changeTextContent={
+          SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
+        }
+      >
+        Heading Text
+      </SectionTextContent>
+      <SectionTextContent
+        state={textFunctionalities.paragraphText}
+        dispatch={dispatchText}
+        changeTextContent={
+          SectionEventTypesEnum.sectionTextFunctionalities.CHANGEPARAGRAPHTEXT
+        }
+      >
+        Paragraph Text
+      </SectionTextContent>
+      <SectionTextContent
+        state={textFunctionalities.subHeadingText}
+        dispatch={dispatchText}
+        changeTextContent={
+          SectionEventTypesEnum.sectionTextFunctionalities.CHANGESUBHEADINGTEXT
+        }
+      >
+        SubHeading Text
+      </SectionTextContent>
+      <SectionTextAlignment
         state={subHeadingStyles}
         dispatch={debounceSubHeadingStyles}
-      />
+        changeTextAlignment={
+          SectionEventTypesEnum.subHeadingStyles.CHANGESUBHEADINGTEXTALIGNMENT
+        }
+      >
+        Sub Heading Alignment
+      </SectionTextAlignment>
       <FontPallete
         state={subHeadingStyles}
         dispatch={debounceSubHeadingStyles}
@@ -100,27 +131,13 @@ const SectionPallete1 = ({
       </div>
       {buttonFunctionalities.showButton && (
         <>
-          <CommonButtonPallete
-            state={buttonStyles}
-            dispatch={debounceButtonStyles}
-          />
+          <ButtonPallete state={buttonStyles} dispatch={debounceButtonStyles} />
           <SectionButton
             state={buttonFunctionalities}
             dispatch={dispatchButton}
           />
         </>
       )}
-
-      <SectionTextArea
-        state={textFunctionalities}
-        dispatch={dispatchText}
-        changeHeadingText={
-          SectionEventTypesEnum.sectionTextFunctionalities.CHANGEHEADINGTEXT
-        }
-        changeParagraphText={
-          SectionEventTypesEnum.sectionTextFunctionalities.CHANGEPARAGRAPHTEXT
-        }
-      />
     </>
   );
 };

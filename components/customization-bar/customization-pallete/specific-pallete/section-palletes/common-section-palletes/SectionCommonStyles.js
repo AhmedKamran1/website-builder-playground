@@ -40,17 +40,23 @@ const SectionCommonStyles = ({
         changeColor={CommonEventTypeEnum.CHANGECOLOR}
       />
       <SectionTextAlignment
-        headingState={headingStyles}
-        paragraphState={paragraphStyles}
-        dispatchHeadingStyles={debounceHeadingStyles}
-        dispatchParagraphStyles={debounceParagraphStyles}
-        changeHeadingAlignment={
+        state={headingStyles}
+        dispatch={debounceHeadingStyles}
+        changeTextAlignment={
           SectionEventTypesEnum.headingStyles.CHANGEHEADINGTEXTALIGNMENT
         }
-        changeParagraphAlignment={
+      >
+        Heading Alignment
+      </SectionTextAlignment>
+      <SectionTextAlignment
+        state={paragraphStyles}
+        dispatch={debounceParagraphStyles}
+        changeTextAlignment={
           SectionEventTypesEnum.paragraphStyles.CHANGEPARAGRAPHTEXTALIGNMENT
         }
-      />
+      >
+        Paragraph Alignment
+      </SectionTextAlignment>
       <p>Heading Font Type</p>
       <FontPallete
         state={headingStyles}

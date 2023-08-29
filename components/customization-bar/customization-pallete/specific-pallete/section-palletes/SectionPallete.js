@@ -1,38 +1,19 @@
 import React from "react";
-import SectionTextArea from "./common-section-palletes/SectionTextArea";
-import CollorPallete from "../../common-palletes/CollorPallete";
-import BgColorPallete from "../../common-palletes/BgColorPallete";
-import { Box, Divider, Slider } from "@mui/material";
-import {
-  CommonEventTypeEnum,
-  SectionEventTypesEnum,
-} from "@/helpers/constants/event-types/event-types";
-import useDebouncedDispatch from "@/hooks/use-debounce";
-import SectionTextAlignment from "./common-section-palletes/SectionTextAlignment";
-import SectionPallete1 from "./section-pallete-type-1/Section-Pallete-Type-1";
+
 import { useSelector } from "react-redux";
-import { selectedComponentData } from "@/store/ComponentSlice";
+
+import useDebouncedDispatch from "@/hooks/use-debounce";
+
+import SectionPallete1 from "./section-pallete-type-1/Section-Pallete-Type-1";
+import SectionPallete2 from "./section-pallete-type-2/Section-Pallete-Type-2";
 import SectionPallete3 from "./section-pallete-type-3/Section-Pallete-Type-3";
-import {
-  gridImageItem,
-  gridImageWithButtonItem,
-  gridTextItem,
-  subHeadingStyles,
-} from "@/helpers/pre-defined-components-styles/section-styles";
-import {
-  borderRadiusMaxRange,
-  borderRadiusRange,
-} from "@/helpers/slider-values/slider-values";
-import AddItem from "../../common-palletes/AddItem";
-import DeleteItem from "../../common-palletes/DeleteItem";
-import SectionPallete6 from "./section-pallete-type-6/section-pallete-type-6";
-import SectionPallete5 from "./section-pallete-type-5/section-pallete-type-5";
-import CommonButtonPallete from "../../common-palletes/CommonButtonPallete";
-import FontPallete from "../../common-palletes/FontPallete";
-import SectionCardStyles from "./common-section-palletes/SectionCardStyles";
+import SectionPallete4 from "./section-pallete-type-4/Section-Pallete-Type-4";
+import SectionPallete5 from "./section-pallete-type-5/Section-Pallete-Type-5";
+import SectionPallete6 from "./section-pallete-type-6/Section-Pallete-Type-6";
+
+import { selectedComponentData } from "@/store/ComponentSlice";
+
 import SectionCommonStyles from "./common-section-palletes/SectionCommonStyles";
-import SectionPallete4 from "./section-pallete-type-4/section-pallete-type-4";
-import SectionPallete2 from "./section-pallete-type-2/section-pallete-type-2";
 
 const SectionPallete = ({
   textFunctionalities,
