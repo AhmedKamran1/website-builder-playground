@@ -40,7 +40,7 @@ export const StyledButton = styledWithoutProps(
     fontFamily: fontFamily,
     fontWeight: fontWeight,
     fontStyle: fontStyle,
-    borderRadius: `${borderRadius}%`,
+    borderRadius: `${borderRadius}px`,
     border: isfocused ? "1px solid blue" : "none",
     margin: "0.25rem",
     "&:hover": {

@@ -11,6 +11,7 @@ import {
   borderRadiusMaxRange,
   borderRadiusRange,
 } from "@/helpers/slider-values/slider-values";
+import BorderRadius from "./BorderRadius";
 
 const ButtonPallete = ({ state, dispatch }) => {
   return (
@@ -44,19 +45,13 @@ const ButtonPallete = ({ state, dispatch }) => {
           SectionEventTypesEnum.buttonStyles.CHANGEBUTTONHOVERCOLOR
         }
       />
-      <Box sx={{ width: "200px" }}>
-        <Slider
-          value={state.borderRadius}
-          marks={borderRadiusRange}
-          max={borderRadiusMaxRange}
-          onChange={(event) =>
-            dispatch({
-              type: SectionEventTypesEnum.buttonStyles.CHANGEBORDERRADIUS,
-              payload: event.target.value,
-            })
-          }
-        />
-      </Box>
+      <BorderRadius
+        state={state}
+        dispatch={dispatch}
+        changeRadius={SectionEventTypesEnum.buttonStyles.CHANGEBORDERRADIUS}
+      >
+        Button Border Radius
+      </BorderRadius>
     </>
   );
 };

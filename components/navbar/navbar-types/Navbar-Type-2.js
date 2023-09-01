@@ -24,6 +24,7 @@ const NavbarType2 = ({
         loginButtonStyles={loginButtonStyles}
         links={extraFunctionalities.links}
         logo={extraFunctionalities.logo}
+        title={extraFunctionalities.title}
       />
     </NavigationBar>
   );

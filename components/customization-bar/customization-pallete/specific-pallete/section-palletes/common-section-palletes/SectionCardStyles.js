@@ -9,6 +9,7 @@ import {
   borderRadiusMaxRange,
   borderRadiusRange,
 } from "@/helpers/slider-values/slider-values";
+import BorderRadius from "../../../common-palletes/BorderRadius";
 
 const SectionCardStyles = ({
   cardStyles,
@@ -22,19 +23,13 @@ const SectionCardStyles = ({
         dispatch={debounceSectionCardStylesActions}
         changeBackgroundColor={CommonEventTypeEnum.CHANGEBGCOLOR}
       />
-      <Box sx={{ width: "200px" }}>
-        <Slider
-          value={cardStyles.borderRadius}
-          marks={borderRadiusRange}
-          max={borderRadiusMaxRange}
-          onChange={(event) =>
-            debounceSectionCardStylesActions({
-              type: SectionEventTypesEnum.cardStyles.CHANGEBORDERRADIUS,
-              payload: event.target.value,
-            })
-          }
-        />
-      </Box>
+      <BorderRadius
+        state={cardStyles}
+        dispatch={debounceSectionCardStylesActions}
+        changeRadius={SectionEventTypesEnum.cardStyles.CHANGEBORDERRADIUS}
+      >
+        Card Border Radius
+      </BorderRadius>
     </div>
   );
 };

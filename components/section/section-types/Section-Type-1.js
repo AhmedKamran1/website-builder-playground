@@ -113,7 +113,7 @@ const SectionType1 = ({
                   sx={{
                     height: "100%",
                     width: "100%",
-                    borderRadius: `${imageStyles.borderRadius}%`,
+                    borderRadius: `${imageStyles.borderRadius}px`,
                   }}
                 />
               </StyledLink>

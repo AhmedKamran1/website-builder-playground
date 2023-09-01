@@ -55,7 +55,7 @@ const SectionType5 = ({
               <Grid item xs={1} sm={3} md={4} key={index}>
                 <SectionCardContainer5
                   backgroundColor={cardStyles.backgroundColor}
-                  borderRadius={`${cardStyles.borderRadius}%`}
+                  borderRadius={`${cardStyles.borderRadius}px`}
                 >
                   <SectionPriceContainer5>
                     <ResponsiveText

@@ -10,13 +10,14 @@ import {
 
 import { styledWithoutProps } from "../../ignoredProps";
 import { NavbarLogo } from "../navbar-common-styles";
+import { ResponsiveText } from "../../common-styled-components/common-components";
 
 export const NavToolBar = styled(Toolbar)(({ theme }) => ({
   width: "60%",
   display: "flex",
   justifyContent: "center",
   [theme.breakpoints.down("lg")]: {
-    width: "90%",
+    width: "70%",
   },
   [theme.breakpoints.down("md")]: {
     display: "none",
@@ -57,29 +58,14 @@ export const StyledListItemText = styledWithoutProps(
   })
 );
 
-export const TabItem = styledWithoutProps(
-  Tab,
-  ({
-    colorHex,
-    backgroundColor,
-    fontSize,
-    fontFamily,
-    fontWeight,
-    fontStyle,
-    hoverColor,
-  }) => ({
-    backgroundColor: backgroundColor,
-    color: colorHex,
-    fontSize: fontSize,
-    fontFamily: fontFamily,
-    fontWeight: fontWeight,
-    fontStyle: fontStyle,
-    transition: "0.25s all",
-    "&:hover": {
-      backgroundColor: hoverColor,
-    },
-  })
-);
+export const ResponsiveTitleText2 = styled(ResponsiveText)(({ theme }) => ({
+  fontWeight: 700,
+  letterSpacing: ".2rem",
+  textDecoration: "none",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
 
 export const NavbarLogo2 = styledWithoutProps(NavbarLogo, ({ theme }) => ({
   [theme.breakpoints.down("md")]: {

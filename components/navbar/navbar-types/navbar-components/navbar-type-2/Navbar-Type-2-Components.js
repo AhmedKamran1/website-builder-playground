@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import {
   FullViewContainer,
   NavbarLogo2,
+  ResponsiveTitleText2,
 } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-2-styles";
 
 import { IconButton } from "@mui/material";
@@ -12,13 +13,15 @@ import NavbarToolbar2 from "./Navbar-Type-2-Toolbar";
 import NavbarDrawer2 from "./Navbar-Type-2-Drawer";
 import Image from "next/image";
 
-import tempPhoto from "../../../../../assets/bgpic.jpg"
+import tempPhoto from "../../../../../assets/bgpic.jpg";
+import { ResponsiveTitleText } from "@/styles/pre-defined-components/navbar/navbar-styled-types/navbar-type-1-styles";
 
 const NavbarComponents2 = ({
   navLinkStyles,
   loginButtonStyles,
   links,
   logo,
+  title,
 }) => {
   const [showDrawer, setShowDrawer] = useState(false);
 
@@ -40,6 +43,14 @@ const NavbarComponents2 = ({
         <NavbarLogo2 alt="Remy Sharp">
           <Image src={logo || tempPhoto} alt="some text" fill sizes="50px" />
         </NavbarLogo2>
+        <ResponsiveTitleText2
+          variant="subHeader"
+          noWrap
+          href="/"
+          colorHex={navLinkStyles.colorHex}
+        >
+          {title}
+        </ResponsiveTitleText2>
         <NavbarToolbar2
           navLinkStyles={navLinkStyles}
           loginButtonStyles={loginButtonStyles}

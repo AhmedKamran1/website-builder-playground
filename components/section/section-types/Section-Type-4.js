@@ -42,7 +42,7 @@ const SectionType4 = ({
           item
           xs={12}
           md={6}
-          borderRadius={`${cardStyles.borderRadius}%`}
+          borderRadius={`${cardStyles.borderRadius}px`}
         >
           <StyledLink href={imageFunctionalities.imageRedirectLink}>
             <Avatar
@@ -56,7 +56,7 @@ const SectionType4 = ({
           xs={12}
           md={6}
           backgroundColor={cardStyles.backgroundColor}
-          borderRadius={`${cardStyles.borderRadius}%`}
+          borderRadius={`${cardStyles.borderRadius}px`}
         >
           <SectionTextContainer4>
             <Box textAlign={headingStyles.textAlign}>

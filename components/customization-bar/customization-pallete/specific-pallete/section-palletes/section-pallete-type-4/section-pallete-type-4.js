@@ -12,27 +12,31 @@ import SectionButton from "../common-section-palletes/SectionButton";
 import ImagePallete from "../../../common-palletes/ImagePallete";
 
 import SectionTextContent from "../common-section-palletes/SectionTextContent";
+import ChangeImage from "../../../common-palletes/ChangeImage";
 
 const SectionPallete4 = ({
   textFunctionalities,
   buttonFunctionalities,
+  imageFunctionalities,
   cardStyles,
   buttonStyles,
   dispatchText,
   dispatchButton,
+  dispatchImage,
   debounceCardStyles,
   debounceButtonStyles,
 }) => {
   return (
     <>
-      {/* <ImagePallete
-        imageFunctionalitiesState={imageFunctionalities}
-        imageStylesState={imageStylesState}
-        dispatchImageFunctionalities={dispatchImageActions}
-        dispatchImageStyles={debounceSectionImageStylesActions}
+      <ChangeImage
+        dispatchImageFunctionalities={dispatchImage}
         changeImage={
           SectionEventTypesEnum.sectionImageFunctionalities.CHANGEIMAGE
         }
+      />
+      <ImagePallete
+        imageFunctionalitiesState={imageFunctionalities}
+        dispatchImageFunctionalities={dispatchImage}
         changeImageRedirectLink={
           SectionEventTypesEnum.sectionImageFunctionalities
             .CHANGEIMAGEREDIRECTLINK
@@ -40,10 +44,7 @@ const SectionPallete4 = ({
         changeImageAltText={
           SectionEventTypesEnum.sectionImageFunctionalities.CHANGEIMAGEALTTEXT
         }
-        changeImageBorderRadius={
-          SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS
-        }
-      /> */}
+      />
       <SectionCardStyles
         cardStyles={cardStyles}
         debounceSectionCardStylesActions={debounceCardStyles}
@@ -62,10 +63,7 @@ const SectionPallete4 = ({
       </div>
       {buttonFunctionalities.showButton && (
         <>
-          <ButtonPallete
-            state={buttonStyles}
-            dispatch={debounceButtonStyles}
-          />
+          <ButtonPallete state={buttonStyles} dispatch={debounceButtonStyles} />
           <SectionButton
             state={buttonFunctionalities}
             dispatch={dispatchButton}

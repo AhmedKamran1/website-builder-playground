@@ -42,7 +42,7 @@ export const initialNavbarComponentStyles = [
       loginButtonStyles: loginButtonStyles,
     },
     extraFunctionalities: {
-      title: "",
+      title: "Add Title",
       logo: "",
       links: [navLink],
     },

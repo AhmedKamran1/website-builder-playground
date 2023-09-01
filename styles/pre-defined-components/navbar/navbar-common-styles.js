@@ -1,23 +1,6 @@
-import Link from "next/link";
-
-import { AppBar, Avatar, Typography, styled } from "@mui/material";
-
-import { baseFontSizes } from "@/helpers/font-sizes/font-sizes";
+import { AppBar, Avatar } from "@mui/material";
 
 import { styledWithoutProps } from "../ignoredProps";
-
-// export const ResponsiveText = styledWithoutProps(
-//   Typography,
-//   ({ variant, colorHex, fontStyle, fontWeight, theme }) => ({
-//     fontSize: baseFontSizes[variant].default,
-//     color: colorHex,
-//     fontStyle: fontStyle,
-//     fontWeight: fontWeight,
-//     [theme.breakpoints.down("sm")]: {
-//       fontSize: baseFontSizes[variant].small,
-//     },
-//   })
-// );
 
 export const NavigationBar = styledWithoutProps(
   AppBar,
@@ -27,10 +10,6 @@ export const NavigationBar = styledWithoutProps(
     border: isfocused ? "1px solid blue" : "1px solid transparent",
   })
 );
-
-// export const StyledLink = styled(Link)(() => ({
-//   all: "unset",
-// }));
 
 export const NavbarLogo = styledWithoutProps(Avatar, ({ theme }) => ({
   height: "55px",

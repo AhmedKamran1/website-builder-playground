@@ -29,6 +29,7 @@ import useDebouncedDispatch from "@/hooks/use-debounce";
 import ImagePallete from "../../common-palletes/ImagePallete";
 import BgColorPallete from "../../common-palletes/BgColorPallete";
 import AddItem from "../../common-palletes/AddItem";
+import ChangeImage from "../../common-palletes/ChangeImage";
 
 const NavbarPallete = ({
   navFunctionalitiesState,
@@ -56,21 +57,23 @@ const NavbarPallete = ({
 
   return (
     <>
-      {selectedComponent.navId === initialNavbarComponentStyles[0].navId && (
-        <NavbarPallete1
-          state={navFunctionalitiesState.extraFunctionalities}
-          dispatch={dispatchNavFunctionalitiesActions}
+      <div>
+        <span>Title</span>
+        <input
+          type="text"
+          value={navFunctionalitiesState.extraFunctionalities.title}
+          onChange={(event) =>
+            dispatchNavFunctionalitiesActions({
+              type: NavEventTypesEnum.navbarFunctionalities.CHANGENAVTITLE,
+              payload: event.target.value,
+            })
+          }
         />
-      )}
-      {/* <ImagePallete
-        state={}
-        dispatchImage={dispatchNavFunctionalitiesActions}
-        dispatchImageRedirectLink={null}
-        dispatchImageAltText={null}
+      </div>
+      <ChangeImage
+        dispatchImageFunctionalities={dispatchNavFunctionalitiesActions}
         changeImage={NavEventTypesEnum.navbarFunctionalities.CHANGENAVLOGO}
-        changeImageRedirectLink={}
-        changeImageAltText={}
-      /> */}
+      />
       <Divider />
       {/* NAVBAR LOGIN BUTTON PALLETE */}
       <strong>Pallete for login button</strong>
@@ -139,15 +142,6 @@ const NavbarPallete = ({
               linkIndex={linkIndex}
               dispatch={dispatchNavFunctionalitiesActions}
             />
-            {/* {selectedComponent.navId ===
-                  initialNavbarComponentStyles[1].navId &&
-                  !link.showDropDown && (
-                    <NavbarPallete2
-                      link={link}
-                      linkIndex={linkIndex}
-                      dispatch={dispatch}
-                    />
-                  )} */}
             <Divider />
           </React.Fragment>
         )

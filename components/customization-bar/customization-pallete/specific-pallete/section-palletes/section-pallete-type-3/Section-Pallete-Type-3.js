@@ -12,6 +12,7 @@ import {
 import AddItem from "../../../common-palletes/AddItem";
 import ButtonPallete from "../../../common-palletes/ButtonPallete";
 import SectionButton from "../common-section-palletes/SectionButton";
+import BorderRadius from "../../../common-palletes/BorderRadius";
 
 const SectionPallete3 = ({
   gridItemsFunctionalities,
@@ -39,29 +40,18 @@ const SectionPallete3 = ({
       </div>
       {buttonFunctionalities.showButton && (
         <>
-          <ButtonPallete
-            state={buttonStyles}
-            dispatch={debounceButtonStyles}
-          />
+          <ButtonPallete state={buttonStyles} dispatch={debounceButtonStyles} />
           <SectionButton
             state={buttonFunctionalities}
             dispatch={dispatchButton}
           />
         </>
       )}
-      <Box sx={{ width: "200px" }}>
-        <Slider
-          value={imageStyles.borderRadius}
-          marks={borderRadiusRange}
-          max={borderRadiusMaxRange}
-          onChange={(event) =>
-            dispatchImageStyles({
-              type: SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS,
-              payload: event.target.value,
-            })
-          }
-        />
-      </Box>
+      <BorderRadius
+        state={imageStyles}
+        dispatch={dispatchImageStyles}
+        changeRadius={SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS}
+      >Image Border Radius</BorderRadius>
       {gridItemsFunctionalities.map((gridItem, gridIndex) => (
         <React.Fragment key={gridIndex}>
           <Divider />

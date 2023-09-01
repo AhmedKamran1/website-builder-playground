@@ -12,6 +12,8 @@ import FontPallete from "../../../common-palletes/FontPallete";
 import SectionTextAlignment from "../common-section-palletes/SectionTextAlignment";
 import SectionTextContent from "../common-section-palletes/SectionTextContent";
 import ButtonPallete from "../../../common-palletes/ButtonPallete";
+import BorderRadius from "../../../common-palletes/BorderRadius";
+import ChangeImage from "../../../common-palletes/ChangeImage";
 
 const SectionPallete1 = ({
   textFunctionalities,
@@ -98,14 +100,15 @@ const SectionPallete1 = ({
           <option value="row-reverse">Image at left</option>
         </select>
       </div>
-      <ImagePallete
-        imageFunctionalitiesState={imageFunctionalities}
-        imageStylesState={imageStyles}
+      <ChangeImage
         dispatchImageFunctionalities={dispatchImage}
-        dispatchImageStyles={debounceImageStyles}
         changeImage={
           SectionEventTypesEnum.sectionImageFunctionalities.CHANGEIMAGE
         }
+      />
+      <ImagePallete
+        imageFunctionalitiesState={imageFunctionalities}
+        dispatchImageFunctionalities={dispatchImage}
         changeImageRedirectLink={
           SectionEventTypesEnum.sectionImageFunctionalities
             .CHANGEIMAGEREDIRECTLINK
@@ -113,10 +116,14 @@ const SectionPallete1 = ({
         changeImageAltText={
           SectionEventTypesEnum.sectionImageFunctionalities.CHANGEIMAGEALTTEXT
         }
-        changeImageBorderRadius={
-          SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS
-        }
       />
+      <BorderRadius
+        state={imageStyles}
+        dispatch={debounceImageStyles}
+        changeRadius={SectionEventTypesEnum.imageStyles.CHANGEBORDERRADIUS}
+      >
+        Image Border Radius
+      </BorderRadius>
       <div>
         <strong>Show Button</strong>
         <Checkbox

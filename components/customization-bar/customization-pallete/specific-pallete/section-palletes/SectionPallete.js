@@ -125,10 +125,12 @@ const SectionPallete = ({
         <SectionPallete4
           textFunctionalities={textFunctionalities}
           buttonFunctionalities={buttonFunctionalities}
+          imageFunctionalities={imageFunctionalities}
           cardStyles={cardStyles}
           buttonStyles={buttonStyles}
           dispatchText={dispatchText}
           dispatchButton={dispatchButton}
+          dispatchImage={dispatchImage}
           debounceCardStyles={debounceCardStyles}
           debounceButtonStyles={debounceButtonStyles}
         />

@@ -57,7 +57,7 @@ const SectionType6 = ({
             ) => (
               <Grid item xs={1} sm={2} md={2} lg={6} key={index}>
                 <SectionCardContainer6
-                  borderRadius={`${cardStyles.borderRadius}%`}
+                  borderRadius={`${cardStyles.borderRadius}px`}
                 >
                   <SectionImageContainer6>
                     <StyledLink href={imageFunctionalities.imageRedirectLink}>
