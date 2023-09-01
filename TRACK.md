@@ -75,13 +75,13 @@
 - what will happen to sectionId and NavId?
 - default behaviour implementation and code design if editing area is directly accessed? //solution is not possible //ASK
 - navbar pre-fetch problem?
-- image pallete and similar properties like used in gridimages are slightly different what to do?
 - SectionGridImage.js and SectionGridButton.js and SectionGridPrice.js me jugaar
 - 2 types of same pallete one for grid and other for non-grid
 - button styles should have bold/italic text options?
 - in whole project index is utilized as key while mapping whhich is not recommended
 - button property discussion to navigate to different page implementation when clicked
 - best way to organize section pallete structure and components?
-- how will pricing work like simple text or something else etc?
+- component reusability between navbar and sections like simple text field eg Title. like we are using colorpallete globally
+- using avatar currently for all section pictures
 
 fix section pallete structure, 3 newly added section all properties, old sections all properties, image working for section pallete 4
