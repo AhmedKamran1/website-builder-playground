@@ -66,6 +66,7 @@
 - remove button work completely // DONE
 - naming conventions of states in customization pallete/ section pallete, grid naming convention, enums of sections/navbar if necessary
 - remove unnesecary properties from common-section-palletes folders components
+- dynamic input for grid items
 - update happening on changing selected component
 
 # ASK
