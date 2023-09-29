@@ -109,3 +109,16 @@ export const SectionEventTypesEnum = {
     CHANGEFLEXDIRECTION: "changeFlexDirection",
   },
 };
+
+// export const footerEventTypesEnum = {
+//   textFunctionalities: {
+//     CHANGETITLETEXT: "changeTitleText",
+//     CHANGEDESCRIPTIONTEXT: "changeDescriptionText",
+//     CHANGELOGO: "changeLogo",
+//   },
+//   socialIconsFunctionalities:{
+//     CHANGEICONVISIBILITY: "changeIconVisibilty",
+//     CHANGEICONREDIRECTLINK:"changeIconRedirectLink",
+//   }
+//   ,socialIconStyles
+// };
